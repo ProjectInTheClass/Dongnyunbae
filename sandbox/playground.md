@@ -47,3 +47,4 @@ bluePortal.isActive = false
 moveForward()
 moveForward()
 collectGem()
+CollectGem();
