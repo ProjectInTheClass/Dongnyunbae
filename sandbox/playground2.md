@@ -1,6 +1,6 @@
 bluePortal.isActive = false
 pinkPortal.isActive = false
-for i in 1 ... 3 {
+for i in 1...3 {
     moveForward()
 }
 collectGem()
