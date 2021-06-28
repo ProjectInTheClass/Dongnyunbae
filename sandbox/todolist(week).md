@@ -7,4 +7,3 @@
 4. setting - pages - main branch에 /docs 생성 - save (템플릿만 다운받기)
 
 깃허브 연습 1
-깃허브 연습 2
