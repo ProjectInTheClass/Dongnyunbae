@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XTE-TN-Y45">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Restaurants View Controller-->
+        <scene sceneID="9fX-3M-czL">
+            <objects>
+                <tableViewController id="XTE-TN-Y45" customClass="RestaurantsViewController" customModule="tableViewPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nkV-U3-Rc4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurantCell" rowHeight="60" id="BRu-Wr-wEy" customClass="RestaurantCell" customModule="tableViewPractice" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BRu-Wr-wEy" id="apQ-EO-Sbn">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPf-LL-vMi">
+                                            <rect key="frame" x="16.000000000000004" y="9.9999999999999982" width="44.333333333333343" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMl-Ip-Nyi">
+                                            <rect key="frame" x="16.000000000000004" y="35.333333333333336" width="37.333333333333343" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpz-bk-vRd">
+                                            <rect key="frame" x="68.333333333333329" y="12" width="38" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" systemColor="systemGray2Color"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bMl-Ip-Nyi" firstAttribute="leading" secondItem="apQ-EO-Sbn" secondAttribute="leading" constant="16" id="9UW-tw-tqi"/>
+                                        <constraint firstItem="Mpz-bk-vRd" firstAttribute="top" secondItem="apQ-EO-Sbn" secondAttribute="top" constant="12" id="J7I-Tb-adE"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Mpz-bk-vRd" secondAttribute="trailing" constant="20" symbolic="YES" id="Opb-ac-IcS"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bMl-Ip-Nyi" secondAttribute="trailing" constant="20" symbolic="YES" id="P2z-dl-laf"/>
+                                        <constraint firstItem="iPf-LL-vMi" firstAttribute="top" secondItem="apQ-EO-Sbn" secondAttribute="top" constant="10" id="UXl-p4-wjf"/>
+                                        <constraint firstItem="iPf-LL-vMi" firstAttribute="leading" secondItem="apQ-EO-Sbn" secondAttribute="leading" constant="16" id="Z4w-VM-HsS"/>
+                                        <constraint firstItem="bMl-Ip-Nyi" firstAttribute="top" secondItem="iPf-LL-vMi" secondAttribute="bottom" constant="5" id="aWz-5d-fnz"/>
+                                        <constraint firstItem="Mpz-bk-vRd" firstAttribute="leading" secondItem="iPf-LL-vMi" secondAttribute="trailing" constant="8" symbolic="YES" id="ytB-UT-ZlA"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="basisLabel" destination="bMl-Ip-Nyi" id="kE5-Me-Cux"/>
+                                    <outlet property="meokbtiLabel" destination="Mpz-bk-vRd" id="tev-4J-8bt"/>
+                                    <outlet property="nameLabel" destination="iPf-LL-vMi" id="i9q-L5-YcI"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XTE-TN-Y45" id="zAb-VE-g6b"/>
+                            <outlet property="delegate" destination="XTE-TN-Y45" id="Nz1-Lq-GQG"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YJU-xX-JVc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1000.8" y="93.842364532019715"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
