@@ -17,6 +17,7 @@
 		013205762695A005005FF327 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013205752695A005005FF327 /* RestaurantCell.swift */; };
 		013205782695A610005FF327 /* screenShot.png in Resources */ = {isa = PBXBuildFile; fileRef = 013205772695A610005FF327 /* screenShot.png */; };
 		0132063E269D63F6005FF327 /* rawUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0132063D269D63F6005FF327 /* rawUserData.swift */; };
+		01E0223A26A29427008D99E9 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E0223926A29427008D99E9 /* RestaurantDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		013205752695A005005FF327 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		013205772695A610005FF327 /* screenShot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenShot.png; sourceTree = "<group>"; };
 		0132063D269D63F6005FF327 /* rawUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rawUserData.swift; sourceTree = "<group>"; };
+		01E0223926A29427008D99E9 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				0132055E26901B13005FF327 /* AppDelegate.swift */,
 				0132056026901B13005FF327 /* SceneDelegate.swift */,
 				0132057226901F31005FF327 /* RestaurantsViewController.swift */,
+				01E0223926A29427008D99E9 /* RestaurantDetailViewController.swift */,
 				0132056226901B13005FF327 /* ViewController.swift */,
 				013205772695A610005FF327 /* screenShot.png */,
 				013205752695A005005FF327 /* RestaurantCell.swift */,
@@ -157,6 +160,7 @@
 				0132055F26901B13005FF327 /* AppDelegate.swift in Sources */,
 				0132057326901F31005FF327 /* RestaurantsViewController.swift in Sources */,
 				0132056126901B13005FF327 /* SceneDelegate.swift in Sources */,
+				01E0223A26A29427008D99E9 /* RestaurantDetailViewController.swift in Sources */,
 				0132063E269D63F6005FF327 /* rawUserData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

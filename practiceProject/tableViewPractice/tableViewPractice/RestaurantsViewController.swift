@@ -28,14 +28,14 @@ class RestaurantsViewController: UITableViewController {
         
         
         // MARK: 기본셀로 subtitle 스타일로 만들어 줄 때의 코드 (식당이름,이유)
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }
 //        cell.textLabel?.text = restaurant.name + "(\(restaurant.meokBTI))"
 //        cell.detailTextLabel?.text = restaurant.basis
-//        cell.backgroundColor = colorList[indexPath.row % colorList.count ]
+
         
         // MARK: customcell을 만들어 줄 떄의 코드 (식당이름,먹bti,이유)
         let cell: RestaurantCell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell",for: indexPath) as! RestaurantCell
-        
+
         cell.nameLabel.text = restaurant.name
         cell.meokbtiLabel.text = restaurant.meokBTI
         cell.basisLabel.text = restaurant.basis
@@ -46,15 +46,32 @@ class RestaurantsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let segue = segue.destination as? RestaurantDetailViewController,
+           let selectedIndex = tableView.indexPathForSelectedRow?.row {
+            
+            let restaurant = Restaurant(name: rawData[selectedIndex][0], meokBTI: rawData[selectedIndex][2], place: rawData[selectedIndex][1],basis: rawData[selectedIndex][3])
+            
+//            segue.restaurantName = restaurant.name
+//            segue.meokBTI = restaurant.meokBTI
+//            segue.location = restaurant.place
+//            segue.review = restaurant.basis
+            segue.restaurant = restaurant
+            
+        }
 
+    }
+    
+    
 }
 
 struct Restaurant {
     
-    var name: String
-    var meokBTI: String
-    let place: String
-    var basis: String
+    var name: String?
+    var meokBTI: String?
+    var place: String?
+    var basis: String?
     
 }
 
