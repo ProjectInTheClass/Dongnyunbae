@@ -36,3 +36,36 @@ let convertToDic: (String,Int) -> [String: Int] = arrayToDic
 
 convertToDic("key",7)
 
+
+
+
+// closure 축약
+
+let shortConvertToInt : (Int, Double) -> Int = { $0 * Int($1) }
+shortConvertToInt(2,2.0)
+
+let shortConvertToSum : ([String]) -> Int = { stringArray in
+    var total = 0
+    
+    for str in stringArray {
+        if let intValue = Int(str) {
+            total += intValue
+        }
+    }
+    
+    return total
+    
+}
+
+let shortConvertToSum2 : ([String]) -> Int = { $0.count }
+
+shortConvertToSum2(["@","1","!2","325"])
+
+
+shortConvertToSum(["7","3"])
+
+let shortConvertToDic: (String,Int) -> [String: Int] = { [$0 : $1] }
+
+shortConvertToDic("man",5)
+ 
+
