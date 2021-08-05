@@ -42,19 +42,23 @@ class ResultsViewController: UIViewController {
         var frequencyOfAnswers: [Character : Int] = [:]
         let responseTypes = responses.map { $0.type.rawValue }
         
+        // 타입들의 빈도수를 구함
         for response in responseTypes {
             frequencyOfAnswers[response] = (frequencyOfAnswers[response] ?? 0) + 1
         }
         
+        // 빈도수 기준으로 정렬
         let frequentAnswerSorted = frequencyOfAnswers.sorted(by:
         { (pair1, pair2) -> Bool in
             return pair1.value > pair2.value
         })
         
-        let Best4MeokTypeSorted = frequentAnswerSorted.sorted(by: { $0.key < $1.key })[0...3]
-//        print(frequentAnswerSorted)
-//        print(frequentMeokTypeSorted)
+        // MeokBTI 변환전, 알파벳순서로 정렬
+        let Best4MeokTypeSorted = frequentAnswerSorted[0...3].sorted { $0.key < $1.key }
+        print("frequentAnswerSorted",frequentAnswerSorted)
+        print("Best4MeokTypeSorted",Best4MeokTypeSorted)
         
+        // 정렬된 알파벳들을 하나에 문자(MeokBTI)로 만들어 줌.
         let meokBTI = Best4MeokTypeSorted.map { String($0.key) }.reduce("") { $0 + $1 }
         
         print(meokBTI)
@@ -62,8 +66,8 @@ class ResultsViewController: UIViewController {
         let resultImage = UIImage(named: "\(meokBTI).jpg")
         resultAnswerImage.image = resultImage
         
-        resultAnswerLabel.text = pushDefinition(meokBTI: "\(meokBTI)")[0]
-        resultDefinitionLabel.text = pushDefinition(meokBTI: "\(meokBTI)")[1]
+        resultAnswerLabel.text = pushDefinition(meokBTI: "\(meokBTI)")["resultAnswer"]
+        resultDefinitionLabel.text = pushDefinition(meokBTI: "\(meokBTI)")["resultDefinition"]
 
         
 
@@ -79,16 +83,21 @@ class ResultsViewController: UIViewController {
     }
     
     
-    func pushDefinition(meokBTI: String) -> [String] {
+    func pushDefinition(meokBTI: String) -> [String : String] {
+    // 각 먹bti에 맞는 설명들 추출 -> 클래스로 해당 데이터들을 담아서 함수에서는 그걸 추출하는 식으로 바꿔야할 듯
         switch meokBTI {
         case "ACEG" :
-            return ["독고다이 돌하르방 \n\(meokBTI)","새로운 음식 도전하는 것을 좋아함. 어느식당에서나 혼밥 할 수 있는 힘을 가지고 있다. 음식 가지고 장난치는건 못참는 편."]
+            return ["resultAnswer" : "독고다이 돌하르방 \n\(meokBTI)",
+                    "resultDefinition" : "새로운 음식 도전하는 것을 좋아함. 어느식당에서나 혼밥 할 수 있는 힘을 가지고 있다. 음식 가지고 장난치는건 못참는 편."]
         case "ACFH" :
-            return ["단골가게 충성돼지 \n\(meokBTI)","게으른 완벽주의자. 메뉴를 정하는데 오랜 시간이 걸린다. 열 번 중 여덟번은 내가 한일에 만족 하지 못함 항상 가는 식당이 정해져있다"]
+            return ["resultAnswer" : "단골가게 충성돼지 \n\(meokBTI)",
+                    "resultDefinition" : "게으른 완벽주의자. 메뉴를 정하는데 오랜 시간이 걸린다. 열 번 중 여덟번은 내가 한일에 만족 하지 못함 항상 가는 식당이 정해져있다"]
         case "BDFH" :
-            return ["별심이 \n\(meokBTI)","순진하다. 여러사람들과 함께 하는 식사 자리를 즐긴다. 외로움을 잘 느낀다. 밥 먹을 때 건드리면 문다"]
+            return ["resultAnswer" : "별심이 \n\(meokBTI)",
+                    "resultDefinition" : "순진하다. 여러사람들과 함께 하는 식사 자리를 즐긴다. 외로움을 잘 느낀다. 밥 먹을 때 건드리면 문다"]
         default:
-            return ["Only one"]
+            return ["resultAnswer" : "Your MeokBTI",
+                    "resultDefinition" : "Not yet"]
         }
     }
     

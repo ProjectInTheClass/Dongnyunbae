@@ -65,8 +65,8 @@ let questions: [Question] = [
                 Answer(text: "일단 가고 싶은 식당을 정하고 다음 장소를 정한다.",
                     type: .accessNeg)]),
     
-    Question(text: "군복무 시절 강원도에서 먹었던 막국수가 먹고 싶다.", answers: [
-                Answer(text: "강원도 까지 가서 막국수를 야무지게 즐긴다.", type: .accessPos), Answer(text: "집 근처 아무 막국수 집에 간다.", type: .accessNeg)]),
+//    Question(text: "군복무 시절 강원도에서 먹었던 막국수가 먹고 싶다.", answers: [
+//                Answer(text: "강원도 까지 가서 막국수를 야무지게 즐긴다.", type: .accessPos), Answer(text: "집 근처 아무 막국수 집에 간다.", type: .accessNeg)]),
     
     Question(text: "Sns를 하다가 맛집을 발견했다. 하지만 서울에 있다고 한다.", answers: [
                 Answer(text: "대체할 다른 식당을 근처에서 찾아본다",
@@ -87,10 +87,10 @@ let questions: [Question] = [
                 Answer(text: "30cm로도 충분해.",
                     type: .ammountNeg)]),
     Question(text: "친구들과 치킨을 시킨다.", answers: [
-                Answer(text: "넷이서 두마리면 될 정도로 양이 많은 치킨을 시킨다.", type: .pricePos), Answer(text: "치킨은 자고로 1인 1닭이다. 나눠먹기엔 적어도 혼자먹기는 적당한 치킨을 4마리 시킨다.", type: .ammountNeg)]),
+                Answer(text: "넷이서 두마리면 될 정도로 양이 많은 치킨을 시킨다.", type: .ammountPos), Answer(text: "치킨은 자고로 1인 1닭이다. 나눠먹기엔 적어도 혼자먹기는 적당한 치킨을 4마리 시킨다.", type: .ammountNeg)]),
     
     Question(text: "이틀 뒤 중요한 시험을 치르게 된다. 혼자 도서관을 가서 공부하다 보니 점심시간이 되었다.", answers: [
-                Answer(text: "험이 얼마 남지 않았으니 최대한 간단하게 먹고 다시 공부하러 간다.", type: .ammountPos), Answer(text: "든든하게 먹어야 다시 힘내서 공부를 할 수 있다.", type: .ammountNeg)]),
+                Answer(text: "시험이 얼마 남지 않았으니 최대한 간단하게 먹고 다시 공부하러 간다.", type: .ammountPos), Answer(text: "든든하게 먹어야 다시 힘내서 공부를 할 수 있다.", type: .ammountNeg)]),
     
     Question(text: "친구들이 우리집에 놀러왔다. 비빔면을 끓여먹으려는데 3개를 끓이자니 애매하고 4개를 끓이자니 많다.", answers: [
                 Answer(text: "음식을 남길 순 없으니 적당히 먹을 수 있게 3개만 끓인다.", type: .ammountPos), Answer(text: "부족한 것 보단 차라리 남기는 게 나으니 4개를 끓인다.", type: .ammountNeg)]),
@@ -98,8 +98,8 @@ let questions: [Question] = [
     Question(text: "나는 현재 군인이다. 삽겹살이 너무 먹고 싶다. 마침 휴가를 나와서 삽겹살 무한 리필집에 오게 되었다. 너무 많이 먹어서 현재 배가 부른 상태다.", answers: [
                 Answer(text: "언제 다시 먹을지 모르니 배 불러도 더 먹는다", type: .ammountPos), Answer(text: "배부르니 만족. 시마이 친다.", type: .ammountNeg)]),
     
-    Question(text: "오늘은 치팅데이! 마음껏 먹어보자.", answers: [
-                Answer(text: "세상엔 맛있는 게 너무 많다. 이것저것 다 시켜 먹는다.", type: .ammountPos), Answer(text: "어..어? 내 생각보다 많이 들어가지 않아 아쉬워한다.", type: .ammountNeg)]),
+//    Question(text: "오늘은 치팅데이! 마음껏 먹어보자.", answers: [
+//                Answer(text: "세상엔 맛있는 게 너무 많다. 이것저것 다 시켜 먹는다.", type: .ammountPos), Answer(text: "어..어? 내 생각보다 많이 들어가지 않아 아쉬워한다.", type: .ammountNeg)]),
     
     
     
@@ -111,8 +111,8 @@ let questions: [Question] = [
                 Answer(text: "식당은 음식을 먹기 위해 가는 곳이다. 음식이 맛있다면 분위기는 상관 없다.",
                     type: .moodNeg)]),
     
-    Question(text: "친구에게 소개팅을 받기로 했는데, 장소가 부득이하게 식당으로 정해야한다.", answers: [
-                Answer(text: "인스타에서 분위기 좋은 식당을 찾아서 정한다.", type: .moodPos), Answer(text: "네이버에서 주변에 시간대에 맞는 적당한 식당을 찾는다.", type: .moodNeg)]),
+//    Question(text: "친구에게 소개팅을 받기로 했는데, 장소가 부득이하게 식당으로 정해야한다.", answers: [
+//                Answer(text: "인스타에서 분위기 좋은 식당을 찾아서 정한다.", type: .moodPos), Answer(text: "네이버에서 주변에 시간대에 맞는 적당한 식당을 찾는다.", type: .moodNeg)]),
     
     Question(text: "어디서 더 먹고 싶은가?", answers: [
                 Answer(text: "전문 라면집에서 먹는 라면.", type: .moodPos), Answer(text: "야간 행군 끝나고 먹는 라면.", type: .moodNeg)]),

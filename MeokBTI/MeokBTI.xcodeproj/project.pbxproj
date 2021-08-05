@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,9 @@
 		0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129338826B29B93006F22FA /* IntroductionViewController.swift */; };
 		0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129338926B29B93006F22FA /* QuestionViewController.swift */; };
 		0129338E26B29B93006F22FA /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129338A26B29B93006F22FA /* ResultsViewController.swift */; };
+		013C65C226BA4FB700895567 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013C65C126BA4FB700895567 /* MapViewController.swift */; };
+		013C65C426BBD22000895567 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013C65C326BBD22000895567 /* Restaurant.swift */; };
+		B6316ACBD39CFA5A9EE2DB3C /* Pods_MeokBTI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89A2675834CB830D71E387A4 /* Pods_MeokBTI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,11 @@
 		0129338826B29B93006F22FA /* IntroductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		0129338926B29B93006F22FA /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		0129338A26B29B93006F22FA /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		013C65C126BA4FB700895567 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		013C65C326BBD22000895567 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		63C26662793A654D64C71EDD /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
+		89A2675834CB830D71E387A4 /* Pods_MeokBTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeokBTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D9C5FCB6A7723AC858E80F0 /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6316ACBD39CFA5A9EE2DB3C /* Pods_MeokBTI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +59,8 @@
 			children = (
 				0129337226B29A76006F22FA /* MeokBTI */,
 				0129337126B29A76006F22FA /* Products */,
+				282F6B2E99FB2EC84C9E92F0 /* Pods */,
+				B6898FFEDE93042D590FD9BE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +81,8 @@
 				0129338826B29B93006F22FA /* IntroductionViewController.swift */,
 				0129338726B29B93006F22FA /* QuestionData.swift */,
 				0129338926B29B93006F22FA /* QuestionViewController.swift */,
+				013C65C126BA4FB700895567 /* MapViewController.swift */,
+				013C65C326BBD22000895567 /* Restaurant.swift */,
 				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
 				0129337926B29A76006F22FA /* Main.storyboard */,
 				0129337C26B29A78006F22FA /* Assets.xcassets */,
@@ -79,6 +92,23 @@
 			path = MeokBTI;
 			sourceTree = "<group>";
 		};
+		282F6B2E99FB2EC84C9E92F0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9D9C5FCB6A7723AC858E80F0 /* Pods-MeokBTI.debug.xcconfig */,
+				63C26662793A654D64C71EDD /* Pods-MeokBTI.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B6898FFEDE93042D590FD9BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89A2675834CB830D71E387A4 /* Pods_MeokBTI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0129338426B29A78006F22FA /* Build configuration list for PBXNativeTarget "MeokBTI" */;
 			buildPhases = (
+				41B1B8584E1D6D2E018BFE11 /* [CP] Check Pods Manifest.lock */,
 				0129336C26B29A76006F22FA /* Sources */,
 				0129336D26B29A76006F22FA /* Frameworks */,
 				0129336E26B29A76006F22FA /* Resources */,
+				2347F2D01533908401FDD7D1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,6 +176,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2347F2D01533908401FDD7D1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeokBTI/Pods-MeokBTI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeokBTI/Pods-MeokBTI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeokBTI/Pods-MeokBTI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41B1B8584E1D6D2E018BFE11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MeokBTI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0129336C26B29A76006F22FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -156,6 +230,8 @@
 				0129337426B29A76006F22FA /* AppDelegate.swift in Sources */,
 				0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */,
 				0129338B26B29B93006F22FA /* QuestionData.swift in Sources */,
+				013C65C226BA4FB700895567 /* MapViewController.swift in Sources */,
+				013C65C426BBD22000895567 /* Restaurant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,12 +375,14 @@
 		};
 		0129338526B29A78006F22FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D9C5FCB6A7723AC858E80F0 /* Pods-MeokBTI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L8KBTZGX99;
 				INFOPLIST_FILE = MeokBTI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,12 +396,14 @@
 		};
 		0129338626B29A78006F22FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63C26662793A654D64C71EDD /* Pods-MeokBTI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L8KBTZGX99;
 				INFOPLIST_FILE = MeokBTI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
