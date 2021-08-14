@@ -21,6 +21,7 @@
 		013C65C426BBD22000895567 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013C65C326BBD22000895567 /* Restaurant.swift */; };
 		0148CF1826C6D1030035862A /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; };
 		0148CF1926C6D1030035862A /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148CF1A26C81CB90035862A /* Extensions+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +54,7 @@
 		013C65C126BA4FB700895567 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		013C65C326BBD22000895567 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		0148CF1726C6D1030035862A /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
+		0148CF1A26C81CB90035862A /* Extensions+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+.swift"; sourceTree = "<group>"; };
 		4736620D2DE234933B801D30 /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
 		6BBCC572CA516B7966E24B66 /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				0129338726B29B93006F22FA /* QuestionData.swift */,
+				0148CF1A26C81CB90035862A /* Extensions+.swift */,
 				013C65C326BBD22000895567 /* Restaurant.swift */,
 			);
 			path = Model;
@@ -254,6 +257,7 @@
 				0129337426B29A76006F22FA /* AppDelegate.swift in Sources */,
 				0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */,
 				0129338B26B29B93006F22FA /* QuestionData.swift in Sources */,
+				0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */,
 				013C65C226BA4FB700895567 /* MapViewController.swift in Sources */,
 				013C65C426BBD22000895567 /* Restaurant.swift in Sources */,
 			);

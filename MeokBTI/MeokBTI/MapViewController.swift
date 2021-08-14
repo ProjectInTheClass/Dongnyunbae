@@ -77,6 +77,34 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.locationManager.requestWhenInUseAuthorization()
     }
     
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        // [ ] 정보창 띄움 ([x] 식당이름, 식당이미지, 먹bti선호도를 나타내는 창)
+        mapView.selectedMarker = marker
+        var seletedPlaceID: String?
+        if let name = marker.title {
+            print("here is didTap",name)
+            fetchPlaceID(restaurantName: name) { (result) in
+                seletedPlaceID = result?.restaurant[0].placeID
+                print("seletedPlaceID in func", seletedPlaceID)
+            }
+        }
+        
+//        print("seletedPlaceID out func",seletedPlaceID) --> nil
+//        print("tapped marker")
+//        print("marker position : ",marker.position)
+        
+        return true
+    }
+    
+    // 어느곳을 터치하던 좌표만을 보여주는 함수
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("coordinate \(coordinate)")
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
+
+    }
+    
     func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D) {
         let pathData = TMapPathData()
         
@@ -98,26 +126,40 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 }
             }
         })
+    }
+    
+    func fetchPlaceID(restaurantName name: String, completion: @escaping (SearchPlaceIDResult?) -> Void) {
+        let baseURL = URL(string: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?")!
         
+        let query: [String: String] = [
+            "key": "AIzaSyCT8daNhwSuDMC0spQszzU7Xgxr8LIA13I",
+            "fields": "place_id",
+            "inputtype": "textquery",
+            "input": name
+        ]
         
+        let url = baseURL.withQueries(query)
+        
+        guard let searchURL = url else { return }
+    
+        let task = URLSession.shared.dataTask(with: searchURL) { (data, response, error) in
+            let decoder = JSONDecoder()
+            if let data = data,
+               let placeID = try? decoder.decode(SearchPlaceIDResult.self, from: data),
+               !(placeID.restaurant.isEmpty) {
+                completion(placeID)
+                print(placeID.restaurant[0].placeID)
+                
+            } else {
+                print("뭔가 잘못돼쓰")
+                completion(nil)
+                return
+            }
+        }
+        task.resume()
+       
     }
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        // [ ] 정보창 띄움 (식당이름, 식당이미지, 먹bti선호도를 나타내는 창)
-        mapView.selectedMarker = marker
-//        print("tapped marker")
-//        print("marker position : ",marker.position)
-        return true
-    }
-    
-    // 어느곳을 터치하던 좌표만을 보여주는 함수
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("coordinate \(coordinate)")
-    }
-    
-    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
-
-    }
     /*
     // MARK: - Navigation
 
@@ -150,3 +192,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
 //        self.view = mapView
 //    }
 //}
+
+
+
