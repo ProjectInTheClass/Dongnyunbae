@@ -13,17 +13,20 @@ class QuestionViewController: UIViewController {
     var answersChosen: [Answer] = []
     
     @IBOutlet weak var questionLabel: UILabel!
-
+    @IBOutlet weak var progressLabel: UILabel!
+    
     @IBOutlet weak var singleStackView: UIStackView!
     @IBOutlet var singleButtons: [UIButton]!
     
-    @IBOutlet var questionProgressView: UIProgressView!
+
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
         
+        navigationItem.title = "먹BTI"
+        updateUI()
+
         for button in singleButtons {
         
             button.layer.cornerRadius = 10
@@ -35,20 +38,17 @@ class QuestionViewController: UIViewController {
     }
     
     func updateUI() {
-        singleStackView.isHidden = true
         
         let currentQuestion = questions[questionIndex]
         let currentAnswer = currentQuestion.answers
-        let totalProgress = Float(questionIndex) / Float(questions.count)
         
-        navigationItem.title = "Question #\(questionIndex+1)"
+        progressLabel.text = "\(questionIndex+1)/\(questions.count)"
         questionLabel.text = currentQuestion.text
-        questionProgressView.setProgress(totalProgress, animated: true)
-        
         
         updateSingleStack(using: currentAnswer)
-            
         
+        questionLabel.sizeToFit()
+        progressLabel.sizeToFit()
     }
     
 
@@ -68,7 +68,6 @@ class QuestionViewController: UIViewController {
     
     
     func updateSingleStack(using answers: [Answer]) {
-        singleStackView.isHidden = false
         
         for index in 0...1 {
             singleButtons[index].setTitle(answers[index].text, for: .normal)

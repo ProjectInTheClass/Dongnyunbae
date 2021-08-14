@@ -6,99 +6,118 @@
 //
 
 import UIKit
-import NMapsMap
-class MapViewController: UIViewController, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
+import GooglePlaces
+import GoogleMaps
+import TMapSDK
+
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
     var locationManager: CLLocationManager!
-    
-    @IBOutlet weak var mapView: NMFNaverMapView!
-    
-    var currentTappedSymbol = Set<NMFSymbol>()
-    var likedRestaurant = Set<NMFSymbol>()
+    var currentLocation: CLLocation?
+    var currentCamera: GMSCameraPosition!
+    var mapView: GMSMapView!
+    var placesClient: GMSPlacesClient!
+    var preciseLocationZoomLevel: Float = 15.0
+    var approximateLocationZoomLevel: Float = 10.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.showLocationButton = true
         locationManager = CLLocationManager()
         locationManager.delegate = self
         getLocationUsagePermission()
+        
+        // 시뮬레이터에 현재위치 미국으로 찍혀서 ㅠ 임시로 저희집(진주)으로 고정
+        let currentPostion = CLLocationCoordinate2D(latitude: CLLocationDegrees(35.1735298751079), longitude: CLLocationDegrees(128.13643500208855))
+        currentLocation = CLLocation(latitude: currentPostion.latitude, longitude: currentPostion.longitude)
+//        currentLocation = locationManager.location!
+//        let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
+        if let defaultLocation = currentLocation {
+            currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
+                                                  longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
+        }
+        
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: currentCamera)
+        mapView.setMinZoom(0, maxZoom: 20)
+        mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
+        mapView.delegate = self
+        self.view.addSubview(mapView)
+        
+        generateAroundMarker(bothLatLng: currentPostion)
+        placesClient = GMSPlacesClient.shared()
+        
+        
         // Do any additional setup after loading the view.
     }
     
-    func mapView(_ mapView: NMFMapView, didTap symbol: NMFSymbol) -> Bool {
-        
-        updateMarker(mapView, symbol)
-        print("tap",currentTappedSymbol)
-        return true
-        
-    }
-    
-    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        
-    }
-    func updateMarker(_ mapview: NMFMapView,_ symbol: NMFSymbol) {
-        print("First")
-        
-        var iconImage = NMF_MARKER_IMAGE_GRAY
-        
-//        if currentTappedSymbol.contains(symbol) {
-//            iconImage = NMF_MARKER_IMAGE_GREEN
-//        } else {
-//            currentTappedSymbol.append(symbol)
-//        }
-        
-        for rest in currentTappedSymbol {
-            if rest.position == symbol.position && rest.caption == symbol.caption {
-                iconImage = NMF_MARKER_IMAGE_GREEN
-            } else {
-                print("append")
-                currentTappedSymbol.insert(symbol)
-                break
-            }
-        }
-        
-        if currentTappedSymbol.isEmpty {
-            currentTappedSymbol.insert(symbol)
-        }
-        
-        let marker = NMFMarker(position: symbol.position, iconImage: iconImage)
-        marker.mapView = mapview
-        
-        
-        let infoWindow = NMFInfoWindow()
-        let dataSource = NMFInfoWindowDefaultTextSource.data()
-        dataSource.title = "\(symbol.caption!)"
-        infoWindow.dataSource = dataSource
-            
-        // 마커에 달아주기
-        infoWindow.open(with: marker)
-        infoWindow.close()
-    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            //location 접근권한 요청확인
-            switch status {
-            case .authorizedAlways, .authorizedWhenInUse:
-                print("GPS 권한 설정됨")
-                self.locationManager.startUpdatingLocation() // 주소데이터를 현위치로 업데이트
-            case .restricted, .notDetermined:
-                print("GPS 권한 설정되지 않음")
-                getLocationUsagePermission()
-            case .denied:
-                print("GPS 권한 요청 거부됨")
-                getLocationUsagePermission()
-            default:
-                print("GPS: Default")
-            }
+        //location 접근권한 요청확인
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("GPS 권한 설정됨")
+            self.locationManager.startUpdatingLocation() // 주소데이터를 현위치로 업데이트
+        case .restricted, .notDetermined:
+            // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
+            print("GPS 권한 설정되지 않음")
+            self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            getLocationUsagePermission()
+        case .denied:
+            // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
+            print("GPS 권한 요청 거부됨")
+            self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            getLocationUsagePermission()
+        default:
+            print("GPS: Default")
         }
+    }
     
     func getLocationUsagePermission() {
         self.locationManager.requestWhenInUseAuthorization()
     }
+    
+    func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D) {
+        let pathData = TMapPathData()
+        
+        // categoryName: 카테고리 5개까지 가능 ;로 구분, radius: 단위 1km
+        pathData.requestFindNameAroundPOI(currentPosition, categoryName: "식당", radius: 20, count: 100, completion: { (result, error) -> Void in
+            // 가져온 결과로 주변식당 위치에 마커 띄우기
+            if let result = result {
+                DispatchQueue.main.async {
+                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) }
+                    for poi in withoutParkingResult {
+                        let marker = GMSMarker(position: poi.coordinate!)
+                        marker.title = poi.name
+//                        print("success input title: ",marker.title)
+                        marker.snippet = poi.address
+//                        print("success input snippet: ",marker.snippet)
+                        marker.map = self.mapView
+                        
+                    }
+                }
+            }
+        })
+        
+        
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        // [ ] 정보창 띄움 (식당이름, 식당이미지, 먹bti선호도를 나타내는 창)
+        mapView.selectedMarker = marker
+//        print("tapped marker")
+//        print("marker position : ",marker.position)
+        return true
+    }
+    
+    // 어느곳을 터치하던 좌표만을 보여주는 함수
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("coordinate \(coordinate)")
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
 
-    
-    
+    }
     /*
     // MARK: - Navigation
 
@@ -110,3 +129,24 @@ class MapViewController: UIViewController, NMFMapViewTouchDelegate, CLLocationMa
     */
 
 }
+
+//extension MapViewController {
+//
+//    override func loadView() {
+//        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 14.0)
+//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+//
+//        do {
+//          // Set the map style by passing the URL of the local file.
+//          if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+//            mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+//          } else {
+//            NSLog("Unable to find style.json")
+//          }
+//        } catch {
+//          NSLog("One or more of the map styles failed to load. \(error)")
+//        }
+//
+//        self.view = mapView
+//    }
+//}

@@ -1,16 +1,25 @@
 PODS:
-  - NMapsMap (3.13.0)
+  - GoogleMaps (3.10.0-beta1):
+    - GoogleMaps/Maps (= 3.10.0-beta1)
+  - GoogleMaps/Base (3.10.0-beta1)
+  - GoogleMaps/Maps (3.10.0-beta1):
+    - GoogleMaps/Base
+  - GooglePlaces (3.10.0-beta1):
+    - GoogleMaps/Base (= 3.10.0-beta1)
 
 DEPENDENCIES:
-  - NMapsMap
+  - GoogleMaps (= 3.10.0-beta1)
+  - GooglePlaces (= 3.10.0-beta1)
 
 SPEC REPOS:
-  trunk:
-    - NMapsMap
+  https://github.com/CocoaPods/Specs.git:
+    - GoogleMaps
+    - GooglePlaces
 
 SPEC CHECKSUMS:
-  NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
+  GoogleMaps: 17598f733b70288939758dad9bafd7dfeab3c1dc
+  GooglePlaces: 5de0ebadf18689d16bacd6b4a65f30c319678ffd
 
-PODFILE CHECKSUM: 8a4c6be5973dcba04715cf9a4168e42143aa58d4
+PODFILE CHECKSUM: df8eef3a055326c0b334d2a1bdbd51e1de4df7f4
 
 COCOAPODS: 1.10.2
