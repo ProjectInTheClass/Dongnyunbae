@@ -10,10 +10,10 @@ import GooglePlaces
 import GoogleMaps
 import TMapSDK
 
-<<<<<<< Updated upstream
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
-// 검색창 관련 코드 (수정 필요)
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
+
+    // 검색창 관련 코드 (수정 필요)
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         
@@ -38,11 +38,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var searchController: UISearchController?
     var resultView: UITextView?
 
-
-=======
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
-    
->>>>>>> Stashed changes
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
@@ -67,7 +62,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         // 검색창 구현 (임시. 수정필요)
         resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self
+//        resultsViewController?.delegate = self
         
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
