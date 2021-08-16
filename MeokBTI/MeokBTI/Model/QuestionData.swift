@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct  Question {
     var text: String

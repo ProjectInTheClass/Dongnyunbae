@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */; };
 		0129337426B29A76006F22FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337326B29A76006F22FA /* AppDelegate.swift */; };
 		0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337526B29A76006F22FA /* SceneDelegate.swift */; };
 		0129337826B29A76006F22FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337726B29A76006F22FA /* ViewController.swift */; };
@@ -22,6 +23,8 @@
 		0148CF1826C6D1030035862A /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; };
 		0148CF1926C6D1030035862A /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148CF1A26C81CB90035862A /* Extensions+.swift */; };
+		0148CF2026C8E2C40035862A /* ChoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148CF1F26C8E2C40035862A /* ChoiceState.swift */; };
+		017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D88D726CABD4600B72155 /* MapMarkerWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapMarkerWindowView.xib; sourceTree = "<group>"; };
 		0129337026B29A76006F22FA /* MeokBTI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeokBTI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0129337326B29A76006F22FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0129337526B29A76006F22FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 		013C65C326BBD22000895567 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		0148CF1726C6D1030035862A /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
 		0148CF1A26C81CB90035862A /* Extensions+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+.swift"; sourceTree = "<group>"; };
+		0148CF1F26C8E2C40035862A /* ChoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceState.swift; sourceTree = "<group>"; };
+		017D88D726CABD4600B72155 /* MapMarkerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerWindow.swift; sourceTree = "<group>"; };
 		4736620D2DE234933B801D30 /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
 		6BBCC572CA516B7966E24B66 /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				0148CF1226C6677F0035862A /* Model */,
+				0148CF1C26C8E1A20035862A /* View */,
 				0129337326B29A76006F22FA /* AppDelegate.swift */,
 				0129337526B29A76006F22FA /* SceneDelegate.swift */,
 				0129337726B29A76006F22FA /* ViewController.swift */,
@@ -114,8 +121,18 @@
 				0129338726B29B93006F22FA /* QuestionData.swift */,
 				0148CF1A26C81CB90035862A /* Extensions+.swift */,
 				013C65C326BBD22000895567 /* Restaurant.swift */,
+				0148CF1F26C8E2C40035862A /* ChoiceState.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0148CF1C26C8E1A20035862A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */,
+				017D88D726CABD4600B72155 /* MapMarkerWindow.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		282F6B2E99FB2EC84C9E92F0 /* Pods */ = {
@@ -198,6 +215,7 @@
 				0129338026B29A78006F22FA /* LaunchScreen.storyboard in Resources */,
 				0129337D26B29A78006F22FA /* Assets.xcassets in Resources */,
 				0129337B26B29A76006F22FA /* Main.storyboard in Resources */,
+				0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +268,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */,
+				0148CF2026C8E2C40035862A /* ChoiceState.swift in Sources */,
 				0129337826B29A76006F22FA /* ViewController.swift in Sources */,
 				0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */,
 				0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */,
@@ -427,7 +447,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = koesnam.MeokBTI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
@@ -453,7 +473,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = koesnam.MeokBTI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;

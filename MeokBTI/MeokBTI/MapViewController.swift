@@ -10,6 +10,7 @@ import GooglePlaces
 import GoogleMaps
 import TMapSDK
 
+<<<<<<< Updated upstream
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
 // 검색창 관련 코드 (수정 필요)
@@ -38,16 +39,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var resultView: UITextView?
 
 
+=======
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
+    
+>>>>>>> Stashed changes
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
-    var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var preciseLocationZoomLevel: Float = 15.0
     var approximateLocationZoomLevel: Float = 10.0
     
+    var mapView: GMSMapView!
+//    var restaurantPhotoView: UIImageView?
+    private var infoWindow = MapMarkerWindow()
+    fileprivate var locationMarker : GMSMarker? = GMSMarker()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.infoWindow = loadNiB()
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -125,31 +137,89 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.locationManager.requestWhenInUseAuthorization()
     }
     
+    func loadNiB() -> MapMarkerWindow {
+        let infoWindow = MapMarkerWindow.instanceFromNib() as! MapMarkerWindow
+        return infoWindow
+    }
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        // [ ] 정보창 띄움 ([x] 식당이름, 식당이미지, 먹bti선호도를 나타내는 창)
+        // [ ] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [ ] 먹bti선호도를 나타내는 창)
         mapView.selectedMarker = marker
-        var seletedPlaceID: String?
+//        var selectedPlaceID: String?
+        
+        locationMarker = marker
+        infoWindow.removeFromSuperview()
+        infoWindow = loadNiB()
+        
+        guard let location = locationMarker?.position else {
+                print("locationMarker is nil")
+                return false
+        }
+        
+        // infoWindow 테두리 지정 / 버튼 둥글게 (현재 버튼에선 적용 x)
+        infoWindow.delegate = self
+        infoWindow.layer.cornerRadius = 12
+        infoWindow.layer.borderWidth = 0
+        infoWindow.likeButton.layer.cornerRadius = infoWindow.likeButton.frame.height / 2
+        
+        let name = marker.title!
+        let ranking = "🥇ㅁㅁㅁㅁ🥈ㅁㅁㅁㅁ🥉ㅁㅁㅁㅁ"
+        
+        // infoWindow에 들어갈 정보 할당 및 위치 지정
+        infoWindow.nameLabel.text = name
+        infoWindow.rankingLabel.text = ranking
+        infoWindow.center = mapView.projection.point(for: location)
+        infoWindow.center.y = infoWindow.center.y - 110
+        self.view.addSubview(infoWindow)
+        
         if let name = marker.title {
             print("here is didTap",name)
-            fetchPlaceID(restaurantName: name) { (result) in
-                seletedPlaceID = result?.restaurant[0].placeID
-                print("seletedPlaceID in func", seletedPlaceID)
+            // 식당이름으로 placeID를 받아오기 (API호출)
+            fetchPlaceID(restaurantName: name) { (placeID) in
+                // 받아온 placeID로 해당 식당 사진 받아오기
+                if let selectedPlaceID = placeID {
+                    self.fetchRestaurantPhoto(placeID: selectedPlaceID)
+                }
+                
             }
         }
         
-//        print("seletedPlaceID out func",seletedPlaceID) --> nil
+        
+        
+//        print("selectedPlaceID out func",seletedPlaceID) --> nil
 //        print("tapped marker")
 //        print("marker position : ",marker.position)
         
-        return true
+        return false
     }
     
     // 어느곳을 터치하던 좌표만을 보여주는 함수
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("coordinate \(coordinate)")
+//        print("coordinate \(coordinate)")
+        infoWindow.removeFromSuperview()
     }
     
+    // [x] 지도 이동시에도 그 마커위에 그대로 남겨 놓게하기.
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        if (locationMarker != nil) {
+            guard let location = locationMarker?.position else {
+                print("locationMarker is nil")
+                return
+            }
+            infoWindow.center = mapView.projection.point(for: location)
+            infoWindow.center.y = infoWindow.center.y - 110
+        }
+    }
+    
+    
+//    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+//
+//    }
+    
+    // 해당지점 탭시 PlaceID를 알 수 있는 함수 but, 한국은 안됌!
     func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
+        
+        print("here is the PlaceID: ",placeID)
 
     }
     
@@ -176,7 +246,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         })
     }
     
-    func fetchPlaceID(restaurantName name: String, completion: @escaping (SearchPlaceIDResult?) -> Void) {
+    func fetchPlaceID(restaurantName name: String, completion: @escaping (String?) -> Void) {
         let baseURL = URL(string: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?")!
         
         let query: [String: String] = [
@@ -193,11 +263,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let task = URLSession.shared.dataTask(with: searchURL) { (data, response, error) in
             let decoder = JSONDecoder()
             if let data = data,
-               let placeID = try? decoder.decode(SearchPlaceIDResult.self, from: data),
-               !(placeID.restaurant.isEmpty) {
-                completion(placeID)
-                print(placeID.restaurant[0].placeID)
-                
+               let result = try? decoder.decode(SearchPlaceIDResult.self, from: data),
+               !(result.restaurant.isEmpty) {
+                completion(result.restaurant[0].placeID)
+//                print(result.restaurant[0].placeID)
             } else {
                 print("뭔가 잘못돼쓰")
                 completion(nil)
@@ -208,15 +277,45 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
        
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func fetchRestaurantPhoto(placeID: String) {
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.photos.rawValue))!
+        
+        self.placesClient?.fetchPlace(fromPlaceID: placeID,
+                                      placeFields: fields,
+                                      sessionToken: nil, callback: {
+                                        (place: GMSPlace?, error: Error?) in
+                                        if let error = error {
+                                            print("An error occurred: \(error.localizedDescription)")
+                                            return
+                                        }
+                                        
+                                        if let place = place, !(place.photos?.isEmpty ?? true) {
+                                            // Get the metadata for the first photo in the place photo metadata list
+                                            let photoMetadata: GMSPlacePhotoMetadata = place.photos![0]
+                                            
+                                            // Call loadPlacePhoto to display the bitmap and attribution.
+                                            self.placesClient?.loadPlacePhoto(photoMetadata, callback: { (photo, error) -> Void in
+                                                if let error = error {
+                                                    // TODO: Handle the error.
+                                                    print("Error loading photo metadata: \(error.localizedDescription)")
+                                                    return
+                                                } else {
+                                                    // Display the first image and its attributions.
+//                                                    self.restaurantPhotoView?.image = photo;
+                                                    print("Load Photo Success")
+                                                    //self.lblText?.attributedText = photoMetadata.attributions;
+                                                }
+                                            })
+                                        }
+                                      })
     }
-    */
+    
+    
+    
+    func didTapLikeButton() {
+        // [ ] 서버로 좋아요 누른거 전송
+        print("Like!")
+    }
 
 }
 
