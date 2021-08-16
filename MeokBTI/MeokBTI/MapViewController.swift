@@ -12,6 +12,32 @@ import TMapSDK
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
+// 검색창 관련 코드 (수정 필요)
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
+        searchController?.isActive = false
+        
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: ", error.localizedDescription)
+    }
+    func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+
+    // 검색창 변수 (3줄)
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
+    var resultView: UITextView?
+
+
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
@@ -27,6 +53,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         locationManager.delegate = self
         getLocationUsagePermission()
         
+        // 검색창 구현 (임시. 수정필요)
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
+        
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        
+        searchController?.searchBar.frame = (CGRect(x:0, y:0, width: 250.0, height: 44.0))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: (searchController?.searchBar)!)
+        
+        let subView = UIView(frame: CGRect(x:0, y:65.0, width: 350.0, height: 45.0))
+        
+        subView.addSubview((searchController?.searchBar)!)
+        view.addSubview(subView)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+        
+        searchController?.hidesNavigationBarDuringPresentation = false
+        searchController?.modalPresentationStyle = .popover
+        
+        definesPresentationContext = true
+
         // 시뮬레이터에 현재위치 미국으로 찍혀서 ㅠ 임시로 저희집(진주)으로 고정
         let currentPostion = CLLocationCoordinate2D(latitude: CLLocationDegrees(35.1735298751079), longitude: CLLocationDegrees(128.13643500208855))
         currentLocation = CLLocation(latitude: currentPostion.latitude, longitude: currentPostion.longitude)
