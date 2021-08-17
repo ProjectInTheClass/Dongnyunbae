@@ -11,7 +11,7 @@ import GoogleMaps
 import TMapSDK
 
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteResultsViewControllerDelegate {
 
     // 검색창 관련 코드 (수정 필요)
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
@@ -49,12 +49,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
 //    var restaurantPhotoView: UIImageView?
     private var infoWindow = MapMarkerWindow()
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
+    var loadedPhotos = [UIImage]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.infoWindow = loadNiB()
+        infoWindow.initCollectionView()
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -62,7 +64,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         // 검색창 구현 (임시. 수정필요)
         resultsViewController = GMSAutocompleteResultsViewController()
-//        resultsViewController?.delegate = self
+        resultsViewController?.delegate = self
         
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
@@ -73,7 +75,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let subView = UIView(frame: CGRect(x:0, y:65.0, width: 350.0, height: 45.0))
         
         subView.addSubview((searchController?.searchBar)!)
-        view.addSubview(subView)
+        self.view.addSubview(subView)
         searchController?.searchBar.sizeToFit()
         searchController?.hidesNavigationBarDuringPresentation = false
         
@@ -82,29 +84,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         definesPresentationContext = true
 
-        // 시뮬레이터에 현재위치 미국으로 찍혀서 ㅠ 임시로 저희집(진주)으로 고정
-        let currentPostion = CLLocationCoordinate2D(latitude: CLLocationDegrees(35.1735298751079), longitude: CLLocationDegrees(128.13643500208855))
-        currentLocation = CLLocation(latitude: currentPostion.latitude, longitude: currentPostion.longitude)
-//        currentLocation = locationManager.location!
-//        let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
-        if let defaultLocation = currentLocation {
-            currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
-                                                  longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
-        }
+        loadMapView()
+        guard let currentLocation = currentLocation else { return }
+        generateAroundMarker(bothLatLng: currentLocation.coordinate)
         
-        mapView = GMSMapView.map(withFrame: view.bounds, camera: currentCamera)
-        mapView.setMinZoom(0, maxZoom: 20)
-        mapView.settings.myLocationButton = true
-        mapView.isMyLocationEnabled = true
-        mapView.delegate = self
-        self.view.addSubview(mapView)
-        
-        generateAroundMarker(bothLatLng: currentPostion)
         placesClient = GMSPlacesClient.shared()
         
         
         // Do any additional setup after loading the view.
     }
+    
     
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -137,14 +126,36 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         return infoWindow
     }
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        // [ ] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [ ] 먹bti선호도를 나타내는 창)
-        mapView.selectedMarker = marker
-//        var selectedPlaceID: String?
+    func loadMapView() {
+        // 임시 좌표지정
+        let currentPostion = CLLocationCoordinate2D(latitude: CLLocationDegrees(35.1735298751079), longitude: CLLocationDegrees(128.13643500208855))
+        currentLocation = CLLocation(latitude: currentPostion.latitude, longitude: currentPostion.longitude)
         
+        // 실제 서비스는 현재위치를 기본으로 함.
+//        currentLocation = locationManager.location!
+        if let defaultLocation = currentLocation {
+            currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
+                                                  longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
+        }
+        
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: currentCamera)
+        mapView.setMinZoom(0, maxZoom: 20)
+        mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
+        mapView.delegate = self
+        self.view.addSubview(mapView)
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        // [x] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [x] 먹bti선호도를 나타내는 창)
+        mapView.selectedMarker = marker
+        
+        // infoWindow 초기화
         locationMarker = marker
         infoWindow.removeFromSuperview()
+        infoWindow.spotPhotos = []
         infoWindow = loadNiB()
+        infoWindow.initCollectionView()
         
         guard let location = locationMarker?.position else {
                 print("locationMarker is nil")
@@ -157,11 +168,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.layer.borderWidth = 0
         infoWindow.likeButton.layer.cornerRadius = infoWindow.likeButton.frame.height / 2
         
-        let name = marker.title!
+        // 지역점까지 나타내니 너무 길어서 짜름 ex) 롯데리아 진주혁신점 -> 롯데리아
+        // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
+        let name = marker.title!.split(separator: " ")[0]
         let ranking = "🥇ㅁㅁㅁㅁ🥈ㅁㅁㅁㅁ🥉ㅁㅁㅁㅁ"
         
         // infoWindow에 들어갈 정보 할당 및 위치 지정
-        infoWindow.nameLabel.text = name
+        infoWindow.nameLabel.text = String(name)
         infoWindow.rankingLabel.text = ranking
         infoWindow.center = mapView.projection.point(for: location)
         infoWindow.center.y = infoWindow.center.y - 110
@@ -227,6 +240,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             if let result = result {
                 DispatchQueue.main.async {
                     let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) }
+                    
                     for poi in withoutParkingResult {
                         let marker = GMSMarker(position: poi.coordinate!)
                         marker.title = poi.name
@@ -274,7 +288,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func fetchRestaurantPhoto(placeID: String) {
         let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.photos.rawValue))!
-        
+        self.loadedPhotos = []
         self.placesClient?.fetchPlace(fromPlaceID: placeID,
                                       placeFields: fields,
                                       sessionToken: nil, callback: {
@@ -286,21 +300,44 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                                         
                                         if let place = place, !(place.photos?.isEmpty ?? true) {
                                             // Get the metadata for the first photo in the place photo metadata list
-                                            let photoMetadata: GMSPlacePhotoMetadata = place.photos![0]
+                                            
+                                            var photoMetadata: [GMSPlacePhotoMetadata] = []
+                                            
+                                            if place.photos!.count > 5 {
+                                                photoMetadata = (0...4).map { place.photos![$0] }
+                                            } else {
+                                                photoMetadata = place.photos!
+                                            }
+                                            
                                             
                                             // Call loadPlacePhoto to display the bitmap and attribution.
-                                            self.placesClient?.loadPlacePhoto(photoMetadata, callback: { (photo, error) -> Void in
-                                                if let error = error {
-                                                    // TODO: Handle the error.
-                                                    print("Error loading photo metadata: \(error.localizedDescription)")
-                                                    return
-                                                } else {
-                                                    // Display the first image and its attributions.
-//                                                    self.restaurantPhotoView?.image = photo;
-                                                    print("Load Photo Success")
-                                                    //self.lblText?.attributedText = photoMetadata.attributions;
-                                                }
-                                            })
+                                            for metaData in photoMetadata {
+                                                self.placesClient?.loadPlacePhoto(metaData, callback: { (photo, error) -> Void in
+                                                    if let error = error {
+                                                        // TODO: Handle the error.
+                                                        print("Error loading photo metadata: \(error.localizedDescription)")
+                                                        return
+                                                    } else {
+                                                        // Display the first image and its attributions.
+    //                                                    self.restaurantPhotoView?.image = photo;
+                                                        print("Load Photo Success :",type(of: photo))
+                                                        
+                                                        if let photo = photo {
+                                                            self.loadedPhotos.append(photo)
+                                                            self.infoWindow.spotPhotos = self.loadedPhotos
+                                                            self.infoWindow.photoCollectionView.reloadData()
+                                                        }
+                                                        
+                                                        
+                                                        
+                                                        print("photos append after :",self.loadedPhotos)
+                                                        //self.lblText?.attributedText = photoMetadata.attributions;
+                                                    }
+                                                })
+                                            }
+                                            
+                                            print("after load photo: ",self.loadedPhotos)
+                                            
                                         }
                                       })
     }
