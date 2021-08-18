@@ -10,29 +10,10 @@ import GooglePlaces
 import GoogleMaps
 import TMapSDK
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteResultsViewControllerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
 
-    // 검색창 관련 코드 (수정 필요)
-    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
-        searchController?.isActive = false
-        
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
-    }
     
-    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
-        print("Error: ", error.localizedDescription)
-    }
-    func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    }
-    func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-    }
-    
-
-    // 검색창 변수 (3줄)
+    // 검색창 코드(3줄)
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
@@ -88,7 +69,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         placesClient = GMSPlacesClient.shared()
         
-        
+        // 검색창 구현
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
+
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+
+        let subView2 = UIView(frame: CGRect(x: 0, y: 30.0, width: 350.0, height: 45.0))
+
+        subView2.addSubview((searchController?.searchBar)!)
+        view.addSubview(subView2)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+
+        // When UISearchController presents the results view, present it in
+        // this view controller, not one further up the chain.
+        definesPresentationContext = true
         // Do any additional setup after loading the view.
     }
     
@@ -352,6 +349,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
 
 }
 
+extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
+  func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                         didAutocompleteWith place: GMSPlace) {
+    searchController?.isActive = false
+    // Do something with the selected place.
+    print("Place name: \(place.name)")
+    print("Place address: \(place.formattedAddress)")
+    print("Place attributions: \(place.attributions)")
+  }
+
+  func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                         didFailAutocompleteWithError error: Error){
+    // TODO: handle the error.
+    print("Error: ", error.localizedDescription)
+  }
+
+  // Turn the network activity indicator on and off again.
+  func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+  }
+
+  func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+  }
+}
 //extension MapViewController {
 //
 //    override func loadView() {
