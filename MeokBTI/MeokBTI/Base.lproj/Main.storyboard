@@ -314,10 +314,10 @@
             </objects>
             <point key="canvasLocation" x="2840.579710144928" y="-25.446428571428569"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MeokBTI Tab Bar Controller-->
         <scene sceneID="vXl-iF-NSj">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cFf-PX-nGt" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cFf-PX-nGt" customClass="MeokBTITabBarController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j5a-cB-Kyi">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

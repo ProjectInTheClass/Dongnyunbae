@@ -10,7 +10,6 @@
 		0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */; };
 		0129337426B29A76006F22FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337326B29A76006F22FA /* AppDelegate.swift */; };
 		0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337526B29A76006F22FA /* SceneDelegate.swift */; };
-		0129337826B29A76006F22FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337726B29A76006F22FA /* ViewController.swift */; };
 		0129337B26B29A76006F22FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0129337926B29A76006F22FA /* Main.storyboard */; };
 		0129337D26B29A78006F22FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0129337C26B29A78006F22FA /* Assets.xcassets */; };
 		0129338026B29A78006F22FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0129337E26B29A78006F22FA /* LaunchScreen.storyboard */; };
@@ -18,6 +17,7 @@
 		0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129338826B29B93006F22FA /* IntroductionViewController.swift */; };
 		0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129338926B29B93006F22FA /* QuestionViewController.swift */; };
 		0129338E26B29B93006F22FA /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129338A26B29B93006F22FA /* ResultsViewController.swift */; };
+		013753F626CD41AC002F3ABE /* MeokBTITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */; };
 		013C65C226BA4FB700895567 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013C65C126BA4FB700895567 /* MapViewController.swift */; };
 		013C65C426BBD22000895567 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013C65C326BBD22000895567 /* Restaurant.swift */; };
 		0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148A8FC26CB9B6600F1427C /* PhotoCollectionViewCell.swift */; };
@@ -48,7 +48,6 @@
 		0129337026B29A76006F22FA /* MeokBTI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeokBTI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0129337326B29A76006F22FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0129337526B29A76006F22FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0129337726B29A76006F22FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0129337A26B29A76006F22FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0129337C26B29A78006F22FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0129337F26B29A78006F22FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		0129338826B29B93006F22FA /* IntroductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		0129338926B29B93006F22FA /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		0129338A26B29B93006F22FA /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeokBTITabBarController.swift; sourceTree = "<group>"; };
 		013C65C126BA4FB700895567 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		013C65C326BBD22000895567 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		0148A8FC26CB9B6600F1427C /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -104,19 +104,27 @@
 			children = (
 				0148CF1226C6677F0035862A /* Model */,
 				0148CF1C26C8E1A20035862A /* View */,
+				013753F426CD410C002F3ABE /* Controller */,
 				0129337326B29A76006F22FA /* AppDelegate.swift */,
 				0129337526B29A76006F22FA /* SceneDelegate.swift */,
-				0129337726B29A76006F22FA /* ViewController.swift */,
-				0129338826B29B93006F22FA /* IntroductionViewController.swift */,
-				0129338926B29B93006F22FA /* QuestionViewController.swift */,
-				013C65C126BA4FB700895567 /* MapViewController.swift */,
-				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
 				0129337926B29A76006F22FA /* Main.storyboard */,
 				0129337C26B29A78006F22FA /* Assets.xcassets */,
 				0129337E26B29A78006F22FA /* LaunchScreen.storyboard */,
 				0129338126B29A78006F22FA /* Info.plist */,
 			);
 			path = MeokBTI;
+			sourceTree = "<group>";
+		};
+		013753F426CD410C002F3ABE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0129338826B29B93006F22FA /* IntroductionViewController.swift */,
+				0129338926B29B93006F22FA /* QuestionViewController.swift */,
+				013C65C126BA4FB700895567 /* MapViewController.swift */,
+				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
+				013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		0148CF1226C6677F0035862A /* Model */ = {
@@ -277,8 +285,8 @@
 			files = (
 				017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */,
 				0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */,
+				013753F626CD41AC002F3ABE /* MeokBTITabBarController.swift in Sources */,
 				0148CF2026C8E2C40035862A /* ChoiceState.swift in Sources */,
-				0129337826B29A76006F22FA /* ViewController.swift in Sources */,
 				0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */,
 				0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */,
 				0129338E26B29B93006F22FA /* ResultsViewController.swift in Sources */,
