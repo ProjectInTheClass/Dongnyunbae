@@ -41,28 +41,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         locationManager.delegate = self
         getLocationUsagePermission()
         
-        // 검색창 구현 (임시. 수정필요)
-        resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self
-        
-        searchController = UISearchController(searchResultsController: resultsViewController)
-        searchController?.searchResultsUpdater = resultsViewController
-        
-        searchController?.searchBar.frame = (CGRect(x:0, y:0, width: 250.0, height: 44.0))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: (searchController?.searchBar)!)
-        
-        let subView = UIView(frame: CGRect(x:0, y:65.0, width: 350.0, height: 45.0))
-        
-        subView.addSubview((searchController?.searchBar)!)
-        self.view.addSubview(subView)
-        searchController?.searchBar.sizeToFit()
-        searchController?.hidesNavigationBarDuringPresentation = false
-        
-        searchController?.hidesNavigationBarDuringPresentation = false
-        searchController?.modalPresentationStyle = .popover
-        
-        definesPresentationContext = true
-
         loadMapView()
         guard let currentLocation = currentLocation else { return }
         generateAroundMarker(bothLatLng: currentLocation.coordinate)
