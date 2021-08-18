@@ -34,7 +34,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.infoWindow = loadNiB()
         infoWindow.initCollectionView()
         
@@ -140,39 +139,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
         self.view.addSubview(mapView)
+        
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         // [x] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [x] 먹bti선호도를 나타내는 창)
         mapView.selectedMarker = marker
         
-        // infoWindow 초기화
-        locationMarker = marker
-        infoWindow.removeFromSuperview()
-        infoWindow.spotPhotos = []
-        infoWindow = loadNiB()
-        infoWindow.initCollectionView()
-        
-        guard let location = locationMarker?.position else {
-                print("locationMarker is nil")
-                return false
-        }
-        
-        // infoWindow 테두리 지정 / 버튼 둥글게 (현재 버튼에선 적용 x)
-        infoWindow.delegate = self
-        infoWindow.layer.cornerRadius = 12
-        infoWindow.layer.borderWidth = 0
-        infoWindow.likeButton.layer.cornerRadius = infoWindow.likeButton.frame.height / 2
+        initializeInfoWindow(marker: marker)
         
         // 지역점까지 나타내니 너무 길어서 짜름 ex) 롯데리아 진주혁신점 -> 롯데리아
         // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
         let name = marker.title!.split(separator: " ")[0]
-        let ranking = "🥇ㅁㅁㅁㅁ🥈ㅁㅁㅁㅁ🥉ㅁㅁㅁㅁ"
+        let ranking = "🥇EMGI🥈EMGC🥉EMBC"
         
         // infoWindow에 들어갈 정보 할당 및 위치 지정
-        infoWindow.nameLabel.text = String(name)
+        // 앞부분에 inset이 필요해서 공백추가
+        infoWindow.nameLabel.text = " " + String(name)
         infoWindow.rankingLabel.text = ranking
-        infoWindow.center = mapView.projection.point(for: location)
+        infoWindow.center = mapView.projection.point(for: marker.position)
         infoWindow.center.y = infoWindow.center.y - 110
         self.view.addSubview(infoWindow)
         
@@ -187,13 +172,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 
             }
         }
-        
-        
-        
-//        print("selectedPlaceID out func",seletedPlaceID) --> nil
+                
 //        print("tapped marker")
-//        print("marker position : ",marker.position)
-        
         return false
     }
     
@@ -215,16 +195,36 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         }
     }
     
+    // [x] 지도 이동이 끝났을 때, 해당 좌표 주위에 식당들 업데이트
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        if mapView.camera.zoom >= 15 {
+            generateAroundMarker(bothLatLng: position.target)
+            
+        }
+        print("zoomLevel : ",mapView.camera.zoom)
+        
+    }
     
-//    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+    // 해당지점 탭시 PlaceID를 알 수 있는 함수 but, 한국은 안됌!
+//    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
+//
+//        print("here is the PlaceID: ",placeID)
 //
 //    }
     
-    // 해당지점 탭시 PlaceID를 알 수 있는 함수 but, 한국은 안됌!
-    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
+    func initializeInfoWindow(marker: GMSMarker) {
+        // infoWindow 초기화
+        locationMarker = marker
+        infoWindow.removeFromSuperview()
+        infoWindow.spotPhotos = []
+        infoWindow = loadNiB()
+        infoWindow.initCollectionView()
         
-        print("here is the PlaceID: ",placeID)
-
+        // infoWindow 테두리 지정 / 버튼 둥글게 (현재 버튼에선 적용 x)
+        infoWindow.delegate = self
+        infoWindow.layer.cornerRadius = 12
+        infoWindow.layer.borderWidth = 0
+        infoWindow.likeButton.layer.cornerRadius = infoWindow.likeButton.frame.height / 2
     }
     
     func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D) {
@@ -344,6 +344,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // [ ] 서버로 좋아요 누른거 전송
         print("Like!")
     }
+    
+    
 
 }
 extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
