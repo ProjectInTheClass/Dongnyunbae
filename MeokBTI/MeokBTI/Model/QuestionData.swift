@@ -17,45 +17,7 @@ struct Answer {
     var type: MeokType
 }
 
-enum MeokType: Character {
-    case accessPos = "A", accessNeg = "B", ammountPos = "C", ammountNeg = "D", moodPos = "E", moodNeg = "F", pricePos = "G", priceNeg = "H"
-    
-}
 
-enum MeokBTI: String {
-//    case ACEG, ACFG, BCEG, BCFG,
-    //         ACEH, ACFH, BCEH, BCFH,
-    //         ADEG, ADFG, BDEG, BDFG,
-    //         ADEH, ADFH, BDEH, BDFH
-    case ACEG = "ACEG", ACFH = "ACFH", BDFH = "BDFH"
-    
-    var definition : String {
-        switch self {
-        case .ACEG :
-            return "새로운 음식 도전하는 것을 좋아함. 어느식당에서나 혼밥 할 수 있는 힘을 가지고 있다. 음식 가지고 장난치는건 못참는 편."
-            
-        case .ACFH :
-            return "게으른 완벽주의자. 메뉴를 정하는데 오랜 시간이 걸린다. 열 번 중 여덟번은 내가 한일에 만족 하지 못함 항상 가는 식당이 정해져있다"
-            
-        case .BDFH :
-            return "순진하다. 여러사람들과 함께 하는 식사 자리를 즐긴다. 외로움을 잘 느낀다. 밥 먹을 때 건드리면 문다"
-        }
-    }
-    
-//    var definition: String {
-//        switch self {
-//        case .dog:
-//            return "You are incredibly outgoing. You surround yourself with the people you love and enjoy activities with your friends."
-//        case .cat:
-//            return "Mischievous, yet mild-tempered, you enjoy doing things on your own terms."
-//        case .rabbit:
-//            return "You love everything that's soft. You are healthy and full of energy."
-//        case .turtle:
-//            return "You are wise beyond your years, and you focus on the details. Slow and steady wins the race."
-//        }
-//    }
-    
-}
 
 let questions: [Question] = [
     // Access

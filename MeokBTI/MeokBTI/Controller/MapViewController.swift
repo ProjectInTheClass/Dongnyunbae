@@ -40,7 +40,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         locationManager.delegate = self
         getLocationUsagePermission()
         
-
         loadMapView()
         guard let currentLocation = currentLocation else { return }
         generateAroundMarker(bothLatLng: currentLocation.coordinate)
@@ -338,6 +337,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
 
 }
+
 extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didAutocompleteWith place: GMSPlace) {

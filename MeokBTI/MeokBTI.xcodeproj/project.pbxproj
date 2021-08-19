@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010F916126CE2B1D00437262 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010F916026CE2B1D00437262 /* User.swift */; };
+		010F916326CE335A00437262 /* Binggrae.otf in Resources */ = {isa = PBXBuildFile; fileRef = 010F916226CE335A00437262 /* Binggrae.otf */; };
+		010F916526CE336500437262 /* BinggraeSamanco.otf in Resources */ = {isa = PBXBuildFile; fileRef = 010F916426CE336500437262 /* BinggraeSamanco.otf */; };
+		010F916726CE337700437262 /* ONE Mobile POP OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 010F916626CE337700437262 /* ONE Mobile POP OTF.otf */; };
+		010F916926CE55C300437262 /* MeokBTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010F916826CE55C300437262 /* MeokBTI.swift */; };
 		0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */; };
 		0129337426B29A76006F22FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337326B29A76006F22FA /* AppDelegate.swift */; };
 		0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337526B29A76006F22FA /* SceneDelegate.swift */; };
@@ -44,6 +49,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		010F916026CE2B1D00437262 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		010F916226CE335A00437262 /* Binggrae.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Binggrae.otf; sourceTree = "<group>"; };
+		010F916426CE336500437262 /* BinggraeSamanco.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BinggraeSamanco.otf; sourceTree = "<group>"; };
+		010F916626CE337700437262 /* ONE Mobile POP OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ONE Mobile POP OTF.otf"; sourceTree = "<group>"; };
+		010F916826CE55C300437262 /* MeokBTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeokBTI.swift; sourceTree = "<group>"; };
 		0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapMarkerWindowView.xib; sourceTree = "<group>"; };
 		0129337026B29A76006F22FA /* MeokBTI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeokBTI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0129337326B29A76006F22FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +91,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010F916A26CE5DE500437262 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				010F916226CE335A00437262 /* Binggrae.otf */,
+				010F916426CE336500437262 /* BinggraeSamanco.otf */,
+				010F916626CE337700437262 /* ONE Mobile POP OTF.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		0129336726B29A76006F22FA = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +129,7 @@
 				0129337526B29A76006F22FA /* SceneDelegate.swift */,
 				0129337926B29A76006F22FA /* Main.storyboard */,
 				0129337C26B29A78006F22FA /* Assets.xcassets */,
+				010F916A26CE5DE500437262 /* Font */,
 				0129337E26B29A78006F22FA /* LaunchScreen.storyboard */,
 				0129338126B29A78006F22FA /* Info.plist */,
 			);
@@ -134,6 +155,8 @@
 				0148CF1A26C81CB90035862A /* Extensions+.swift */,
 				013C65C326BBD22000895567 /* Restaurant.swift */,
 				0148CF1F26C8E2C40035862A /* ChoiceState.swift */,
+				010F916026CE2B1D00437262 /* User.swift */,
+				010F916826CE55C300437262 /* MeokBTI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,11 +249,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				010F916326CE335A00437262 /* Binggrae.otf in Resources */,
 				0129338026B29A78006F22FA /* LaunchScreen.storyboard in Resources */,
 				0148A8FF26CB9B6600F1427C /* PhotoCollectionViewCell.xib in Resources */,
 				0129337D26B29A78006F22FA /* Assets.xcassets in Resources */,
 				0129337B26B29A76006F22FA /* Main.storyboard in Resources */,
 				0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */,
+				010F916526CE336500437262 /* BinggraeSamanco.otf in Resources */,
+				010F916726CE337700437262 /* ONE Mobile POP OTF.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,10 +315,12 @@
 				0148CF2026C8E2C40035862A /* ChoiceState.swift in Sources */,
 				0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */,
 				0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */,
+				010F916126CE2B1D00437262 /* User.swift in Sources */,
 				0129338E26B29B93006F22FA /* ResultsViewController.swift in Sources */,
 				0129337426B29A76006F22FA /* AppDelegate.swift in Sources */,
 				0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */,
 				0129338B26B29B93006F22FA /* QuestionData.swift in Sources */,
+				010F916926CE55C300437262 /* MeokBTI.swift in Sources */,
 				0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */,
 				013C65C226BA4FB700895567 /* MapViewController.swift in Sources */,
 				013C65C426BBD22000895567 /* Restaurant.swift in Sources */,
