@@ -6,6 +6,13 @@
 //
 
 import Foundation
+import CoreLocation
+
+struct Restaurant {
+    let name: String
+    let position: CLLocationCoordinate2D
+    var like: Bool
+}
 
 struct SearchPlaceIDResult: Codable {
     let restaurant: [PlaceID]

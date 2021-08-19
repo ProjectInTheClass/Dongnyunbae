@@ -12,6 +12,7 @@ class QuestionViewController: UIViewController {
     var questionIndex = 0
     var answersChosen: [Answer] = []
     
+    @IBOutlet weak var questionImageView: UIImageView!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
     

@@ -8,6 +8,6 @@
 import Foundation
 
 
-struct State {
-    var firstChoose: Bool
+class State {
+    var firstChoose: Bool = true
 }
