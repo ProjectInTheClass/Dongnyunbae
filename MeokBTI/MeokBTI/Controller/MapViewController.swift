@@ -10,8 +10,7 @@ import GooglePlaces
 import GoogleMaps
 import TMapSDK
 
-
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
     
     // 검색창 코드(3줄)
     var resultsViewController: GMSAutocompleteResultsViewController?
@@ -40,7 +39,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         locationManager = CLLocationManager()
         locationManager.delegate = self
         getLocationUsagePermission()
+<<<<<<< Updated upstream:MeokBTI/MeokBTI/Controller/MapViewController.swift
         
+=======
+
+>>>>>>> Stashed changes:MeokBTI/MeokBTI/MapViewController.swift
         loadMapView()
         guard let currentLocation = currentLocation else { return }
         generateAroundMarker(bothLatLng: currentLocation.coordinate)
@@ -65,6 +68,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // this view controller, not one further up the chain.
         definesPresentationContext = true
         // Do any additional setup after loading the view.
+        
     }
     
     
@@ -323,7 +327,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         print("Like!")
     }
     
+<<<<<<< Updated upstream:MeokBTI/MeokBTI/Controller/MapViewController.swift
     
+=======
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        
+    }
+>>>>>>> Stashed changes:MeokBTI/MeokBTI/MapViewController.swift
 
 }
 extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
