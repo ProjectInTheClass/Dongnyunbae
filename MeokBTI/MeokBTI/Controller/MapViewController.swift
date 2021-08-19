@@ -39,11 +39,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         locationManager = CLLocationManager()
         locationManager.delegate = self
         getLocationUsagePermission()
-<<<<<<< Updated upstream:MeokBTI/MeokBTI/Controller/MapViewController.swift
         
-=======
 
->>>>>>> Stashed changes:MeokBTI/MeokBTI/MapViewController.swift
         loadMapView()
         guard let currentLocation = currentLocation else { return }
         generateAroundMarker(bothLatLng: currentLocation.coordinate)
@@ -327,9 +324,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         print("Like!")
     }
     
-<<<<<<< Updated upstream:MeokBTI/MeokBTI/Controller/MapViewController.swift
     
-=======
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
     }
@@ -341,7 +336,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         
     }
->>>>>>> Stashed changes:MeokBTI/MeokBTI/MapViewController.swift
 
 }
 extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
