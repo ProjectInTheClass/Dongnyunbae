@@ -12,6 +12,7 @@ class MeokBTITabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
@@ -23,6 +24,9 @@ class MeokBTITabBarController: UITabBarController {
         
         if idx == 1 {
             print("It's me MapView")
+            let vc = self.viewControllers![1] as! MapViewController
+            // 맵뷰 함수호출
+            vc.setDefaultCameraZoom()
        
         }
     }

@@ -11,20 +11,25 @@ class ResultsViewController: UIViewController {
 
     var responses: [Answer]!
     
-    
-    @IBOutlet weak var resultAnswerLabel: UILabel!
-    @IBOutlet weak var resultAnswerImage: UIImageView!
-    @IBOutlet weak var resultDefinitionLabel: UILabel!
-    
+    var resultTableView: ResultTableViewController!
+    var meokBTI: MeokBTI!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calculatePersonalityResult()
         
         navigationItem.hidesBackButton = true
+        
+        meokBTI = MeokBTI(rawValue: calculatePersonalityResult())
+        resultTableView = self.children[0] as? ResultTableViewController
+        
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        resultTableView.definitionLabel.text = "\(meokBTI.shortDefinition)\n\(meokBTI.meokBTI)"
+        resultTableView.meokBTIImageView.image = UIImage(named: "\(meokBTI.meokBTI).jpg")
+        resultTableView.descriptionLabel.text = meokBTI.longDescription
+    }
     
 
     /*
@@ -38,45 +43,51 @@ class ResultsViewController: UIViewController {
     */
 
     
-    func calculatePersonalityResult() {
+    func calculatePersonalityResult() -> String {
+        // 기존의 로직은 질문수에 영향을 받아 오류가 남 -> 질문수와 관련없이(but,질문갯수 홀수 필수) 값을 일정하게 뽑아낼 수 있게 변경
         var frequencyOfAnswers: [Character : Int] = [:]
         let responseTypes = responses.map { $0.type.rawValue }
         
-        // 타입들의 빈도수를 구함
+        // 1.타입들의 빈도수를 구함
         for response in responseTypes {
             frequencyOfAnswers[response] = (frequencyOfAnswers[response] ?? 0) + 1
         }
         
-        // 빈도수 기준으로 정렬
+        
+        // 2.알파벳 순서로 정렬
         let frequentAnswerSorted = frequencyOfAnswers.sorted(by:
         { (pair1, pair2) -> Bool in
-            return pair1.value > pair2.value
+            return pair1.key < pair2.key
         })
         
-        // MeokBTI 변환전, 알파벳순서로 정렬
-        let Best4MeokTypeSorted = frequentAnswerSorted[0...3].sorted { $0.key < $1.key }
-        print("frequentAnswerSorted",frequentAnswerSorted)
-        print("Best4MeokTypeSorted",Best4MeokTypeSorted)
-        
-        // 정렬된 알파벳들을 하나에 문자(MeokBTI)로 만들어 줌.
-        let rawMeokBTI = Best4MeokTypeSorted.map { String($0.key) }.reduce("") { $0 + $1 }
-        
-        print(rawMeokBTI)
-        
-        let resultImage = UIImage(named: "\(rawMeokBTI).jpg")
-        resultAnswerImage.image = resultImage
-        
-        if let refinedMeokBTI = MeokBTI(rawValue: rawMeokBTI) {
-            resultAnswerLabel.text = "\( refinedMeokBTI.shortDefinition)\n\( refinedMeokBTI.meokBTI)"
-            resultDefinitionLabel.text = refinedMeokBTI.longDescription
-            
-            let user = User()
-            user.meokBTI = refinedMeokBTI
-            print("stored!! ->",user,user.meokBTI)
+        // 3. 상반되는 타입 중 하나만 남김 (ex A,B -> A)
+        var best4MeokType = [Character: Int]()
+        for i in stride(from: 0, through: 6, by: 2) {
+            if frequentAnswerSorted[i].value > frequentAnswerSorted[i+1].value {
+                best4MeokType[frequentAnswerSorted[i].key] = frequentAnswerSorted[i].value
+            } else {
+                best4MeokType[frequentAnswerSorted[i+1].key] = frequentAnswerSorted[i+1].value
+            }
         }
         
-
+        // 4. 다시 알파벳 정렬
+        let best4MeokTypeSorted = best4MeokType.sorted(by: <)
         
+        print("frequentAnswerSorted",frequentAnswerSorted)
+        print("Best4MeokTypeSorted",best4MeokTypeSorted)
+        
+        // 5. 정렬된 알파벳들을 하나에 문자(MeokBTI)로 만들어 줌.
+        let rawMeokBTI = best4MeokTypeSorted.map { String($0.key) }.reduce("") { $0 + $1 }
+        
+        print("rawMeokBTI :",rawMeokBTI)
+        return rawMeokBTI
+        
+    }
+    
+    func convertRefinedMeokBTI(rawMeokBTI: String) -> MeokBTI? {
+        guard let refinedMeokBTI = MeokBTI(rawValue: rawMeokBTI) else { return nil }
+        
+        return refinedMeokBTI
     }
 
 }

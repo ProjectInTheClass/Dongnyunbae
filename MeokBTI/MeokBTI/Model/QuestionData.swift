@@ -79,7 +79,7 @@ let questions: [Question] = [
                 Answer(text: "전문 라면집에서 먹는 라면.", type: .moodPos), Answer(text: "야간 행군 끝나고 먹는 라면.", type: .moodNeg)]),
     
     Question(text: "연구실 프로젝트 도중 밥 시간이 되었다. 모처럼 교수님께서 한턱 쏘신다고 하는데 한식을 드시고 싶다고 하신다. 이럴 때,", answers: [
-                Answer(text: "보기 좋아야 먹기도 좋다고 비싸더라도 고풍스러운 한식당을 소개시켜드린다. (고급한식당사진)", type: .moodPos), Answer(text: "멋없더라도 할머님들의 손맛이 알차고 자연스럽게 담긴 한식당을 소개시켜드린다. (옛날한식당사진)", type: .moodNeg)]),
+                Answer(text: "보기 좋아야 먹기도 좋다고 비싸더라도 고풍스러운 한식당을 소개시켜드린다.", type: .moodPos), Answer(text: "멋없더라도 할머님들의 손맛이 알차고 자연스럽게 담긴 한식당을 소개시켜드린다.", type: .moodNeg)]),
     
     // price
     Question(text: "아직 월급날은 3일 남았고 내 잔고는 바닥을 치고 있다.", answers: [
