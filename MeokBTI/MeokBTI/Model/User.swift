@@ -11,4 +11,5 @@ import Foundation
 class User {
     var meokBTI: MeokBTI? = nil
     var favoriteRestaurants: [Restaurant] = []
+    var testCompletion: Bool = false
 }

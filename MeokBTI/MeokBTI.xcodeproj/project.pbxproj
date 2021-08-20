@@ -12,6 +12,8 @@
 		010F916526CE336500437262 /* BinggraeSamanco.otf in Resources */ = {isa = PBXBuildFile; fileRef = 010F916426CE336500437262 /* BinggraeSamanco.otf */; };
 		010F916726CE337700437262 /* ONE Mobile POP OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 010F916626CE337700437262 /* ONE Mobile POP OTF.otf */; };
 		010F916926CE55C300437262 /* MeokBTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010F916826CE55C300437262 /* MeokBTI.swift */; };
+		010F916C26CE8B2A00437262 /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010F916B26CE8B2A00437262 /* ResultTableViewController.swift */; };
+		010F916E26CE8CDA00437262 /* MeokBTIStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010F916D26CE8CDA00437262 /* MeokBTIStoryboard.storyboard */; };
 		0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */; };
 		0129337426B29A76006F22FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337326B29A76006F22FA /* AppDelegate.swift */; };
 		0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337526B29A76006F22FA /* SceneDelegate.swift */; };
@@ -54,6 +56,8 @@
 		010F916426CE336500437262 /* BinggraeSamanco.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BinggraeSamanco.otf; sourceTree = "<group>"; };
 		010F916626CE337700437262 /* ONE Mobile POP OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ONE Mobile POP OTF.otf"; sourceTree = "<group>"; };
 		010F916826CE55C300437262 /* MeokBTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeokBTI.swift; sourceTree = "<group>"; };
+		010F916B26CE8B2A00437262 /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
+		010F916D26CE8CDA00437262 /* MeokBTIStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeokBTIStoryboard.storyboard; sourceTree = "<group>"; };
 		0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapMarkerWindowView.xib; sourceTree = "<group>"; };
 		0129337026B29A76006F22FA /* MeokBTI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeokBTI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0129337326B29A76006F22FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				013753F426CD410C002F3ABE /* Controller */,
 				0129337326B29A76006F22FA /* AppDelegate.swift */,
 				0129337526B29A76006F22FA /* SceneDelegate.swift */,
+				010F916D26CE8CDA00437262 /* MeokBTIStoryboard.storyboard */,
 				0129337926B29A76006F22FA /* Main.storyboard */,
 				0129337C26B29A78006F22FA /* Assets.xcassets */,
 				010F916A26CE5DE500437262 /* Font */,
@@ -143,6 +148,7 @@
 				0129338826B29B93006F22FA /* IntroductionViewController.swift */,
 				0129338926B29B93006F22FA /* QuestionViewController.swift */,
 				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
+				010F916B26CE8B2A00437262 /* ResultTableViewController.swift */,
 				013C65C126BA4FB700895567 /* MapViewController.swift */,
 			);
 			path = Controller;
@@ -257,6 +263,7 @@
 				0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */,
 				010F916526CE336500437262 /* BinggraeSamanco.otf in Resources */,
 				010F916726CE337700437262 /* ONE Mobile POP OTF.otf in Resources */,
+				010F916E26CE8CDA00437262 /* MeokBTIStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				010F916C26CE8B2A00437262 /* ResultTableViewController.swift in Sources */,
 				017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */,
 				0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */,
 				013753F626CD41AC002F3ABE /* MeokBTITabBarController.swift in Sources */,

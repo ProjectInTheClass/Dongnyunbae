@@ -23,7 +23,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var currentCamera: GMSCameraPosition!
     var placesClient: GMSPlacesClient!
     var preciseLocationZoomLevel: Float = 15.0
-    var approximateLocationZoomLevel: Float = 10.0
     
     var mapView: GMSMapView!
 //    var restaurantPhotoView: UIImageView?
@@ -43,7 +42,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         loadMapView()
         guard let currentLocation = currentLocation else { return }
-        generateAroundMarker(bothLatLng: currentLocation.coordinate)
+        generateAroundMarker(bothLatLng: currentLocation.coordinate,count: 30)
         
         placesClient = GMSPlacesClient.shared()
         
@@ -138,6 +137,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.center = mapView.projection.point(for: marker.position)
         infoWindow.center.y = infoWindow.center.y - 110
         self.view.addSubview(infoWindow)
+        mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
         
         if let name = marker.title {
             print("here is didTap",name)
@@ -175,12 +175,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     // [x] 지도 이동이 끝났을 때, 해당 좌표 주위에 식당들 업데이트
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        if mapView.camera.zoom >= 15 {
-            generateAroundMarker(bothLatLng: position.target)
-            
-        }
-        print("zoomLevel : ",mapView.camera.zoom)
+        // zoom level에 따라 보여주는 식당 갯수를 다르게 구현.
+
+        switch mapView.camera.zoom {
         
+        case 15...17:
+            generateAroundMarker(bothLatLng: position.target,count: 30)
+            
+        case 17...18:
+            generateAroundMarker(bothLatLng: position.target,count: 50)
+            
+        case 18...20:
+            generateAroundMarker(bothLatLng: position.target,count: 100)
+            
+        default:
+            generateAroundMarker(bothLatLng: position.target,count: 10)
+        }
+        
+        print("zoomLevel : ",mapView.camera.zoom)
     }
     
     // 해당지점 탭시 PlaceID를 알 수 있는 함수 but, 한국은 안됌!
@@ -205,11 +217,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.likeButton.layer.cornerRadius = infoWindow.likeButton.frame.height / 2
     }
     
-    func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D) {
+    func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
         let pathData = TMapPathData()
         
         // categoryName: 카테고리 5개까지 가능 ;로 구분, radius: 단위 1km
-        pathData.requestFindNameAroundPOI(currentPosition, categoryName: "식당", radius: 20, count: 100, completion: { (result, error) -> Void in
+        pathData.requestFindNameAroundPOI(currentPosition, categoryName: "식당", radius: 20, count: count, completion: { (result, error) -> Void in
             // 가져온 결과로 주변식당 위치에 마커 띄우기
             if let result = result {
                 DispatchQueue.main.async {
@@ -222,7 +234,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                         marker.snippet = poi.address
 //                        print("success input snippet: ",marker.snippet)
                         marker.map = self.mapView
-                        
+                                                
                     }
                 }
             }
@@ -316,6 +328,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                                       })
     }
     
+    func setDefaultCameraZoom() {
+        print("it's me cameraZoom")
+        guard mapView != nil  else { return }
+        mapView.animate(toZoom: 15)
+        
+    }
     
     
     func didTapLikeButton() {
@@ -335,6 +353,9 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
     print("Place name: \(place.name)")
     print("Place address: \(place.formattedAddress)")
     print("Place attributions: \(place.attributions)")
+    
+    // [] 카메라 이동
+    
   }
 
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
