@@ -12,10 +12,12 @@ import TMapSDK
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
     
-    // 검색창 코드(3줄)
+    // 검색창 코드(5줄)
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
+    let searchVC = UISearchController(searchResultsController: ResultsViewController())
+    var positionChanged = false
 
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
@@ -359,7 +361,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
 extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didAutocompleteWith place: GMSPlace) {
+    // 검색한 곳으로 이동 및 정보 띄우기
+    mapView.clear()
+    let cord2D = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+    let marker = GMSMarker()
+    marker.position = cord2D
+    marker.title = place.name
+    marker.snippet = place.name
+    marker.map = self.mapView
+    
     searchController?.isActive = false
+    searchController?.resignFirstResponder()
+    let acController = GMSAutocompleteViewController()
+    acController.delegate = self
+    self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D , zoom: 15)
     // Do something with the selected place.
     print("Place name: \(place.name)")
     print("Place address: \(place.formattedAddress)")
