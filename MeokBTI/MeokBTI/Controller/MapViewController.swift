@@ -31,6 +31,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     var loadedPhotos = [UIImage]()
     
+    // 식당 5개 선택 관련
+    var isTested = false // meokbti 테스트 했는지
+    var isSelectedFiveRestaurant = false // 5개 선택 했는지
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +70,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // Do any additional setup after loading the view.
         
     }
-    
+    // 식당 5개 선택 관련 코드 (미완성)
+    @IBAction func gotoIntrodoction(_sender: Any) {
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        if (isSelectedFiveRestaurant == true)
+        {
+            return
+        }
+        else
+        {
+            if (isTested == true)
+            {
+                    // 좋아하는 식당 5개 선택하는 창 생성
+            }
+            else
+            {
+                        // 테스트 화면으로 넘어가기.
+                guard let nextVC = storyboard.instantiateViewController(identifier: "Main") as? IntroductionViewController else { return }
+                
+                present(nextVC, animated: true, completion: nil)
+                isTested = true
+            }
+            isSelectedFiveRestaurant = true
+        }
+    }
     
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
