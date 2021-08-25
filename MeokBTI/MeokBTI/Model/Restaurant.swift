@@ -8,11 +8,13 @@
 import Foundation
 import CoreLocation
 
-struct Restaurant {
+struct Restaurant: Codable {
     let name: String
     let position: CLLocationCoordinate2D
     var like: Bool
 }
+
+
 
 struct SearchPlaceIDResult: Codable {
     let restaurant: [PlaceID]

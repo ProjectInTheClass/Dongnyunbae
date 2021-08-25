@@ -14,12 +14,20 @@ import TMapSDK
 class AppDelegate: UIResponder, UIApplicationDelegate, TMapTapiDelegate {
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyDha3Nwl8AW-SIjoGczNqVJYO4xjNXYHfQ")
         GMSPlacesClient.provideAPIKey("AIzaSyCT8daNhwSuDMC0spQszzU7Xgxr8LIA13I")
         TMapApi.setSKTMapAuthenticationWithDelegate(self, apiKey: "l7xxdc91957989154f5da7c8548ade820e14")
+        
+        if User.loadFromFile().id == nil {
+            let user = User.shared
+            user.id = UUID().uuidString
+            User.saveToFile(user: user)
+            print("ID save success!")
+        }
+        // Stored ID: 60E8A898-77D5-43B1-A25B-54A371F99032 --> 일정한지 확인! (koesnam simulator) -> 새로 saveToFile 할 때 바뀜!
+        // -> loadFromFile을 먼저한 후 가져온 User에다가 내용 추가하고 saveToFile 함수 호출해서 파일 저장해야함.
         return true
     }
 

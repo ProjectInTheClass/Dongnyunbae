@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol MapMarkerDelegate: AnyObject {
 //    func didTapInfoButton(data: NSDictionary)
-    func didTapLikeButton()
+    func didTapLikeButton(_ sender: Any)
 }
 
 class MapMarkerWindow: UIView {
@@ -20,22 +21,10 @@ class MapMarkerWindow: UIView {
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
     
-    var buttonTapped: Bool = true
+    var buttonTapped: Bool = false
     
     weak var delegate: MapMarkerDelegate?
     var spotPhotos = [UIImage]()
-    
-    @IBAction func didTapLikeButton(_ sender: UIButton) {
-//        delegate?.didTapInfoButton(data: spotData!)
-        delegate?.didTapLikeButton()
-        buttonTapped = !buttonTapped
-        likeButton.scalesLargeContentImage = true
-        if buttonTapped {
-            likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
-        } else {
-            likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
-        }
-    }
     
     class func instanceFromNib() -> UIView {
         return UINib(nibName: "MapMarkerWindowView", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
@@ -48,6 +37,28 @@ class MapMarkerWindow: UIView {
         photoCollectionView.reloadData()
     }
     
+    func loadDataAndCheckLikeButton(placeName: String, position: CLLocationCoordinate2D) -> Bool {
+        let userData = User.loadFromFile()
+        let result = userData.favoriteRestaurants.contains(where: { $0.name == placeName && $0.position == position
+        })
+        return result
+    }
+    
+    func setButtonImage(_ buttonTapped: Bool) {
+        if buttonTapped {
+            likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
+        }
+    }
+    
+
+    @IBAction func didTapLikeButton(_ sender: Any) {
+//        delegate?.didTapInfoButton(data: spotData!)
+        buttonTapped = !buttonTapped
+        delegate?.didTapLikeButton(buttonTapped)
+        setButtonImage(buttonTapped)
+    }
     
 }
 

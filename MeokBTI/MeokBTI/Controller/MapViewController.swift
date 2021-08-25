@@ -10,9 +10,9 @@ import GooglePlaces
 import GoogleMaps
 import TMapSDK
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
-    
-    // 검색창 코드(5줄)
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
+ 
+    // 검색창 코드(3줄)
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
@@ -26,17 +26,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var preciseLocationZoomLevel: Float = 15.0
     
     var mapView: GMSMapView!
-//    var restaurantPhotoView: UIImageView?
+    var showingRestaurant: Restaurant!
     private var infoWindow = MapMarkerWindow()
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     var loadedPhotos = [UIImage]()
+    var isLikedRestaurant: Bool!
     
     // 식당 5개 선택 관련
     var isTested = false // meokbti 테스트 했는지
     var isSelectedFiveRestaurant = false // 5개 선택 했는지
+    let user = User.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Stored UserID : ", User.loadFromFile().id ?? "Nothing load")
+//        resetFavoriteRestaurantData()
         self.infoWindow = loadNiB()
         infoWindow.initCollectionView()
         
@@ -151,12 +155,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         // [x] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [x] 먹bti선호도를 나타내는 창)
         mapView.selectedMarker = marker
-        
         initializeInfoWindow(marker: marker)
         
         // 지역점까지 나타내니 너무 길어서 짜름 ex) 롯데리아 진주혁신점 -> 롯데리아
         // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
-        let name = marker.title!.split(separator: " ")[0]
+        guard let rawTitle = marker.title else { return false }
+        let name = rawTitle.split(separator: " ")[0]
         let ranking = "🥇EMGI🥈EMGC🥉EMBC"
         
         // infoWindow에 들어갈 정보 할당 및 위치 지정
@@ -165,6 +169,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.rankingLabel.text = ranking
         infoWindow.center = mapView.projection.point(for: marker.position)
         infoWindow.center.y = infoWindow.center.y - 110
+        
+        // 해당 식당이 좋아요한 식당인지 확인후 버튼모양 설정해줌.
+        isLikedRestaurant = infoWindow.loadDataAndCheckLikeButton(placeName: rawTitle, position: marker.position)
+        infoWindow.setButtonImage(isLikedRestaurant)
+        // 버튼액션함수가 buttonTapped을 기준으로 실행되는데 연동이 안되있으므로 infoWindow를 다른 것을 띄웠다가 돌아왔을 때 버튼이미지가 안 바뀌는 이슈
+        // Solution: buttonTapped과 연동시켜주면서 버튼 동작을 정상적으로 만들어줌
+        infoWindow.buttonTapped = isLikedRestaurant
+        
         self.view.addSubview(infoWindow)
         mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
         
@@ -179,6 +191,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 
             }
         }
+        
+        showingRestaurant = Restaurant(name: rawTitle, position: marker.position, like: isLikedRestaurant)
                 
 //        print("tapped marker")
         return false
@@ -205,7 +219,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // [x] 지도 이동이 끝났을 때, 해당 좌표 주위에 식당들 업데이트
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         // zoom level에 따라 보여주는 식당 갯수를 다르게 구현.
-
         switch mapView.camera.zoom {
         
         case 15...17:
@@ -247,6 +260,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
+        // [] 좋아요 누른 식당은 다른색 마커 띄우기
         let pathData = TMapPathData()
         
         // categoryName: 카테고리 5개까지 가능 ;로 구분, radius: 단위 1km
@@ -364,12 +378,37 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     
-    
-    func didTapLikeButton() {
+    func didTapLikeButton(_ sender: Any) {
         // [ ] 서버로 좋아요 누른거 전송
-        print("Like!")
+        // [x] Like, 좋아한 식당목록에 추가
+        // [x] Unlike, 좋아한 식당목록에서 제거
+//        print(sender.isHighlighted)
+        print("넘겨받은 buttonTapped", sender)
+        
+        let storedUserData = User.loadFromFile()
+        // 좋아요가 눌러진 상태인지를 확인하고 ? 안 눌러져있다가 좋아요 -> 좋아요 목록에 추가 : 눌러져있는 상태에서 한번 더 좋아요 -> 좋아요 목록에서 삭제
+        if sender as! Bool {
+            print("Like!")
+            let likedRestaurant = Restaurant(name: showingRestaurant.name, position: showingRestaurant.position, like: true)
+            storedUserData.favoriteRestaurants.append(likedRestaurant)
+            User.saveToFile(user: storedUserData)
+            print("Saved! :",User.loadFromFile().favoriteRestaurants)
+        } else {
+            print("Unlike!")
+            if let restaurantIndex = storedUserData.favoriteRestaurants.firstIndex(where: { $0.name == showingRestaurant.name && $0.position == showingRestaurant.position }) {
+                storedUserData.favoriteRestaurants.remove(at: restaurantIndex)
+                User.saveToFile(user: storedUserData)
+                print("Removed! :",User.loadFromFile().favoriteRestaurants)
+            }
+            
+        }
     }
     
+    func resetFavoriteRestaurantData() {
+        let reset = User.loadFromFile()
+        reset.favoriteRestaurants.removeAll()
+        User.saveToFile(user: reset)
+    }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
