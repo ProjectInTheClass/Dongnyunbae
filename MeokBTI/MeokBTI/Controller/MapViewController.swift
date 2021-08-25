@@ -10,7 +10,7 @@ import GooglePlaces
 import GoogleMaps
 import TMapSDK
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
  
     // 검색창 코드(3줄)
     var resultsViewController: GMSAutocompleteResultsViewController?
