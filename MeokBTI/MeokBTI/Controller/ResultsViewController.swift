@@ -14,6 +14,8 @@ class ResultsViewController: UIViewController {
     var resultTableView: ResultTableViewController!
     var meokBTI: MeokBTI!
     
+    let user = User.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +23,16 @@ class ResultsViewController: UIViewController {
         
         meokBTI = MeokBTI(rawValue: calculatePersonalityResult())
         resultTableView = self.children[0] as? ResultTableViewController
+        
+        if User.loadFromFile().meokBTI == nil {
+            user.meokBTI = meokBTI
+            user.testCompletion = true
+            User.saveToFile(user: user)
+            print("save MeokBTI success")
+        } else {
+            print("Stored MeokBTI :",User.loadFromFile().meokBTI)
+            print("still stored ID :",User.loadFromFile().id)
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -44,15 +56,16 @@ class ResultsViewController: UIViewController {
 
     
     func calculatePersonalityResult() -> String {
-        // 기존의 로직은 질문수에 영향을 받아 오류가 남 -> 질문수와 관련없이(but,질문갯수 홀수 필수) 값을 일정하게 뽑아낼 수 있게 변경
-        var frequencyOfAnswers: [Character : Int] = [:]
+        // 1차 수정 : 기존의 로직은 질문수에 영향을 받아 오류가 남 -> 질문수와 관련없이(but,질문갯수 홀수 필수) 값을 일정하게 뽑아낼 수 있게 변경
+        // 2차 수정 : 한 쪽으로 답변이 쏠렸을 경우 기본값이 없기에 기존의 로직에서 오류 -> default 값을 지정해줌으로, 해당 답변이 안나와도 갯수 비교 가능
+
+        var frequencyOfAnswers: [Character : Int] = ["A": 0, "B": 0, "C": 0, "D": 0, "E": 0, "F":0, "G": 0, "H": 0]
         let responseTypes = responses.map { $0.type.rawValue }
-        
+
         // 1.타입들의 빈도수를 구함
         for response in responseTypes {
             frequencyOfAnswers[response] = (frequencyOfAnswers[response] ?? 0) + 1
         }
-        
         
         // 2.알파벳 순서로 정렬
         let frequentAnswerSorted = frequencyOfAnswers.sorted(by:

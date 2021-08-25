@@ -12,7 +12,7 @@ enum MeokType: Character {
     
 }
 
-enum MeokBTI: String {
+enum MeokBTI: String, Codable {
 //        case ACEG, ACFG, BCEG, BCFG,
     //         ACEH, ACFH, BCEH, BCFH,
     //         ADEG, ADFG, BDEG, BDFG,
