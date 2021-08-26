@@ -19,7 +19,7 @@
         <!--Introduction View Controller-->
         <scene sceneID="il6-hd-UDR">
             <objects>
-                <viewController id="RPp-ZZ-jHg" customClass="IntroductionViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" id="RPp-ZZ-jHg" customClass="IntroductionViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pjX-tI-ohy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

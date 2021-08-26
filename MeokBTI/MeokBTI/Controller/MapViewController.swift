@@ -75,9 +75,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     // 식당 5개 선택 관련 코드 (미완성)
-    @IBAction func gotoIntrodoction(_sender: Any) {
+    func gotoIntrodoction() {
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        guard let nextVC = storyboard.instantiateViewController(identifier: "Main") as? IntroductionViewController else { return }
+        let storyboard2 = UIStoryboard.init(name: "Popup", bundle: nil)
+        let popUp = storyboard.instantiateViewController(identifier: "Popup")
+        
         if (isSelectedFiveRestaurant == true)
         {
             return
@@ -87,11 +91,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             if (isTested == true)
             {
                     // 좋아하는 식당 5개 선택하는 창 생성
+                popUp.modalPresentationStyle = .overCurrentContext
+                popUp.modalTransitionStyle = .crossDissolve
+                let temp = popUp as? PopUpViewController
+                
             }
             else
             {
                         // 테스트 화면으로 넘어가기.
-                guard let nextVC = storyboard.instantiateViewController(identifier: "Main") as? IntroductionViewController else { return }
                 
                 present(nextVC, animated: true, completion: nil)
                 isTested = true
