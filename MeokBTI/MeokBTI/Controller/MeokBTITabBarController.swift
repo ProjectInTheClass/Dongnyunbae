@@ -27,8 +27,9 @@ class MeokBTITabBarController: UITabBarController {
             let vc = self.viewControllers![1] as! MapViewController
             // 맵뷰 함수호출
             vc.setDefaultCameraZoom()
-       
+            
         }
+        
     }
     // MARK: - Navigation
 
