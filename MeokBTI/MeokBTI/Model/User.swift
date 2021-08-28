@@ -16,7 +16,7 @@ class User: Codable {
     var id: String?
     var meokBTI: MeokBTI? = nil
     var favoriteRestaurants: [Restaurant] = []
-    var testCompletion: Bool = false
+//    var testCompletion: Bool = false
     
     private init() { }
     

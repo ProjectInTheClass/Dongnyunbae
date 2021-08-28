@@ -9,6 +9,7 @@ import UIKit
 import GooglePlaces
 import GoogleMaps
 import TMapSDK
+import FirebaseDatabase
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
  
@@ -36,6 +37,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var isTested = false // meokbti 테스트 했는지
     var isSelectedFiveRestaurant = false // 5개 선택 했는지
     let user = User.shared
+    
+    // 서버에 좋아요 반영
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -407,8 +411,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 User.saveToFile(user: storedUserData)
                 print("Removed! :",User.loadFromFile().favoriteRestaurants)
             }
-            
         }
+    }
+    
+    func sendRestaurantLikeToFirebase() {
+        // json 식당(name, position, like) -> MeokBTI
+        ref = Database.database().reference()
+//        self.ref.child(showingRestaurant).setValue(1)
+    }
+    
+    func loadRestaurantLikeFromFirebase(restaurant: Restaurant) {
+        // 식당 -> MeokBTI
     }
     
     func resetFavoriteRestaurantData() {

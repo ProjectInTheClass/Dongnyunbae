@@ -13,7 +13,6 @@ class MeokBTITabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         // Do any additional setup after loading the view.
     }
     
@@ -40,7 +39,7 @@ class MeokBTITabBarController: UITabBarController {
 //        if let segue = segue.destination as? MapViewController {
 //            print("prepare and load")
 //            segue.loadMapView()
-        }
+    }
     
     
 

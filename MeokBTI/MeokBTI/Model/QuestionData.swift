@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct  Question {
+struct Question {
     var text: String
     var answers: [Answer]
 }
@@ -39,7 +39,6 @@ let questions: [Question] = [
                 Answer(text: "당장 배고프니까 여기서 3분 내에 있는 중국집에서 탕수육을 먹는다", type: .accessPos),
                 Answer(text: "이왕 먹는 거 15분 걷더라도 탕수육 맛집에서 먹는다.",
                     type: .accessNeg)]),
-    
     
     
     // Amount
