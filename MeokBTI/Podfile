@@ -5,9 +5,11 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'MeokBTI' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+   use_frameworks!
+
 
   # Pods for MeokBTI
   pod 'GoogleMaps', '= 3.10.0-beta1'
   pod 'GooglePlaces', '= 3.10.0-beta1'
+
 end

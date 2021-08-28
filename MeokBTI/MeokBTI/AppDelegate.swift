@@ -9,6 +9,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import TMapSDK
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, TMapTapiDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TMapTapiDelegate {
         GMSServices.provideAPIKey("AIzaSyDha3Nwl8AW-SIjoGczNqVJYO4xjNXYHfQ")
         GMSPlacesClient.provideAPIKey("AIzaSyCT8daNhwSuDMC0spQszzU7Xgxr8LIA13I")
         TMapApi.setSKTMapAuthenticationWithDelegate(self, apiKey: "l7xxdc91957989154f5da7c8548ade820e14")
+        FirebaseApp.configure()
         
         if User.loadFromFile().id == nil {
             let user = User.shared

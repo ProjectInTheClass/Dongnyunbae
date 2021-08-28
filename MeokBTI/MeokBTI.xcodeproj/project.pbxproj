@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0101E0E926D8B07F00140C70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0101E0E826D8B07F00140C70 /* GoogleService-Info.plist */; };
 		010F916126CE2B1D00437262 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010F916026CE2B1D00437262 /* User.swift */; };
 		010F916326CE335A00437262 /* Binggrae.otf in Resources */ = {isa = PBXBuildFile; fileRef = 010F916226CE335A00437262 /* Binggrae.otf */; };
 		010F916526CE336500437262 /* BinggraeSamanco.otf in Resources */ = {isa = PBXBuildFile; fileRef = 010F916426CE336500437262 /* BinggraeSamanco.otf */; };
@@ -33,6 +34,17 @@
 		0148CF1926C6D1030035862A /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148CF1A26C81CB90035862A /* Extensions+.swift */; };
 		0148CF2026C8E2C40035862A /* ChoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148CF1F26C8E2C40035862A /* ChoiceState.swift */; };
+		014FA4D626D8D2E60027BDE9 /* FirebaseDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4D426D8D2E60027BDE9 /* FirebaseDatabase.xcframework */; };
+		014FA4D726D8D2E60027BDE9 /* leveldb-library.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4D526D8D2E60027BDE9 /* leveldb-library.xcframework */; };
+		014FA4E326D8D53D0027BDE9 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4DA26D8D53C0027BDE9 /* GoogleAppMeasurement.xcframework */; };
+		014FA4E426D8D53D0027BDE9 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4DB26D8D53C0027BDE9 /* GoogleUtilities.xcframework */; };
+		014FA4E526D8D53D0027BDE9 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4DC26D8D53C0027BDE9 /* PromisesObjC.xcframework */; };
+		014FA4E626D8D53D0027BDE9 /* FirebaseCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4DD26D8D53C0027BDE9 /* FirebaseCore.xcframework */; };
+		014FA4E726D8D53D0027BDE9 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4DE26D8D53C0027BDE9 /* nanopb.xcframework */; };
+		014FA4E826D8D53D0027BDE9 /* GoogleDataTransport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4DF26D8D53D0027BDE9 /* GoogleDataTransport.xcframework */; };
+		014FA4E926D8D53D0027BDE9 /* FirebaseInstallations.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4E026D8D53D0027BDE9 /* FirebaseInstallations.xcframework */; };
+		014FA4EA26D8D53D0027BDE9 /* FirebaseCoreDiagnostics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4E126D8D53D0027BDE9 /* FirebaseCoreDiagnostics.xcframework */; };
+		014FA4EB26D8D53D0027BDE9 /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4E226D8D53D0027BDE9 /* FirebaseAnalytics.xcframework */; };
 		017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D88D726CABD4600B72155 /* MapMarkerWindow.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0101E0E826D8B07F00140C70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		010F916026CE2B1D00437262 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		010F916226CE335A00437262 /* Binggrae.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Binggrae.otf; sourceTree = "<group>"; };
 		010F916426CE336500437262 /* BinggraeSamanco.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BinggraeSamanco.otf; sourceTree = "<group>"; };
@@ -78,9 +91,22 @@
 		0148CF1726C6D1030035862A /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
 		0148CF1A26C81CB90035862A /* Extensions+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+.swift"; sourceTree = "<group>"; };
 		0148CF1F26C8E2C40035862A /* ChoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceState.swift; sourceTree = "<group>"; };
+		014FA4D426D8D2E60027BDE9 /* FirebaseDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseDatabase.xcframework; sourceTree = "<group>"; };
+		014FA4D526D8D2E60027BDE9 /* leveldb-library.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = "leveldb-library.xcframework"; sourceTree = "<group>"; };
+		014FA4D826D8D3C40027BDE9 /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
+		014FA4D926D8D3FE0027BDE9 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		014FA4DA26D8D53C0027BDE9 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
+		014FA4DB26D8D53C0027BDE9 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleUtilities.xcframework; sourceTree = "<group>"; };
+		014FA4DC26D8D53C0027BDE9 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PromisesObjC.xcframework; sourceTree = "<group>"; };
+		014FA4DD26D8D53C0027BDE9 /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCore.xcframework; sourceTree = "<group>"; };
+		014FA4DE26D8D53C0027BDE9 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = nanopb.xcframework; sourceTree = "<group>"; };
+		014FA4DF26D8D53D0027BDE9 /* GoogleDataTransport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleDataTransport.xcframework; sourceTree = "<group>"; };
+		014FA4E026D8D53D0027BDE9 /* FirebaseInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseInstallations.xcframework; sourceTree = "<group>"; };
+		014FA4E126D8D53D0027BDE9 /* FirebaseCoreDiagnostics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCoreDiagnostics.xcframework; sourceTree = "<group>"; };
+		014FA4E226D8D53D0027BDE9 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
 		017D88D726CABD4600B72155 /* MapMarkerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerWindow.swift; sourceTree = "<group>"; };
-		4736620D2DE234933B801D30 /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
-		6BBCC572CA516B7966E24B66 /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
+		46FBF754FFEF4F4E4445BA5B /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
+		668F10389F3782473A281707 /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +114,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				014FA4E426D8D53D0027BDE9 /* GoogleUtilities.xcframework in Frameworks */,
 				0148CF1826C6D1030035862A /* TMapSDK.framework in Frameworks */,
+				014FA4E626D8D53D0027BDE9 /* FirebaseCore.xcframework in Frameworks */,
+				014FA4D726D8D2E60027BDE9 /* leveldb-library.xcframework in Frameworks */,
+				014FA4E526D8D53D0027BDE9 /* PromisesObjC.xcframework in Frameworks */,
+				014FA4EB26D8D53D0027BDE9 /* FirebaseAnalytics.xcframework in Frameworks */,
+				014FA4EA26D8D53D0027BDE9 /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
+				014FA4E326D8D53D0027BDE9 /* GoogleAppMeasurement.xcframework in Frameworks */,
+				014FA4E926D8D53D0027BDE9 /* FirebaseInstallations.xcframework in Frameworks */,
+				014FA4E826D8D53D0027BDE9 /* GoogleDataTransport.xcframework in Frameworks */,
+				014FA4D626D8D2E60027BDE9 /* FirebaseDatabase.xcframework in Frameworks */,
+				014FA4E726D8D53D0027BDE9 /* nanopb.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +173,10 @@
 				0129337C26B29A78006F22FA /* Assets.xcassets */,
 				010F916A26CE5DE500437262 /* Font */,
 				0129337E26B29A78006F22FA /* LaunchScreen.storyboard */,
+				0101E0E826D8B07F00140C70 /* GoogleService-Info.plist */,
 				0129338126B29A78006F22FA /* Info.plist */,
+				014FA4D826D8D3C40027BDE9 /* Firebase.h */,
+				014FA4D926D8D3FE0027BDE9 /* module.modulemap */,
 			);
 			path = MeokBTI;
 			sourceTree = "<group>";
@@ -181,8 +221,8 @@
 		282F6B2E99FB2EC84C9E92F0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6BBCC572CA516B7966E24B66 /* Pods-MeokBTI.debug.xcconfig */,
-				4736620D2DE234933B801D30 /* Pods-MeokBTI.release.xcconfig */,
+				668F10389F3782473A281707 /* Pods-MeokBTI.debug.xcconfig */,
+				46FBF754FFEF4F4E4445BA5B /* Pods-MeokBTI.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -190,6 +230,17 @@
 		B6898FFEDE93042D590FD9BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				014FA4E226D8D53D0027BDE9 /* FirebaseAnalytics.xcframework */,
+				014FA4DD26D8D53C0027BDE9 /* FirebaseCore.xcframework */,
+				014FA4E126D8D53D0027BDE9 /* FirebaseCoreDiagnostics.xcframework */,
+				014FA4E026D8D53D0027BDE9 /* FirebaseInstallations.xcframework */,
+				014FA4DA26D8D53C0027BDE9 /* GoogleAppMeasurement.xcframework */,
+				014FA4DF26D8D53D0027BDE9 /* GoogleDataTransport.xcframework */,
+				014FA4DB26D8D53C0027BDE9 /* GoogleUtilities.xcframework */,
+				014FA4DE26D8D53C0027BDE9 /* nanopb.xcframework */,
+				014FA4DC26D8D53C0027BDE9 /* PromisesObjC.xcframework */,
+				014FA4D426D8D2E60027BDE9 /* FirebaseDatabase.xcframework */,
+				014FA4D526D8D2E60027BDE9 /* leveldb-library.xcframework */,
 				0148CF1726C6D1030035862A /* TMapSDK.framework */,
 			);
 			name = Frameworks;
@@ -202,12 +253,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0129338426B29A78006F22FA /* Build configuration list for PBXNativeTarget "MeokBTI" */;
 			buildPhases = (
-				E1B45D137641556FD690378E /* [CP] Check Pods Manifest.lock */,
+				DF9443F7558A795973750595 /* [CP] Check Pods Manifest.lock */,
 				0129336C26B29A76006F22FA /* Sources */,
 				0129336D26B29A76006F22FA /* Frameworks */,
 				0129336E26B29A76006F22FA /* Resources */,
 				0148CF1626C6B8680035862A /* Embed Frameworks */,
-				249BFA38CD4F1F899CC61BF3 /* [CP] Copy Pods Resources */,
+				A10B487ABA1023635A00BFB8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -262,6 +313,7 @@
 				0129337B26B29A76006F22FA /* Main.storyboard in Resources */,
 				0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */,
 				010F916526CE336500437262 /* BinggraeSamanco.otf in Resources */,
+				0101E0E926D8B07F00140C70 /* GoogleService-Info.plist in Resources */,
 				010F916726CE337700437262 /* ONE Mobile POP OTF.otf in Resources */,
 				010F916E26CE8CDA00437262 /* MeokBTIStoryboard.storyboard in Resources */,
 			);
@@ -270,7 +322,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		249BFA38CD4F1F899CC61BF3 /* [CP] Copy Pods Resources */ = {
+		A10B487ABA1023635A00BFB8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -287,7 +339,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeokBTI/Pods-MeokBTI-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E1B45D137641556FD690378E /* [CP] Check Pods Manifest.lock */ = {
+		DF9443F7558A795973750595 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -480,7 +532,7 @@
 		};
 		0129338526B29A78006F22FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BBCC572CA516B7966E24B66 /* Pods-MeokBTI.debug.xcconfig */;
+			baseConfigurationReference = 668F10389F3782473A281707 /* Pods-MeokBTI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -490,11 +542,20 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "${SRCROOT}/MeokBTI/";
 				INFOPLIST_FILE = MeokBTI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = koesnam.MeokBTI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -506,7 +567,7 @@
 		};
 		0129338626B29A78006F22FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4736620D2DE234933B801D30 /* Pods-MeokBTI.release.xcconfig */;
+			baseConfigurationReference = 46FBF754FFEF4F4E4445BA5B /* Pods-MeokBTI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -516,11 +577,20 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "${SRCROOT}/MeokBTI/";
 				INFOPLIST_FILE = MeokBTI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = koesnam.MeokBTI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
