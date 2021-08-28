@@ -106,8 +106,8 @@
 		014FA4E126D8D53D0027BDE9 /* FirebaseCoreDiagnostics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCoreDiagnostics.xcframework; sourceTree = "<group>"; };
 		014FA4E226D8D53D0027BDE9 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
 		017D88D726CABD4600B72155 /* MapMarkerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerWindow.swift; sourceTree = "<group>"; };
-		4736620D2DE234933B801D30 /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
-		6BBCC572CA516B7966E24B66 /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
+		77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
+		E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
 		EC2675DD26D625B700BDE566 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,8 +224,8 @@
 		282F6B2E99FB2EC84C9E92F0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				668F10389F3782473A281707 /* Pods-MeokBTI.debug.xcconfig */,
-				46FBF754FFEF4F4E4445BA5B /* Pods-MeokBTI.release.xcconfig */,
+				77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */,
+				E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -256,12 +256,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0129338426B29A78006F22FA /* Build configuration list for PBXNativeTarget "MeokBTI" */;
 			buildPhases = (
-				DF9443F7558A795973750595 /* [CP] Check Pods Manifest.lock */,
+				BA4445409A068B5D2F2DD2ED /* [CP] Check Pods Manifest.lock */,
 				0129336C26B29A76006F22FA /* Sources */,
 				0129336D26B29A76006F22FA /* Frameworks */,
 				0129336E26B29A76006F22FA /* Resources */,
 				0148CF1626C6B8680035862A /* Embed Frameworks */,
-				A10B487ABA1023635A00BFB8 /* [CP] Copy Pods Resources */,
+				41A60500BCBFE688A6613EE7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -325,7 +325,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A10B487ABA1023635A00BFB8 /* [CP] Copy Pods Resources */ = {
+		41A60500BCBFE688A6613EE7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -342,7 +342,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeokBTI/Pods-MeokBTI-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DF9443F7558A795973750595 /* [CP] Check Pods Manifest.lock */ = {
+		BA4445409A068B5D2F2DD2ED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -536,12 +536,12 @@
 		};
 		0129338526B29A78006F22FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 668F10389F3782473A281707 /* Pods-MeokBTI.debug.xcconfig */;
+			baseConfigurationReference = 77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8XVQC27UFS;
+				DEVELOPMENT_TEAM = L8KBTZGX99;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -571,12 +571,12 @@
 		};
 		0129338626B29A78006F22FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46FBF754FFEF4F4E4445BA5B /* Pods-MeokBTI.release.xcconfig */;
+			baseConfigurationReference = E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8XVQC27UFS;
+				DEVELOPMENT_TEAM = L8KBTZGX99;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

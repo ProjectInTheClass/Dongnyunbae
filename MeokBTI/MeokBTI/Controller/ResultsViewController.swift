@@ -26,7 +26,6 @@ class ResultsViewController: UIViewController {
         
         if User.loadFromFile().meokBTI == nil {
             user.meokBTI = meokBTI
-            user.testCompletion = true
             User.saveToFile(user: user)
             print("save MeokBTI success")
         } else {

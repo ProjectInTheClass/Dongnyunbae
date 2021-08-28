@@ -14,7 +14,9 @@ struct Restaurant: Codable {
     var like: Bool
 }
 
-
+struct MeokBTIRanking {
+    var ranking: [String: Int]
+}
 
 struct SearchPlaceIDResult: Codable {
     let restaurant: [PlaceID]
