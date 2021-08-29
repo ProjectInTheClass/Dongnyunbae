@@ -9,8 +9,29 @@ import UIKit
 
 class PopUpViewController: UIViewController {
 
+    
+    @IBOutlet weak var Label: UILabel!
+    var strText = "nil"
+
+    // 팝업창 관련 코드
+    
+    @IBAction func gotoTest(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "MeokBTIStoryboard") as! IntroductionViewController
+        // 맵뷰 함수호출
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func close(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        Label.text = strText
 
         // Do any additional setup after loading the view.
     }

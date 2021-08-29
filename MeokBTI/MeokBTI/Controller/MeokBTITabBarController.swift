@@ -10,22 +10,24 @@ import GoogleMaps
 
 class MeokBTITabBarController: UITabBarController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let idx = tabBar.items?.firstIndex(of: item) else { return }
-        
 //        print("tapbar idx: ",idx)
         
-        if idx == 1 {
+            if idx == 1 {
+                
             print("It's me MapView")
             let vc = self.viewControllers![1] as! MapViewController
             // 맵뷰 함수호출
             vc.setDefaultCameraZoom()
+                
             
         }
         

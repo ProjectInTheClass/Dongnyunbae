@@ -12,7 +12,7 @@
         <!--MeokBTIStoryboard-->
         <scene sceneID="CZ2-oy-qP8">
             <objects>
-                <viewControllerPlaceholder storyboardName="MeokBTIStoryboard" id="NpB-e8-Wxy" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="MeokBTIStoryboard" storyboardName="MeokBTIStoryboard" referencedIdentifier="MeokBTIStoryboard" id="NpB-e8-Wxy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Hpu-on-KOt"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fX2-TJ-mfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -34,6 +34,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rNl-wZ-OFi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="231.8840579710145" y="817.63392857142856"/>
+        </scene>
+        <!--Pop Up View Controller-->
+        <scene sceneID="Tkh-b3-49l">
+            <objects>
+                <viewController storyboardIdentifier="PopUp" id="Njg-28-Xb8" customClass="PopUpViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LU6-VA-9vc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1p-VL-oIr">
+                                <rect key="frame" x="87" y="384" width="240" height="138"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KY6-Aj-9Bm">
+                                        <rect key="frame" x="8" y="8" width="232" height="85"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5D-zl-Ft1">
+                                        <rect key="frame" x="167" y="100" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="취소"/>
+                                        <connections>
+                                            <action selector="close:" destination="Njg-28-Xb8" eventType="touchUpInside" id="SQ5-1E-XoQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUt-Fa-cvu">
+                                        <rect key="frame" x="42" y="100" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Test"/>
+                                        <connections>
+                                            <action selector="gotoTest:" destination="Njg-28-Xb8" eventType="touchUpInside" id="uMs-Xf-PWz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Qyj-wh-2HU"/>
+                                    <constraint firstAttribute="height" constant="250" id="Wpe-n1-MwV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="H2z-sj-4CP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="X1p-VL-oIr" firstAttribute="leading" secondItem="H2z-sj-4CP" secondAttribute="leading" constant="87" id="KzO-SK-yeH"/>
+                            <constraint firstItem="H2z-sj-4CP" firstAttribute="bottom" secondItem="X1p-VL-oIr" secondAttribute="bottom" constant="340" id="THX-8k-rCY"/>
+                            <constraint firstItem="H2z-sj-4CP" firstAttribute="trailing" secondItem="X1p-VL-oIr" secondAttribute="trailing" constant="87" id="aPy-ZU-lMO"/>
+                            <constraint firstItem="X1p-VL-oIr" firstAttribute="top" secondItem="H2z-sj-4CP" secondAttribute="top" constant="340" id="y7m-i4-NDl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="Label" destination="KY6-Aj-9Bm" id="Htd-dp-ldi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sa8-EB-35q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1039.1304347826087" y="826.33928571428567"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aZf-Bm-74k">

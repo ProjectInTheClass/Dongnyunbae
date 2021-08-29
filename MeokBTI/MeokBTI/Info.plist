@@ -2,26 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Binggrae</string>
-		<string>BinggraeSamanco</string>
-		<string>ONE Mobile POP OTF</string>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>googlechromes</string>
-		<string>comgooglemaps</string>
-	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>주변 식당정보를 가져오는데 사용됩니다.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>주변 식당정보를 가져오는데 사용됩니다.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -38,8 +18,28 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>주변 식당정보를 가져오는데 사용됩니다.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>주변 식당정보를 가져오는데 사용됩니다.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Binggrae</string>
+		<string>BinggraeSamanco</string>
+		<string>ONE Mobile POP OTF</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

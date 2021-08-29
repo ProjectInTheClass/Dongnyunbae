@@ -48,6 +48,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.infoWindow = loadNiB()
         infoWindow.initCollectionView()
         
+        gotoIntrodoction()
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         getLocationUsagePermission()
@@ -81,10 +83,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // 식당 5개 선택 관련 코드 (미완성)
     func gotoIntrodoction() {
         
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        guard let nextVC = storyboard.instantiateViewController(identifier: "Main") as? IntroductionViewController else { return }
-        let storyboard2 = UIStoryboard.init(name: "Popup", bundle: nil)
-        let popUp = storyboard.instantiateViewController(identifier: "Popup")
+        let storyboard = UIStoryboard.init(name: "MeokBTIStoryboard", bundle: nil)
+        guard let nextVC = storyboard.instantiateViewController(identifier: "MeokBTIStoryboard") as? IntroductionViewController else { return }
+        
+        let storyboard2 = UIStoryboard.init(name: "Main", bundle: nil)
+        let popUp = storyboard2.instantiateViewController(identifier: "PopUp")
         
         if (isSelectedFiveRestaurant == true)
         {
@@ -95,17 +98,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             if (isTested == true)
             {
                     // 좋아하는 식당 5개 선택하는 창 생성
-                popUp.modalPresentationStyle = .overCurrentContext
+                popUp.modalPresentationStyle = .fullScreen
                 popUp.modalTransitionStyle = .crossDissolve
                 let temp = popUp as? PopUpViewController
+                temp?.strText = "MeokBTI 테스트를 아직 안했어요. 테스트부터 해주세요."
+                self.present(popUp, animated: true, completion: nil)
                 
             }
             else
             {
                         // 테스트 화면으로 넘어가기.
+                popUp.modalPresentationStyle = .fullScreen
+                popUp.modalTransitionStyle = .crossDissolve
+                let temp = popUp as? PopUpViewController
+                temp?.strText = "MeokBTI 테스트를 아직 안했어요. 테스트부터 해주세요."
+                self.present(popUp, animated: true, completion: nil)
                 
-                present(nextVC, animated: true, completion: nil)
-                isTested = true
             }
             isSelectedFiveRestaurant = true
         }
