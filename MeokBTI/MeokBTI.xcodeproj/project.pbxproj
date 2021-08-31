@@ -46,6 +46,7 @@
 		014FA4EA26D8D53D0027BDE9 /* FirebaseCoreDiagnostics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4E126D8D53D0027BDE9 /* FirebaseCoreDiagnostics.xcframework */; };
 		014FA4EB26D8D53D0027BDE9 /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014FA4E226D8D53D0027BDE9 /* FirebaseAnalytics.xcframework */; };
 		017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D88D726CABD4600B72155 /* MapMarkerWindow.swift */; };
+		EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */; };
 		EC2675DE26D625B700BDE566 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2675DD26D625B700BDE566 /* PopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		017D88D726CABD4600B72155 /* MapMarkerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerWindow.swift; sourceTree = "<group>"; };
 		77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 		E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
+		EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
 		EC2675DD26D625B700BDE566 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +195,7 @@
 				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
 				013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */,
 				EC2675DD26D625B700BDE566 /* PopUpViewController.swift */,
+				EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			files = (
 				010F916C26CE8B2A00437262 /* ResultTableViewController.swift in Sources */,
 				017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */,
+				EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */,
 				0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */,
 				013753F626CD41AC002F3ABE /* MeokBTITabBarController.swift in Sources */,
 				0148CF2026C8E2C40035862A /* ChoiceState.swift in Sources */,

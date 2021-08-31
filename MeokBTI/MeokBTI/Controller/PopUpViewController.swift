@@ -9,7 +9,6 @@ import UIKit
 
 class PopUpViewController: UIViewController {
 
-    
     @IBOutlet weak var Label: UILabel!
     var strText = "nil"
 
@@ -17,11 +16,11 @@ class PopUpViewController: UIViewController {
     
     @IBAction func gotoTest(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "MeokBTIStoryboard") as! IntroductionViewController
+
         // 맵뷰 함수호출
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
-        
     }
     
     @IBAction func close(_ sender: Any) {

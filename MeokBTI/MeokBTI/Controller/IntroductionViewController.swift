@@ -8,9 +8,7 @@
 import UIKit
 
 class IntroductionViewController: UIViewController {
-    
-    var ref: DatabaseReference!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

@@ -48,6 +48,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.infoWindow = loadNiB()
         infoWindow.initCollectionView()
         
+        // 식당 5개 고르기
         gotoIntrodoction()
         
         locationManager = CLLocationManager()
@@ -60,6 +61,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         placesClient = GMSPlacesClient.shared()
         
+        // 검색창 구현 
+        searchBarImplement()
+        // Do any additional setup after loading the view.
+        
+    }
+    func searchBarImplement() {
         // 검색창 구현
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
@@ -77,8 +84,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
         definesPresentationContext = true
-        // Do any additional setup after loading the view.
-        
     }
     // 식당 5개 선택 관련 코드 (미완성)
     func gotoIntrodoction() {
@@ -98,11 +103,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             if (isTested == true)
             {
                     // 좋아하는 식당 5개 선택하는 창 생성
-                popUp.modalPresentationStyle = .fullScreen
-                popUp.modalTransitionStyle = .crossDissolve
-                let temp = popUp as? PopUpViewController
-                temp?.strText = "MeokBTI 테스트를 아직 안했어요. 테스트부터 해주세요."
-                self.present(popUp, animated: true, completion: nil)
                 
             }
             else
@@ -113,7 +113,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 let temp = popUp as? PopUpViewController
                 temp?.strText = "MeokBTI 테스트를 아직 안했어요. 테스트부터 해주세요."
                 self.present(popUp, animated: true, completion: nil)
-                
             }
             isSelectedFiveRestaurant = true
         }
