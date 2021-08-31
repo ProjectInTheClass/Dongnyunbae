@@ -12,6 +12,7 @@ import TMapSDK
 import FirebaseDatabase
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
+    
  
     // 검색창 코드(3줄)
     var resultsViewController: GMSAutocompleteResultsViewController?
@@ -20,12 +21,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     let searchVC = UISearchController(searchResultsController: ResultsViewController())
     var positionChanged = false
 
+    // 위치 관련 변수들
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
     var placesClient: GMSPlacesClient!
     var preciseLocationZoomLevel: Float = 15.0
     
+    // 맵뷰 관련 변수들
     var mapView: GMSMapView!
     var showingRestaurant: Restaurant!
     private var infoWindow = MapMarkerWindow()
@@ -36,9 +39,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // 식당 5개 선택 관련
     var isTested = false // meokbti 테스트 했는지
     var isSelectedFiveRestaurant = false // 5개 선택 했는지
+    var meokBTIRanking: String = ""
+    
+    // 유저데이터
     let user = User.shared
     
-    // 서버에 좋아요 반영
+    // 서버 관련 변수
     var ref: DatabaseReference!
     
     override func viewDidLoad() {
@@ -170,6 +176,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     
+    
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         // [x] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [x] 먹bti선호도를 나타내는 창)
         mapView.selectedMarker = marker
@@ -178,13 +186,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // 지역점까지 나타내니 너무 길어서 짜름 ex) 롯데리아 진주혁신점 -> 롯데리아
         // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
         guard let rawTitle = marker.title else { return false }
+        showingRestaurant = Restaurant(name: rawTitle, position: marker.position, like: isLikedRestaurant)
+        
+        
+        
         let name = rawTitle.split(separator: " ")[0]
-        let ranking = "🥇EMGI🥈EMGC🥉EMBC"
+
         
         // infoWindow에 들어갈 정보 할당 및 위치 지정
         // 앞부분에 inset이 필요해서 공백추가
         infoWindow.nameLabel.text = " " + String(name)
-        infoWindow.rankingLabel.text = ranking
+        setMeokBTIRanking()
+//        infoWindow.rankingLabel.text = meokBTIRanking
         infoWindow.center = mapView.projection.point(for: marker.position)
         infoWindow.center.y = infoWindow.center.y - 110
         
@@ -210,7 +223,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             }
         }
         
-        showingRestaurant = Restaurant(name: rawTitle, position: marker.position, like: isLikedRestaurant)
+        
                 
 //        print("tapped marker")
         return false
@@ -336,9 +349,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func fetchRestaurantPhoto(placeID: String) {
         let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.photos.rawValue))!
         self.loadedPhotos = []
-        self.placesClient?.fetchPlace(fromPlaceID: placeID,
-                                      placeFields: fields,
-                                      sessionToken: nil, callback: {
+        self.placesClient?.fetchPlace(fromPlaceID: placeID, placeFields: fields, sessionToken: nil,
+                                      callback: {
                                         (place: GMSPlace?, error: Error?) in
                                         if let error = error {
                                             print("An error occurred: \(error.localizedDescription)")
@@ -389,6 +401,51 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                                       })
     }
     
+    func fetchMeokBTIRankingFromFirebase(completion: @escaping ([String?]) -> Void) {
+        // Firebase에서 식당명에 맞는 MeokBTI 데이터 가져옴 -> 좋아요순 상위 3개의 MeokBTI만 추려냄
+        ref = Database.database().reference()
+        let top3MeokBTIQuery = ref.child("\(showingRestaurant.name)/meokBTIRanking").queryOrderedByValue().queryLimited(toLast: 3)
+        
+        top3MeokBTIQuery.observeSingleEvent(of: DataEventType.value) { snapshot in
+            guard let value = snapshot.value as? NSDictionary else { return }
+            print("observeSingleEvent",value)
+            print(value.allKeys)
+            let top3MeokBTI = value.allKeys.map { "\($0)" }
+            completion(top3MeokBTI)
+        }
+    }
+    
+    func setMeokBTIRanking() {
+        // Firebase에서 먹BTI랭킹 가져와서 infowindow에 먹BTI랭킹 3위까지 넣어줌
+            fetchMeokBTIRankingFromFirebase { top3 in
+            self.meokBTIRanking = ""
+            for (idx, meokBTI) in top3.enumerated() {
+                
+                guard let meokBTI = meokBTI else { return }
+                var medal: String
+                
+                switch idx {
+                case 0:
+                    medal = Ranking.first.medal
+                    
+                case 1:
+                    medal = Ranking.second.medal
+                    
+                case 2:
+                    medal = Ranking.third.medal
+    
+                default:
+                    print("Not a medalist more")
+                    return
+                }
+                
+                self.meokBTIRanking += "\(medal)\(meokBTI)"
+                self.infoWindow.rankingLabel.text = self.meokBTIRanking
+                // [x] 원하는 결과 : 🥇EMGI🥈EMGC🥉EMBC
+            }
+        }
+    }
+    
     func setDefaultCameraZoom() {
         print("it's me cameraZoom")
         guard mapView != nil  else { return }
@@ -396,7 +453,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     
-    func didTapLikeButton(_ sender: Any) {
+    func didTapLikeButton(_ sender: Bool) {
         // [ ] 서버로 좋아요 누른거 전송
         // [x] Like, 좋아한 식당목록에 추가
         // [x] Unlike, 좋아한 식당목록에서 제거
@@ -405,12 +462,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         let storedUserData = User.loadFromFile()
         // 좋아요가 눌러진 상태인지를 확인하고 ? 안 눌러져있다가 좋아요 -> 좋아요 목록에 추가 : 눌러져있는 상태에서 한번 더 좋아요 -> 좋아요 목록에서 삭제
-        if sender as! Bool {
+        if sender {
             print("Like!")
             let likedRestaurant = Restaurant(name: showingRestaurant.name, position: showingRestaurant.position, like: true)
             storedUserData.favoriteRestaurants.append(likedRestaurant)
             User.saveToFile(user: storedUserData)
             print("Saved! :",User.loadFromFile().favoriteRestaurants)
+            
+            // 서버에 있는 먹bti 랭킹에 반영
         } else {
             print("Unlike!")
             if let restaurantIndex = storedUserData.favoriteRestaurants.firstIndex(where: { $0.name == showingRestaurant.name && $0.position == showingRestaurant.position }) {
@@ -418,21 +477,33 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 User.saveToFile(user: storedUserData)
                 print("Removed! :",User.loadFromFile().favoriteRestaurants)
             }
+            // 서버에 있는 먹bti 랭킹에 반영취소
         }
+        
+        sendRestaurantLikeToFirebase(sender)
+        
     }
     
-    func sendRestaurantLikeToFirebase() {
-        // json 식당(name, position, like) -> MeokBTI
+    
+    func sendRestaurantLikeToFirebase(_ sender: Bool) {
+        // 데이터관계 : 식당이름 -> 먹BTI랭킹 -> 먹BTI별 좋아요 갯수
         ref = Database.database().reference()
-//        self.ref.child(showingRestaurant).setValue(1)
-    }
+        guard let userMeokBTI = user.meokBTI?.meokBTI,
+              showingRestaurant != nil else { return }
     
-    func loadRestaurantLikeFromFirebase(restaurant: Restaurant) {
-        // 식당 -> MeokBTI
+
+        var incrementValue: NSNumber {
+            return sender ? 1 : -1
+        }
+        
+        let updates = ["\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(incrementValue)] as [String : Any]
+        
+        self.ref.updateChildValues(updates)
+        print("success MeokBTI Ranking update")
     }
     
     func resetFavoriteRestaurantData() {
-        let reset = User.loadFromFile()
+        let reset = user
         reset.favoriteRestaurants.removeAll()
         User.saveToFile(user: reset)
     }

@@ -29,8 +29,8 @@
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tBK-Dg-gnQ">
                             <rect key="frame" x="0.0" y="0.0" width="226" height="53"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RvY-8b-Xp2">
-                                    <rect key="frame" x="0.0" y="2" width="196" height="49.5"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RvY-8b-Xp2">
+                                    <rect key="frame" x="0.0" y="4.5" width="196" height="44.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jf4-Sa-p13">
                                             <rect key="frame" x="0.0" y="0.0" width="196" height="19"/>
@@ -38,8 +38,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🥇EMGI🥈EMGC🥉EMBC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kd-pa-lRE">
-                                            <rect key="frame" x="0.0" y="29" width="196" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 식당이 마음에 드셨다~면!" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kd-pa-lRE">
+                                            <rect key="frame" x="0.0" y="24" width="196" height="20.5"/>
                                             <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

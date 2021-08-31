@@ -10,7 +10,7 @@ import CoreLocation
 
 protocol MapMarkerDelegate: AnyObject {
 //    func didTapInfoButton(data: NSDictionary)
-    func didTapLikeButton(_ sender: Any)
+    func didTapLikeButton(_ sender: Bool)
 }
 
 class MapMarkerWindow: UIView {
