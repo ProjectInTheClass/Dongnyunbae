@@ -9,7 +9,7 @@ import Foundation
 
 
 class User: Codable {
-    static let shared = User()
+    static let shared = User.loadFromFile()
     static let documanetsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let archiveURL = documanetsDirectory.appendingPathComponent("User").appendingPathExtension("plist")
 

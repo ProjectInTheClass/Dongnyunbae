@@ -11,11 +11,34 @@ import CoreLocation
 struct Restaurant: Codable {
     let name: String
     let position: CLLocationCoordinate2D
-    var like: Bool
+    var like: Bool?
+//    var meokBTIRanking: [String: Int]?
+//
+//    var toDictionary: [String: Any] {
+//        let (lat, lng) = position.coordinateToStringTuple()
+//        return ["position": "\(lat),\(lng)", "meokBTIRanking": meokBTIRanking!]
+//    }
 }
 
 struct MeokBTIRanking {
     var ranking: [String: Int]
+}
+
+enum Ranking {
+    case first, second, third
+    
+    var medal: String {
+        switch self {
+        case .first:
+            return "🥇"
+            
+        case .second:
+            return "🥈"
+            
+        case .third:
+            return "🥉"
+        }
+    }
 }
 
 struct SearchPlaceIDResult: Codable {
