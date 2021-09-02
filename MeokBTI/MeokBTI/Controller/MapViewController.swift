@@ -18,7 +18,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
-    let searchVC = UISearchController(searchResultsController: ResultsViewController())
     var positionChanged = false
 
     // 위치 관련 변수들
@@ -381,12 +380,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     //                                                    self.restaurantPhotoView?.image = photo;
                                                         print("Load Photo Success :",type(of: photo))
                                                         
-                                                        if let photo = photo {
-                                                            self.loadedPhotos.append(photo)
-                                                            self.infoWindow.spotPhotos = self.loadedPhotos
-                                                            self.infoWindow.photoCollectionView.reloadData()
+                                                        
+                                                        DispatchQueue.main.async {
+                                                            if let photo = photo {
+                                                                self.loadedPhotos.append(photo)
+                                                                self.infoWindow.spotPhotos = self.loadedPhotos
+                                                                self.infoWindow.photoCollectionView.reloadData()
+                                                            }
                                                         }
                                                         
+                                    
                                                         
                                                         
                                                         print("photos append after :",self.loadedPhotos)
@@ -439,9 +442,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                     return
                 }
                 
-                self.meokBTIRanking += "\(medal)\(meokBTI)"
-                self.infoWindow.rankingLabel.text = self.meokBTIRanking
-                // [x] 원하는 결과 : 🥇EMGI🥈EMGC🥉EMBC
+                DispatchQueue.main.async {
+                    self.meokBTIRanking += "\(medal)\(meokBTI)"
+                    self.infoWindow.rankingLabel.text = self.meokBTIRanking
+                    // [x] 원하는 결과 : 🥇EMGI🥈EMGC🥉EMBC
+                }
+                
             }
         }
     }
