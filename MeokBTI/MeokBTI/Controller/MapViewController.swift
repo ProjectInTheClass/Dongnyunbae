@@ -54,7 +54,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.initCollectionView()
         
         // 식당 5개 고르기
-        gotoIntrodoction()
+//        gotoIntrodoction()
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
