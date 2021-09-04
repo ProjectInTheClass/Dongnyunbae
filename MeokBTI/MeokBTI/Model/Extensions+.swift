@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import GoogleMaps
 
 // MapViewController에서 쓰임.
 extension URL {
@@ -40,5 +41,11 @@ extension CLLocationCoordinate2D: Codable, Equatable {
     
     func coordinateToStringTuple() -> (String,String) {
         return (String(self.latitude),String(self.longitude))
+    }
+}
+
+extension GMSMarker {
+    enum basisOfMap {
+        case google, tmap
     }
 }

@@ -54,7 +54,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.initCollectionView()
         
         // 식당 5개 고르기
-        gotoIntrodoction()
+//        gotoIntrodoction()
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -175,55 +175,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        print("Infowindow!")
+    }
     
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        // [x] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [x] 먹bti선호도를 나타내는 창)
-        mapView.selectedMarker = marker
-        initializeInfoWindow(marker: marker)
-        
-        // 지역점까지 나타내니 너무 길어서 짜름 ex) 롯데리아 진주혁신점 -> 롯데리아
-        // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
-        guard let rawTitle = marker.title else { return false }
-        showingRestaurant = Restaurant(name: rawTitle, position: marker.position, like: isLikedRestaurant)
-        
-        
-        
-        let name = rawTitle.split(separator: " ")[0]
-
-        
-        // infoWindow에 들어갈 정보 할당 및 위치 지정
-        // 앞부분에 inset이 필요해서 공백추가
-        infoWindow.nameLabel.text = " " + String(name)
-        setMeokBTIRanking()
-//        infoWindow.rankingLabel.text = meokBTIRanking
-        infoWindow.center = mapView.projection.point(for: marker.position)
-        infoWindow.center.y = infoWindow.center.y - 110
-        
-        // 해당 식당이 좋아요한 식당인지 확인후 버튼모양 설정해줌.
-        isLikedRestaurant = infoWindow.loadDataAndCheckLikeButton(placeName: rawTitle, position: marker.position)
-        infoWindow.setButtonImage(isLikedRestaurant)
-        // 버튼액션함수가 buttonTapped을 기준으로 실행되는데 연동이 안되있으므로 infoWindow를 다른 것을 띄웠다가 돌아왔을 때 버튼이미지가 안 바뀌는 이슈
-        // Solution: buttonTapped과 연동시켜주면서 버튼 동작을 정상적으로 만들어줌
-        infoWindow.buttonTapped = isLikedRestaurant
-        
-        self.view.addSubview(infoWindow)
-        mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
-        
-        if let name = marker.title {
-            print("here is didTap",name)
-            // 식당이름으로 placeID를 받아오기 (API호출)
-            fetchPlaceID(restaurantName: name) { (placeID) in
-                // 받아온 placeID로 해당 식당 사진 받아오기
-                if let selectedPlaceID = placeID {
-                    self.fetchRestaurantPhoto(placeID: selectedPlaceID)
-                }
-                
-            }
-        }
-        
-        
-                
+        showInfoWindow(marker: marker, basisOfMap: .tmap)
+            
 //        print("tapped marker")
         return false
     }
@@ -287,6 +246,55 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.layer.cornerRadius = 12
         infoWindow.layer.borderWidth = 0
         infoWindow.likeButton.layer.cornerRadius = infoWindow.likeButton.frame.height / 2
+    }
+    
+    func showInfoWindow(marker: GMSMarker, basisOfMap map: GMSMarker.basisOfMap) {
+        // MARK: 마커에 필요한 정보: title, position
+        // [x] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [x] 먹bti선호도를 나타내는 창)
+//        mapView.selectedMarker = marker
+        initializeInfoWindow(marker: marker)
+        
+        // 지역점까지 나타내니 너무 길어서 짜름 ex) 롯데리아 진주혁신점 -> 롯데리아
+        // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
+        guard let rawTitle = marker.title else { return }
+        showingRestaurant = Restaurant(name: rawTitle, position: marker.position, like: isLikedRestaurant)
+        
+        var name: String
+        if map == .tmap {
+            name = String(rawTitle.split(separator: " ")[0])
+        } else {
+            name = rawTitle
+        }
+        
+        // infoWindow에 들어갈 정보 할당 및 위치 지정
+        // 앞부분에 inset이 필요해서 공백추가
+        infoWindow.nameLabel.text = " " + name
+        setMeokBTIRanking()
+//        infoWindow.rankingLabel.text = meokBTIRanking
+        infoWindow.center = mapView.projection.point(for: marker.position)
+        infoWindow.center.y = infoWindow.center.y - 110
+        
+        // 해당 식당이 좋아요한 식당인지 확인후 버튼모양 설정해줌.
+        isLikedRestaurant = infoWindow.loadDataAndCheckLikeButton(placeName: rawTitle, position: marker.position)
+        infoWindow.setButtonImage(isLikedRestaurant)
+        // 버튼액션함수가 buttonTapped을 기준으로 실행되는데 연동이 안되있으므로 infoWindow를 다른 것을 띄웠다가 돌아왔을 때 버튼이미지가 안 바뀌는 이슈
+        // Solution: buttonTapped과 연동시켜주면서 버튼 동작을 정상적으로 만들어줌
+        infoWindow.buttonTapped = isLikedRestaurant
+        
+        self.view.addSubview(infoWindow)
+        mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
+        
+        if let name = marker.title {
+            print("here is didTap",name)
+            // 식당이름으로 placeID를 받아오기 (API호출)
+            fetchPlaceID(restaurantName: name) { (placeID) in
+                // 받아온 placeID로 해당 식당 사진 받아오기
+                if let selectedPlaceID = placeID {
+                    self.fetchRestaurantPhoto(placeID: selectedPlaceID)
+                }
+                
+            }
+        }
     }
     
     func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
@@ -514,6 +522,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         User.saveToFile(user: reset)
     }
     
+    
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
     }
@@ -531,26 +540,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
 extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didAutocompleteWith place: GMSPlace) {
-    // 검색한 곳으로 이동 및 정보 띄우기
+    // [x] 검색한 곳으로 이동 및 정보 띄우기
     mapView.clear()
-    let cord2D = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-    let marker = GMSMarker()
-    marker.position = cord2D
+    mapView.animate(toLocation: place.coordinate)
+    
+    let marker = GMSMarker(position: place.coordinate)
     marker.title = place.name
-    marker.snippet = place.name
-    marker.map = self.mapView
+    marker.map = mapView
+    showInfoWindow(marker: marker,basisOfMap: .google)
+    mapView.animate(toZoom: 19)
     
     searchController?.isActive = false
     searchController?.resignFirstResponder()
     let acController = GMSAutocompleteViewController()
     acController.delegate = self
-    self.mapView.camera = GMSCameraPosition.camera(withTarget: cord2D , zoom: 15)
     // Do something with the selected place.
-    print("Place name: \(place.name)")
-    print("Place address: \(place.formattedAddress)")
-    print("Place attributions: \(place.attributions)")
-    
-    // [] 카메라 이동
+//    print("Place name: \(place.name)")
+//    print("Place address: \(place.formattedAddress)")
+//    print("Place attributions: \(place.attributions)")
     
   }
 
