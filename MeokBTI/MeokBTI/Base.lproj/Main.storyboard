@@ -66,6 +66,7 @@
                                         <state key="normal" title="Test"/>
                                         <connections>
                                             <action selector="gotoTest:" destination="Njg-28-Xb8" eventType="touchUpInside" id="uMs-Xf-PWz"/>
+                                            <segue destination="4dt-xl-ENI" kind="unwind" unwindAction="unwindToQuizIntroduction:" id="Tee-IL-FaL"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -90,6 +91,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sa8-EB-35q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="4dt-xl-ENI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1039.1304347826087" y="826.33928571428567"/>
         </scene>
@@ -165,7 +167,7 @@
                         <viewLayoutGuide key="safeArea" id="bea-Ol-IFp"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" id="hYk-US-bUv"/>
+                    <tabBarItem key="tabBarItem" title="" image="person.crop.circle.fill" catalog="system" id="hYk-US-bUv"/>
                     <connections>
                         <outlet property="tableView" destination="UNJ-j6-6VP" id="Uvz-WU-FVK"/>
                     </connections>
@@ -197,6 +199,7 @@
     </scenes>
     <resources>
         <image name="mappin.circle" catalog="system" width="128" height="121"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -12,6 +12,7 @@ class IntroductionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("첫화면 로드성공!")
+        self.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -31,7 +32,7 @@ class IntroductionViewController: UIViewController {
     @IBAction func unwindToQuizIntroduction(_ unwindSegue: UIStoryboardSegue) {
 //        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
-        
+        self.tabBarController?.tabBar.isHidden = false
     }
 
 

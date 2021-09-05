@@ -39,6 +39,7 @@ class ResultsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         resultTableView.definitionLabel.text = "\(meokBTI.shortDefinition)\n\(meokBTI.meokBTI)"
         resultTableView.meokBTIImageView.image = UIImage(named: "\(meokBTI.meokBTI).png")
+        resultTableView.shortDesriptionLabel.text = "\"\(meokBTI.shortDescription)\""
         resultTableView.descriptionLabel.text = meokBTI.longDescription
     }
     

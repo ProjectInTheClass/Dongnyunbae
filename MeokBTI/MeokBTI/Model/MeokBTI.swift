@@ -152,34 +152,34 @@ enum MeokBTI: String, Codable {
             return "집에서도 맛있는 음식 충분히 먹을 수 있는데.."
             
         case .HMGC :
-            return "이야~ 이거 보세요! 이게 바로 랍스터라는 것이에요!"
+            return "유하~ 이거 보세요! 이게 바로 랍스터라는 것이에요!"
             
         case .HMBC :
-            return "엣흠! 뭐든지 많은게 최고지!"
+            return "밥은 든~든하게 먹는 게 최고지!"
         //----
         case .ELGI :
-            return "찰칵! 역시 음식은 보는 맛도 중요하지!"
+            return "세상에 맛있는 음식이 너무 많아!"
        
         case .ELBI :
-            return "후다닥~ 후다닥~ 에고고 바쁘다 바뻐"
+            return "이 집은 왜이리 음식이 늦게 나와"
             
         case .HLGI :
-            return "에헤라디야~ 같이 놀 사람!"
+            return "나 아직 더 먹을 수 있어!!"
             
         case .HLBI :
             return "에이 저거 사 먹기에는 뭔가 아까운데.."
         //----
         case .ELGC :
-            return "아~ 그때처럼 그곳에서 같이 밥 먹을 수 있을까?"
+            return "저번에 그집 괜찮던데, 같이 갈래? 내가 사줄게"
        
         case .ELBC :
-            return "먹기 편한 곳 어디 없나..?"
+            return "그..뭐.. 없나?"
             
         case .HLGC :
             return "엘레강~스한 걸로 주세요호호호"
             
         case .HLBC :
-            return "움.. 이거 괜찮아.. 저거? 저거도 괜찮아.."
+            return "아무거나~ 난 다 괜찮아"
         }
     }
     
