@@ -10,6 +10,7 @@ import Foundation
 
 class User: Codable {
     static let shared = User.loadFromFile()
+    // 유저데이터 저장위치
     static let documanetsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let archiveURL = documanetsDirectory.appendingPathComponent("User").appendingPathExtension("plist")
 
@@ -18,6 +19,7 @@ class User: Codable {
     var favoriteRestaurants: [Restaurant] = []
 //    var testCompletion: Bool = false
     
+    // 한번 더 초기화되는 것 방지
     private init() { }
     
     static func saveToFile(user: User) {
@@ -32,5 +34,9 @@ class User: Codable {
               let decodedUser = try? propertyListDecoder.decode(User.self, from: retrievedUserData) else { return User() }
         
         return decodedUser
+    }
+    
+    func printOutData() {
+        print("id: \(self.id), meokBTI: \(self.meokBTI), favoriteRestaurants: \(self.favoriteRestaurants)")
     }
 }

@@ -190,9 +190,9 @@
 			children = (
 				0129338826B29B93006F22FA /* IntroductionViewController.swift */,
 				0129338926B29B93006F22FA /* QuestionViewController.swift */,
+				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
 				010F916B26CE8B2A00437262 /* ResultTableViewController.swift */,
 				013C65C126BA4FB700895567 /* MapViewController.swift */,
-				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
 				013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */,
 				EC2675DD26D625B700BDE566 /* PopUpViewController.swift */,
 				EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */,

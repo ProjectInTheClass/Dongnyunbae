@@ -215,8 +215,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="공유하기버튼" translatesAutoresizingMaskIntoConstraints="NO" id="qbX-jq-u5o">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="공유하기버튼" translatesAutoresizingMaskIntoConstraints="NO" id="qbX-jq-u5o">
                                 <rect key="frame" x="87" y="725" width="240" height="83"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="FaD-aH-ki8" appends="YES" id="7ji-6a-iYV"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWY-8Z-PFg">
                                 <rect key="frame" x="346" y="94" width="20" height="22"/>
@@ -256,13 +260,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9w-84-un6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="JgT-SL-SP0" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="FaD-aH-ki8">
+                    <connections>
+                        <action selector="shareImageTap:" destination="P2I-HE-s8j" id="i0D-8m-oCK"/>
+                        <outlet property="delegate" destination="P2I-HE-s8j" id="dmA-KN-HpR"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2840.579710144928" y="-25.446428571428569"/>
         </scene>
         <!--Result Table View Controller-->
         <scene sceneID="5Jo-Tx-37n">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nhg-4u-FkF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController id="9PB-3v-oUC" customClass="ResultTableViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oY5-Mk-4sS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="661"/>
@@ -347,6 +356,7 @@
                         <outlet property="shortDesriptionLabel" destination="g24-8b-Bqp" id="uSp-mS-lH3"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nhg-4u-FkF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3566.666666666667" y="-25.111607142857142"/>
         </scene>

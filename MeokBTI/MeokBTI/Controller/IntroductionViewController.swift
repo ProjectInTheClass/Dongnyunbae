@@ -9,10 +9,15 @@ import UIKit
 
 class IntroductionViewController: UIViewController {
         
+    let user = User.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("첫화면 로드성공!")
-        self.tabBarController?.tabBar.isHidden = true
+        print(user.printOutData())
+        if user.meokBTI == nil {
+            self.tabBarController?.tabBar.isHidden = true
+        }
         // Do any additional setup after loading the view.
     }
     
