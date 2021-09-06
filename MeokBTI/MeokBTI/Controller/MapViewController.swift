@@ -17,8 +17,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // 검색창 코드(3줄)
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
-    var resultView: UITextView?
-    var positionChanged = false
 
     // 위치 관련 변수들
     var locationManager: CLLocationManager!
@@ -75,16 +73,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // 검색창 구현
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
-
+        
+        let filter = GMSAutocompleteFilter()
+        filter.country = "kr"
+        resultsViewController?.autocompleteFilter = filter
+        
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
 
-        let subView2 = UIView(frame: CGRect(x: 0, y: 30.0, width: 350.0, height: 45.0))
-
-        subView2.addSubview((searchController?.searchBar)!)
-        view.addSubview(subView2)
-        searchController?.searchBar.sizeToFit()
-        searchController?.hidesNavigationBarDuringPresentation = false
+        let searchControllerSubView = UIView(frame: CGRect(x: 0, y: 50.0, width: 350.0, height: 45))
+        
+        if let searchView = searchController?.searchBar {
+            searchView.searchBarStyle = .minimal
+            searchView.placeholder = "식당 검색"
+            searchView.searchTextField.backgroundColor = .white
+            searchControllerSubView.addSubview(searchView)
+            searchView.sizeToFit()
+        }
+   
+        view.addSubview(searchControllerSubView)
 
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
@@ -130,16 +137,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         case .authorizedAlways, .authorizedWhenInUse:
             print("GPS 권한 설정됨")
             self.locationManager.startUpdatingLocation() // 주소데이터를 현위치로 업데이트
+        
         case .restricted, .notDetermined:
             // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
             print("GPS 권한 설정되지 않음")
             self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
             getLocationUsagePermission()
+            
         case .denied:
             // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
             print("GPS 권한 요청 거부됨")
             self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
             getLocationUsagePermission()
+            
         default:
             print("GPS: Default")
         }
@@ -263,7 +273,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         if map == .tmap {
             name = String(rawTitle.split(separator: " ")[0])
         } else {
-            name = rawTitle
+            name = rawTitle.replacingOccurrences(of: " ", with: "")
         }
         
         // infoWindow에 들어갈 정보 할당 및 위치 지정
@@ -468,7 +478,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func didTapLikeButton(_ sender: Bool) {
-        // [ ] 서버로 좋아요 누른거 전송
+        // [x] 서버로 좋아요 누른거 전송
         // [x] Like, 좋아한 식당목록에 추가
         // [x] Unlike, 좋아한 식당목록에서 제거
 //        print(sender.isHighlighted)
@@ -532,7 +542,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        
+        print("cancel!")
     }
 
 }
@@ -541,23 +551,16 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didAutocompleteWith place: GMSPlace) {
     // [x] 검색한 곳으로 이동 및 정보 띄우기
-    mapView.clear()
     mapView.animate(toLocation: place.coordinate)
     
     let marker = GMSMarker(position: place.coordinate)
     marker.title = place.name
     marker.map = mapView
-    showInfoWindow(marker: marker,basisOfMap: .google)
+    showInfoWindow(marker: marker, basisOfMap: .google)
     mapView.animate(toZoom: 19)
     
     searchController?.isActive = false
     searchController?.resignFirstResponder()
-    let acController = GMSAutocompleteViewController()
-    acController.delegate = self
-    // Do something with the selected place.
-//    print("Place name: \(place.name)")
-//    print("Place address: \(place.formattedAddress)")
-//    print("Place attributions: \(place.attributions)")
     
   }
 
@@ -569,33 +572,15 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
 
   // Turn the network activity indicator on and off again.
   func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//    UIApplication.shared.isNetworkActivityIndicatorVisible = true
   }
 
   func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//    UIApplication.shared.isNetworkActivityIndicatorVisible = false
   }
+    
 }
-//extension MapViewController {
-//
-//    override func loadView() {
-//        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 14.0)
-//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-//
-//        do {
-//          // Set the map style by passing the URL of the local file.
-//          if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-//            mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-//          } else {
-//            NSLog("Unable to find style.json")
-//          }
-//        } catch {
-//          NSLog("One or more of the map styles failed to load. \(error)")
-//        }
-//
-//        self.view = mapView
-//    }
-//}
+
 
 
 
