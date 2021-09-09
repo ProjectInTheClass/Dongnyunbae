@@ -113,7 +113,8 @@ class ResultsViewController: UIViewController {
 //            print("[INFO] textField's Text : ", text)
 //        }
         
-        resultToShare = UIImage()
+//        resultToShare = UIImage()
+        resultToShare = resultTableView.view.transfromToImage()!
         
         let activityVC = UIActivityViewController(activityItems: [resultToShare], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
