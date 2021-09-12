@@ -105,22 +105,21 @@ class ResultsViewController: UIViewController {
     
     @IBAction func shareImageTap(_ sender: UITapGestureRecognizer) {
         print("share!")
-        // [] 결과화면 전체 캡처후 이미지 변환
-        // [] Extension (카카오톡, 인스타, 페북, 트위터, 공유) 추가
-        var resultToShare = UIImage()
+        // [x] 결과화면 전체 캡처후 이미지 변환
+//        var resultToShare = UIImage()
 //        if let text = textField.text {
 //            objectsToShare.append(text)
 //            print("[INFO] textField's Text : ", text)
 //        }
         
 //        resultToShare = UIImage()
-        resultToShare = resultTableView.view.transfromToImage()!
-        
+//        resultToShare = resultTableView.view.transformToImage()!
+        let resultToShare = resultTableView.imageToShare
         let activityVC = UIActivityViewController(activityItems: [resultToShare], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
         
         // 공유하기 기능 중 제외할 기능이 있을 때 사용
-//        activityVC.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList]
+        activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
         self.present(activityVC, animated: true, completion: nil)
     }
     

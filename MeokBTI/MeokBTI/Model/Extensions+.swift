@@ -51,8 +51,9 @@ extension GMSMarker {
 }
 
 extension UIView {
-    func transfromToImage() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(frame.size, isOpaque, 0.0)
+    func transformToImage() -> UIImage? {
+//        UIGraphicsBeginImageContextWithOptions(frame.size, isOpaque, 0.0)
+        UIGraphicsBeginImageContext(CGSize(width: bounds.size.width, height: bounds.size.height))
         defer {
             UIGraphicsEndImageContext()
         }

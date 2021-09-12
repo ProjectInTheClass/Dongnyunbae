@@ -14,8 +14,11 @@ class ResultTableViewController: UITableViewController {
     @IBOutlet weak var shortDesriptionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    var imageToShare = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -24,7 +27,13 @@ class ResultTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let firstCellCaptureImage = cell.contentView.transformToImage()
+            imageToShare = firstCellCaptureImage!
+        }
+        
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
