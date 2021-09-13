@@ -233,29 +233,38 @@
                                     <segue destination="9PB-3v-oUC" kind="embed" id="tYb-RC-vFE"/>
                                 </connections>
                             </containerView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HPX-Kn-bIo">
-                                <rect key="frame" x="122" y="755" width="170" height="53"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HPX-Kn-bIo">
+                                <rect key="frame" x="77.5" y="686" width="259" height="122"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="결과 공유하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udN-kC-6wt">
-                                        <rect key="frame" x="32.5" y="0.0" width="105.5" height="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="결과 공유하기🚀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udN-kC-6wt">
+                                        <rect key="frame" x="66" y="0.0" width="127.5" height="23"/>
                                         <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5fA-6F-Yhf">
-                                        <rect key="frame" x="0.0" y="23" width="170" height="30"/>
+                                        <rect key="frame" x="0.0" y="38" width="259" height="84"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLx-kB-JRJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="41" height="30"/>
-                                                <state key="normal" title="kakao"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLx-kB-JRJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="84"/>
+                                                <state key="normal" image="카카오톡공유"/>
+                                                <connections>
+                                                    <action selector="shareResultKakaotalk:" destination="P2I-HE-s8j" eventType="touchUpInside" id="gkD-yl-3tH"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoE-Mn-GZD">
-                                                <rect key="frame" x="49" y="0.0" width="69" height="30"/>
-                                                <state key="normal" title="Instagram"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoE-Mn-GZD">
+                                                <rect key="frame" x="88" y="0.0" width="38" height="84"/>
+                                                <state key="normal" image="인스타스토리공유"/>
+                                                <connections>
+                                                    <action selector="shareResultInstagramstory:" destination="P2I-HE-s8j" eventType="touchUpInside" id="wC5-g4-Jgj"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wep-1K-ZfA">
-                                                <rect key="frame" x="126" y="0.0" width="44" height="30"/>
-                                                <state key="normal" title="others"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wep-1K-ZfA">
+                                                <rect key="frame" x="134" y="0.0" width="125" height="84"/>
+                                                <state key="normal" image="그외공유"/>
+                                                <connections>
+                                                    <action selector="shareResultOthers:" destination="P2I-HE-s8j" eventType="touchUpInside" id="mEb-Vw-fLZ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -266,12 +275,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LfC-an-9yf" firstAttribute="trailing" secondItem="qbX-jq-u5o" secondAttribute="trailing" constant="87" id="DC9-m1-cM5"/>
-                            <constraint firstItem="HPX-Kn-bIo" firstAttribute="leading" secondItem="LfC-an-9yf" secondAttribute="leading" constant="122" id="DI8-Sg-VKY"/>
                             <constraint firstItem="qbX-jq-u5o" firstAttribute="bottom" secondItem="LfC-an-9yf" secondAttribute="bottom" id="IIc-qd-fkE"/>
                             <constraint firstItem="HPX-Kn-bIo" firstAttribute="bottom" secondItem="LfC-an-9yf" secondAttribute="bottom" id="IsL-89-FKO"/>
                             <constraint firstItem="LfC-an-9yf" firstAttribute="trailing" secondItem="jat-qg-s3Z" secondAttribute="trailing" id="Knb-Qi-frv"/>
-                            <constraint firstItem="LfC-an-9yf" firstAttribute="trailing" secondItem="HPX-Kn-bIo" secondAttribute="trailing" constant="122" id="LKO-ob-qlJ"/>
                             <constraint firstItem="jat-qg-s3Z" firstAttribute="leading" secondItem="LfC-an-9yf" secondAttribute="leading" id="LM8-pi-Jq2"/>
+                            <constraint firstItem="HPX-Kn-bIo" firstAttribute="centerX" secondItem="BzH-BF-uSs" secondAttribute="centerX" id="Qup-sU-QEJ"/>
                             <constraint firstItem="qbX-jq-u5o" firstAttribute="leading" secondItem="LfC-an-9yf" secondAttribute="leading" constant="87" id="RoD-s5-8cD"/>
                             <constraint firstItem="LfC-an-9yf" firstAttribute="bottom" secondItem="jat-qg-s3Z" secondAttribute="bottom" constant="91" id="od8-wR-Gl2"/>
                             <constraint firstItem="jat-qg-s3Z" firstAttribute="top" secondItem="LfC-an-9yf" secondAttribute="top" id="xFI-jW-R9B"/>
@@ -403,6 +411,9 @@
         <image name="doc.richtext.fill" catalog="system" width="115" height="128"/>
         <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <image name="공유하기버튼" width="300" height="83"/>
+        <image name="그외공유" width="125" height="37"/>
+        <image name="인스타스토리공유" width="38" height="39"/>
+        <image name="카카오톡공유" width="40" height="42"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

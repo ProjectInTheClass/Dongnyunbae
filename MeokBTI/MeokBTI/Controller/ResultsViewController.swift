@@ -104,6 +104,19 @@ class ResultsViewController: UIViewController {
     }
     
     @IBAction func shareImageTap(_ sender: UITapGestureRecognizer) {
+        
+    }
+    
+    
+    @IBAction func shareResultKakaotalk(_ sender: Any) {
+        print("Kakaotalk shared!")
+    }
+    
+    @IBAction func shareResultInstagramstory(_ sender: Any) {
+        print("Instagram shared!")
+    }
+    
+    @IBAction func shareResultOthers(_ sender: Any) {
         print("share!")
         // [x] 결과화면 전체 캡처후 이미지 변환
 //        var resultToShare = UIImage()
@@ -122,6 +135,7 @@ class ResultsViewController: UIViewController {
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
         self.present(activityVC, animated: true, completion: nil)
     }
+    
     
 
 }
