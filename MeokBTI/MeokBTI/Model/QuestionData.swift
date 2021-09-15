@@ -7,6 +7,8 @@
 
 import Foundation
 
+// 먹BTI 검사 질문, 결과
+
 struct Question {
     var text: String
     var answers: [Answer]
