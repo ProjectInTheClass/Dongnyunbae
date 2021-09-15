@@ -234,33 +234,33 @@
                                 </connections>
                             </containerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HPX-Kn-bIo">
-                                <rect key="frame" x="77.5" y="686" width="259" height="122"/>
+                                <rect key="frame" x="97.5" y="728" width="219" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="결과 공유하기🚀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udN-kC-6wt">
-                                        <rect key="frame" x="66" y="0.0" width="127.5" height="23"/>
+                                        <rect key="frame" x="46" y="0.0" width="127.5" height="23"/>
                                         <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5fA-6F-Yhf">
-                                        <rect key="frame" x="0.0" y="38" width="259" height="84"/>
+                                        <rect key="frame" x="0.0" y="38" width="219" height="42"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLx-kB-JRJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="80" height="84"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="42"/>
                                                 <state key="normal" image="카카오톡공유"/>
                                                 <connections>
                                                     <action selector="shareResultKakaotalk:" destination="P2I-HE-s8j" eventType="touchUpInside" id="gkD-yl-3tH"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoE-Mn-GZD">
-                                                <rect key="frame" x="88" y="0.0" width="38" height="84"/>
+                                                <rect key="frame" x="48" y="0.0" width="38" height="42"/>
                                                 <state key="normal" image="인스타스토리공유"/>
                                                 <connections>
                                                     <action selector="shareResultInstagramstory:" destination="P2I-HE-s8j" eventType="touchUpInside" id="wC5-g4-Jgj"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wep-1K-ZfA">
-                                                <rect key="frame" x="134" y="0.0" width="125" height="84"/>
+                                                <rect key="frame" x="94" y="0.0" width="125" height="42"/>
                                                 <state key="normal" image="그외공유"/>
                                                 <connections>
                                                     <action selector="shareResultOthers:" destination="P2I-HE-s8j" eventType="touchUpInside" id="mEb-Vw-fLZ"/>

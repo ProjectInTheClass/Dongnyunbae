@@ -33,6 +33,7 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>kakaolink</string>
 		<string>instagram-stories</string>
 		<string>googlechromes</string>
 		<string>comgooglemaps</string>
