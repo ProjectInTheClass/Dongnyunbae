@@ -49,3 +49,18 @@ extension GMSMarker {
         case google, tmap
     }
 }
+
+extension UIView {
+    func transformToImage() -> UIImage? {
+//        UIGraphicsBeginImageContextWithOptions(frame.size, isOpaque, 0.0)
+        UIGraphicsBeginImageContext(CGSize(width: bounds.size.width, height: bounds.size.height))
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        if let context = UIGraphicsGetCurrentContext() {
+            layer.render(in: context)
+            return UIGraphicsGetImageFromCurrentImageContext()
+        }
+        return nil
+    }
+}

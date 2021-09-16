@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '11.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -11,5 +11,6 @@ target 'MeokBTI' do
   # Pods for MeokBTI
   pod 'GoogleMaps', '= 3.10.0-beta1'
   pod 'GooglePlaces', '= 3.10.0-beta1'
-
+  pod 'Firebase/Database'
+  pod 'KakaoSDKLink'
 end

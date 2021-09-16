@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import KakaoSDKLink
+import KakaoSDKTemplate
+import KakaoSDKCommon
+import SafariServices
 
 class ResultsViewController: UIViewController {
 
@@ -15,6 +19,8 @@ class ResultsViewController: UIViewController {
     var meokBTI: MeokBTI!
     
     let user = User.shared
+    
+    var safariViewController : SFSafariViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +108,121 @@ class ResultsViewController: UIViewController {
         
         return refinedMeokBTI
     }
+    
+    @IBAction func shareImageTap(_ sender: UITapGestureRecognizer) {
+        
+    }
+    
+    
+    @IBAction func shareResultKakaotalk(_ sender: Any) {
+        print("Kakaotalk shared!")
+        
+        var meokBTIImageUrl: URL?
+        let meokBTIImage = resultTableView.imageToShare
+        
+        // 이미지를 카카오 서버에 임시로 업로드
+        LinkApi.shared.imageUpload(image: meokBTIImage) { [weak self] (imageUploadResult, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("imageUpload() success.")
+                
+                
+                if let imageUploadResult = imageUploadResult {
+                    meokBTIImageUrl = imageUploadResult.infos.original.url
+                    
+                    print(meokBTIImageUrl)
+                    
+                }
+                
+                
+                let link = Link(webUrl: URL(string:"https://developers.kakao.com"),
+                                mobileWebUrl: URL(string:"https://developers.kakao.com"))
+                let appLink = Link(androidExecutionParams: ["key1": "value1", "key2": "value2"],
+                                    iosExecutionParams: ["key1": "value1", "key2": "value2"])
+
+                let button = Button(title: "앱으로 보기", link: appLink)
+                let content = Content(title: "먹BTI",
+                                        imageUrl: meokBTIImageUrl!,
+                                        description: "당신의 식당취향도 알아보세요!",
+                                        link: link)
+                
+                let feedTemplate = FeedTemplate(content: content, buttons: [button])
+                let feedTemplateJsonData = try? SdkJSONEncoder.custom.encode(feedTemplate)
+                let templateJsonObject = SdkUtils.toJsonObject(feedTemplateJsonData!)
+    
+                // 카카오톡 설치 여부 확인
+                if LinkApi.isKakaoLinkAvailable() {
+                    // 카카오톡으로 카카오링크 공유 가능
+                    //메시지 템플릿 encode
+                    if let feedTemplateJsonData = (try? SdkJSONEncoder.custom.encode(feedTemplate)) {
+
+                    //생성한 메시지 템플릿 객체를 jsonObject로 변환
+                        if let templateJsonObject = SdkUtils.toJsonObject(feedTemplateJsonData) {
+                            LinkApi.shared.defaultLink(templateObject: templateJsonObject) {(linkResult, error) in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                }
+                                else {
+                                    print("defaultLink(templateObject:templateJsonObject) success.")
+
+                                    //do something
+                                    guard let linkResult = linkResult else { return }
+                                    UIApplication.shared.open(linkResult.url, options: [:], completionHandler: nil)
+                                }
+                            }
+                        }
+                    }
+                    
+                } else {
+                    // 카카오톡 미설치: 웹 공유 사용 권장
+                    // Custom WebView 또는 디폴트 브라우져 사용 가능
+                    // 웹 공유 예시 코드
+                    if let url = LinkApi.shared.makeSharerUrlforDefaultLink(templateObject: templateJsonObject!) {
+                        self!.safariViewController = SFSafariViewController(url: url)
+                        self!.safariViewController?.modalTransitionStyle = .crossDissolve
+                        self!.safariViewController?.modalPresentationStyle = .overCurrentContext
+                        self!.present(self!.safariViewController!, animated: true) {
+                            print("웹 present success")
+                        }
+                    }
+                }
+            }
+        }
+        
+
+
+        
+        
+        
+    }
+    
+    @IBAction func shareResultInstagramstory(_ sender: Any) {
+        print("Instagram shared!")
+    }
+    
+    @IBAction func shareResultOthers(_ sender: Any) {
+        print("share!")
+        // [x] 결과화면 전체 캡처후 이미지 변환
+//        var resultToShare = UIImage()
+//        if let text = textField.text {
+//            objectsToShare.append(text)
+//            print("[INFO] textField's Text : ", text)
+//        }
+        
+//        resultToShare = UIImage()
+//        resultToShare = resultTableView.view.transformToImage()!
+        let resultToShare = resultTableView.imageToShare
+        let activityVC = UIActivityViewController(activityItems: [resultToShare], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        
+        // 공유하기 기능 중 제외할 기능이 있을 때 사용
+        activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
+    
 
 }
 
