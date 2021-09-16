@@ -28,6 +28,7 @@ class ResultsViewController: UIViewController {
         navigationItem.hidesBackButton = true
         
         meokBTI = MeokBTI(rawValue: calculatePersonalityResult())
+        print("Look! meokBTI :",meokBTI)
         resultTableView = self.children[0] as? ResultTableViewController
         
         if User.loadFromFile().meokBTI == nil {
@@ -72,7 +73,7 @@ class ResultsViewController: UIViewController {
         for response in responseTypes {
             frequencyOfAnswers[response] = (frequencyOfAnswers[response] ?? 0) + 1
         }
-        
+    
         // 2.알파벳 순서로 정렬
         let frequentAnswerSorted = frequencyOfAnswers.sorted(by:
         { (pair1, pair2) -> Bool in

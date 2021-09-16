@@ -42,7 +42,9 @@ class QuestionViewController: UIViewController {
         
         let currentQuestion = questions[questionIndex]
         let currentAnswer = currentQuestion.answers
+        let questionNumber = questionIndex + 1
         
+        questionImageView.image = UIImage(named: "q\(questionNumber)")
         progressLabel.text = "\(questionIndex+1)/\(questions.count)"
         questionLabel.text = currentQuestion.text
         
