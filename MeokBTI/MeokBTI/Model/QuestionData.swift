@@ -75,26 +75,32 @@ let questions: [Question] = [
 //                Answer(text: "인스타에서 분위기 좋은 식당을 찾아서 정한다.", type: .moodPos), Answer(text: "네이버에서 주변에 시간대에 맞는 적당한 식당을 찾는다.", type: .moodNeg)]),
     
     Question(text: "어디서 더 먹고 싶은가?", answers: [
-                Answer(text: "전문 라면집에서 먹는 라면.", type: .moodPos), Answer(text: "야간 행군 끝나고 먹는 라면.", type: .moodNeg)]),
+                Answer(text: "전문 라면집에서 먹는 라면.", type: .moodPos),
+                Answer(text: "야간 행군 끝나고 먹는 라면.", type: .moodNeg)]),
     
     Question(text: "연구실 프로젝트 도중 밥 시간이 되었다. 모처럼 교수님께서 한턱 쏘신다고 하는데 한식을 드시고 싶다고 하신다. 이럴 때,", answers: [
-                Answer(text: "보기 좋아야 먹기도 좋다고 비싸더라도 고풍스러운 한식당을 소개시켜드린다.", type: .moodPos), Answer(text: "멋없더라도 할머님들의 손맛이 알차고 자연스럽게 담긴 한식당을 소개시켜드린다.", type: .moodNeg)]),
+                Answer(text: "보기 좋아야 먹기도 좋다고 비싸더라도 고풍스러운 한식당을 소개시켜드린다.", type: .moodPos),
+                Answer(text: "멋없더라도 할머님들의 손맛이 알차고 자연스럽게 담긴 한식당을 소개시켜드린다.", type: .moodNeg)]),
     
     // price
     Question(text: "아직 월급날은 3일 남았고 내 잔고는 바닥을 치고 있다.", answers: [
-                Answer(text: "잘 먹는게 최고니 다른 곳에서 아끼고 먹는 것 만큼은 아끼지 않는다.", type: .pricePos),
-                Answer(text: "식비부터 최대한 아껴야하므로 남은 3일간은 대충 끼니를 해결한다.",
+                Answer(text: "식비부터 최대한 아껴야하므로 남은 3일간은 대충 끼니를 해결한다.", type: .pricePos),
+                Answer(text: "잘 먹는게 최고니 다른 곳에서 아끼고 먹는 것 만큼은 아끼지 않는다.",
                     type: .priceNeg)]),
     Question(text: "드디어 월급날, 돈이 들어온 기념으로 무언가 특별한 음식을 찾다보니 초밥이 끌린다.", answers: [
-                Answer(text: "초밥이 거기서 거기지. 가격이 그렇게 비싸지 않은 동네 초밥집에 간다.", type: .pricePos), Answer(text: "이왕 먹는거 하나하나 정성스럽게 만들어주는 곳을 가보자. 오마카세 식당에 간다.", type: .priceNeg)]),
+                Answer(text: "이왕 먹는거 하나하나 정성스럽게 만들어주는 곳을 가보자. 오마카세 식당에 간다.", type: .pricePos),
+                Answer(text: "초밥이 거기서 거기지. 가격이 그렇게 비싸지 않은 동네 초밥집에 간다.", type: .priceNeg)]),
     
     Question(text: "친구 생일날 밥 한끼를 사주려고 한다.", answers: [
-                Answer(text: "가격이 좀 들더라도 친구가 못 먹어본 음식을 대접한다.", type: .pricePos), Answer(text: "친구가 자주가는 식당에서 한 턱 쏜다.", type: .priceNeg)]),
+                Answer(text: "친구가 자주가는 식당에서 한 턱 쏜다.", type: .pricePos),
+                Answer(text: "가격이 좀 들더라도 친구가 못 먹어본 음식을 대접한다.", type: .priceNeg)]),
     
     Question(text: "브리또(또는 그 무언가) 를 먹을거다.", answers: [
-                Answer(text: "비싸더라도 먹고 싶은 토핑 이것저것 다 넣는다.", type: .pricePos), Answer(text: " 먹고 싶은 토핑 하나만 정해서 넣는다.", type: .priceNeg)]),
+                Answer(text: "먹고 싶은 토핑 하나만 정해서 넣는다.", type: .pricePos),
+                Answer(text: "비싸더라도 먹고 싶은 토핑 이것저것 다 넣는다.", type: .priceNeg)]),
     
     Question(text: "짬뽕을 먹고 싶을 때", answers: [
-                Answer(text: "비싸더라도 이비가짬뽕 같은 이름있는 곳에서 먹어야지.", type: .pricePos), Answer(text: "동네 중국집에서 편하고 저렴하게 먹어야지.", type: .priceNeg)])
+                Answer(text: "동네 중국집에서 편하고 저렴하게 먹어야지.", type: .pricePos),
+                Answer(text: "비싸더라도 이비가짬뽕 같은 이름있는 곳에서 먹어야지.", type: .priceNeg)])
 // END
 ]

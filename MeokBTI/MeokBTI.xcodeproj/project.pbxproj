@@ -30,24 +30,24 @@
 		013C65C426BBD22000895567 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013C65C326BBD22000895567 /* Restaurant.swift */; };
 		0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148A8FC26CB9B6600F1427C /* PhotoCollectionViewCell.swift */; };
 		0148A8FF26CB9B6600F1427C /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0148A8FD26CB9B6600F1427C /* PhotoCollectionViewCell.xib */; };
-		0148CF1826C6D1030035862A /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; };
-		0148CF1926C6D1030035862A /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148CF1A26C81CB90035862A /* Extensions+.swift */; };
 		0148CF2026C8E2C40035862A /* ChoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148CF1F26C8E2C40035862A /* ChoiceState.swift */; };
 		017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D88D726CABD4600B72155 /* MapMarkerWindow.swift */; };
+		01A2FD9826F38AB60019B602 /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; };
+		01A2FD9926F38AB60019B602 /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AC4A7A7BBFF823173D74377 /* Pods_MeokBTI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1797757F7D982904A3D40CFA /* Pods_MeokBTI.framework */; };
 		EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */; };
 		EC2675DE26D625B700BDE566 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2675DD26D625B700BDE566 /* PopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0148CF1626C6B8680035862A /* Embed Frameworks */ = {
+		01A2FD9A26F38AB60019B602 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0148CF1926C6D1030035862A /* TMapSDK.framework in Embed Frameworks */,
+				01A2FD9926F38AB60019B602 /* TMapSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,8 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0148CF1826C6D1030035862A /* TMapSDK.framework in Frameworks */,
 				0AC4A7A7BBFF823173D74377 /* Pods_MeokBTI.framework in Frameworks */,
+				01A2FD9826F38AB60019B602 /* TMapSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,9 +243,9 @@
 				0129336C26B29A76006F22FA /* Sources */,
 				0129336D26B29A76006F22FA /* Frameworks */,
 				0129336E26B29A76006F22FA /* Resources */,
-				0148CF1626C6B8680035862A /* Embed Frameworks */,
 				41A60500BCBFE688A6613EE7 /* [CP] Copy Pods Resources */,
 				99D4A476216647E2A808934C /* [CP] Embed Pods Frameworks */,
+				01A2FD9A26F38AB60019B602 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

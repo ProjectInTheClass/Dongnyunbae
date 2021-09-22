@@ -19,9 +19,6 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var singleStackView: UIStackView!
     @IBOutlet var singleButtons: [UIButton]!
     
-
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         

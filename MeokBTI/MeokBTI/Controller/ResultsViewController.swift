@@ -26,7 +26,7 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.hidesBackButton = true
-        
+        self.tabBarController?.tabBar.isHidden = false
         meokBTI = MeokBTI(rawValue: calculatePersonalityResult())
         print("Look! meokBTI :",meokBTI)
         resultTableView = self.children[0] as? ResultTableViewController
@@ -201,6 +201,28 @@ class ResultsViewController: UIViewController {
     
     @IBAction func shareResultInstagramstory(_ sender: Any) {
         print("Instagram shared!")
+        
+        if let storyShareURL = URL(string: "instagram-stories://share") {
+            
+            if UIApplication.shared.canOpenURL(storyShareURL) {
+                guard let imageData = resultTableView.imageToShare.pngData() else { return }
+                
+                let pasteboardItems : [String:Any] = [
+                    "com.instagram.sharedSticker.stickerImage": imageData,
+                    "com.instagram.sharedSticker.backgroundTopColor" : "#636e72",
+                    "com.instagram.sharedSticker.backgroundBottomColor" : "#b2bec3"]
+                // 사진 만료시간 잡아주기
+                let pasteboardOptions = [ UIPasteboard.OptionsKey.expirationDate : Date().addingTimeInterval(300) ]
+                
+                UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
+                UIApplication.shared.open(storyShareURL, options: [:], completionHandler: nil)
+            } else {
+                let alert = UIAlertController(title: "알림", message: "인스타그램이 필요합니다", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func shareResultOthers(_ sender: Any) {
