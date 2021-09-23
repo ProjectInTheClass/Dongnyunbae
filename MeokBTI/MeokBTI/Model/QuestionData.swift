@@ -23,7 +23,7 @@ let questions: [Question] = [
     // Access
     Question(text: "두근두근! 내일은 첫 데이트 날이다. 데이트 할 때 식당을 정하려고 한다.", answers: [
                 Answer(text: "다음 장소까지의 거리를 계산하여 최대한 가까운 식당으로 정한다.", type: .accessPos),
-                Answer(text: "일단 가고 싶은 식당을 정하고 다음 장소를 정한다.",
+                Answer(text: "가고 싶은 식당을 정하고 다음 장소를 정한다.",
                     type: .accessNeg)]),
     
 //    Question(text: "군복무 시절 강원도에서 먹었던 막국수가 먹고 싶다.", answers: [
@@ -56,17 +56,17 @@ let questions: [Question] = [
                 Answer(text: "부족한 것 보단 차라리 남기는 게 나으니 4개를 끓인다.", type: .ammountPos), Answer(text: "음식을 남길 순 없으니 적당히 먹을 수 있게 3개만 끓인다.", type: .ammountNeg)]),
     
     Question(text: "나는 현재 군인이다. 삽겹살이 너무 먹고 싶다. 마침 휴가를 나와서 삽겹살 무한 리필집에 오게 되었다. 너무 많이 먹어서 현재 배가 부른 상태다.", answers: [
-                Answer(text: "언제 다시 먹을지 모르니 배 불러도 더 먹는다", type: .ammountPos), Answer(text: "모자라게 먹는게 더 맛있다. 적당히 먹고 만다.", type: .ammountNeg)]),
+                Answer(text: "언제 다시 먹을지 모르니 배 불러도 더 먹는다.", type: .ammountPos), Answer(text: "모자라게 먹는게 더 맛있다. 적당히 먹고 만다.", type: .ammountNeg)]),
     
-    Question(text: "오늘은 치팅데이! 마음껏 먹어보자.", answers: [
-                Answer(text: "세상엔 맛있는 게 너무 많다. 이것저것 다 시켜 먹는다.", type: .ammountPos), Answer(text: "치팅데이라도 적당히 먹는다.", type: .ammountNeg)]),
+//    Question(text: "오늘은 치팅데이! 마음껏 먹어보자.", answers: [
+//                Answer(text: "세상엔 맛있는 게 너무 많다. 이것저것 다 시켜 먹는다.", type: .ammountPos), Answer(text: "치팅데이라도 적당히 먹는다.", type: .ammountNeg)]),
     
     
     
 
     // Mood
     Question(text: "연인과 1주년, 점심을 먹으려고 한다.", answers: [
-                Answer(text: "맛은 모르겠지만 인테리어가 예쁘다고 소문난  식당에 간다",
+                Answer(text: "맛은 모르겠지만 인테리어가 예쁘다고 소문난 식당에 간다.",
                     type: .moodPos),
                 Answer(text: "식당은 음식을 먹기 위해 가는 곳이다. 음식이 맛있다면 분위기는 상관 없다.",
                     type: .moodNeg)]),
