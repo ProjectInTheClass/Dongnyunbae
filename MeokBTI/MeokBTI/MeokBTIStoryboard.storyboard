@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RPp-ZZ-jHg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RPp-ZZ-jHg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -120,16 +121,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oEE-ng-xDY">
-                                <rect key="frame" x="20" y="86" width="374" height="303"/>
+                                <rect key="frame" x="20" y="86" width="374" height="533"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date1" translatesAutoresizingMaskIntoConstraints="NO" id="VE9-vG-Q5s">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="250"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="3mh-sW-UB6"/>
+                                            <constraint firstAttribute="height" constant="250" id="3mh-sW-UB6"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="zTl-Zc-3iw">
-                                        <rect key="frame" x="0.0" y="40" width="374" height="263"/>
+                                        <rect key="frame" x="0.0" y="270" width="374" height="263"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4gz-0y-iRZ" userLabel="Question Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="53"/>
@@ -228,13 +229,13 @@
                                 <state key="normal" image="questionmark.circle" catalog="system"/>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jat-qg-s3Z">
-                                <rect key="frame" x="0.0" y="56" width="414" height="661"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="695"/>
                                 <connections>
                                     <segue destination="9PB-3v-oUC" kind="embed" id="tYb-RC-vFE"/>
                                 </connections>
                             </containerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HPX-Kn-bIo">
-                                <rect key="frame" x="97.5" y="728" width="219" height="80"/>
+                                <rect key="frame" x="97.5" y="762" width="219" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="결과 공유하기🚀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udN-kC-6wt">
                                         <rect key="frame" x="46" y="0.0" width="127.5" height="23"/>
@@ -318,14 +319,14 @@
             <objects>
                 <tableViewController id="9PB-3v-oUC" customClass="ResultTableViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oY5-Mk-4sS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="661"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="695"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="xVy-MK-eOV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="442" id="HpO-pB-J9Y">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="442"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="442"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HpO-pB-J9Y" id="ibK-eD-kxo">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="442"/>
@@ -366,7 +367,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="500" id="CSF-zq-0LQ">
-                                        <rect key="frame" x="0.0" y="466.5" width="414" height="500"/>
+                                        <rect key="frame" x="0.0" y="486.5" width="414" height="500"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CSF-zq-0LQ" id="6ry-pY-Zvu">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>

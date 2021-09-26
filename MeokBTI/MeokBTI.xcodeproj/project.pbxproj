@@ -35,6 +35,9 @@
 		017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D88D726CABD4600B72155 /* MapMarkerWindow.swift */; };
 		01A2FD9826F38AB60019B602 /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; };
 		01A2FD9926F38AB60019B602 /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		01ED1D6626FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */; };
+		01ED1D6927004C5300CB8FB3 /* DetailInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ED1D6827004C5300CB8FB3 /* DetailInfoWindow.swift */; };
+		01ED1D6A270062DE00CB8FB3 /* DetailInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01ED1D6727004BB200CB8FB3 /* DetailInfoWindowView.xib */; };
 		0AC4A7A7BBFF823173D74377 /* Pods_MeokBTI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1797757F7D982904A3D40CFA /* Pods_MeokBTI.framework */; };
 		EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */; };
 		EC2675DE26D625B700BDE566 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2675DD26D625B700BDE566 /* PopUpViewController.swift */; };
@@ -96,6 +99,9 @@
 		0148CF1A26C81CB90035862A /* Extensions+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+.swift"; sourceTree = "<group>"; };
 		0148CF1F26C8E2C40035862A /* ChoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceState.swift; sourceTree = "<group>"; };
 		017D88D726CABD4600B72155 /* MapMarkerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerWindow.swift; sourceTree = "<group>"; };
+		01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantInfoViewController.swift; sourceTree = "<group>"; };
+		01ED1D6727004BB200CB8FB3 /* DetailInfoWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailInfoWindowView.xib; sourceTree = "<group>"; };
+		01ED1D6827004C5300CB8FB3 /* DetailInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoWindow.swift; sourceTree = "<group>"; };
 		1797757F7D982904A3D40CFA /* Pods_MeokBTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeokBTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 		E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
@@ -166,12 +172,13 @@
 		013753F426CD410C002F3ABE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */,
 				0129338826B29B93006F22FA /* IntroductionViewController.swift */,
 				0129338926B29B93006F22FA /* QuestionViewController.swift */,
 				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
 				010F916B26CE8B2A00437262 /* ResultTableViewController.swift */,
 				013C65C126BA4FB700895567 /* MapViewController.swift */,
-				013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */,
+				01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */,
 				EC2675DD26D625B700BDE566 /* PopUpViewController.swift */,
 				EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */,
 			);
@@ -195,9 +202,11 @@
 			isa = PBXGroup;
 			children = (
 				0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */,
+				0148A8FD26CB9B6600F1427C /* PhotoCollectionViewCell.xib */,
+				01ED1D6727004BB200CB8FB3 /* DetailInfoWindowView.xib */,
 				017D88D726CABD4600B72155 /* MapMarkerWindow.swift */,
 				0148A8FC26CB9B6600F1427C /* PhotoCollectionViewCell.swift */,
-				0148A8FD26CB9B6600F1427C /* PhotoCollectionViewCell.xib */,
+				01ED1D6827004C5300CB8FB3 /* DetailInfoWindow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,6 +306,7 @@
 				0129338026B29A78006F22FA /* LaunchScreen.storyboard in Resources */,
 				0148A8FF26CB9B6600F1427C /* PhotoCollectionViewCell.xib in Resources */,
 				0129337D26B29A78006F22FA /* Assets.xcassets in Resources */,
+				01ED1D6A270062DE00CB8FB3 /* DetailInfoWindowView.xib in Resources */,
 				0129337B26B29A76006F22FA /* Main.storyboard in Resources */,
 				0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */,
 				010F916526CE336500437262 /* BinggraeSamanco.otf in Resources */,
@@ -380,6 +390,7 @@
 				0148CF2026C8E2C40035862A /* ChoiceState.swift in Sources */,
 				0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */,
 				0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */,
+				01ED1D6927004C5300CB8FB3 /* DetailInfoWindow.swift in Sources */,
 				010F916126CE2B1D00437262 /* User.swift in Sources */,
 				0129338E26B29B93006F22FA /* ResultsViewController.swift in Sources */,
 				0129337426B29A76006F22FA /* AppDelegate.swift in Sources */,
@@ -388,6 +399,7 @@
 				0129338B26B29B93006F22FA /* QuestionData.swift in Sources */,
 				010F916926CE55C300437262 /* MeokBTI.swift in Sources */,
 				0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */,
+				01ED1D6626FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift in Sources */,
 				013C65C226BA4FB700895567 /* MapViewController.swift in Sources */,
 				013C65C426BBD22000895567 /* Restaurant.swift in Sources */,
 			);

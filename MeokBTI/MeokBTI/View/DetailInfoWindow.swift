@@ -8,35 +8,34 @@
 import UIKit
 import CoreLocation
 
-protocol MapMarkerDelegate: AnyObject {
+protocol DetailInfoWindowDelegate: AnyObject {
 //    func didTapInfoButton(data: NSDictionary)
     func didTapLikeButton(_ sender: Bool)
-    
-    func didTapInfoWindow(_ sender: Any)
 }
 
-class MapMarkerWindow: UIView {
+class DetailInfoWindow: UIView {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rankingLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var photoCollectionView: UICollectionView!
     
     
     var buttonTapped: Bool = false
     
-    weak var delegate: MapMarkerDelegate?
+    weak var delegate: DetailInfoWindowDelegate?
     var spotPhotos = [UIImage]()
     
     class func instanceFromNib() -> UIView {
-        return UINib(nibName: "MapMarkerWindowView", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
+        return UINib(nibName: "DetailInfoWindowView", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
     }
     
-//    func initCollectionView() {
-//        let nib = UINib(nibName: "PhotoCollectionViewCell", bundle: nil)
-//        photoCollectionView.register(nib, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
-//        photoCollectionView.dataSource = self
-//        photoCollectionView.reloadData()
-//    }
+    func initCollectionView() {
+        let nib = UINib(nibName: "PhotoCollectionViewCell", bundle: nil)
+        photoCollectionView.register(nib, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
+        photoCollectionView.dataSource = self
+        photoCollectionView.reloadData()
+    }
     
     func loadDataAndCheckLikeButton(placeName: String, position: CLLocationCoordinate2D) -> Bool {
         let userData = User.loadFromFile()
@@ -56,19 +55,16 @@ class MapMarkerWindow: UIView {
 
     @IBAction func didTapLikeButton(_ sender: Any) {
 //        delegate?.didTapInfoButton(data: spotData!)
+        print("buttonTapped in detailInfoWindow")
         buttonTapped = !buttonTapped
         delegate?.didTapLikeButton(buttonTapped)
         setButtonImage(buttonTapped)
     }
-    
-    @IBAction func didTapInfoWindow(_ sender: Any) {
-        delegate?.didTapInfoWindow(sender)
-    }
-    
+        
     
 }
-/*
-extension MapMarkerWindow: UICollectionViewDelegate, UICollectionViewDataSource {
+
+extension DetailInfoWindow: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
@@ -99,14 +95,9 @@ extension MapMarkerWindow: UICollectionViewDelegate, UICollectionViewDataSource 
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        print("*****collectionView return size")
-//        무슨이유인지 이 함수만 실행안되는 것 같음
-//        return CGSize(width: 70, height: 85)
-//    }
     
 }
-*/
+
 
 
 
