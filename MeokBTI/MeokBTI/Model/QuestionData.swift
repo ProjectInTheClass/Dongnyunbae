@@ -41,6 +41,7 @@ let questions: [Question] = [
                     type: .accessNeg)]),
     
     
+    
     // Amount
     Question(text: "서브웨이를 먹을 때는", answers: [
                 Answer(text: "무적권 60cm 먹어줘야제!", type: .ammountPos),
@@ -81,6 +82,15 @@ let questions: [Question] = [
     Question(text: "모처럼 교수님께서 한턱 쏘신다고 하는데 한식을 드시고 싶다고 하신다. 이럴 때", answers: [
                 Answer(text: "누가봐도 고풍스러운 한옥집을 추천한다.", type: .moodPos),
                 Answer(text: "김치찌개도 한식아니야? 학교앞 김치찌개 가게를 추천한다.", type: .moodNeg)]),
+
+// 질문 두개 더 추가해야함
+//    Question(text: "sns에서 보게 된 멋진 분위기의 식당을 보고", answers: [
+//                Answer(text: "그래 식당은 분위기도 좋아야지.", type: .moodPos),
+//                Answer(text: "분위기가 좋다고 맛있을까?", type: .moodNeg)]),
+//
+//    Question(text: "친구와 맥주한잔 하려고 할 때", answers: [
+//                Answer(text: "괜찮은 호프집에서", type: .moodPos),
+//                Answer(text: "편의점 앞 테이블에서 ", type: .moodNeg)]),
     
     // price
     // 비싼게 pos 싼게 neg
