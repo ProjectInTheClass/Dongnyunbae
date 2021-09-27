@@ -31,7 +31,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="mappin.circle" catalog="system" id="4L7-pk-xUq"/>
                     <connections>
-                        <segue destination="6Jx-HQ-7aC" kind="presentation" identifier="DetailRestaurantInfo" id="m6P-ug-LaL"/>
+                        <segue destination="6Jx-HQ-7aC" kind="show" identifier="DetailRestaurantInfo" id="m6P-ug-LaL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rNl-wZ-OFi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -154,10 +154,11 @@
                             <constraint firstItem="Epf-OK-92p" firstAttribute="leading" secondItem="pmy-pa-RQg" secondAttribute="leading" id="nd1-dA-dq2"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="nzL-tf-F0r"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Whf-TO-Pr8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1134.7826086956522" y="600.66964285714278"/>
+            <point key="canvasLocation" x="1134.7826086956522" y="504.91071428571428"/>
         </scene>
         <!--Personal Data View Controller-->
         <scene sceneID="aZf-Bm-74k">

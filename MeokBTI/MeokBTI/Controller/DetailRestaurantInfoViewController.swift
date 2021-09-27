@@ -14,11 +14,25 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     
     var top3MeokBTI = NSDictionary()
     
+    var addressAndPhoneNumber = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeDetailInfoWindow()
+        
+        fetchAddressAndPhoneNumber { data in
+            DispatchQueue.main.async {
+                self.addressAndPhoneNumber = data
+            }
+        }
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // [] 마커를 디테일뷰 위로 갈 수 있게끔 디테일뷰 들어올때 카메라 조정
+        self.view.frame.origin.y += 300
     }
     
     func loadNiB() -> DetailInfoWindow {
@@ -42,13 +56,25 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "hi"
-        cell.imageView?.image = UIImage(systemName: "mappin.and.ellipse")
+        
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "address"
+//            cell.textLabel?.text = addressAndPhoneNumber[0]
+            cell.imageView?.image = UIImage(systemName: "mappin.and.ellipse")
+        case 1:
+            cell.textLabel?.text = "phonenumber"
+//            cell.textLabel?.text = addressAndPhoneNumber[1]
+            cell.imageView?.image = UIImage(systemName: "phone.fill")
+        default:
+            print("oops..! something wrong!")
+        }
+        
         return cell
     }
     
@@ -111,6 +137,11 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         return totalRankText
     }
     
+    func fetchAddressAndPhoneNumber(completion: @escaping ([String]) -> Void ) {
+        
+    }
+    
+    
     @objc func dismissDetailView() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -122,3 +153,5 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     }
     
 }
+
+

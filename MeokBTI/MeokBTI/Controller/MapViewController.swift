@@ -260,7 +260,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailRestaurantInfo" {
             let detailVC = segue.destination as? DetailRestaurantInfoViewController
-            
+            detailVC?.preferredContentSize = CGSize(width: 400, height: 400)
             detailVC?.previousInfoWindow = infoWindow
             detailVC?.top3MeokBTI = top3MeokBTIData
         }
