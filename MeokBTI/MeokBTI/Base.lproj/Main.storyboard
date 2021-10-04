@@ -155,6 +155,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nzL-tf-F0r"/>
+                    <connections>
+                        <outlet property="detailInfoTableView" destination="Epf-OK-92p" id="cmb-hm-FQZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Whf-TO-Pr8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,17 +7,33 @@
 
 import Foundation
 import CoreLocation
+import GoogleMaps
 
 struct Restaurant: Codable {
     let name: String
     let position: CLLocationCoordinate2D
-    var like: Bool?
-//    var meokBTIRanking: [String: Int]?
-//
-//    var toDictionary: [String: Any] {
-//        let (lat, lng) = position.coordinateToStringTuple()
-//        return ["position": "\(lat),\(lng)", "meokBTIRanking": meokBTIRanking!]
-//    }
+    var like: Bool {
+        return isLikedRestaurant(placeName: name, position: position)
+    }
+    
+    func transformNameToShow(basisof map: GMSMarker.basisOfMap) -> String {
+        var beingTransformedName: String
+        if map == .tmap {
+            // 지역점까지 나타내니 너무 길어서 짜름 ex) 롯데리아 진주혁신점 -> 롯데리아
+            beingTransformedName = String(name.split(separator: " ")[0])
+        } else {
+            beingTransformedName = name.replacingOccurrences(of: " ", with: "")
+        }
+        
+        return beingTransformedName
+    }
+    
+    func isLikedRestaurant(placeName: String, position: CLLocationCoordinate2D) -> Bool {
+        let userData = User.loadFromFile()
+        let result = userData.favoriteRestaurants.contains(where: { $0.name == placeName && $0.position == position
+        })
+        return result
+    }    
 }
 
 struct MeokBTIRanking {

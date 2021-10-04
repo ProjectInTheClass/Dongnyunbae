@@ -38,14 +38,7 @@ class MapMarkerWindow: UIView {
 //        photoCollectionView.reloadData()
 //    }
     
-    func loadDataAndCheckLikeButton(placeName: String, position: CLLocationCoordinate2D) -> Bool {
-        let userData = User.loadFromFile()
-        let result = userData.favoriteRestaurants.contains(where: { $0.name == placeName && $0.position == position
-        })
-        return result
-    }
-    
-    func setButtonImage(_ buttonTapped: Bool) {
+    func setButtonImage() {
         if buttonTapped {
             likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         } else {
@@ -58,7 +51,7 @@ class MapMarkerWindow: UIView {
 //        delegate?.didTapInfoButton(data: spotData!)
         buttonTapped = !buttonTapped
         delegate?.didTapLikeButton(buttonTapped)
-        setButtonImage(buttonTapped)
+        setButtonImage()
     }
     
     @IBAction func didTapInfoWindow(_ sender: Any) {

@@ -44,7 +44,7 @@ class DetailInfoWindow: UIView {
         return result
     }
     
-    func setButtonImage(_ buttonTapped: Bool) {
+    func setButtonImage() {
         if buttonTapped {
             likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         } else {
@@ -58,7 +58,7 @@ class DetailInfoWindow: UIView {
         print("buttonTapped in detailInfoWindow")
         buttonTapped = !buttonTapped
         delegate?.didTapLikeButton(buttonTapped)
-        setButtonImage(buttonTapped)
+        setButtonImage()
     }
         
     

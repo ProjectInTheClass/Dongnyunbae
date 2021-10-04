@@ -36,6 +36,12 @@ class User: Codable {
         return decodedUser
     }
     
+    func resetFavoriteRestaurantData() {
+        let reset = User.shared
+        reset.favoriteRestaurants.removeAll()
+        User.saveToFile(user: reset)
+    }
+    
     func printOutData() {
         print("id: \(self.id), meokBTI: \(self.meokBTI), favoriteRestaurants: \(self.favoriteRestaurants)")
     }

@@ -26,8 +26,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     // 맵뷰 관련 변수들
     var mapView: GMSMapView!
-    var showingRestaurant: Restaurant?
-    private var infoWindow = MapMarkerWindow()
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     var loadedPhotos = [UIImage]()
     var isLikedRestaurant: Bool!
@@ -39,45 +37,52 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // InfoWindow
     var meokBTIRanking: String = ""
     var top3MeokBTIData = NSDictionary()
+    var showingRestaurant: Restaurant?
+    var showingRestaurantPlaceID: String = ""
+    private var infoWindow = MapMarkerWindow()
+    
+    // DetailInfoWindow
+    var tempPoiItems = [TMapPoiItem]()
+    var addressAndPhoneNumber = [String?]()
     
     // 유저데이터
     let user = User.shared
     
-    // 서버 관련 변수
+    // 파이어베이스 관련 변수
     var ref: DatabaseReference!
+    var beingUpdatedContents: [String: Any] = [:]
     
     // 지역내 재검색버튼
     var refreshButton = UIButton()
     var selectFiveRestaurantLabel = UILabel()
     var countLabel = UILabel()
-    var selectCount = 0
+    var selectedRestaurantsCount = 0
     var selectLabelAndRefreshButtonStackView = UIStackView()
     var tempVerticalStackView = UIStackView()
+    
+    var meokBTILikeCount = Int()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Stored UserID : ", User.loadFromFile().id ?? "Nothing load")
-//        resetFavoriteRestaurantData()
+        placesClient = GMSPlacesClient.shared()
         self.infoWindow = loadNiB()
-//        infoWindow.initCollectionView()
         
-        // 식당 5개 고르기
-//        gotoIntrodoction()
-        
+        // 위치관련 초기설정
         locationManager = CLLocationManager()
         locationManager.delegate = self
         getLocationUsagePermission()
         
+        // 맵 구현
         loadMapView()
         guard let currentLocation = currentLocation else { return }
-        generateAroundMarker(bothLatLng: currentLocation.coordinate,count: 30)
-        
-        placesClient = GMSPlacesClient.shared()
+        generateAroundMarker(bothLatLng: currentLocation.coordinate, count: 30)
         
         // 검색창 구현 
         searchBarImplement()
         
+        // 선택요청뷰와 지역재검색뷰 스택뷰 구현
         selectFiveRestaurantLabelImplement()
         refreshButtonImplement()
         labelAndButtonStackViewImplement()
@@ -120,15 +125,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         refreshButton.addTarget(self, action: #selector(self.updateAroundMarker), for: .touchUpInside)
 
         refreshButton.layer.cornerRadius = 15
-    
-//        refreshButton.translatesAutoresizingMaskIntoConstraints = false
-          
-//        refreshButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        refreshButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
-//        refreshButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
-//        refreshButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        
         refreshButton.setTitle("  💫지역내 재검색  ", for: .normal)
         refreshButton.setTitleColor(.orange, for: .normal)
         refreshButton.backgroundColor = .white
@@ -140,7 +136,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
 //        selectFiveRestaurantLabel.translatesAutoresizingMaskIntoConstraints = false
 //        selectFiveRestaurantLabel.backgroundColor = .white
         
-        countLabel.text = "\(selectCount) / 5"
+        countLabel.text = "\(selectedRestaurantsCount) / 5"
         countLabel.backgroundColor = .white
     }
     
@@ -163,13 +159,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         selectLabelAndRefreshButtonStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         selectLabelAndRefreshButtonStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
-//        selectLabelAndRefreshButtonStackView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-//        selectLabelAndRefreshButtonStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func updateSelectCount() {
-        countLabel.text = "\(selectCount) / 5"
-        if selectCount == 5 {
+        countLabel.text = "\(selectedRestaurantsCount) / 5"
+        if selectedRestaurantsCount == 5 {
 //            selectLabelAndRefreshButtonStackView.removeArrangedSubview(tempVerticalStackView)
             tempVerticalStackView.removeFromSuperview()
             isSelectedFiveRestaurant = true
@@ -243,7 +237,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func loadMapView() {
-        currentLocation = locationManager.location!
+        currentLocation = locationManager.location ?? CLLocation(latitude: 35.17353, longitude: 128.136435)
         if let defaultLocation = currentLocation {
             currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
                                                   longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
@@ -260,7 +254,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailRestaurantInfo" {
             let detailVC = segue.destination as? DetailRestaurantInfoViewController
-            detailVC?.preferredContentSize = CGSize(width: 400, height: 400)
+            detailVC?.detailInfoWindow.buttonTapped = infoWindow.buttonTapped
+            detailVC?.addressAndPhoneNumber = findShowingRestaurantAddressAndPhone(in: tempPoiItems)
             detailVC?.previousInfoWindow = infoWindow
             detailVC?.top3MeokBTI = top3MeokBTIData
         }
@@ -270,10 +265,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func didTapInfoWindow(_ sender: Any) {
         performSegue(withIdentifier: "DetailRestaurantInfo", sender: nil)
         print("Infowindow!")
-    }
-    
-    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        print("did you tap initial infowindow??")
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
@@ -341,37 +332,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func showInfoWindow(marker: GMSMarker, basisOfMap map: GMSMarker.basisOfMap) {
         // MARK: 마커에 필요한 정보: title, position
         // [x] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [x] 먹bti선호도를 나타내는 창)
-//        mapView.selectedMarker = marker
         initializeInfoWindow(marker: marker)
         
-        // 지역점까지 나타내니 너무 길어서 짜름 ex) 롯데리아 진주혁신점 -> 롯데리아
         // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
         guard let rawTitle = marker.title else { return }
-        showingRestaurant = Restaurant(name: rawTitle, position: marker.position, like: isLikedRestaurant)
-        
-        var name: String
-        if map == .tmap {
-            name = String(rawTitle.split(separator: " ")[0])
-        } else {
-            name = rawTitle.replacingOccurrences(of: " ", with: "")
-        }
+        showingRestaurant = Restaurant(name: rawTitle, position: marker.position)
         
         // infoWindow에 들어갈 정보 할당 및 위치 지정
-        // 앞부분에 inset이 필요해서 공백추가
-        infoWindow.nameLabel.text = " " + name
+        infoWindow.nameLabel.text = " " + showingRestaurant!.transformNameToShow(basisof: map)
         setMeokBTIRanking()
-//        infoWindow.rankingLabel.text = meokBTIRanking
         infoWindow.center = mapView.projection.point(for: marker.position)
         infoWindow.center.y = infoWindow.center.y - 110
         
-        // 해당 식당이 좋아요한 식당인지 확인후 버튼모양 설정해줌.
-        isLikedRestaurant = infoWindow.loadDataAndCheckLikeButton(placeName: rawTitle, position: marker.position)
-        infoWindow.setButtonImage(isLikedRestaurant)
         // 버튼액션함수가 buttonTapped을 기준으로 실행되는데 연동이 안되있으므로 infoWindow를 다른 것을 띄웠다가 돌아왔을 때 버튼이미지가 안 바뀌는 이슈
         // Solution: buttonTapped과 연동시켜주면서 버튼 동작을 정상적으로 만들어줌
-        infoWindow.buttonTapped = isLikedRestaurant
-        
+        infoWindow.buttonTapped = showingRestaurant!.like
+        infoWindow.setButtonImage()
         self.view.addSubview(infoWindow)
+        
         mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
         
         if let name = marker.title {
@@ -381,6 +359,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 // 받아온 placeID로 해당 식당 사진 받아오기
                 if let selectedPlaceID = placeID {
                     self.fetchRestaurantPhoto(placeID: selectedPlaceID)
+                    
+                    DispatchQueue.main.async {
+                        self.showingRestaurantPlaceID = selectedPlaceID
+                    }
                 }
                 
             }
@@ -400,6 +382,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                     // Realtimebase(Firebase)에서 child에 들어가지 못하는 문자까지 걸러냄
                     let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}
                     
+                    
+                    
                     for poi in withoutParkingResult {
                         let marker = GMSMarker(position: poi.coordinate!)
                         marker.title = poi.name
@@ -407,11 +391,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                         marker.snippet = poi.address
 //                        print("success input snippet: ",marker.snippet)
                         marker.map = self.mapView
+                        
+                        self.saveTempPoiItem(item: poi)
                                                 
                     }
                 }
             }
         })
+    }
+    
+    func saveTempPoiItem(item: TMapPoiItem) {
+        tempPoiItems.append(item)
     }
     
     @objc func updateAroundMarker() {
@@ -533,11 +523,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         top3MeokBTIQuery.observeSingleEvent(of: DataEventType.value) { snapshot in
             guard let value = snapshot.value as? NSDictionary else { return }
             print("observeSingleEvent",value)
-//            print(value.allKeys)
-            // [x] [먹BTI:value] 그대로 내보내서 사용할때 가공
-//            let top3MeokBTI = value.allKeys.map { "\($0)" }
-//            completion(top3MeokBTI)
             completion(value)
+        }
+    }
+    
+    func fetchCurrentLikeCount(completion: @escaping (Int) -> Void) {
+        ref = Database.database().reference()
+        guard let showingRestaurant = showingRestaurant,
+              let userMeokBTI = user.meokBTI?.meokBTI else { return }
+        let meokBTIRankingRef = ref.child("\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)")
+        
+        meokBTIRankingRef.observe(DataEventType.value) { snapshot in
+            guard let value = snapshot.value as? NSNumber else { return }
+            let count = Int(value)
+            completion(count)
         }
     }
     
@@ -587,59 +586,97 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // [x] 서버로 좋아요 누른거 전송
         // [x] Like, 좋아한 식당목록에 추가
         // [x] Unlike, 좋아한 식당목록에서 제거
-//        print(sender.isHighlighted)
-        print("넘겨받은 buttonTapped", sender)
+
         guard let showingRestaurant = showingRestaurant else { return }
     
-        let storedUserData = User.loadFromFile()
-        // 좋아요가 눌러진 상태인지를 확인하고 ? 안 눌러져있다가 좋아요 -> 좋아요 목록에 추가 : 눌러져있는 상태에서 한번 더 좋아요 -> 좋아요 목록에서 삭제
         if sender {
             print("Like!")
-            let likedRestaurant = Restaurant(name: showingRestaurant.name, position: showingRestaurant.position, like: true)
-            storedUserData.favoriteRestaurants.append(likedRestaurant)
-            User.saveToFile(user: storedUserData)
-            print("Saved! :",User.loadFromFile().favoriteRestaurants)
-            selectCount += 1
-            // 서버에 있는 먹bti 랭킹에 반영
+            selectedRestaurantsCount += 1
+            user.favoriteRestaurants.append(showingRestaurant)
+            addMeokBTILikeCount()
         } else {
             print("Unlike!")
-            if let restaurantIndex = storedUserData.favoriteRestaurants.firstIndex(where: { $0.name == showingRestaurant.name && $0.position == showingRestaurant.position }) {
-                storedUserData.favoriteRestaurants.remove(at: restaurantIndex)
-                User.saveToFile(user: storedUserData)
-                print("Removed! :",User.loadFromFile().favoriteRestaurants)
+            selectedRestaurantsCount -= 1
+            user.favoriteRestaurants.remove(at: getRestaurantIndex())
+            
+            if isLikeCountLastOne() {
+                deleteMeokBTILikeCount()
+            } else {
+                subtractMeokBTILikeCount()
             }
-            selectCount -= 1
-            // 서버에 있는 먹bti 랭킹에 반영취소
         }
-        updateSelectCount()
-        sendRestaurantLikeToFirebase(sender)
         
+        updateSelectCount()
+        User.saveToFile(user: user)
+        sendRestaurantLikeToFirebase()
     }
     
+    func isLikeCountLastOne() -> Bool {
+        fetchCurrentLikeCount { count in
+            DispatchQueue.main.async {
+                self.meokBTILikeCount = count
+            }
+        }
+
+        return (meokBTILikeCount <= 1) ? true : false
+    }
     
-    func sendRestaurantLikeToFirebase(_ sender: Bool) {
-        // 데이터관계 : 식당이름 -> 먹BTI랭킹 -> 먹BTI별 좋아요 갯수
-        ref = Database.database().reference()
+    func addMeokBTILikeCount() {
         guard let userMeokBTI = user.meokBTI?.meokBTI,
               let showingRestaurant = showingRestaurant else { return }
+        let incrementValue: NSNumber = 1
+        
+        beingUpdatedContents = ["\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(incrementValue)] as [String : Any]
+    }
     
-
-        var incrementValue: NSNumber {
-            return sender ? 1 : -1
-        }
+    func subtractMeokBTILikeCount() {
+        guard let userMeokBTI = user.meokBTI?.meokBTI,
+              let showingRestaurant = showingRestaurant else { return }
+        let decrementValue: NSNumber = -1
         
-        let updates = ["\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(incrementValue)] as [String : Any]
+        beingUpdatedContents = ["\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(decrementValue)] as [String : Any]
+    }
+    
+    func deleteMeokBTILikeCount() {
+        guard let userMeokBTI = user.meokBTI?.meokBTI,
+              let showingRestaurant = showingRestaurant else { return }
         
-        self.ref.updateChildValues(updates)
+        beingUpdatedContents = ["\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : nil] as [String : Any]
+    }
+    
+    func sendRestaurantLikeToFirebase() {
+        // (데이터관계 : 식당이름 -> 먹BTI랭킹 -> 먹BTI별 좋아요 갯수) 좋아요 -> 로컬에서 좋아요 여부 확인 -> 서버로 보냄
+        ref = Database.database().reference()
+        self.ref.updateChildValues(beingUpdatedContents)
         print("success MeokBTI Ranking update")
     }
     
-    func resetFavoriteRestaurantData() {
-        let reset = user
-        reset.favoriteRestaurants.removeAll()
-        User.saveToFile(user: reset)
+    func findShowingRestaurantAddressAndPhone(in items: [TMapPoiItem]) -> [String?] {
+        let restaurantPoi = items.filter { item in
+            return item.name == showingRestaurant?.name && item.coordinate == showingRestaurant?.position
+        }
+    
+        let restaurantInfo = restaurantPoi[0]
+        var addressAndPhone = [String?]()
+        
+        addressAndPhone.append(restaurantInfo.address)
+        addressAndPhone.append(restaurantInfo.telNO)
+        
+        return addressAndPhone
     }
     
+    func getShowingRestaurantAddress() {
+        // TODO: TMAP API로 정확한 주소 얻어오기
+    }
+    
+    func getShowingRestaurantPhoneNO() {
+        // TODO: poi에서 폰번호 얻어오기
+    }
+    
+    func getRestaurantIndex() -> Int {
+        let index = user.favoriteRestaurants.firstIndex(where: { $0.name == showingRestaurant!.name && $0.position == showingRestaurant!.position })!
+        return index
+    }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         

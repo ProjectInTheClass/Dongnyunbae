@@ -6,33 +6,47 @@
 //
 
 import UIKit
+import GooglePlaces
 
 class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DetailInfoWindowDelegate {
-
+    
+    @IBOutlet weak var detailInfoTableView: UITableView!
+    
     var previousInfoWindow = MapMarkerWindow()
     var detailInfoWindow = DetailInfoWindow()
     
     var top3MeokBTI = NSDictionary()
     
-    var addressAndPhoneNumber = [String]()
+    var placesClient: GMSPlacesClient!
+    var addressAndPhoneNumber: [String?] = ["address","phone"]
+    var showingRestaurantPlaceID: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        placesClient = GMSPlacesClient.shared()
+        
         initializeDetailInfoWindow()
         
-        fetchAddressAndPhoneNumber { data in
-            DispatchQueue.main.async {
-                self.addressAndPhoneNumber = data
-            }
-        }
-
+//        fetchAddressAndPhoneNumber { data in
+//            DispatchQueue.main.async {
+//                self.addressAndPhoneNumber = data
+//            }
+//        }
         // Do any additional setup after loading the view.
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // [] 마커를 디테일뷰 위로 갈 수 있게끔 디테일뷰 들어올때 카메라 조정
         self.view.frame.origin.y += 300
+        
+//        fetchAddressAndPhoneNumber { data in
+//            DispatchQueue.main.async {
+//                self.addressAndPhoneNumber = data
+//                self.detailInfoTableView.reloadData()
+//            }
+//        }
     }
     
     func loadNiB() -> DetailInfoWindow {
@@ -48,9 +62,9 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         detailInfoWindow.layer.cornerRadius = 15
         
         detailInfoWindow.nameLabel.text = previousInfoWindow.nameLabel.text
-        detailInfoWindow.setButtonImage(previousInfoWindow.buttonTapped)
+        detailInfoWindow.setButtonImage()
         detailInfoWindow.rankingLabel.text = convertRankingText(top3MeokBTI)
-        // MARK: [] 사진을 detailView 띄우기 전에 로드하기 : 현재는 첫 infowindow에서 로드중
+        // TODO: [] 사진을 detailView 띄우기 전에 로드하기 : 현재는 첫 infowindow에서 로드중
         detailInfoWindow.spotPhotos = previousInfoWindow.spotPhotos
         
     }
@@ -64,12 +78,12 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         
         switch indexPath.row {
         case 0:
-            cell.textLabel?.text = "address"
-//            cell.textLabel?.text = addressAndPhoneNumber[0]
+//            cell.textLabel?.text = "address"
+            cell.textLabel?.text = addressAndPhoneNumber[0]
             cell.imageView?.image = UIImage(systemName: "mappin.and.ellipse")
         case 1:
-            cell.textLabel?.text = "phonenumber"
-//            cell.textLabel?.text = addressAndPhoneNumber[1]
+//            cell.textLabel?.text = "phonenumber"
+            cell.textLabel?.text = addressAndPhoneNumber[1]
             cell.imageView?.image = UIImage(systemName: "phone.fill")
         default:
             print("oops..! something wrong!")
@@ -137,9 +151,26 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         return totalRankText
     }
     
-    func fetchAddressAndPhoneNumber(completion: @escaping ([String]) -> Void ) {
-        
-    }
+//    func fetchAddressAndPhoneNumber(completion: @escaping ([String]) -> Void ) {
+//        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.formattedAddress.rawValue) |
+//          UInt(GMSPlaceField.phoneNumber.rawValue))!
+//
+//        print("showingRestaurantPlaceID : ", showingRestaurantPlaceID)
+//
+//        placesClient?.fetchPlace(fromPlaceID: showingRestaurantPlaceID, placeFields: fields, sessionToken: nil, callback: {
+//          (place: GMSPlace?, error: Error?) in
+//          if let error = error {
+//            print("An error occurred: \(error.localizedDescription)")
+//            return
+//          }
+//          if let place = place {
+//              let addressAndPhoneNumberArray = [place.formattedAddress!, place.phoneNumber!]
+//              completion(addressAndPhoneNumberArray)
+//              print("address : ",place.formattedAddress!,"phone : " ,place.phoneNumber!)
+//          }
+//
+//        })
+//    }
     
     
     @objc func dismissDetailView() {
