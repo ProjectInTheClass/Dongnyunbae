@@ -11,6 +11,10 @@ import GooglePlaces
 class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DetailInfoWindowDelegate {
     
     @IBOutlet weak var detailInfoTableView: UITableView!
+    let dismissButton = UIButton()
+    let paddingView = UILabel()
+    let horizontalStackView = UIStackView()
+    let verticalStackView = UIStackView()
     
     var previousInfoWindow = MapMarkerWindow()
     var detailInfoWindow = DetailInfoWindow()
@@ -18,40 +22,44 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     var top3MeokBTI = NSDictionary()
     
     var placesClient: GMSPlacesClient!
-    var addressAndPhoneNumber: [String?] = ["address","phone"]
-    var showingRestaurantPlaceID: String = ""
+    var addressAndPhoneNumber = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        placesClient = GMSPlacesClient.shared()
-        
+        initializeVerticalStackView()
+        initializeDismissButton()
         initializeDetailInfoWindow()
-        
-//        fetchAddressAndPhoneNumber { data in
-//            DispatchQueue.main.async {
-//                self.addressAndPhoneNumber = data
-//            }
-//        }
-        // Do any additional setup after loading the view.
+        initializePaddingView()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // [] 마커를 디테일뷰 위로 갈 수 있게끔 디테일뷰 들어올때 카메라 조정
+        // TODO: 마커를 디테일뷰 위로 갈 수 있게끔 디테일뷰 들어올때 카메라 조정
         self.view.frame.origin.y += 300
         
-//        fetchAddressAndPhoneNumber { data in
-//            DispatchQueue.main.async {
-//                self.addressAndPhoneNumber = data
-//                self.detailInfoTableView.reloadData()
-//            }
-//        }
     }
     
     func loadNiB() -> DetailInfoWindow {
         let detailInfoWindow = DetailInfoWindow.instanceFromNib() as! DetailInfoWindow
         return detailInfoWindow
+    }
+    
+    func initializeHorizontalStackView() {
+        horizontalStackView.axis = .horizontal
+    }
+    
+    func initializeVerticalStackView() {
+        verticalStackView.axis = .vertical
+    }
+    
+    func initializeDismissButton() {
+        dismissButton.addTarget(self, action: #selector(dismissDetailView), for: .touchUpInside)
+        dismissButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+    }
+    
+    func initializePaddingView() {
+        paddingView.text = "\n\n\n"
     }
     
     func initializeDetailInfoWindow() {
@@ -68,6 +76,12 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         detailInfoWindow.spotPhotos = previousInfoWindow.spotPhotos
         
     }
+    
+    func initializeHeaderView() {
+        verticalStackView.addArrangedSubview(dismissButton)
+        verticalStackView.addArrangedSubview(detailInfoWindow)
+        verticalStackView.addArrangedSubview(paddingView)
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
@@ -78,13 +92,13 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         
         switch indexPath.row {
         case 0:
-//            cell.textLabel?.text = "address"
             cell.textLabel?.text = addressAndPhoneNumber[0]
             cell.imageView?.image = UIImage(systemName: "mappin.and.ellipse")
+            
         case 1:
-//            cell.textLabel?.text = "phonenumber"
-            cell.textLabel?.text = addressAndPhoneNumber[1]
+            cell.textLabel?.text = addressAndPhoneNumber[1].pretty()
             cell.imageView?.image = UIImage(systemName: "phone.fill")
+            
         default:
             print("oops..! something wrong!")
         }
@@ -93,34 +107,19 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let tempView = UIStackView()
-        tempView.axis = .horizontal
+        let headerView = verticalStackView
+        initializeHeaderView()
         
-        let dismissButton = UIButton()
-        dismissButton.addTarget(self, action: #selector(dismissDetailView), for: .touchUpInside)
-        dismissButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        let tempLabel = UILabel()
-        tempLabel.text = "hey! Im headerView"
+        return headerView
+    }
+    
+    func getHeaderView() {
         
-        tempView.addArrangedSubview(dismissButton)
-        tempView.addArrangedSubview(tempLabel)
-        tempView.distribution = .fillProportionally
-        
-        let tempView2 = UIStackView()
-        tempView2.axis = .vertical
-        
-        let paddingView = UILabel()
-        paddingView.text = "\n\n"
-        tempView2.addArrangedSubview(tempView)
-        tempView2.addArrangedSubview(detailInfoWindow)
-        tempView2.addArrangedSubview(paddingView)
-        
-        return tempView2
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let padding = detailInfoWindow.frame.height
-        return 20 + padding
+        return 50 + padding
     }
     
     func convertRankingText(_ top3MeokBTI: NSDictionary) -> String {
@@ -151,28 +150,6 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         return totalRankText
     }
     
-//    func fetchAddressAndPhoneNumber(completion: @escaping ([String]) -> Void ) {
-//        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.formattedAddress.rawValue) |
-//          UInt(GMSPlaceField.phoneNumber.rawValue))!
-//
-//        print("showingRestaurantPlaceID : ", showingRestaurantPlaceID)
-//
-//        placesClient?.fetchPlace(fromPlaceID: showingRestaurantPlaceID, placeFields: fields, sessionToken: nil, callback: {
-//          (place: GMSPlace?, error: Error?) in
-//          if let error = error {
-//            print("An error occurred: \(error.localizedDescription)")
-//            return
-//          }
-//          if let place = place {
-//              let addressAndPhoneNumberArray = [place.formattedAddress!, place.phoneNumber!]
-//              completion(addressAndPhoneNumberArray)
-//              print("address : ",place.formattedAddress!,"phone : " ,place.phoneNumber!)
-//          }
-//
-//        })
-//    }
-    
-    
     @objc func dismissDetailView() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -182,6 +159,7 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
 //        let mapVC = self.controll as! MapViewController
 //        mapVC.didTapLikeButton(sender)
     }
+    
     
 }
 

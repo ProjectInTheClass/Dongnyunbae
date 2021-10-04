@@ -28,16 +28,16 @@
                     <rect key="frame" x="5" y="5" width="226" height="212"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tBK-Dg-gnQ">
-                            <rect key="frame" x="0.0" y="0.0" width="226" height="97"/>
+                            <rect key="frame" x="0.0" y="0.0" width="226" height="79"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jf4-Sa-p13">
-                                    <rect key="frame" x="0.0" y="34" width="196" height="29.5"/>
+                                    <rect key="frame" x="0.0" y="26" width="196" height="27.5"/>
                                     <fontDescription key="fontDescription" name="ONEMobilePOPOTFRegular" family="ONE Mobile POP OTF" pointSize="25"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU1-js-jlc">
-                                    <rect key="frame" x="196" y="33.5" width="30" height="30"/>
+                                    <rect key="frame" x="196" y="24.5" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="1D4-cg-tqj"/>
                                         <constraint firstAttribute="height" constant="30" id="3QG-iu-pqJ"/>
@@ -54,19 +54,19 @@
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 식당이 마음에 드셨다~면!" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kd-pa-lRE">
-                            <rect key="frame" x="0.0" y="102" width="226" height="20"/>
+                            <rect key="frame" x="0.0" y="84" width="226" height="23"/>
                             <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TH6-r8-Lcq">
-                            <rect key="frame" x="0.0" y="127" width="226" height="85"/>
+                            <rect key="frame" x="0.0" y="112" width="226" height="100"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="85" id="2Dc-gi-EfF"/>
+                                <constraint firstAttribute="height" constant="100" id="2Dc-gi-EfF"/>
                             </constraints>
                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="3" minimumInteritemSpacing="0.0" id="kVJ-4P-MhM">
-                                <size key="itemSize" width="70" height="85"/>
+                                <size key="itemSize" width="85" height="100"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>

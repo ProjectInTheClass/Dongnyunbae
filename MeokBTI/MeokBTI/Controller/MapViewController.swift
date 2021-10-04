@@ -10,6 +10,7 @@ import GooglePlaces
 import GoogleMaps
 import TMapSDK
 import FirebaseDatabase
+import KakaoSDKCommon
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
     
@@ -41,9 +42,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var showingRestaurantPlaceID: String = ""
     private var infoWindow = MapMarkerWindow()
     
-    // DetailInfoWindow
+    // DetailInfoWindow에 넘겨줄 데이터
     var tempPoiItems = [TMapPoiItem]()
-    var addressAndPhoneNumber = [String?]()
+    var restaurantAddress = String()
+    var restaurantPhoneNumber = String()
+    var addressAndPhoneNumber: [String] {
+        return [restaurantAddress, restaurantPhoneNumber]
+    }
     
     // 유저데이터
     let user = User.shared
@@ -88,6 +93,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         labelAndButtonStackViewImplement()
         // Do any additional setup after loading the view.
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailRestaurantInfo" {
+            let detailVC = segue.destination as? DetailRestaurantInfoViewController
+            detailVC?.detailInfoWindow.buttonTapped = infoWindow.buttonTapped
+            detailVC?.previousInfoWindow = infoWindow
+            detailVC?.top3MeokBTI = top3MeokBTIData
+            detailVC?.addressAndPhoneNumber = addressAndPhoneNumber
+        }
     }
     
     func searchBarImplement() {
@@ -164,44 +179,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func updateSelectCount() {
         countLabel.text = "\(selectedRestaurantsCount) / 5"
         if selectedRestaurantsCount == 5 {
-//            selectLabelAndRefreshButtonStackView.removeArrangedSubview(tempVerticalStackView)
             tempVerticalStackView.removeFromSuperview()
             isSelectedFiveRestaurant = true
         }
     }
-    // 식당 5개 선택 관련 코드 (미완성)
-//    func gotoIntrodoction() {
-//
-//        let storyboard = UIStoryboard.init(name: "MeokBTIStoryboard", bundle: nil)
-//        guard let nextVC = storyboard.instantiateViewController(identifier: "MeokBTIStoryboard") as? IntroductionViewController else { return }
-//
-//        let storyboard2 = UIStoryboard.init(name: "Main", bundle: nil)
-//        let popUp = storyboard2.instantiateViewController(identifier: "PopUp")
-//
-//        if (isSelectedFiveRestaurant == true)
-//        {
-//            return
-//        }
-//        else
-//        {
-//            if (isTested == true)
-//            {
-//                    // 좋아하는 식당 5개 선택하는 창 생성
-//
-//            }
-//            else
-//            {
-//                        // 테스트 화면으로 넘어가기.
-//                popUp.modalPresentationStyle = .fullScreen
-//                popUp.modalTransitionStyle = .crossDissolve
-//                let temp = popUp as? PopUpViewController
-//                temp?.strText = "MeokBTI 테스트를 아직 안했어요. 테스트부터 해주세요."
-//                self.present(popUp, animated: true, completion: nil)
-//            }
-//            isSelectedFiveRestaurant = true
-//        }
-//    }
-    
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         //location 접근권한 요청확인
@@ -251,16 +232,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.view.addSubview(mapView)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailRestaurantInfo" {
-            let detailVC = segue.destination as? DetailRestaurantInfoViewController
-            detailVC?.detailInfoWindow.buttonTapped = infoWindow.buttonTapped
-            detailVC?.addressAndPhoneNumber = findShowingRestaurantAddressAndPhone(in: tempPoiItems)
-            detailVC?.previousInfoWindow = infoWindow
-            detailVC?.top3MeokBTI = top3MeokBTIData
-        }
-    }
-    
     // 기존 mapview에 포함된 infowindow 탭시 반응하는 함수는 infowindow를 커스텀해서 사용하게되면서 사용불가
     func didTapInfoWindow(_ sender: Any) {
         performSegue(withIdentifier: "DetailRestaurantInfo", sender: nil)
@@ -299,11 +270,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         }
     }
     
-    // [x] 지도 이동이 끝났을 때, 해당 좌표 주위에 식당들 업데이트
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        // zoom level에 따라 보여주는 식당 갯수를 다르게 구현.
-//        updateAroundMarker(camera: position)
-
         print("zoomLevel : ",mapView.camera.zoom)
     }
     
@@ -320,7 +287,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.removeFromSuperview()
         infoWindow.spotPhotos = []
         infoWindow = loadNiB()
-//        infoWindow.initCollectionView()
         
         // infoWindow 테두리 지정 / 버튼 둥글게 (현재 버튼에선 적용 x)
         infoWindow.delegate = self
@@ -367,7 +333,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 
             }
         }
-        
+        // DetailView에 뿌릴 정보지만 속도가 느려 미리 정보를 얻어옴.
+        getShowingRestaurantAddress()
+        getShowingRestaurantPhoneNO()
     }
     
     func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
@@ -460,58 +428,58 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         self.loadedPhotos = []
         self.placesClient?.fetchPlace(fromPlaceID: placeID, placeFields: fields, sessionToken: nil,
                                       callback: {
-                                        (place: GMSPlace?, error: Error?) in
-                                        if let error = error {
-                                            print("An error occurred: \(error.localizedDescription)")
-                                            return
-                                        }
-                                        
-                                        if let place = place, !(place.photos?.isEmpty ?? true) {
-                                            // Get the metadata for the first photo in the place photo metadata list
-                                            
-                                            var photoMetadata: [GMSPlacePhotoMetadata] = []
-                                            
-                                            if place.photos!.count > 5 {
-                                                photoMetadata = (0...4).map { place.photos![$0] }
-                                            } else {
-                                                photoMetadata = place.photos!
-                                            }
-                                            
-                                            
-                                            // Call loadPlacePhoto to display the bitmap and attribution.
-                                            for metaData in photoMetadata {
-                                                self.placesClient?.loadPlacePhoto(metaData, callback: { (photo, error) -> Void in
-                                                    if let error = error {
-                                                        // TODO: Handle the error.
-                                                        print("Error loading photo metadata: \(error.localizedDescription)")
-                                                        return
-                                                    } else {
-                                                        // Display the first image and its attributions.
-    //                                                    self.restaurantPhotoView?.image = photo;
-                                                        print("Load Photo Success :",type(of: photo))
-                                                        
-                                                        
-                                                        DispatchQueue.main.async {
-                                                            if let photo = photo {
-                                                                self.loadedPhotos.append(photo)
-                                                                self.infoWindow.spotPhotos = self.loadedPhotos
-//                                                                self.infoWindow.photoCollectionView.reloadData()
-                                                            }
-                                                        }
-                                                        
-                                    
-                                                        
-                                                        
-                                                        print("photos append after :",self.loadedPhotos)
-                                                        //self.lblText?.attributedText = photoMetadata.attributions;
-                                                    }
-                                                })
-                                            }
-                                            
-                                            print("after load photo: ",self.loadedPhotos)
-                                            
-                                        }
-                                      })
+            (place: GMSPlace?, error: Error?) in
+            if let error = error {
+                print("An error occurred: \(error.localizedDescription)")
+                return
+            }
+            
+            if let place = place, !(place.photos?.isEmpty ?? true) {
+                // Get the metadata for the first photo in the place photo metadata list
+                
+                var photoMetadata: [GMSPlacePhotoMetadata] = []
+                
+                if place.photos!.count > 5 {
+                    photoMetadata = (0...4).map { place.photos![$0] }
+                } else {
+                    photoMetadata = place.photos!
+                }
+                
+                
+                // Call loadPlacePhoto to display the bitmap and attribution.
+                for metaData in photoMetadata {
+                    self.placesClient?.loadPlacePhoto(metaData, callback: { (photo, error) -> Void in
+                        if let error = error {
+                            // TODO: Handle the error.
+                            print("Error loading photo metadata: \(error.localizedDescription)")
+                            return
+                        } else {
+                            // Display the first image and its attributions.
+                            //                                                    self.restaurantPhotoView?.image = photo;
+                            print("Load Photo Success :",type(of: photo))
+                            
+                            
+                            DispatchQueue.main.async {
+                                if let photo = photo {
+                                    self.loadedPhotos.append(photo)
+                                    self.infoWindow.spotPhotos = self.loadedPhotos
+                                    //                                                                self.infoWindow.photoCollectionView.reloadData()
+                                }
+                            }
+                            
+                            
+                            
+                            
+                            print("photos append after :",self.loadedPhotos)
+                            //self.lblText?.attributedText = photoMetadata.attributions;
+                        }
+                    })
+                }
+                
+                print("after load photo: ",self.loadedPhotos)
+                
+            }
+        })
     }
     
     func fetchMeokBTIRankingFromFirebase(completion: @escaping (NSDictionary) -> Void) {
@@ -651,26 +619,37 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         print("success MeokBTI Ranking update")
     }
     
-    func findShowingRestaurantAddressAndPhone(in items: [TMapPoiItem]) -> [String?] {
-        let restaurantPoi = items.filter { item in
-            return item.name == showingRestaurant?.name && item.coordinate == showingRestaurant?.position
-        }
-    
-        let restaurantInfo = restaurantPoi[0]
-        var addressAndPhone = [String?]()
-        
-        addressAndPhone.append(restaurantInfo.address)
-        addressAndPhone.append(restaurantInfo.telNO)
-        
-        return addressAndPhone
-    }
-    
     func getShowingRestaurantAddress() {
         // TODO: TMAP API로 정확한 주소 얻어오기
+        guard let showingRestaurant = showingRestaurant else { return }
+        let point = showingRestaurant.position
+        let pathData = TMapPathData()
+        
+        pathData.convertGpsToAddressAt(point) { (address, error) in
+            DispatchQueue.main.async {
+                if let address = address {
+                    self.restaurantAddress = address
+                }
+            }
+        }
     }
     
     func getShowingRestaurantPhoneNO() {
         // TODO: poi에서 폰번호 얻어오기
+        guard let showingRestaurant = showingRestaurant else { return }
+        
+        let restaurantPois = tempPoiItems.filter { item in
+            return item.name == showingRestaurant.name && item.coordinate == showingRestaurant.position
+        }
+        
+        // 식당검색후 해당 식당으로 이동시 Fatal error: Index out of range -> marker를 만들지 않기 때문
+        if let phoneNumber = restaurantPois[0].telNO {
+            if phoneNumber == "" {
+                self.restaurantPhoneNumber = "정보가 없습니다."
+            } else {
+                self.restaurantPhoneNumber = phoneNumber
+            }
+        }
     }
     
     func getRestaurantIndex() -> Int {
@@ -706,7 +685,6 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
     
     searchController?.isActive = false
     searchController?.resignFirstResponder()
-    
   }
 
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
