@@ -21,7 +21,7 @@ class DetailInfoWindow: UIView {
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
     
-    var buttonTapped: Bool = false
+    var likeButtonTapped: Bool = false
     
     weak var delegate: DetailInfoWindowDelegate?
     var spotPhotos = [UIImage]()
@@ -45,7 +45,7 @@ class DetailInfoWindow: UIView {
     }
     
     func setButtonImage() {
-        if buttonTapped {
+        if likeButtonTapped {
             likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         } else {
             likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
@@ -56,8 +56,8 @@ class DetailInfoWindow: UIView {
     @IBAction func didTapLikeButton(_ sender: Any) {
 //        delegate?.didTapInfoButton(data: spotData!)
         print("buttonTapped in detailInfoWindow")
-        buttonTapped = !buttonTapped
-        delegate?.didTapLikeButton(buttonTapped)
+        likeButtonTapped = !likeButtonTapped
+        delegate?.didTapLikeButton(likeButtonTapped)
         setButtonImage()
     }
         

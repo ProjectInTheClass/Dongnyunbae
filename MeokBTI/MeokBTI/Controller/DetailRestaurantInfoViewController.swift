@@ -16,8 +16,12 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     let horizontalStackView = UIStackView()
     let verticalStackView = UIStackView()
     
+    let user = User.shared
+    
     var previousInfoWindow = MapMarkerWindow()
     var detailInfoWindow = DetailInfoWindow()
+    var likeButtonTapped = Bool()
+    var showingRestaurant: Restaurant!
     
     var top3MeokBTI = NSDictionary()
     
@@ -70,6 +74,7 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         detailInfoWindow.layer.cornerRadius = 15
         
         detailInfoWindow.nameLabel.text = previousInfoWindow.nameLabel.text
+        detailInfoWindow.likeButtonTapped = likeButtonTapped
         detailInfoWindow.setButtonImage()
         detailInfoWindow.rankingLabel.text = convertRankingText(top3MeokBTI)
         // TODO: [] 사진을 detailView 띄우기 전에 로드하기 : 현재는 첫 infowindow에서 로드중
@@ -158,6 +163,25 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         print("didTapLikeButton in DetailRestaurantInfoViewController")
 //        let mapVC = self.controll as! MapViewController
 //        mapVC.didTapLikeButton(sender)
+        print(sender)
+        
+//        if sender {
+//            print("Like!")
+//            user.favoriteRestaurants.append(showingRestaurant)
+//            addMeokBTILikeCount()
+//        } else {
+//            print("Unlike!")
+//            selectedRestaurantsCount -= 1
+//            user.favoriteRestaurants.remove(at: getRestaurantIndex())
+//
+//            if isLikeCountLastOne() {
+//                deleteMeokBTILikeCount()
+//            } else {
+//                subtractMeokBTILikeCount()
+//            }
+//        }
+        
+        
     }
     
     

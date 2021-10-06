@@ -22,7 +22,7 @@ class MapMarkerWindow: UIView {
     @IBOutlet weak var likeButton: UIButton!
     
     
-    var buttonTapped: Bool = false
+    var likeButtonTapped: Bool = false
     
     weak var delegate: MapMarkerDelegate?
     var spotPhotos = [UIImage]()
@@ -39,7 +39,7 @@ class MapMarkerWindow: UIView {
 //    }
     
     func setButtonImage() {
-        if buttonTapped {
+        if likeButtonTapped {
             likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
         } else {
             likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
@@ -49,8 +49,8 @@ class MapMarkerWindow: UIView {
 
     @IBAction func didTapLikeButton(_ sender: Any) {
 //        delegate?.didTapInfoButton(data: spotData!)
-        buttonTapped = !buttonTapped
-        delegate?.didTapLikeButton(buttonTapped)
+        likeButtonTapped = !likeButtonTapped
+        delegate?.didTapLikeButton(likeButtonTapped)
         setButtonImage()
     }
     

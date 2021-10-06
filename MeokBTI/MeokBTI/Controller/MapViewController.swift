@@ -53,6 +53,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // 유저데이터
     let user = User.shared
     
+    // TmapAPI 이용하기위함.
+    let pathData = TMapPathData()
+    
     // 파이어베이스 관련 변수
     var ref: DatabaseReference!
     var beingUpdatedContents: [String: Any] = [:]
@@ -65,7 +68,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var selectLabelAndRefreshButtonStackView = UIStackView()
     var tempVerticalStackView = UIStackView()
     
+    // likeButton 관련
     var meokBTILikeCount = Int()
+    
     
     
     override func viewDidLoad() {
@@ -96,13 +101,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailRestaurantInfo" {
-            let detailVC = segue.destination as? DetailRestaurantInfoViewController
-            detailVC?.detailInfoWindow.buttonTapped = infoWindow.buttonTapped
-            detailVC?.previousInfoWindow = infoWindow
-            detailVC?.top3MeokBTI = top3MeokBTIData
-            detailVC?.addressAndPhoneNumber = addressAndPhoneNumber
-        }
+        
+        guard let detailVC = segue.destination as? DetailRestaurantInfoViewController,
+        let showingRestaurant = showingRestaurant else { return }
+        
+        detailVC.showingRestaurant = showingRestaurant
+        detailVC.likeButtonTapped = infoWindow.likeButtonTapped
+        detailVC.previousInfoWindow = infoWindow
+        detailVC.top3MeokBTI = top3MeokBTIData
+        detailVC.addressAndPhoneNumber = addressAndPhoneNumber
+        
     }
     
     func searchBarImplement() {
@@ -312,7 +320,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         // 버튼액션함수가 buttonTapped을 기준으로 실행되는데 연동이 안되있으므로 infoWindow를 다른 것을 띄웠다가 돌아왔을 때 버튼이미지가 안 바뀌는 이슈
         // Solution: buttonTapped과 연동시켜주면서 버튼 동작을 정상적으로 만들어줌
-        infoWindow.buttonTapped = showingRestaurant!.like
+        infoWindow.likeButtonTapped = showingRestaurant!.like
         infoWindow.setButtonImage()
         self.view.addSubview(infoWindow)
         
@@ -340,7 +348,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
         // [] 좋아요 누른 식당은 다른색 마커 띄우기
-        let pathData = TMapPathData()
+        
         
         // categoryName: 카테고리 5개까지 가능 ;로 구분, radius: 단위 1km
         pathData.requestFindNameAroundPOI(currentPosition, categoryName: "식당", radius: 20, count: count, completion: { (result, error) -> Void in
@@ -623,7 +631,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // TODO: TMAP API로 정확한 주소 얻어오기
         guard let showingRestaurant = showingRestaurant else { return }
         let point = showingRestaurant.position
-        let pathData = TMapPathData()
         
         pathData.convertGpsToAddressAt(point) { (address, error) in
             DispatchQueue.main.async {
@@ -638,16 +645,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // TODO: poi에서 폰번호 얻어오기
         guard let showingRestaurant = showingRestaurant else { return }
         
-        let restaurantPois = tempPoiItems.filter { item in
+        var restaurantPois = tempPoiItems.filter { item in
             return item.name == showingRestaurant.name && item.coordinate == showingRestaurant.position
         }
         
-        // 식당검색후 해당 식당으로 이동시 Fatal error: Index out of range -> marker를 만들지 않기 때문
+        if restaurantPois.isEmpty {
+            getJustOnePoi(showingRestaurant.name)
+            restaurantPois.append(tempPoiItems.last!)
+        }
+        
+        // #ISSUE 식당검색후 해당 식당으로 이동시 Fatal error: Index out of range -> marker를 만들지 않기 때문 -> 함수 안에서 추가해줘서 해결
         if let phoneNumber = restaurantPois[0].telNO {
             if phoneNumber == "" {
                 self.restaurantPhoneNumber = "정보가 없습니다."
             } else {
                 self.restaurantPhoneNumber = phoneNumber
+            }
+        }
+    }
+    
+    func getJustOnePoi(_ name: String) {
+        pathData.requestFindTitlePOI(name) { result, error in
+            if let pois = result {
+                let poi = pois[0]
+                self.saveTempPoiItem(item: poi)
             }
         }
     }
@@ -675,16 +696,16 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didAutocompleteWith place: GMSPlace) {
     // [x] 검색한 곳으로 이동 및 정보 띄우기
-    mapView.animate(toLocation: place.coordinate)
-    
-    let marker = GMSMarker(position: place.coordinate)
-    marker.title = place.name
-    marker.map = mapView
-    showInfoWindow(marker: marker, basisOfMap: .google)
-    mapView.animate(toZoom: 19)
-    
-    searchController?.isActive = false
-    searchController?.resignFirstResponder()
+      mapView.animate(toLocation: place.coordinate)
+      
+      let marker = GMSMarker(position: place.coordinate)
+      marker.title = place.name
+      marker.map = mapView
+      showInfoWindow(marker: marker, basisOfMap: .google)
+      mapView.animate(toZoom: 19)
+      
+      searchController?.isActive = false
+      searchController?.resignFirstResponder()
   }
 
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
