@@ -101,23 +101,23 @@ let questions: [Question] = [
                  Answer(text: "편의점 앞 테이블에서 ", type: .moodNeg)]),
     
     // price
-    // 비싼게 pos 싼게 neg
+    // 신경쓴다 pos, 신경 안쓴다 neg
     Question(text: "내 잔고는 바닥을 치는데 월급날이 아직일 때", answers: [
-                Answer(text: "그래도 먹는 것에는 아끼지 않는다.", type: .pricePos),
-                Answer(text: "식비부터 절약한다.",
+                Answer(text: "식비부터 절약한다.", type: .pricePos),
+                Answer(text: "그래도 먹는 것에는 아끼지 않는다.",
                     type: .priceNeg)]),
     
     Question(text: "드디어 월급날! 특별하게 초밥을 먹으려고 할 때", answers: [
-                Answer(text: "고오급 초밥집 오마카세 식당으로 간다.", type: .pricePos),
-                Answer(text: "아무렴 좋다. 초밥 파는 아무 곳이나 간다.", type: .priceNeg)]),
+                Answer(text: "아무렴 좋다. 초밥 파는 아무 곳이나 간다.", type: .pricePos),
+                Answer(text: "고오급 초밥집 오마카세 식당으로 간다.", type: .priceNeg)]),
     
     Question(text: "친구 생일! 밥 한 끼 사주려고 할 때", answers: [
-                Answer(text: "가격이 좀 들더라도 친구가 못 먹어본 음식을 대접한다.", type: .pricePos),
-                Answer(text: "친구가 자주가는 식당에서 한 턱 쏜다.", type: .priceNeg)]),
+                Answer(text: "친구가 자주가는 식당에서 한 턱 쏜다.", type: .pricePos),
+                Answer(text: "가격이 좀 들더라도 친구가 못 먹어본 음식을 대접한다.", type: .priceNeg)]),
     
     Question(text: "브리또(또는 샌드위치)를 먹을 때", answers: [
-                Answer(text: "비싸더라도 먹고 싶은 토핑 이것저것 다 넣는다.", type: .pricePos),
-                Answer(text: "신중하게 먹고 싶은 토핑 하나 정해서 넣는다.", type: .priceNeg)]),
+                Answer(text: "토핑은 사치일 뿐, 그냥 기본으로 먹는다.", type: .pricePos),
+                Answer(text: "비싸더라도 먹고 싶은 토핑 이것저것 다 넣는다.", type: .priceNeg)]),
     
     Question(text: "짬뽕을 먹고 싶을 때", answers: [
                 Answer(text: "동네중국집에서 편하고 저렴하게 먹는다.", type: .pricePos),

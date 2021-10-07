@@ -77,7 +77,7 @@ enum MeokBTI: String, Codable {
         }
     }
     
-    // MARK: 이미지 위에 들어갈 정의
+    // MARK: 이미지 위에 들어갈 정의(MeokBTI 다음줄)
     var shortDefinition : String {
         switch self {
         case .EMGI :
@@ -247,5 +247,11 @@ enum MeokBTI: String, Codable {
         print(self.meokBTI)
     }
     
+    func getMeokBTI() -> String {
+        return ""
+    }
     
+    func calculateResponseToMeokBTI(responses: [Answer]) {
+        
+    }
 }
