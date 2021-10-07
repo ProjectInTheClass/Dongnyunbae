@@ -98,6 +98,7 @@ let questions: [Question] = [
                 Answer(text: "나는 먹는게 무엇보다 중요하니까 다른 생활비를 아껴서 식비로 쓴다.", type: .pricePos),
                 Answer(text: "아끼는건 식비가 가장 쉽다. 식비를 아끼자.",
                     type: .priceNeg)]),
+    
     Question(text: "드디어 월급날, 돈이 들어온 기념으로 무언가 특별한 음식을 찾다보니 초밥이 끌린다.", answers: [
                 Answer(text: "고오급 초밥집 오마카세 식당으로 간다.", type: .pricePos),
                 Answer(text: "아무렴 좋다. 초밥 파는 아무 곳이나 간다.", type: .priceNeg)]),

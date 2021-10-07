@@ -44,10 +44,18 @@ extension CLLocationCoordinate2D: Codable, Equatable {
     }
 }
 
+// 자 TMap poi에서 주소랑 전화번호를 가져올 수 있었다. 구글맵스가 아닌!
+// 마커 불러올때 정보를 다 가져올 수 있어서 자원사용 최소화
+// but 이 poi에서의 정보를 저장할 방법을 고안하던중 GMSMarker를 건들였더만 인스턴스 생성함수?가 정의 되지 않아 fail
+// extension으로 변수를 추가해주려고 했는데, extension은 변수추가가 불가능..
+// 우짜노 --> 변수추가가 힘들어보이고 그렇게 많은 데이터도(1~1000) 아닌 것 같으니 pois 를 클래스내에 임시로 저장해보는게 어떰?
 extension GMSMarker {
+    // 식당이름을 불러올 때, 구글(서치뷰)을 통해 검색한 식당이름 vs TMap에서 불러오는 식당이름 차이가 있어 나눠줌.
+    // TODO: 식당검색도 TMap으로 통합시키기.
     enum basisOfMap {
         case google, tmap
     }
+
 }
 
 extension UIView {
@@ -62,5 +70,36 @@ extension UIView {
             return UIGraphicsGetImageFromCurrentImageContext()
         }
         return nil
+    }
+}
+
+extension String {
+    func pretty() -> String {
+        let _str = self.replacingOccurrences(of: "-", with: "") // 하이픈 모두 빼준다
+        let arr = Array(_str)
+        
+        if arr.count > 3 {
+            let prefix = String(format: "%@%@", String(arr[0]), String(arr[1]))
+            if prefix == "02" {
+                if let regex = try? NSRegularExpression(pattern: "([0-9]{2})([0-9]{3,4})([0-9]{4})", options: .caseInsensitive) {
+                    let modString = regex.stringByReplacingMatches(in: _str, options: [], range: NSRange(_str.startIndex..., in: _str), withTemplate: "$1-$2-$3")
+                    return modString
+                }
+            } else if prefix == "15" || prefix == "16" || prefix == "18" {
+                if let regex = try? NSRegularExpression(pattern: "([0-9]{4})([0-9]{4})", options: .caseInsensitive) {
+                    let modString = regex.stringByReplacingMatches(in: _str, options: [], range: NSRange(_str.startIndex..., in: _str), withTemplate: "$1-$2")
+                    return modString
+                }
+            } else { // 나머지는 휴대폰번호 (010-xxxx-xxxx, 031-xxx-xxxx, 061-xxxx-xxxx 식이라 상관무)
+                if let regex = try? NSRegularExpression(pattern: "([0-9]{3})([0-9]{3,4})([0-9]{4})", options: .caseInsensitive) {
+                    let modString = regex.stringByReplacingMatches(in: _str, options: [], range: NSRange(_str.startIndex..., in:
+                                                                                                            _str),
+                                                                   withTemplate: "$1-$2-$3")
+                    return modString
+                }
+            }
+        }
+        
+        return self
     }
 }
