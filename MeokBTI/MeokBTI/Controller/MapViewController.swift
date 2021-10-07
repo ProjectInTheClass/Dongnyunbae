@@ -231,7 +231,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
                                                   longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
         }
-        
+         
         mapView = GMSMapView.map(withFrame: view.bounds, camera: currentCamera)
         mapView.setMinZoom(0, maxZoom: 20)
         mapView.settings.myLocationButton = true
@@ -250,6 +250,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // MARK: #ISSUE1 기존의 infowindow가 화면뒤로 겹쳐서 생성됨
         // detailView가 사라지고 나서도 기존의 infowindow가 보임
         showInfoWindow(marker: marker, basisOfMap: .tmap)
+        self.mapView.selectedMarker = marker
+        print(mapView.selectedMarker)
         print("tapped marker")
         return false
     }
@@ -264,6 +266,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
 //        print("coordinate \(coordinate)")
         infoWindow.removeFromSuperview()
+        let marker = self.mapView.selectedMarker
+        print(mapView.selectedMarker)
+//        marker!.icon = GMSMarker.markerImage(with: UIColor.red)
     }
     
     // [x] 지도 이동시에도 그 마커위에 그대로 남겨 놓게하기.
@@ -341,6 +346,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 
             }
         }
+        marker.icon = GMSMarker.markerImage(with: UIColor.green)
         // DetailView에 뿌릴 정보지만 속도가 느려 미리 정보를 얻어옴.
         getShowingRestaurantAddress()
         getShowingRestaurantPhoneNO()
@@ -570,6 +576,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             selectedRestaurantsCount += 1
             user.favoriteRestaurants.append(showingRestaurant)
             addMeokBTILikeCount()
+            
+
         } else {
             print("Unlike!")
             selectedRestaurantsCount -= 1
@@ -586,6 +594,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         User.saveToFile(user: user)
         sendRestaurantLikeToFirebase()
     }
+    
+    
     
     func isLikeCountLastOne() -> Bool {
         fetchCurrentLikeCount { count in
