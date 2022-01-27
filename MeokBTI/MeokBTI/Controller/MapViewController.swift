@@ -14,7 +14,7 @@ import KakaoSDKCommon
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
     
-    // 검색창 코드(3줄)
+    // 검색창 코드
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
 
@@ -70,8 +70,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     // likeButton 관련
     var meokBTILikeCount = Int()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -362,9 +360,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             if let result = result {
                 DispatchQueue.main.async {
                     // Realtimebase(Firebase)에서 child에 들어가지 못하는 문자까지 걸러냄
-                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}
-                    
-                    
+                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}     
                     
                     for poi in withoutParkingResult {
                         let marker = GMSMarker(position: poi.coordinate!)
@@ -595,8 +591,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         sendRestaurantLikeToFirebase()
     }
     
-    
-    
     func isLikeCountLastOne() -> Bool {
         fetchCurrentLikeCount { count in
             DispatchQueue.main.async {
@@ -610,17 +604,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func addMeokBTILikeCount() {
         guard let userMeokBTI = user.meokBTI?.meokBTI,
               let showingRestaurant = showingRestaurant else { return }
-        let incrementValue: NSNumber = 1
         
-        beingUpdatedContents = ["\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(incrementValue)] as [String : Any]
+        beingUpdatedContents = ["\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(NSNumber(1))] as [String : Any]
     }
     
     func subtractMeokBTILikeCount() {
         guard let userMeokBTI = user.meokBTI?.meokBTI,
               let showingRestaurant = showingRestaurant else { return }
-        let decrementValue: NSNumber = -1
         
-        beingUpdatedContents = ["\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(decrementValue)] as [String : Any]
+        beingUpdatedContents = ["\(showingRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(NSNumber(-1))] as [String : Any]
     }
     
     func deleteMeokBTILikeCount() {

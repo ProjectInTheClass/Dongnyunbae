@@ -128,16 +128,16 @@ class ResultsViewController: UIViewController {
             }
             else {
                 print("imageUpload() success.")
-                
-                
+
+
                 if let imageUploadResult = imageUploadResult {
                     meokBTIImageUrl = imageUploadResult.infos.original.url
-                    
+
                     print(meokBTIImageUrl)
-                    
+
                 }
-                
-                
+
+
                 let link = Link(webUrl: URL(string:"https://developers.kakao.com"),
                                 mobileWebUrl: URL(string:"https://developers.kakao.com"))
                 let appLink = Link(androidExecutionParams: ["key1": "value1", "key2": "value2"],
@@ -148,11 +148,11 @@ class ResultsViewController: UIViewController {
                                         imageUrl: meokBTIImageUrl!,
                                         description: "당신의 식당취향도 알아보세요!",
                                         link: link)
-                
+
                 let feedTemplate = FeedTemplate(content: content, buttons: [button])
                 let feedTemplateJsonData = try? SdkJSONEncoder.custom.encode(feedTemplate)
                 let templateJsonObject = SdkUtils.toJsonObject(feedTemplateJsonData!)
-    
+
                 // 카카오톡 설치 여부 확인
                 if LinkApi.isKakaoLinkAvailable() {
                     // 카카오톡으로 카카오링크 공유 가능
@@ -175,7 +175,7 @@ class ResultsViewController: UIViewController {
                             }
                         }
                     }
-                    
+
                 } else {
                     // 카카오톡 미설치: 웹 공유 사용 권장
                     // Custom WebView 또는 디폴트 브라우져 사용 가능
@@ -191,12 +191,7 @@ class ResultsViewController: UIViewController {
                 }
             }
         }
-        
 
-
-        
-        
-        
     }
     
     @IBAction func shareResultInstagramstory(_ sender: Any) {

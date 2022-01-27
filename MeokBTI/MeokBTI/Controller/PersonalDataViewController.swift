@@ -43,10 +43,20 @@ extension PersonalDataViewController: UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let user = User.loadFromFile()
+        
+        var content = cell.defaultContentConfiguration()
+
+        if let meokbti = user.meokBTI?.rawValue {
+            content.text = meokbti
+        }
+        
+        cell.contentConfiguration = content
         
         return cell
     }

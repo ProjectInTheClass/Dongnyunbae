@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// 첫 테스트화면일 때만 탭바를 가림
 class IntroductionViewController: UIViewController {
         
     let user = User.shared

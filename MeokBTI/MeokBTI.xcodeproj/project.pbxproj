@@ -34,13 +34,12 @@
 		017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D88D726CABD4600B72155 /* MapMarkerWindow.swift */; };
 		01A2FD9826F38AB60019B602 /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; };
 		01A2FD9926F38AB60019B602 /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0148CF1726C6D1030035862A /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		01B28742270DF63F0017DD15 /* LikeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B28741270DF63F0017DD15 /* LikeManager.swift */; };
 		01ED1D6626FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */; };
 		01ED1D6927004C5300CB8FB3 /* DetailInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ED1D6827004C5300CB8FB3 /* DetailInfoWindow.swift */; };
 		01ED1D6A270062DE00CB8FB3 /* DetailInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01ED1D6727004BB200CB8FB3 /* DetailInfoWindowView.xib */; };
 		0AC4A7A7BBFF823173D74377 /* Pods_MeokBTI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1797757F7D982904A3D40CFA /* Pods_MeokBTI.framework */; };
+		349E4D2127A2E040002E0109 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */; };
 		EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */; };
-		EC2675DE26D625B700BDE566 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2675DD26D625B700BDE566 /* PopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -98,15 +97,14 @@
 		0148CF1726C6D1030035862A /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
 		0148CF1A26C81CB90035862A /* Extensions+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+.swift"; sourceTree = "<group>"; };
 		017D88D726CABD4600B72155 /* MapMarkerWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerWindow.swift; sourceTree = "<group>"; };
-		01B28741270DF63F0017DD15 /* LikeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeManager.swift; sourceTree = "<group>"; };
 		01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRestaurantInfoViewController.swift; sourceTree = "<group>"; };
 		01ED1D6727004BB200CB8FB3 /* DetailInfoWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailInfoWindowView.xib; sourceTree = "<group>"; };
 		01ED1D6827004C5300CB8FB3 /* DetailInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoWindow.swift; sourceTree = "<group>"; };
 		1797757F7D982904A3D40CFA /* Pods_MeokBTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeokBTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 		E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
 		EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
-		EC2675DD26D625B700BDE566 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,8 +176,8 @@
 				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
 				010F916B26CE8B2A00437262 /* ResultTableViewController.swift */,
 				013C65C126BA4FB700895567 /* MapViewController.swift */,
+				349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */,
 				01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */,
-				EC2675DD26D625B700BDE566 /* PopUpViewController.swift */,
 				EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */,
 			);
 			path = Controller;
@@ -192,7 +190,6 @@
 				0148CF1A26C81CB90035862A /* Extensions+.swift */,
 				013C65C326BBD22000895567 /* Restaurant.swift */,
 				010F916026CE2B1D00437262 /* User.swift */,
-				01B28741270DF63F0017DD15 /* LikeManager.swift */,
 				010F916826CE55C300437262 /* MeokBTI.swift */,
 			);
 			path = Model;
@@ -390,12 +387,11 @@
 				0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */,
 				0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */,
 				01ED1D6927004C5300CB8FB3 /* DetailInfoWindow.swift in Sources */,
-				01B28742270DF63F0017DD15 /* LikeManager.swift in Sources */,
 				010F916126CE2B1D00437262 /* User.swift in Sources */,
 				0129338E26B29B93006F22FA /* ResultsViewController.swift in Sources */,
 				0129337426B29A76006F22FA /* AppDelegate.swift in Sources */,
-				EC2675DE26D625B700BDE566 /* PopUpViewController.swift in Sources */,
 				0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */,
+				349E4D2127A2E040002E0109 /* SearchResultsViewController.swift in Sources */,
 				0129338B26B29B93006F22FA /* QuestionData.swift in Sources */,
 				010F916926CE55C300437262 /* MeokBTI.swift in Sources */,
 				0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */,

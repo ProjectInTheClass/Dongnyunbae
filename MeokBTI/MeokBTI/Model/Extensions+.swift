@@ -72,7 +72,7 @@ extension UIView {
         return nil
     }
 }
-
+// String을 전화번호 형식으로 만들어줌
 extension String {
     func pretty() -> String {
         let _str = self.replacingOccurrences(of: "-", with: "") // 하이픈 모두 빼준다

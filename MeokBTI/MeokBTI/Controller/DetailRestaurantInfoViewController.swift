@@ -8,7 +8,7 @@
 import UIKit
 import GooglePlaces
 
-class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DetailInfoWindowDelegate {
+class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var detailInfoTableView: UITableView!
     let dismissButton = UIButton()
@@ -70,12 +70,9 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         self.detailInfoWindow = loadNiB()
         detailInfoWindow.initCollectionView()
         
-        detailInfoWindow.delegate = self
         detailInfoWindow.layer.cornerRadius = 15
         
         detailInfoWindow.nameLabel.text = previousInfoWindow.nameLabel.text
-        detailInfoWindow.likeButtonTapped = likeButtonTapped
-        detailInfoWindow.setButtonImage()
         detailInfoWindow.rankingLabel.text = convertRankingText(top3MeokBTI)
         // TODO: [] 사진을 detailView 띄우기 전에 로드하기 : 현재는 첫 infowindow에서 로드중
         detailInfoWindow.spotPhotos = previousInfoWindow.spotPhotos
@@ -158,33 +155,6 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     @objc func dismissDetailView() {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    func didTapLikeButton(_ sender: Bool) {
-        print("didTapLikeButton in DetailRestaurantInfoViewController")
-//        let mapVC = self.controll as! MapViewController
-//        mapVC.didTapLikeButton(sender)
-        print(sender)
-        
-//        if sender {
-//            print("Like!")
-//            user.favoriteRestaurants.append(showingRestaurant)
-//            addMeokBTILikeCount()
-//        } else {
-//            print("Unlike!")
-//            selectedRestaurantsCount -= 1
-//            user.favoriteRestaurants.remove(at: getRestaurantIndex())
-//
-//            if isLikeCountLastOne() {
-//                deleteMeokBTILikeCount()
-//            } else {
-//                subtractMeokBTILikeCount()
-//            }
-//        }
-        
-        
-    }
-    
-    
 }
 
 

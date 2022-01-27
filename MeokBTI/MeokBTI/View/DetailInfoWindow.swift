@@ -8,22 +8,12 @@
 import UIKit
 import CoreLocation
 
-protocol DetailInfoWindowDelegate: AnyObject {
-//    func didTapInfoButton(data: NSDictionary)
-    func didTapLikeButton(_ sender: Bool)
-}
-
 class DetailInfoWindow: UIView {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rankingLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
-    
-    var likeButtonTapped: Bool = false
-    
-    weak var delegate: DetailInfoWindowDelegate?
     var spotPhotos = [UIImage]()
     
     class func instanceFromNib() -> UIView {
@@ -43,24 +33,6 @@ class DetailInfoWindow: UIView {
         })
         return result
     }
-    
-    func setButtonImage() {
-        if likeButtonTapped {
-            likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
-        } else {
-            likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
-        }
-    }
-    
-
-    @IBAction func didTapLikeButton(_ sender: Any) {
-//        delegate?.didTapInfoButton(data: spotData!)
-        print("buttonTapped in detailInfoWindow")
-        likeButtonTapped = !likeButtonTapped
-        delegate?.didTapLikeButton(likeButtonTapped)
-        setButtonImage()
-    }
-        
     
 }
 
