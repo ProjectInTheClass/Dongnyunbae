@@ -7,15 +7,16 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     
-    @IBOutlet weak var resultsTableView: UITableView!
+    var searchResultsTableView: UITableView?
     
     let tempResultData = ["크로월당", "크로월당 본점"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initializeSearchResultsTableView()
+        connectTableViewWithVC()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,5 +37,26 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         print("make cell!")
         
         return cell
+    }
+    
+    func initializeSearchResultsTableView() {
+        searchResultsTableView = UITableView(frame: CGRect(x: 0, y: 50, width: Int(view.frame.width), height: Int(view.frame.height - 50)))
+        
+        guard let searchResultsTableView = searchResultsTableView else { return }
+        self.view.addSubview(searchResultsTableView)
+    }
+    
+    func connectTableViewWithVC() {
+        searchResultsTableView?.delegate = self
+        searchResultsTableView?.dataSource = self
+        searchResultsTableView?.register(UITableViewCell.self, forCellReuseIdentifier: "resultCell")
+    }
+    
+    func searchPoi(of: String) {
+        
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        print("update search!")
     }
 }

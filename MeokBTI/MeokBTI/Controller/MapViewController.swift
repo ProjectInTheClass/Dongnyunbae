@@ -15,7 +15,6 @@ import KakaoSDKCommon
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
     
     // 검색창 코드
-    var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
 
     // 위치 관련 변수들
@@ -113,13 +112,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func searchBarImplement() {
         // 검색창 구현
-        resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self
-        
-        let filter = GMSAutocompleteFilter()
-        filter.country = "kr"
-        resultsViewController?.autocompleteFilter = filter
-        
+//        resultsViewController = GMSAutocompleteResultsViewController()
+//        resultsViewController?.delegate = self
+//
+//        let filter = GMSAutocompleteFilter()
+//        filter.country = "kr"
+//        resultsViewController?.autocompleteFilter = filter
+        let resultsViewController = SearchResultsViewController()
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
 
