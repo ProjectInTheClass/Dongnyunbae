@@ -5,6 +5,10 @@
 //  Created by 추만석 on 2021/08/05.
 //
 
+//
+// api 변경 관련
+//
+
 import Foundation
 import CoreLocation
 import GoogleMaps

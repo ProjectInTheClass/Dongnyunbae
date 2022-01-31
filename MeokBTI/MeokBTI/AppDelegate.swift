@@ -5,6 +5,10 @@
 //  Created by 추만석 on 2021/07/29.
 //
 
+//
+// api 변경 관련
+//
+
 import UIKit
 import GoogleMaps
 import GooglePlaces
@@ -15,7 +19,8 @@ import KakaoSDKCommon
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, TMapTapiDelegate {
 
-
+// 여기서 Tmap key를 입력해야하는건가>?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyDha3Nwl8AW-SIjoGczNqVJYO4xjNXYHfQ")
