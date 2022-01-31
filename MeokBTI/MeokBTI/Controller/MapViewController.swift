@@ -19,7 +19,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
 
     // 위치 관련 변수들
     var locationManager: CLLocationManager!
-    var currentLocation: CLLocation?
+    static var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
     var placesClient: GMSPlacesClient!
     var preciseLocationZoomLevel: Float = 15.0
@@ -83,7 +83,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         // 맵 구현
         loadMapView()
-        guard let currentLocation = currentLocation else { return }
+        guard let currentLocation = MapViewController.currentLocation else { return }
         generateAroundMarker(bothLatLng: currentLocation.coordinate, count: 30)
         
         // 검색창 구현 
@@ -199,13 +199,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         case .restricted, .notDetermined:
             // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
             print("GPS 권한 설정되지 않음")
-            self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
             getLocationUsagePermission()
             
         case .denied:
             // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
             print("GPS 권한 요청 거부됨")
-            self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
             getLocationUsagePermission()
             
         default:
@@ -223,8 +223,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func loadMapView() {
-        currentLocation = locationManager.location ?? CLLocation(latitude: 35.17353, longitude: 128.136435)
-        if let defaultLocation = currentLocation {
+        MapViewController.currentLocation = locationManager.location ?? CLLocation(latitude: 35.17353, longitude: 128.136435)
+        if let defaultLocation = MapViewController.currentLocation {
             currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
                                                   longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
         }
