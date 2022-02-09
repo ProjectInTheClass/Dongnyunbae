@@ -12,7 +12,7 @@ import TMapSDK
 import FirebaseDatabase
 import KakaoSDKCommon
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate, UISearchBarDelegate {
     
     // 검색창 코드
     var searchController: UISearchController?
@@ -86,7 +86,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         guard let currentLocation = MapViewController.currentLocation else { return }
         generateAroundMarker(bothLatLng: currentLocation.coordinate, count: 30)
         
-        // 검색창 구현 
+        // 검색창 구현
+        //
         searchBarImplement()
         
         // 선택요청뷰와 지역재검색뷰 스택뷰 구현
@@ -110,6 +111,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     
+// MARK: 검색창 구현부
     func searchBarImplement() {
         // 검색창 구현
 //        resultsViewController = GMSAutocompleteResultsViewController()
@@ -139,6 +141,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         definesPresentationContext = true
     }
     
+    // 텍스트가 변하면 알려주는 함수인것 같은데
+    // Tells the delegate that the user changed the search text.
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("User's typing something")
+    }
+    
+// MARK: 지역 재검색
     func refreshButtonImplement() {
 //        self.view.addSubview(refreshButton)
         
