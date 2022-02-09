@@ -9,16 +9,11 @@ import Foundation
 
 enum MeokType: Character {
 //     접근성 (A, B) 양 (C, D) 분위기 (E, F) 가격 (G, H)
-    case accessPos = "A", accessNeg = "B", ammountPos = "C", ammountNeg = "D", moodPos = "E", moodNeg = "F", pricePos = "G", priceNeg = "H"
+    case E = "A", H = "B", M = "C", L = "D", G = "E", B = "F", I = "G", C = "H"
     
 }
 
 enum MeokBTI: String, Codable {
-//        case ACEG, ACFG, BCEG, BCFG,
-    //         ACEH, ACFH, BCEH, BCFH,
-    //         ADEG, ADFG, BDEG, BDFG,
-    //         ADEH, ADFH, BDEH, BDFH
-//    case ACEG = "ACEG", ACFH = "ACFH", BDFH = "BDFH"
     
     case EMGI = "ACEG",    EMBI = "ACFG",    HMGI = "BCEG",    HMBI = "BCFG",
          EMGC = "ACEH",    EMBC = "ACFH",    HMGC = "BCEH",    HMBC = "BCFH",
@@ -249,7 +244,7 @@ enum MeokBTI: String, Codable {
     }
     
     func getMeokBTI() -> String {
-        return ""
+        return self.meokBTI
     }
     
     func calculateResponseToMeokBTI(responses: [Answer]) {

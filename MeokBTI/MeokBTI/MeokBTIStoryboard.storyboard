@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RPp-ZZ-jHg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RPp-ZZ-jHg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -115,6 +116,7 @@
         <!--Question View Controller-->
         <scene sceneID="JZa-bb-qZT">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y9e-aV-Tag" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="H8f-Vi-bju" customClass="QuestionViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F6r-HT-FYS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -155,7 +157,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="B25-TL-jjz" userLabel="Single Stack View">
                                                 <rect key="frame" x="0.0" y="165.5" width="374" height="170"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E7b-jy-nSa" userLabel="singleButton1">
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E7b-jy-nSa" userLabel="singleButton1">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="r0H-MA-mbS"/>
@@ -168,7 +170,7 @@
                                                             <action selector="singleAnswerButtonPressed:" destination="H8f-Vi-bju" eventType="touchUpInside" id="MOv-8g-nfk"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99w-uD-F4A" userLabel="singleButton2">
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99w-uD-F4A" userLabel="singleButton2">
                                                         <rect key="frame" x="0.0" y="100" width="374" height="70"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="AqK-CE-DqT"/>
@@ -196,7 +198,14 @@
                             <constraint firstItem="qpb-O1-Fk8" firstAttribute="trailing" secondItem="oEE-ng-xDY" secondAttribute="trailing" constant="20" id="iG4-r2-93g"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="XgZ-n9-LUB"/>
+                    <navigationItem key="navigationItem" id="DbD-oN-GsM" userLabel="하지만">
+                        <barButtonItem key="leftBarButtonItem" id="8xC-ui-sbE">
+                            <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <action selector="didTapBackButton:" destination="H8f-Vi-bju" id="KCe-t6-7bc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="progressLabel" destination="xwN-K9-T7h" id="4Zo-nn-eJA"/>
                         <outlet property="questionImageView" destination="VE9-vG-Q5s" id="B2y-wo-JWu"/>
@@ -207,7 +216,6 @@
                         <segue destination="P2I-HE-s8j" kind="show" identifier="ResultsSegue" id="HOH-ET-tR3"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y9e-aV-Tag" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2052" y="-25"/>
         </scene>
@@ -411,6 +419,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="date1" width="225" height="150"/>
         <image name="doc.richtext.fill" catalog="system" width="115" height="128"/>
         <image name="questionmark.circle" catalog="system" width="128" height="121"/>

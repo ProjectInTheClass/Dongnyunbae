@@ -19,20 +19,25 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var singleStackView: UIStackView!
     @IBOutlet var singleButtons: [UIButton]!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.title = "먹BTI"
-        updateUI()
 
+        updateUI()
+        addCornerAtSingleButton()
+        addCornerAtQuestionImageView()
+    }
+    
+    fileprivate func addCornerAtSingleButton() {
         for button in singleButtons {
-        
             button.layer.cornerRadius = 10
             button.layer.borderWidth = 1
             button.layer.borderColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1).cgColor
         }
-
-        // Do any additional setup after loading the view.
+    }
+    
+    fileprivate func addCornerAtQuestionImageView() {
+        questionImageView.layer.cornerRadius = 10
     }
     
     func updateUI() {
@@ -68,7 +73,6 @@ class QuestionViewController: UIViewController {
     
     
     func updateSingleStack(using answers: [Answer]) {
-        
         for index in 0...1 {
             singleButtons[index].setTitle(answers[index].text, for: .normal)
         }
@@ -82,6 +86,18 @@ class QuestionViewController: UIViewController {
             updateUI()
         } else {
             performSegue(withIdentifier: "ResultsSegue", sender: nil)
+        }
+    }
+    
+    func previousQuestion() {
+        if !(questionIndex == 0) {
+            questionIndex -= 1
+            updateUI()
+        } else {
+            dismiss(animated: true) {
+                print("dismiss Question")
+                print(self.answersChosen)
+            }
         }
     }
     
@@ -100,6 +116,10 @@ class QuestionViewController: UIViewController {
         
     }
     
+    @IBAction func didTapBackButton(_ sender: UIBarButtonItem) {
+        previousQuestion()
+        _ = answersChosen.popLast()
+    }
     
 
 }

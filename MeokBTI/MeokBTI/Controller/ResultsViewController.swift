@@ -80,7 +80,7 @@ class ResultsViewController: UIViewController {
             return pair1.key < pair2.key
         })
         
-        // 3. 상반되는 타입 중 하나만 남김 (ex A,B -> A)
+        // 3. 상반되는 타입 중 하나만 남김 (ex A,B -> A / C,D -> D ...)
         var best4MeokType = [Character: Int]()
         for i in stride(from: 0, through: 6, by: 2) {
             if frequentAnswerSorted[i].value > frequentAnswerSorted[i+1].value {
