@@ -12,14 +12,6 @@ struct Question {
     var answers: [Answer]
 }
 
-struct Answer {
-    var text: String
-    var type: MeokType
-    var tag: Int
-}
-
-
-
 let questions: [Question] = [
     // MARK: Access ( Easy, Hard )
     Question(text: "SNS 보던 중 가고픈 맛집 발견! 그러나 거리가 2시간일 때",
@@ -34,10 +26,10 @@ let questions: [Question] = [
                 Answer(text: "15분 걸어서 소문난 탕수육 맛집으로 간다.", type: .H, tag: 2)]
             ),
     
-    Question(text: "오랜만에 만난 친구들과 함께 저녁을 먹기로 했다.",
+    Question(text: "다른 지역에 사는 사람들에게 우리지역맛집을 소개시켜준다면? ",
              answers: [
-                Answer(text: "주변에 즐길거리가 많은 곳에서 먹는다", type: .E, tag: 3),
-                Answer(text: "밥만 먹고 헤어질 것이므로 아무데나 간다.", type: .H, tag: 3)]
+                Answer(text: "번화가에 있는 누구나 들으면 알만한 핫한 맛집", type: .E, tag: 3),
+                Answer(text: "외곽에 있지만 나만 아는 소중한 맛집", type: .H, tag: 3)]
             ),
     
     // MARK: Amount ( Much, Little )
@@ -69,12 +61,12 @@ let questions: [Question] = [
     Question(text: "기분 좋은날 한잔하려고 간 곳은?",
              answers: [
                 Answer(text: "화려한 조명아래 벚꽃나무가 흩날리는 이자카야", type: .G, tag: 2),
-                Answer(text: "집근처 포장마차 골목", type: .B, tag: 2)]
+                Answer(text: "포장마차들과 푸드트럭들이 늘어선 먹자골목", type: .B, tag: 2)]
             ),
     
     Question(text: "TV에 나온다면 가고싶은 곳은?",
              answers: [
-                Answer(text: "한옥으로 되어있어 입장부터 화려한 한식당", type: .G, tag: 3),
+                Answer(text: "현대적으로 재해석한 인테리어의 한식당", type: .G, tag: 3),
                 Answer(text: "할머니의 손맛을 자랑하는 시장통 한식당", type: .B, tag: 3)]
             ),
 
@@ -86,16 +78,16 @@ let questions: [Question] = [
                 Answer(text: "먹고 힘내야 월급날까지 버틸 수 있으므로 배달부터 시킨다.", type: .C, tag: 1)]
             ),
     
-    Question(text: "카드가 잔액부족이 떴다. 내역을 확인해보니 가장 많이 쓴 곳이",
+    Question(text: "신용카드는 한도초과상태, 내역을 확인하니 가장 많이 쓴 곳이?",
              answers: [
                 Answer(text: "옷이나 여러 구독형 결제들", type: .I, tag: 2),
                 Answer(text: "배달앱 또는 여러 식당들", type: .C, tag: 2)]
             ),
     
-    Question(text: "페스티벌에 참가하고 있는데 저 건너편 푸드트럭에서 날 지긋이 쳐다본다.",
+    Question(text: "축제중에 저 건너편 푸드트럭에서 날 지긋이 쳐다본다.",
              answers: [
                 Answer(text: "재빠르게 가격표를 본 뒤, 저 돈이면..하며 돌아선다.", type: .I, tag: 3),
-                Answer(text: "내 왼손에는 닭꼬지, 오른속엔 회오리감자가 이미 있다.", type: .C, tag: 3)]
+                Answer(text: "내 왼손에는 닭꼬지, 오른손엔 음료가 이미 있다.", type: .C, tag: 3)]
             )
 ]
 

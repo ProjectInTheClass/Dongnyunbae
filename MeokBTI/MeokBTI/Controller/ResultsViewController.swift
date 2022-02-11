@@ -43,24 +43,18 @@ class ResultsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
+        setContentAll()
+    }
+    
+    fileprivate func setContentAll() {
         resultTableView.definitionLabel.text = "\(meokBTI.shortDefinition)\n\(meokBTI.meokBTI)"
         resultTableView.meokBTIImageView.image = UIImage(named: "\(meokBTI.meokBTI).png")
         resultTableView.shortDesriptionLabel.text = "\"\(meokBTI.shortDescription)\""
+        resultTableView.oneLineDescriptions.text = "\(getPrettyOneLineDescriptionsContent())"
         resultTableView.descriptionLabel.text = meokBTI.longDescription
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     
     func calculatePersonalityResult() -> String {
         // 1차 수정 : 기존의 로직은 질문수에 영향을 받아 오류가 남 -> 질문수와 관련없이(but,질문갯수 홀수 필수) 값을 일정하게 뽑아낼 수 있게 변경
@@ -108,6 +102,17 @@ class ResultsViewController: UIViewController {
         guard let refinedMeokBTI = MeokBTI(rawValue: rawMeokBTI) else { return nil }
         
         return refinedMeokBTI
+    }
+    
+    func getOneLineDescriptionsContents() -> [String] {
+        let content = responses.map { $0.oneLineDescriptions.randomElement()! }
+        return content
+    }
+    
+    func getPrettyOneLineDescriptionsContent() -> String {
+        let content = getOneLineDescriptionsContents().map { "✏︎ \($0)" }
+        
+        return content.joined(separator: "\n\n")
     }
     
     @IBAction func shareImageTap(_ sender: UITapGestureRecognizer) {

@@ -71,13 +71,11 @@ class QuestionViewController: UIViewController {
         
     }
     
-    
     func updateSingleStack(using answers: [Answer]) {
         for index in 0...1 {
             singleButtons[index].setTitle(answers[index].text, for: .normal)
         }
     }
-    
     
     func nextQuestion() {
         questionIndex += 1
@@ -103,6 +101,7 @@ class QuestionViewController: UIViewController {
     
     
     @IBAction func singleAnswerButtonPressed(_ sender: UIButton) {
+        sender.pulsate()
         let currentAnswers = questions[questionIndex].answers
         if let currentAnswersIndex = singleButtons.firstIndex(of: sender) {
             answersChosen.append(currentAnswers[currentAnswersIndex])

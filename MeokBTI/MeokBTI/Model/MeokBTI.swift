@@ -129,7 +129,7 @@ enum MeokBTI: String, Codable {
     var shortDescription: String {
         switch self {
         case .EMGI :
-            return "엥? 이걸 먹으라고 준 거야?"
+            return "여기보단 저기가 더 나은데"
             
         case .EMBI :
             return "건강하고 정직한 음식이 최고야!"

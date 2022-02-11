@@ -12,6 +12,7 @@ class ResultTableViewController: UITableViewController {
     @IBOutlet weak var definitionLabel: UILabel!
     @IBOutlet weak var meokBTIImageView: UIImageView!
     @IBOutlet weak var shortDesriptionLabel: UILabel!
+    @IBOutlet weak var oneLineDescriptions: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     var imageToShare = UIImage()
