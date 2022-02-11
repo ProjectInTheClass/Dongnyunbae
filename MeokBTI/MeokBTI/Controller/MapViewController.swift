@@ -141,11 +141,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         definesPresentationContext = true
     }
     
-    // 텍스트가 변하면 알려주는 함수인것 같은데
-    // Tells the delegate that the user changed the search text.
+    // 사용자가 검색어를 변경했다는 것을 델리게이트에 알림
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("User's typing something")
     }
+//    // 검색버튼이 클릭되었을 때 델리게이트에 알림
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        <#code#>
+//    }
+//    // 사용자가 검색어 입력을 마쳤을 때 알림
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        <#code#>
+//    }
     
 // MARK: 지역 재검색
     func refreshButtonImplement() {
