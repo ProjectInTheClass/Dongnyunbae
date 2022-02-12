@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MeokBTIStoryboard-->
+        <!--MeokBTITest-->
         <scene sceneID="CZ2-oy-qP8">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="MeokBTIStoryboard" storyboardName="MeokBTIStoryboard" referencedIdentifier="MeokBTIStoryboard" id="NpB-e8-Wxy" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="MeokBTIStoryboard" storyboardName="MeokBTITest" referencedIdentifier="MeokBTITest" id="NpB-e8-Wxy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Hpu-on-KOt"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fX2-TJ-mfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

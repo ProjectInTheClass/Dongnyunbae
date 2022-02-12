@@ -39,7 +39,7 @@ let questions: [Question] = [
                 Answer(text: "적당하게 먹으면 되니까 일반고기집을 간다.", type: .L, tag: 1)]
             ),
     
-    Question(text: "내일은 중요한 시험날! 어느덧 점심시간이 될 때",
+    Question(text: "내일은 중요한 시험날! 어느덧 점심시간이 됐을 때",
              answers: [
                 Answer(text: "든든한 식사가 집중력을 만든다!", type: .M, tag: 2),
                 Answer(text: "시험공부가 우선이니 간단하게 먹는다.", type: .L, tag: 2)]

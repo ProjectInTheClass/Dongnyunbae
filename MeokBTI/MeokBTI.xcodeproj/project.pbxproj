@@ -14,7 +14,7 @@
 		010F916726CE337700437262 /* ONE Mobile POP OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 010F916626CE337700437262 /* ONE Mobile POP OTF.otf */; };
 		010F916926CE55C300437262 /* MeokBTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010F916826CE55C300437262 /* MeokBTI.swift */; };
 		010F916C26CE8B2A00437262 /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010F916B26CE8B2A00437262 /* ResultTableViewController.swift */; };
-		010F916E26CE8CDA00437262 /* MeokBTIStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010F916D26CE8CDA00437262 /* MeokBTIStoryboard.storyboard */; };
+		010F916E26CE8CDA00437262 /* MeokBTITest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010F916D26CE8CDA00437262 /* MeokBTITest.storyboard */; };
 		0123132E26CA4B5A007C5FC8 /* MapMarkerWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */; };
 		0129337426B29A76006F22FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337326B29A76006F22FA /* AppDelegate.swift */; };
 		0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129337526B29A76006F22FA /* SceneDelegate.swift */; };
@@ -65,7 +65,7 @@
 		010F916626CE337700437262 /* ONE Mobile POP OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ONE Mobile POP OTF.otf"; sourceTree = "<group>"; };
 		010F916826CE55C300437262 /* MeokBTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeokBTI.swift; sourceTree = "<group>"; };
 		010F916B26CE8B2A00437262 /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
-		010F916D26CE8CDA00437262 /* MeokBTIStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeokBTIStoryboard.storyboard; sourceTree = "<group>"; };
+		010F916D26CE8CDA00437262 /* MeokBTITest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeokBTITest.storyboard; sourceTree = "<group>"; };
 		0113335926F25AA200718FAE /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0113335A26F25AA200718FAE /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0113335B26F25AA200718FAE /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +158,7 @@
 				013753F426CD410C002F3ABE /* Controller */,
 				0129337326B29A76006F22FA /* AppDelegate.swift */,
 				0129337526B29A76006F22FA /* SceneDelegate.swift */,
-				010F916D26CE8CDA00437262 /* MeokBTIStoryboard.storyboard */,
+				010F916D26CE8CDA00437262 /* MeokBTITest.storyboard */,
 				0129337926B29A76006F22FA /* Main.storyboard */,
 				0129337C26B29A78006F22FA /* Assets.xcassets */,
 				010F916A26CE5DE500437262 /* Font */,
@@ -312,7 +312,7 @@
 				010F916526CE336500437262 /* BinggraeSamanco.otf in Resources */,
 				0101E0E926D8B07F00140C70 /* GoogleService-Info.plist in Resources */,
 				010F916726CE337700437262 /* ONE Mobile POP OTF.otf in Resources */,
-				010F916E26CE8CDA00437262 /* MeokBTIStoryboard.storyboard in Resources */,
+				010F916E26CE8CDA00437262 /* MeokBTITest.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
