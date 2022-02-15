@@ -58,37 +58,25 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-//    // 검색버튼이 클릭되었을 때 델리게이트에 알림
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        print("search button clicked")
-//    }
+    
     
     // 이함수 어디서 호출된거지?!?!?! 키보드 칠때마다 나오는데!!!! -> 사용자 입력마다 결과값이 변하게 만들 수 있을것 같은데... 입력을 어떻게 받아야할지...
     func updateSearchResults(for searchController: UISearchController) {
         print("update search!")
         let pathData = TMapPathData()
-        
+        guard let userSearchKeyword = searchController.searchBar.text else { return }
+        print(userSearchKeyword)
         // 사용자 위치 얻기
-//        let center = CLLocationCoordinate2D(latitude: 35.26781, longitude: 128.86856)
-        
         let center = CLLocationCoordinate2D(latitude: MapViewController.currentLocation!.coordinate.latitude, longitude: MapViewController.currentLocation!.coordinate.longitude)
         
-//        let userSearchKeyword = 서치바에 있는 텍스트
-        
         // keywordName에 사용자 입력 들어가야함
-        pathData.requestFindAroundKeywordPOI(center, keywordName: "치킨", radius: 10, count: 50, completion: { (result, error) -> Void in
+        pathData.requestFindAroundKeywordPOI(center, keywordName: userSearchKeyword, radius: 10, count: 50, completion: { (result, error) -> Void in
             if let result = result {
                 DispatchQueue.main.async {
                     self.tempResultData = result
+                    self.searchResultsTableView?.reloadData()
                 }
             }
         } )
-//        pathData.requestFindAroundKeywordPOI(center, keywordName: userSearchKeyword, radius: 1, count: 50, completion: { (result, error) -> Void in
-//            if let result = result {
-//                DispatchQueue.main.async {
-//                    self.tempResultData = result
-//                }
-//            }
-//        } )
     }
 }
