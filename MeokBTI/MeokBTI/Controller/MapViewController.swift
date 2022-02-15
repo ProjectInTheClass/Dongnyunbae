@@ -147,11 +147,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
 //    // 검색버튼이 클릭되었을 때 델리게이트에 알림
 //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        <#code#>
+//        print("sb clicked")
+//
 //    }
 //    // 사용자가 검색어 입력을 마쳤을 때 알림
 //    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        <#code#>
+//        print("sb clicked")
 //    }
     
 // MARK: 지역 재검색

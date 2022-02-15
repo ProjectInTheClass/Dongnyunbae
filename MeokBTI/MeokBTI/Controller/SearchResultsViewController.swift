@@ -58,10 +58,10 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-    // 검색버튼이 클릭되었을 때 델리게이트에 알림
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-    }
+//    // 검색버튼이 클릭되었을 때 델리게이트에 알림
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        print("search button clicked")
+//    }
     
     // 이함수 어디서 호출된거지?!?!?! 키보드 칠때마다 나오는데!!!! -> 사용자 입력마다 결과값이 변하게 만들 수 있을것 같은데... 입력을 어떻게 받아야할지...
     func updateSearchResults(for searchController: UISearchController) {
@@ -76,7 +76,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
 //        let userSearchKeyword = 서치바에 있는 텍스트
         
         // keywordName에 사용자 입력 들어가야함
-        pathData.requestFindAroundKeywordPOI(center, keywordName: "치킨", radius: 1, count: 50, completion: { (result, error) -> Void in
+        pathData.requestFindAroundKeywordPOI(center, keywordName: "치킨", radius: 10, count: 50, completion: { (result, error) -> Void in
             if let result = result {
                 DispatchQueue.main.async {
                     self.tempResultData = result
