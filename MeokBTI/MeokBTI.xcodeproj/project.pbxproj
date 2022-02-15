@@ -153,13 +153,13 @@
 		0129337226B29A76006F22FA /* MeokBTI */ = {
 			isa = PBXGroup;
 			children = (
+				0129337326B29A76006F22FA /* AppDelegate.swift */,
+				0129337526B29A76006F22FA /* SceneDelegate.swift */,
+				342D07D427BA9FD3003CAC58 /* Locked */,
 				0148CF1226C6677F0035862A /* Model */,
 				0148CF1C26C8E1A20035862A /* View */,
 				013753F426CD410C002F3ABE /* Controller */,
-				0129337326B29A76006F22FA /* AppDelegate.swift */,
-				0129337526B29A76006F22FA /* SceneDelegate.swift */,
 				010F916D26CE8CDA00437262 /* MeokBTITest.storyboard */,
-				0129337926B29A76006F22FA /* Main.storyboard */,
 				0129337C26B29A78006F22FA /* Assets.xcassets */,
 				010F916A26CE5DE500437262 /* Font */,
 				0129337E26B29A78006F22FA /* LaunchScreen.storyboard */,
@@ -172,15 +172,10 @@
 		013753F426CD410C002F3ABE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */,
 				0129338826B29B93006F22FA /* IntroductionViewController.swift */,
 				0129338926B29B93006F22FA /* QuestionViewController.swift */,
 				0129338A26B29B93006F22FA /* ResultsViewController.swift */,
 				010F916B26CE8B2A00437262 /* ResultTableViewController.swift */,
-				013C65C126BA4FB700895567 /* MapViewController.swift */,
-				349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */,
-				01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */,
-				EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -189,16 +184,50 @@
 			isa = PBXGroup;
 			children = (
 				0148CF1A26C81CB90035862A /* Extensions+.swift */,
-				013C65C326BBD22000895567 /* Restaurant.swift */,
 				010F916026CE2B1D00437262 /* User.swift */,
+				010F916826CE55C300437262 /* MeokBTI.swift */,
 				0129338726B29B93006F22FA /* Question.swift */,
 				34AB56D327B4EE1E001DF408 /* Answer.swift */,
-				010F916826CE55C300437262 /* MeokBTI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
 		0148CF1C26C8E1A20035862A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		282F6B2E99FB2EC84C9E92F0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */,
+				E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		342D07D427BA9FD3003CAC58 /* Locked */ = {
+			isa = PBXGroup;
+			children = (
+				0129337926B29A76006F22FA /* Main.storyboard */,
+				342D07D527BA9FE5003CAC58 /* Model */,
+				342D07D627BA9FEE003CAC58 /* View */,
+				342D07D727BA9FF4003CAC58 /* Controller */,
+			);
+			path = Locked;
+			sourceTree = "<group>";
+		};
+		342D07D527BA9FE5003CAC58 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				013C65C326BBD22000895567 /* Restaurant.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		342D07D627BA9FEE003CAC58 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				0123132D26CA4B5A007C5FC8 /* MapMarkerWindowView.xib */,
@@ -211,13 +240,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		282F6B2E99FB2EC84C9E92F0 /* Pods */ = {
+		342D07D727BA9FF4003CAC58 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */,
-				E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */,
+				013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */,
+				013C65C126BA4FB700895567 /* MapViewController.swift */,
+				349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */,
+				01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */,
+				EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */,
 			);
-			path = Pods;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		B6898FFEDE93042D590FD9BE /* Frameworks */ = {
