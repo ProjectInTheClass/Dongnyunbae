@@ -17,7 +17,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // 검색창 코드
     var searchController: UISearchController?
 
-    // 검색키워드
+    // 검색 키워드
     static var userSearchKeyword: String?
     
     // 위치 관련 변수들
@@ -151,13 +151,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     // 검색버튼이 클릭되었을 때 델리게이트에 알림
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("sb clicked")
-//        MapViewController.userSearchKeyword = searchBar.text
-//        print(MapViewController.userSearchKeyword)
+        print("SearchButton clicked")
     }
     // 사용자가 검색어 입력을 마쳤을 때 알림
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("typing end")
+        print("Typing ended")
         MapViewController.userSearchKeyword = searchBar.text
         print(MapViewController.userSearchKeyword)
     }

@@ -23,7 +23,6 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("SearchBar touched!")
-        // 여기서 키보드가 올라와야 하는것 같은데...
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,7 +35,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         var content = cell.defaultContentConfiguration()
         content.text = tempResultData[indexPath.row].name
         cell.contentConfiguration = content
-        print("make cell!")
+        print("Make cell!")
         
         return cell
     }
@@ -57,19 +56,18 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     func searchPoi(of: String) {
         
     }
-    
-    
-    
-    // 이함수 어디서 호출된거지?!?!?! 키보드 칠때마다 나오는데!!!! -> 사용자 입력마다 결과값이 변하게 만들 수 있을것 같은데... 입력을 어떻게 받아야할지...
+
     func updateSearchResults(for searchController: UISearchController) {
-        print("update search!")
+        print("Update search!")
         let pathData = TMapPathData()
+        
+        // 사용자 입력
         guard let userSearchKeyword = searchController.searchBar.text else { return }
-        print(userSearchKeyword)
-        // 사용자 위치 얻기
+        
+        // 사용자 위치
         let center = CLLocationCoordinate2D(latitude: MapViewController.currentLocation!.coordinate.latitude, longitude: MapViewController.currentLocation!.coordinate.longitude)
         
-        // keywordName에 사용자 입력 들어가야함
+        // keywordName에 사용자 입력
         pathData.requestFindAroundKeywordPOI(center, keywordName: userSearchKeyword, radius: 10, count: 50, completion: { (result, error) -> Void in
             if let result = result {
                 DispatchQueue.main.async {
