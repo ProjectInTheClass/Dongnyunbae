@@ -28,6 +28,13 @@ class QuestionViewController: UIViewController {
         addCornerAtQuestionImageView()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ResultsSegue" {
+            let resultsViewController = segue.destination as! ResultsViewController
+            resultsViewController.responses = answersChosen
+        }
+    }
+    
     fileprivate func addCornerAtSingleButton() {
         for button in singleButtons {
             button.layer.cornerRadius = 10
@@ -56,20 +63,6 @@ class QuestionViewController: UIViewController {
         progressLabel.sizeToFit()
     }
     
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "ResultsSegue" {
-            let resultsViewController = segue.destination as! ResultsViewController
-            resultsViewController.responses = answersChosen
-        }
-        
-    }
     
     fileprivate func setTintColorBlackInSingleButton() {
         for singleButton in singleButtons {
@@ -100,10 +93,7 @@ class QuestionViewController: UIViewController {
             questionIndex -= 1
             updateUI()
         } else {
-            dismiss(animated: true) {
-                print("dismiss Question")
-                print(self.answersChosen)
-            }
+            dismiss(animated: true) { }
         }
     }
     
@@ -115,13 +105,8 @@ class QuestionViewController: UIViewController {
         if let currentAnswersIndex = singleButtons.firstIndex(of: sender) {
             answersChosen.append(currentAnswers[currentAnswersIndex])
         }
-//        let currentAnswer = questions[questionIndex].answers
-//        print("currentAnswersIndex",currentAnswersIndex)
-    
-//
-        print(answersChosen.map { $0.type })
-        nextQuestion()
         
+        nextQuestion()
     }
     
     @IBAction func didTapBackButton(_ sender: UIBarButtonItem) {

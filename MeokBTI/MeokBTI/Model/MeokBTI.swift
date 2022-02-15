@@ -153,7 +153,7 @@ enum MeokBTI: String, Codable {
             return "밥은 든~든하게 먹는 게 최고지!"
         //----
         case .ELGI :
-            return "세상에 맛있는 음식이 너무 많아!"
+            return "뭐야?! 여기 완전 맛있잖아!"
        
         case .ELBI :
             return "이 집은 왜이리 음식이 늦게 나와"
@@ -168,7 +168,7 @@ enum MeokBTI: String, Codable {
             return "저번에 그집 괜찮던데, 같이 갈래? 내가 사줄게"
        
         case .ELBC :
-            return "그..뭐.. 없나?"
+            return "바로 앞에 저기 가자 그냥~"
             
         case .HLGC :
             return "엘레강~스한 걸로 주세요호호호"
