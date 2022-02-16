@@ -400,10 +400,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="CSF-zq-0LQ">
-                                        <rect key="frame" x="0.0" y="516.5" width="414" height="57"/>
+                                        <rect key="frame" x="0.0" y="516.5" width="414" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CSF-zq-0LQ" id="6ry-pY-Zvu">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSy-VN-CN8">
@@ -421,7 +421,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="eSy-VN-CN8" secondAttribute="trailing" constant="20" id="1Eh-yd-JGx"/>
-                                                <constraint firstAttribute="bottom" secondItem="eSy-VN-CN8" secondAttribute="bottom" id="9am-aS-737"/>
+                                                <constraint firstAttribute="bottom" secondItem="eSy-VN-CN8" secondAttribute="bottom" constant="10" id="9am-aS-737"/>
                                                 <constraint firstItem="eSy-VN-CN8" firstAttribute="leading" secondItem="6ry-pY-Zvu" secondAttribute="leading" constant="20" id="OlL-tS-ekR"/>
                                                 <constraint firstItem="eSy-VN-CN8" firstAttribute="top" secondItem="6ry-pY-Zvu" secondAttribute="top" constant="20" id="YcW-RK-83O"/>
                                             </constraints>
