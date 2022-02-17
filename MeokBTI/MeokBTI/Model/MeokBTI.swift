@@ -252,6 +252,10 @@ enum MeokBTI: String, Codable {
         }
     }
     
+    var harmonies: Harmony {
+        Harmony(meokBTI: self)
+    }
+    
     func printConvertedMeokBTI() {
         print(self.meokBTI)
     }
@@ -262,5 +266,46 @@ enum MeokBTI: String, Codable {
     
     func calculateResponseToMeokBTI(responses: [Answer]) {
         
+    }
+}
+
+struct Harmony {
+    let meokBTI: MeokBTI
+    
+    var harmonies: [MeokBTI] {
+        switch meokBTI {
+        case .EMGI:
+            return [.EMBI, .HMGI, .EMGC, .ELGI]
+        case .EMBI:
+            <#code#>
+        case .HMGI:
+            <#code#>
+        case .HMBI:
+            <#code#>
+        case .EMGC:
+            <#code#>
+        case .EMBC:
+            <#code#>
+        case .HMGC:
+            <#code#>
+        case .HMBC:
+            <#code#>
+        case .ELGI:
+            <#code#>
+        case .ELBI:
+            <#code#>
+        case .HLGI:
+            <#code#>
+        case .HLBI:
+            <#code#>
+        case .ELGC:
+            <#code#>
+        case .ELBC:
+            <#code#>
+        case .HLGC:
+            <#code#>
+        case .HLBC:
+            <#code#>
+        }
     }
 }
