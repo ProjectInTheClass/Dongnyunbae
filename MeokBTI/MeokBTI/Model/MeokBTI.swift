@@ -291,21 +291,21 @@ struct Harmony {
         case .HMBC:
             <#code#>
         case .ELGI:
-            <#code#>
+            return [.HLGI, .ELGC, .EMGI, .ELBI]
         case .ELBI:
-            <#code#>
+            return [.ELBC, .HLBI, .EMBI, .ELGI]
         case .HLGI:
             return [.ELGI, .HMGI, .HLBI, .HLGC]
         case .HLBI:
-            <#code#>
+            return [.HLBC, .ELBI, .HMGI, .HLGI]
         case .ELGC:
             <#code#>
         case .ELBC:
-            <#code#>
+            return [.HLBC, .ELBI, .EMBC, .ELGC]
         case .HLGC:
-            <#code#>
+            return [.HLGI, .ELGC, .HMGC, .HLBC]
         case .HLBC:
-            <#code#>
+            return [.HLBI, .HLGC, .ELBC]
         }
     }
 }
