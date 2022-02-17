@@ -268,7 +268,7 @@ enum MeokBTI: String, Codable {
         
     }
 }
-
+//MARK: 어울리는 특성
 struct Harmony {
     let meokBTI: MeokBTI
     
@@ -277,15 +277,15 @@ struct Harmony {
         case .EMGI:
             return [.EMBI, .HMGI, .EMGC, .ELGI]
         case .EMBI:
-            <#code#>
+            return [.HMBI, .ELBI, .EMGI, .EMBC]
         case .HMGI:
             <#code#>
         case .HMBI:
             <#code#>
         case .EMGC:
-            <#code#>
+            return [.HMGC, .ELGC, .EMBC, .EMGI]
         case .EMBC:
-            <#code#>
+            return [.HMBC, .ELBC, .EMGC, .EMBI]
         case .HMGC:
             <#code#>
         case .HMBC:
@@ -295,7 +295,7 @@ struct Harmony {
         case .ELBI:
             <#code#>
         case .HLGI:
-            <#code#>
+            return [.ELGI, .HMGI, .HLBI, .HLGC]
         case .HLBI:
             <#code#>
         case .ELGC:
