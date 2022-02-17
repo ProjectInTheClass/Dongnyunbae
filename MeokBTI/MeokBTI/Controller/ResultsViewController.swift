@@ -27,22 +27,15 @@ class ResultsViewController: UIViewController {
         
         navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
+        
         meokBTI = MeokBTI(rawValue: calculatePersonalityResult())
-        print("Look! meokBTI :",meokBTI)
         resultTableView = self.children[0] as? ResultTableViewController
         
         if User.loadFromFile().meokBTI == nil {
             user.meokBTI = meokBTI
             User.saveToFile(user: user)
-            print("save MeokBTI success")
-        } else {
-            print("Stored MeokBTI :",User.loadFromFile().meokBTI)
-            print("still stored ID :",User.loadFromFile().id)
         }
-        
-        // Do any additional setup after loading the view.
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         setContentAll()
@@ -106,6 +99,7 @@ class ResultsViewController: UIViewController {
     
     func getOneLineDescriptionsContents() -> [String] {
         let content = responses.map { $0.oneLineDescriptions.randomElement()! }
+        
         return content
     }
     
@@ -115,12 +109,7 @@ class ResultsViewController: UIViewController {
         return content.joined(separator: "\n\n")
     }
     
-    @IBAction func shareImageTap(_ sender: UITapGestureRecognizer) {
-        
-    }
-    
-    
-    @IBAction func shareResultKakaotalk(_ sender: Any) {
+    @IBAction func shareToKakaotalk(_ sender: Any) {
         print("Kakaotalk shared!")
         
         var meokBTIImageUrl: URL?
@@ -199,7 +188,7 @@ class ResultsViewController: UIViewController {
 
     }
     
-    @IBAction func shareResultInstagramstory(_ sender: Any) {
+    @IBAction func shareToInstagramstory(_ sender: Any) {
         print("Instagram shared!")
         
         if let storyShareURL = URL(string: "instagram-stories://share") {
@@ -225,17 +214,9 @@ class ResultsViewController: UIViewController {
         }
     }
     
-    @IBAction func shareResultOthers(_ sender: Any) {
+    @IBAction func shareToOthers(_ sender: Any) {
         print("share!")
         // [x] 결과화면 전체 캡처후 이미지 변환
-//        var resultToShare = UIImage()
-//        if let text = textField.text {
-//            objectsToShare.append(text)
-//            print("[INFO] textField's Text : ", text)
-//        }
-        
-//        resultToShare = UIImage()
-//        resultToShare = resultTableView.view.transformToImage()!
         let resultToShare = resultTableView.imageToShare
         let activityVC = UIActivityViewController(activityItems: [resultToShare], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view

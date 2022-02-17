@@ -42,7 +42,7 @@ class User: Codable {
         User.saveToFile(user: reset)
     }
     
-    func printOutData() {
+    func printUserFavoritesData() {
         print("id: \(self.id), meokBTI: \(self.meokBTI), favoriteRestaurants: \(self.favoriteRestaurants)")
     }
 }
