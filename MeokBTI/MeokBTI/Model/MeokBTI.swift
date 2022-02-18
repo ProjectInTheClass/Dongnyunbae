@@ -279,17 +279,17 @@ struct Harmony {
         case .EMBI:
             return [.HMBI, .ELBI, .EMGI, .EMBC]
         case .HMGI:
-            <#code#>
+            return [MeokBTI.ELBI]
         case .HMBI:
-            <#code#>
+            return [MeokBTI.ELBI]
         case .EMGC:
             return [.HMGC, .ELGC, .EMBC, .EMGI]
         case .EMBC:
             return [.HMBC, .ELBC, .EMGC, .EMBI]
         case .HMGC:
-            <#code#>
+            return [MeokBTI.ELBI]
         case .HMBC:
-            <#code#>
+            return [MeokBTI.ELBI]
         case .ELGI:
             return [.HLGI, .ELGC, .EMGI, .ELBI]
         case .ELBI:
@@ -299,7 +299,7 @@ struct Harmony {
         case .HLBI:
             return [.HLBC, .ELBI, .HMGI, .HLGI]
         case .ELGC:
-            <#code#>
+            return [MeokBTI.ELBI]
         case .ELBC:
             return [.HLBC, .ELBI, .EMBC, .ELGC]
         case .HLGC:

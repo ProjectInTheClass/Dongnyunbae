@@ -40,6 +40,7 @@
 		0AC4A7A7BBFF823173D74377 /* Pods_MeokBTI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1797757F7D982904A3D40CFA /* Pods_MeokBTI.framework */; };
 		349E4D2127A2E040002E0109 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */; };
 		34AB56D427B4EE1E001DF408 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB56D327B4EE1E001DF408 /* Answer.swift */; };
+		34D8CF9F27BEA3900032A66B /* HarmonyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */; };
 		EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		1797757F7D982904A3D40CFA /* Pods_MeokBTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeokBTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		34AB56D327B4EE1E001DF408 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HarmonyCollectionViewCell.swift; path = MeokBTI/HarmonyCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 		E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
 		EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		0148CF1C26C8E1A20035862A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */,
 				01ED1D6626FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift in Sources */,
 				013C65C226BA4FB700895567 /* MapViewController.swift in Sources */,
+				34D8CF9F27BEA3900032A66B /* HarmonyCollectionViewCell.swift in Sources */,
 				013C65C426BBD22000895567 /* Restaurant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

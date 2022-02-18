@@ -17,11 +17,15 @@ class IntroductionViewController: UIViewController {
         super.viewDidLoad()
 
 //        hideTabBar(when: isFirstStart())
-        
         testStartButton.layer.cornerRadius = 5
         testStartButton.flash()
 //        testStartButton.shake()
     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        testStartButton.flash()
     }
     
     func isFirstStart() -> Bool {

@@ -24,7 +24,7 @@ class ResultsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("I'M !!!! ResultsViewController")
         navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
         
@@ -47,6 +47,8 @@ class ResultsViewController: UIViewController {
         resultTableView.shortDesriptionLabel.text = "\"\(meokBTI.shortDescription)\""
         resultTableView.oneLineDescriptions.text = "\(getPrettyOneLineDescriptionsContent())"
         resultTableView.descriptionLabel.text = meokBTI.longDescription
+        resultTableView.userMeokBTI = user.meokBTI
+        resultTableView.harmonyCollectionView.reloadData()
     }
     
     func calculatePersonalityResult() -> String {
@@ -103,8 +105,12 @@ class ResultsViewController: UIViewController {
         return content
     }
     
+    func getShuffledOneLineDescriptionsContents() -> [String] {
+        return getOneLineDescriptionsContents().shuffled()
+    }
+    
     func getPrettyOneLineDescriptionsContent() -> String {
-        let content = getOneLineDescriptionsContents().map { "✏︎ \($0)" }
+        let content = getShuffledOneLineDescriptionsContents().map { "✏︎ \($0)" }
         
         return content.joined(separator: "\n\n")
     }

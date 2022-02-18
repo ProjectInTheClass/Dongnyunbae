@@ -7,19 +7,23 @@
 
 import UIKit
 
-class ResultTableViewController: UITableViewController {
+class ResultTableViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+    
 
     @IBOutlet weak var definitionLabel: UILabel!
     @IBOutlet weak var meokBTIImageView: UIImageView!
     @IBOutlet weak var shortDesriptionLabel: UILabel!
     @IBOutlet weak var oneLineDescriptions: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var harmonyCollectionView: UICollectionView!
     
     var imageToShare = UIImage()
+    var userMeokBTI: MeokBTI?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("I'M ResultTableViewController")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -36,6 +40,33 @@ class ResultTableViewController: UITableViewController {
         
     }
 
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let harmonies = userMeokBTI?.harmonies.harmonies.count else { return 0 }
+        print("harmonies: \(harmonies)")
+        print("calculate collectionviewCell count")
+        return harmonies
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("cellForItemAt")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "harmonyCell", for: indexPath) as? HarmonyCollectionViewCell else { return UICollectionViewCell() }
+        
+        if let harmonies = userMeokBTI?.harmonies.harmonies {
+            cell.meokBTIImage.image = UIImage(named: "\(harmonies[indexPath.row].meokBTI).png")
+            cell.shortDefinition.text = "\(harmonies[indexPath.row].shortDefinition)"
+            print("make cell success!")
+        }
+        
+        return cell
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 10
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 120, height: 120)
+//    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
