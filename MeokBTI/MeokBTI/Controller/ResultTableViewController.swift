@@ -22,14 +22,6 @@ class ResultTableViewController: UITableViewController, UICollectionViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("I'M ResultTableViewController")
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -42,24 +34,22 @@ class ResultTableViewController: UITableViewController, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let harmonies = userMeokBTI?.harmonies.harmonies.count else { return 0 }
-        print("harmonies: \(harmonies)")
-        print("calculate collectionviewCell count")
+        
         return harmonies
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("cellForItemAt")
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "harmonyCell", for: indexPath) as? HarmonyCollectionViewCell else { return UICollectionViewCell() }
         
         if let harmonies = userMeokBTI?.harmonies.harmonies {
             cell.meokBTIImage.image = UIImage(named: "\(harmonies[indexPath.row].meokBTI).png")
             cell.shortDefinition.text = "\(harmonies[indexPath.row].shortDefinition)"
-            print("make cell success!")
         }
         
         return cell
     }
-    
+
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
 //        return 10
 //    }

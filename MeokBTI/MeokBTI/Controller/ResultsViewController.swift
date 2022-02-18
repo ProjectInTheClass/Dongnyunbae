@@ -47,7 +47,7 @@ class ResultsViewController: UIViewController {
         resultTableView.shortDesriptionLabel.text = "\"\(meokBTI.shortDescription)\""
         resultTableView.oneLineDescriptions.text = "\(getPrettyOneLineDescriptionsContent())"
         resultTableView.descriptionLabel.text = meokBTI.longDescription
-        resultTableView.userMeokBTI = user.meokBTI
+        resultTableView.userMeokBTI = meokBTI
         resultTableView.harmonyCollectionView.reloadData()
     }
     
@@ -127,23 +127,19 @@ class ResultsViewController: UIViewController {
                 print(error)
             }
             else {
-                print("imageUpload() success.")
-
-
+//                print("imageUpload() success.")
                 if let imageUploadResult = imageUploadResult {
                     meokBTIImageUrl = imageUploadResult.infos.original.url
 
-                    print(meokBTIImageUrl)
-
+//                    print(meokBTIImageUrl)
                 }
 
 
                 let link = Link(webUrl: URL(string:"https://developers.kakao.com"),
-                                mobileWebUrl: URL(string:"https://developers.kakao.com"))
-                let appLink = Link(androidExecutionParams: ["key1": "value1", "key2": "value2"],
-                                    iosExecutionParams: ["key1": "value1", "key2": "value2"])
+                                mobileWebUrl: URL(string:"https://apps.apple.com/us/app/stemo/id1555259329"))
+                let appLink = Link(iosExecutionParams: ["key1": "value1", "key2": "value2"])
 
-                let button = Button(title: "앱으로 보기", link: appLink)
+                let button = Button(title: "앱으로 보기(iOS)", link: appLink)
                 let content = Content(title: "먹BTI",
                                         imageUrl: meokBTIImageUrl!,
                                         description: "당신의 식당취향도 알아보세요!",
