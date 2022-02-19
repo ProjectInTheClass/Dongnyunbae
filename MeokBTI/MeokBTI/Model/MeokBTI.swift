@@ -159,7 +159,7 @@ enum MeokBTI: String, Codable {
             return "이 집은 왜이리 음식이 늦게 나와"
             
         case .HLGI :
-            return "나 아직 더 먹을 수 있어!!"
+            return "ㅇr 감성øłl 취ㅎŁㄷr~!!"
             
         case .HLBI :
             return "에이 저거 사 먹기에는 뭔가 아까운데.."
