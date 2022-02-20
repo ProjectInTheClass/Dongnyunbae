@@ -45,6 +45,7 @@
 		8ECB5CCC27C2335300A5F01A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCB27C2335300A5F01A /* ViewController.swift */; };
 		8ECB5CCE27C2338500A5F01A /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */; };
 		8ECB5CD027C233A900A5F01A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCF27C233A900A5F01A /* HeaderView.swift */; };
+		8ECB5CD427C2623C00A5F01A /* collect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CD327C2623C00A5F01A /* collect.swift */; };
 		EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		8ECB5CCB27C2335300A5F01A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		8ECB5CCF27C233A900A5F01A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		8ECB5CD327C2623C00A5F01A /* collect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collect.swift; sourceTree = "<group>"; };
 		E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
 		EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +172,7 @@
 				0148CF1C26C8E1A20035862A /* View */,
 				013753F426CD410C002F3ABE /* Controller */,
 				010F916D26CE8CDA00437262 /* MeokBTITest.storyboard */,
+				8ECB5CD327C2623C00A5F01A /* collect.swift */,
 				8ECB5CCB27C2335300A5F01A /* ViewController.swift */,
 				8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */,
 				8ECB5CCF27C233A900A5F01A /* HeaderView.swift */,
@@ -433,6 +436,7 @@
 				017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */,
 				8ECB5CCA27C22FE300A5F01A /* MainTabBarController.swift in Sources */,
 				EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */,
+				8ECB5CD427C2623C00A5F01A /* collect.swift in Sources */,
 				0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */,
 				013753F626CD41AC002F3ABE /* MeokBTITabBarController.swift in Sources */,
 				0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */,
