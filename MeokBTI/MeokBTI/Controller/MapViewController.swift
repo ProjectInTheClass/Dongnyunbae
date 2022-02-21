@@ -238,8 +238,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         return infoWindow
     }
     
+//    let center = CLLocationCoordinate2D(latitude: MapViewController.currentLocation!.coordinate.latitude, longitude: MapViewController.currentLocation!.coordinate.longitude)
+    //CLLocation(latitude: 35.17353, longitude: 128.136435)
     func loadMapView() {
-        MapViewController.currentLocation = locationManager.location ?? CLLocation(latitude: 35.17353, longitude: 128.136435)
+        MapViewController.currentLocation = locationManager.location ?? CLLocation(latitude: MapViewController.currentLocation!.coordinate.latitude, longitude: MapViewController.currentLocation!.coordinate.longitude)
         if let defaultLocation = MapViewController.currentLocation {
             currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
                                                   longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
