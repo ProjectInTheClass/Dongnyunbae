@@ -12,15 +12,14 @@ import TMapSDK
 import FirebaseDatabase
 import KakaoSDKCommon
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate, UISearchBarDelegate {
     
     // 검색창 코드
-    var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
 
     // 위치 관련 변수들
     var locationManager: CLLocationManager!
-    var currentLocation: CLLocation?
+    static var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
     var placesClient: GMSPlacesClient!
     var preciseLocationZoomLevel: Float = 15.0
@@ -84,10 +83,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
         // 맵 구현
         loadMapView()
-        guard let currentLocation = currentLocation else { return }
+        guard let currentLocation = MapViewController.currentLocation else { return }
         generateAroundMarker(bothLatLng: currentLocation.coordinate, count: 30)
         
-        // 검색창 구현 
+        // 검색창 구현
+        //
         searchBarImplement()
         
         // 선택요청뷰와 지역재검색뷰 스택뷰 구현
@@ -111,15 +111,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         
     }
     
+// MARK: 검색창 구현부
     func searchBarImplement() {
         // 검색창 구현
-        resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self
-        
-        let filter = GMSAutocompleteFilter()
-        filter.country = "kr"
-        resultsViewController?.autocompleteFilter = filter
-        
+        let resultsViewController = SearchResultsViewController()
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
 
@@ -140,6 +135,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         definesPresentationContext = true
     }
     
+    // 사용자가 검색어를 변경했다는 것을 델리게이트에 알림
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("User's typing something")
+    }
+    
+// MARK: 지역 재검색
     func refreshButtonImplement() {
 //        self.view.addSubview(refreshButton)
         
@@ -200,13 +201,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         case .restricted, .notDetermined:
             // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
             print("GPS 권한 설정되지 않음")
-            self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
             getLocationUsagePermission()
             
         case .denied:
             // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
             print("GPS 권한 요청 거부됨")
-            self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
             getLocationUsagePermission()
             
         default:
@@ -224,8 +225,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func loadMapView() {
-        currentLocation = locationManager.location ?? CLLocation(latitude: 35.17353, longitude: 128.136435)
-        if let defaultLocation = currentLocation {
+        MapViewController.currentLocation = locationManager.location ?? CLLocation(latitude: 35.17353, longitude: 128.136435)
+        if let defaultLocation = MapViewController.currentLocation {
             currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
                                                   longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
         }
@@ -360,7 +361,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             if let result = result {
                 DispatchQueue.main.async {
                     // Realtimebase(Firebase)에서 child에 들어가지 못하는 문자까지 걸러냄
-                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}     
+                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}
                     
                     for poi in withoutParkingResult {
                         let marker = GMSMarker(position: poi.coordinate!)
