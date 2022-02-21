@@ -35,7 +35,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         var content = cell.defaultContentConfiguration()
         content.text = tempResultData[indexPath.row].name
         cell.contentConfiguration = content
-        print("make cell!")
+        print("Make cell!")
         
         return cell
     }
@@ -56,22 +56,23 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     func searchPoi(of: String) {
         
     }
-    
-    // 검색버튼이 클릭되었을 때 델리게이트에 알림
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-    }
 
     func updateSearchResults(for searchController: UISearchController) {
-        print("update search!")
+        print("Update search!")
         let pathData = TMapPathData()
         
+        // 사용자 입력
+        guard let userSearchKeyword = searchController.searchBar.text else { return }
+        
+        // 사용자 위치
         let center = CLLocationCoordinate2D(latitude: MapViewController.currentLocation!.coordinate.latitude, longitude: MapViewController.currentLocation!.coordinate.longitude)
-
-        pathData.requestFindAroundKeywordPOI(center, keywordName: "치킨", radius: 1, count: 50, completion: { (result, error) -> Void in
+        
+        // keywordName에 사용자 입력
+        pathData.requestFindAroundKeywordPOI(center, keywordName: userSearchKeyword, radius: 10, count: 50, completion: { (result, error) -> Void in
             if let result = result {
                 DispatchQueue.main.async {
                     self.tempResultData = result
+                    self.searchResultsTableView?.reloadData()
                 }
             }
         } )

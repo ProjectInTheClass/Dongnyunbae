@@ -17,6 +17,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // 검색창 코드
     var searchController: UISearchController?
 
+    // 검색 키워드
+    static var userSearchKeyword: String?
+    
     // 위치 관련 변수들
     var locationManager: CLLocationManager!
     static var currentLocation: CLLocation?
@@ -126,6 +129,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             searchView.searchTextField.backgroundColor = .white
             searchControllerSubView.addSubview(searchView)
             searchView.sizeToFit()
+            searchView.delegate = self
         }
    
         view.addSubview(searchControllerSubView)
@@ -138,6 +142,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // 사용자가 검색어를 변경했다는 것을 델리게이트에 알림
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("User's typing something")
+    }
+    // 검색버튼이 클릭되었을 때 델리게이트에 알림
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("SearchButton clicked")
+    }
+    // 사용자가 검색어 입력을 마쳤을 때 알림
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("Typing ended")
+        MapViewController.userSearchKeyword = searchBar.text
+        print(MapViewController.userSearchKeyword)
     }
     
 // MARK: 지역 재검색
@@ -727,7 +741,3 @@ extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
   }
     
 }
-
-
-
-
