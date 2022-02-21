@@ -11,9 +11,11 @@ private let reuseIdentifier = "Cell"
 
 class collect: UICollectionViewController {
 
+    static let user = User.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
