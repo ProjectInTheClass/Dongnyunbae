@@ -38,6 +38,7 @@
 		01ED1D6927004C5300CB8FB3 /* DetailInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ED1D6827004C5300CB8FB3 /* DetailInfoWindow.swift */; };
 		01ED1D6A270062DE00CB8FB3 /* DetailInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01ED1D6727004BB200CB8FB3 /* DetailInfoWindowView.xib */; };
 		0AC4A7A7BBFF823173D74377 /* Pods_MeokBTI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1797757F7D982904A3D40CFA /* Pods_MeokBTI.framework */; };
+		348B723427C3FD7600FC524D /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348B723327C3FD7600FC524D /* APIKeys.swift */; };
 		349E4D2127A2E040002E0109 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */; };
 		34AB56D427B4EE1E001DF408 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB56D327B4EE1E001DF408 /* Answer.swift */; };
 		34D8CF9F27BEA3900032A66B /* HarmonyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */; };
@@ -107,6 +108,7 @@
 		01ED1D6727004BB200CB8FB3 /* DetailInfoWindowView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailInfoWindowView.xib; sourceTree = "<group>"; };
 		01ED1D6827004C5300CB8FB3 /* DetailInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoWindow.swift; sourceTree = "<group>"; };
 		1797757F7D982904A3D40CFA /* Pods_MeokBTI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeokBTI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		348B723327C3FD7600FC524D /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		34AB56D327B4EE1E001DF408 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HarmonyCollectionViewCell.swift; path = MeokBTI/HarmonyCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -206,6 +208,7 @@
 				0129338726B29B93006F22FA /* Question.swift */,
 				34AB56D327B4EE1E001DF408 /* Answer.swift */,
 				013C65C326BBD22000895567 /* Restaurant.swift */,
+				348B723327C3FD7600FC524D /* APIKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 			files = (
 				010F916C26CE8B2A00437262 /* ResultTableViewController.swift in Sources */,
 				017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */,
+				348B723427C3FD7600FC524D /* APIKeys.swift in Sources */,
 				EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */,
 				8ECB5CD427C2623C00A5F01A /* collect.swift in Sources */,
 				0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */,
