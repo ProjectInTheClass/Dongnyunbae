@@ -34,6 +34,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         
         var content = cell.defaultContentConfiguration()
         content.text = tempResultData[indexPath.row].name
+        
         cell.contentConfiguration = content
         print("Make cell!")
         
@@ -77,4 +78,18 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
             }
         } )
     }
+    
+    // 셀이 터치 되었을 때 식당으로 이동시켜주는 함수
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let indexpath = tableView.(<#T##tableView: UITableView##UITableView#>, didSelectRowAt: <#T##IndexPath#>)
+//    }
+//
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+//        let place: T
+//        mapView.animate(toLocation: place.coordinate)
+        print("Cell touched!")
+    }
+    
 }

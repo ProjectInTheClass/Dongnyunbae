@@ -31,6 +31,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="4L7-pk-xUq"/>
+                    <navigationItem key="navigationItem" id="b5c-Ax-jwb"/>
                     <connections>
                         <segue destination="6Jx-HQ-7aC" kind="show" identifier="DetailRestaurantInfo" id="m6P-ug-LaL"/>
                     </connections>
