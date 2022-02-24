@@ -20,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="137" y="321"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Map-->
         <scene sceneID="X2R-uz-DEf">
             <objects>
                 <viewController id="qYV-Fz-46I" customClass="MapViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,7 @@
                         <viewLayoutGuide key="safeArea" id="6SR-yg-nLe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="mappin.circle" catalog="system" id="4L7-pk-xUq"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="mappin.circle" catalog="system" id="4L7-pk-xUq"/>
                     <connections>
                         <segue destination="6Jx-HQ-7aC" kind="show" identifier="DetailRestaurantInfo" id="m6P-ug-LaL"/>
                     </connections>

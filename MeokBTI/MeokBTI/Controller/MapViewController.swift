@@ -245,12 +245,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         print("Infowindow!")
     }
     
-    fileprivate func setPreviousMarkerRed() {
-        if !selectedMarkers.isEmpty {
-            setMarkerColor(marker: selectedMarkers[0], with: UIColor.red)
-            _ = selectedMarkers.popLast()
-        }
-    }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         // MARK: #ISSUE1 기존의 infowindow가 화면뒤로 겹쳐서 생성됨
@@ -263,20 +257,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        // MARK: #ISSUE1 해결
-//        print("showInfoWindow")
+        // MARK: #ISSUE1 해결 - 겹치는 이미지 삭제
         return UIView()
     }
     
     // 어느곳을 터치하던 좌표만을 보여주는 함수
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-//        print("coordinate \(coordinate)")
         infoWindow.removeFromSuperview()
-        if let marker = self.mapView.selectedMarker {
-            setMarkerColor(marker: marker, with: UIColor.red)
-        }
-        
-//        marker!.icon = GMSMarker.markerImage(with: UIColor.red)
+        setPreviousMarkerRed()
     }
     
     // [x] 지도 이동시에도 그 마커위에 그대로 남겨 놓게하기.
@@ -350,9 +338,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         getShowingRestaurantPhoneNO()
     }
     
-    func setMarkerColor(marker: GMSMarker, with color: UIColor) {
-        marker.icon = GMSMarker.markerImage(with: color)
-    }
     
     func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
         // [] 좋아요 누른 식당은 다른색 마커 띄우기
@@ -364,7 +349,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             if let result = result {
                 DispatchQueue.main.async {
                     // Realtimebase(Firebase)에서 child에 들어가지 못하는 문자까지 걸러냄
-                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}     
+                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}
                     
                     for poi in withoutParkingResult {
                         let marker = GMSMarker(position: poi.coordinate!)
@@ -380,6 +365,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 }
             }
         })
+    }
+    
+    func setMarkerColor(marker: GMSMarker, with color: UIColor) {
+        marker.icon = GMSMarker.markerImage(with: color)
+    }
+    
+    fileprivate func setPreviousMarkerRed() {
+        if !selectedMarkers.isEmpty {
+            setMarkerColor(marker: selectedMarkers[0], with: UIColor.red)
+            _ = selectedMarkers.popLast()
+        }
     }
     
     func saveTempPoiItem(item: TMapPoiItem) {
@@ -403,7 +399,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         default:
             generateAroundMarker(bothLatLng: cameraPosition.target,count: 10)
         }
-        
     }
     
     func fetchPlaceID(restaurantName name: String, completion: @escaping (String?) -> Void) {
@@ -434,7 +429,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             }
         }
         task.resume()
-       
     }
     
     func fetchRestaurantPhoto(placeID: String) {
