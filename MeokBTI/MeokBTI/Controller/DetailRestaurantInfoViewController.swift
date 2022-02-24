@@ -11,17 +11,16 @@ import GooglePlaces
 class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var detailInfoTableView: UITableView!
-    let dismissButton = UIButton()
-    let paddingView = UILabel()
-    let horizontalStackView = UIStackView()
-    let verticalStackView = UIStackView()
+    var dismissButton: UIButton!
+    var paddingView: UILabel!
+    var verticalStackView: UIStackView!
     
     let user = User.shared
     
     var previousInfoWindow = MapMarkerWindow()
     var detailInfoWindow = DetailInfoWindow()
     var likeButtonTapped = Bool()
-    var showingRestaurant: Restaurant!
+    var shownRestaurant: Restaurant!
     
     var top3MeokBTI = NSDictionary()
     
@@ -30,17 +29,18 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeVerticalStackView()
-        initializeDismissButton()
-        initializeDetailInfoWindow()
-        initializePaddingView()
+        configureUI()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // TODO: 마커를 디테일뷰 위로 갈 수 있게끔 디테일뷰 들어올때 카메라 조정
-        self.view.frame.origin.y += 300
+        let deviceHeight = view.frame.height
+        let se1Height: CGFloat = 528.0
+        if deviceHeight > se1Height {
+            self.view.frame.origin.y += deviceHeight * 0.4
+        }
         
     }
     
@@ -49,24 +49,30 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         return detailInfoWindow
     }
     
-    func initializeHorizontalStackView() {
-        horizontalStackView.axis = .horizontal
+    func configureUI() {
+        makeVerticalStackView()
+        makeDismissButton()
+        configureDetailInfoWindow()
+        makePaddingView()
     }
     
-    func initializeVerticalStackView() {
+    func makeVerticalStackView() {
+        verticalStackView = UIStackView()
         verticalStackView.axis = .vertical
     }
     
-    func initializeDismissButton() {
+    func makeDismissButton() {
+        dismissButton = UIButton()
         dismissButton.addTarget(self, action: #selector(dismissDetailView), for: .touchUpInside)
         dismissButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
     }
     
-    func initializePaddingView() {
+    func makePaddingView() {
+        paddingView = UILabel()
         paddingView.text = "\n\n\n"
     }
     
-    func initializeDetailInfoWindow() {
+    func configureDetailInfoWindow() {
         self.detailInfoWindow = loadNiB()
         detailInfoWindow.initCollectionView()
         

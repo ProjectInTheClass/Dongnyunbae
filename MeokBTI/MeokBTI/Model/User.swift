@@ -17,6 +17,7 @@ class User: Codable {
     var id: String?
     var meokBTI: MeokBTI? = nil
     var favoriteRestaurants: [Restaurant] = []
+    var hasSelectedFavorites: Bool = false
 //    var testCompletion: Bool = false
     
     // 한번 더 초기화되는 것 방지
