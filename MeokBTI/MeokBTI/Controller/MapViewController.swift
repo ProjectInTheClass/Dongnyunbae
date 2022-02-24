@@ -30,6 +30,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     var loadedPhotos = [UIImage]()
     var isLikedRestaurant: Bool!
+    var selectedMarkers: [GMSMarker] = []
     
     // 식당 5개 선택 관련
     var isTested = false // meokbti 테스트 했는지
@@ -244,13 +245,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         print("Infowindow!")
     }
     
+    fileprivate func setPreviousMarkerRed() {
+        if !selectedMarkers.isEmpty {
+            setMarkerColor(marker: selectedMarkers[0], with: UIColor.red)
+            _ = selectedMarkers.popLast()
+        }
+    }
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         // MARK: #ISSUE1 기존의 infowindow가 화면뒤로 겹쳐서 생성됨
         // detailView가 사라지고 나서도 기존의 infowindow가 보임
+        setPreviousMarkerRed()
         showInfoWindow(marker: marker, basisOfMap: .tmap)
-        self.mapView.selectedMarker = marker
-        print(mapView.selectedMarker)
-        print("tapped marker")
+        setMarkerColor(marker: marker, with: UIColor.green)
+        selectedMarkers.append(marker)
         return false
     }
     
@@ -264,18 +272,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
 //        print("coordinate \(coordinate)")
         infoWindow.removeFromSuperview()
-        let marker = self.mapView.selectedMarker
-        print(mapView.selectedMarker)
+        if let marker = self.mapView.selectedMarker {
+            setMarkerColor(marker: marker, with: UIColor.red)
+        }
+        
 //        marker!.icon = GMSMarker.markerImage(with: UIColor.red)
     }
     
     // [x] 지도 이동시에도 그 마커위에 그대로 남겨 놓게하기.
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         if (locationMarker != nil) {
-            guard let location = locationMarker?.position else {
-                print("locationMarker is nil")
-                return
-            }
+            guard let location = locationMarker?.position else { return }
             infoWindow.center = mapView.projection.point(for: location)
             infoWindow.center.y = infoWindow.center.y - 110
         }
@@ -284,13 +291,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         print("zoomLevel : ",mapView.camera.zoom)
     }
-    
-    // 해당지점 탭시 PlaceID를 알 수 있는 함수 but, 한국은 안됌!
-//    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
-//
-//        print("here is the PlaceID: ",placeID)
-//
-//    }
     
     func initializeInfoWindow(marker: GMSMarker) {
         // infoWindow 초기화
@@ -344,10 +344,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 
             }
         }
-        marker.icon = GMSMarker.markerImage(with: UIColor.green)
+        
         // DetailView에 뿌릴 정보지만 속도가 느려 미리 정보를 얻어옴.
         getShowingRestaurantAddress()
         getShowingRestaurantPhoneNO()
+    }
+    
+    func setMarkerColor(marker: GMSMarker, with color: UIColor) {
+        marker.icon = GMSMarker.markerImage(with: color)
     }
     
     func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
