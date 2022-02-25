@@ -12,14 +12,14 @@ import TMapSDK
 import FirebaseDatabase
 import KakaoSDKCommon
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, UISearchBarDelegate {
     
     // 검색창 코드
     var searchController: UISearchController?
 
     // 위치 관련 변수들
     var locationManager: CLLocationManager!
-    var currentLocation: CLLocation?
+    static var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
     var placesClient: GMSPlacesClient!
     var preciseLocationZoomLevel: Float = 15.0
@@ -30,6 +30,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var loadedPhotos = [UIImage]()
     var isLikedRestaurant: Bool!
     var selectedMarkers: [GMSMarker] = []
+    static var handleMapVC = MapViewController()
     
     // 식당 5개 선택 관련
     var isTested = false // meokbti 테스트 했는지
@@ -70,8 +71,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     // likeButton 관련
     var meokBTILikeCount = Int()
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Stored UserID : ", User.loadFromFile().id ?? "Nothing load")
@@ -84,10 +84,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         getLocationUsagePermission()
         
         configureUI()
-        guard let currentLocation = currentLocation else { return }
+        guard let currentLocation = MapViewController.currentLocation else { return }
         generateAroundMarker(bothLatLng: currentLocation.coordinate, count: 30)
-        
-        // Do any additional setup after loading the view.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -102,7 +100,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         detailVC.addressAndPhoneNumber = addressAndPhoneNumber
         
     }
-    
+
     fileprivate func configureUI() {
         // 지도 구현
         configureMapView()
@@ -114,7 +112,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         configureRefreshButton()
         mergeSelectLabelAndRefreshButton()
     }
-    
+
     func configureSearchBar() {
         let resultsViewController = SearchResultsViewController()
         searchController = UISearchController(searchResultsController: resultsViewController)
@@ -128,6 +126,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             searchView.searchTextField.backgroundColor = .white
             searchControllerSubView.addSubview(searchView)
             searchView.sizeToFit()
+            searchView.delegate = self
         }
    
         view.addSubview(searchControllerSubView)
@@ -190,8 +189,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func configureMapView() {
-        currentLocation = locationManager.location ?? CLLocation(latitude: 36.343805, longitude: 127.417154)
-        if let defaultLocation = currentLocation {
+        MapViewController.currentLocation = locationManager.location ?? CLLocation(latitude: 36.343805, longitude: 127.417154)
+        if let defaultLocation = MapViewController.currentLocation {
             currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
                                                      longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
         }
@@ -201,6 +200,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         mapView.settings.myLocationButton = true
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
+        MapViewController.handleMapVC.mapView = mapView
         self.view.addSubview(mapView)
     }
     
@@ -223,13 +223,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         case .restricted, .notDetermined:
             // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
             print("GPS 권한 설정되지 않음")
-            self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
             getLocationUsagePermission()
             
         case .denied:
             // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
             print("GPS 권한 요청 거부됨")
-            self.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
             getLocationUsagePermission()
             
         default:
@@ -365,7 +365,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         getPhoneNO(of: shownRestaurant!)
     }
     
-    
+//MARK: 식당만 뜨게하는
     func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
         // categoryName: 카테고리 5개까지 가능 ;로 구분, radius: 단위 1km
         pathData.requestFindNameAroundPOI(currentPosition, categoryName: "식당", radius: 20, count: count, completion: { (result, error) -> Void in
@@ -378,13 +378,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                     for poi in withoutParkingResult {
                         let marker = GMSMarker(position: poi.coordinate!)
                         marker.title = poi.name
-//                        print("success input title: ",marker.title)
                         marker.snippet = poi.address
-//                        print("success input snippet: ",marker.snippet)
                         marker.map = self.mapView
                         
                         self.saveTempPoiItem(item: poi)
-                                                
                     }
                 }
             }
@@ -446,7 +443,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                let result = try? decoder.decode(SearchPlaceIDResult.self, from: data),
                !(result.restaurant.isEmpty) {
                 completion(result.restaurant[0].placeID)
-//                print(result.restaurant[0].placeID)
             } else {
                 print("뭔가 잘못돼쓰")
                 completion(nil)
@@ -469,7 +465,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             
             if let place = place, !(place.photos?.isEmpty ?? true) {
                 // Get the metadata for the first photo in the place photo metadata list
-                
                 var photoMetadata: [GMSPlacePhotoMetadata] = []
                 
                 if place.photos!.count > 5 {
@@ -477,8 +472,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 } else {
                     photoMetadata = place.photos!
                 }
-                
-                
                 // Call loadPlacePhoto to display the bitmap and attribution.
                 for metaData in photoMetadata {
                     self.placesClient?.loadPlacePhoto(metaData, callback: { (photo, error) -> Void in
@@ -488,27 +481,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                             return
                         } else {
                             // Display the first image and its attributions.
-                            //                                                    self.restaurantPhotoView?.image = photo;
                             print("Load Photo Success :",type(of: photo))
-                            
-                            
                             DispatchQueue.main.async {
                                 if let photo = photo {
                                     self.loadedPhotos.append(photo)
                                     self.infoWindow.spotPhotos = self.loadedPhotos
-                                    //                                                                self.infoWindow.photoCollectionView.reloadData()
                                 }
                             }
-                            
-                            
-                            
-                            
                             print("photos append after :",self.loadedPhotos)
-                            //self.lblText?.attributedText = photoMetadata.attributions;
                         }
                     })
                 }
-                
                 print("after load photo: ",self.loadedPhotos)
                 
             }
@@ -546,8 +529,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         fetchMeokBTIRankingFromFirebase { top3 in
             self.meokBTIRanking = ""
             for (idx, meokBTI) in top3.enumerated() {
-                
-                //                guard let meokBTI = meokBTI.key else { return }
                 var medal: String
                 
                 switch idx {
@@ -700,7 +681,3 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         return index
     }
 }
-
-
-
-
