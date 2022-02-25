@@ -20,7 +20,7 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     var previousInfoWindow = MapMarkerWindow()
     var detailInfoWindow = DetailInfoWindow()
     var likeButtonTapped = Bool()
-    var shownRestaurant: Restaurant!
+    var showingRestaurant: Restaurant!
     
     var top3MeokBTI = NSDictionary()
     
