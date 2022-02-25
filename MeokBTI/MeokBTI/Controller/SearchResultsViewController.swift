@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+    
     
     @IBOutlet weak var resultsTableView: UITableView!
     
@@ -37,4 +38,9 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         
         return cell
     }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
 }

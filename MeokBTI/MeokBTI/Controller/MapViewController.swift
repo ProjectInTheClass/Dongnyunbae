@@ -12,10 +12,9 @@ import TMapSDK
 import FirebaseDatabase
 import KakaoSDKCommon
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, GMSAutocompleteViewControllerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate {
     
     // 검색창 코드
-    var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
 
     // 위치 관련 변수들
@@ -117,14 +116,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func configureSearchBar() {
-        // 검색창 구현
-        resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self
-        
-        let filter = GMSAutocompleteFilter()
-        filter.country = "kr"
-        resultsViewController?.autocompleteFilter = filter
-        
+        let resultsViewController = SearchResultsViewController()
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
 
@@ -707,52 +699,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let index = user.favoriteRestaurants.firstIndex(where: { $0.name == shownRestaurant!.name && $0.position == shownRestaurant!.position })!
         return index
     }
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        
-    }
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        
-    }
-    
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        print("cancel!")
-    }
-
-}
-
-extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
-  func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                         didAutocompleteWith place: GMSPlace) {
-    // [x] 검색한 곳으로 이동 및 정보 띄우기
-      mapView.animate(toLocation: place.coordinate)
-      
-      let marker = GMSMarker(position: place.coordinate)
-      marker.title = place.name
-      marker.map = mapView
-      showInfoWindow(marker: marker, with: .google)
-      mapView.animate(toZoom: 19)
-      
-      searchController?.isActive = false
-      searchController?.resignFirstResponder()
-  }
-
-  func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                         didFailAutocompleteWithError error: Error){
-    // TODO: handle the error.
-    print("Error: ", error.localizedDescription)
-  }
-
-  // Turn the network activity indicator on and off again.
-  func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-//    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-  }
-
-  func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-//    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-  }
-    
 }
 
 
