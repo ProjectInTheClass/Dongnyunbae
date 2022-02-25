@@ -72,8 +72,6 @@ extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = HeaderView()
         
-
-        
         return header
     }
     
