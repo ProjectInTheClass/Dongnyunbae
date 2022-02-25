@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 
     let tableView = UITableView(frame: .zero, style: .grouped)
     
-    let myPageMenu = ["내 동네 설정", "테스트 결과 모아보기", "관심 식당", "건의 및 문의"]
+    let myPageMenu = ["내 동네 설정", "먹BTI 결과 모아보기", "나의 관심 식당", "건의 및 문의"]
     
     
     override func viewDidLoad() {
@@ -83,7 +83,27 @@ extension ViewController: UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case 0 :
+                let controller = LocalViewController()
+                
+                navigationController?.pushViewController(controller, animated: true)
+            case 1 :
+                print("hello")
+            case 2 :
+                print("hello")
+            default :
+                let controller = MailViewController()
+                
+                navigationController?.pushViewController(controller, animated: true)
+            }
+        }
+        
+      
     }
+    
 
 }
 
