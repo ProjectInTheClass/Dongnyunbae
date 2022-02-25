@@ -32,6 +32,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     var loadedPhotos = [UIImage]()
     var isLikedRestaurant: Bool!
+    static var handleMapVC = MapViewController()
     
     // 식당 5개 선택 관련
     var isTested = false // meokbti 테스트 했는지
@@ -246,12 +247,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
                                                   longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
         }
-         
         mapView = GMSMapView.map(withFrame: view.bounds, camera: currentCamera)
         mapView.setMinZoom(0, maxZoom: 20)
         mapView.settings.myLocationButton = true
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
+        MapViewController.handleMapVC.mapView = mapView
         self.view.addSubview(mapView)
     }
     
@@ -712,34 +713,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
 }
 
 extension MapViewController: GMSAutocompleteResultsViewControllerDelegate {
-  func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                         didAutocompleteWith place: GMSPlace) {
-    // [x] 검색한 곳으로 이동 및 정보 띄우기
-      mapView.animate(toLocation: place.coordinate)
-      
-      let marker = GMSMarker(position: place.coordinate)
-      marker.title = place.name
-      marker.map = mapView
-      showInfoWindow(marker: marker, basisOfMap: .google)
-      mapView.animate(toZoom: 19)
-      
-      searchController?.isActive = false
-      searchController?.resignFirstResponder()
-  }
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
+        // [x] 검색한 곳으로 이동 및 정보 띄우기
+        mapView.animate(toLocation: place.coordinate)
+        
+        let marker = GMSMarker(position: place.coordinate)
+        marker.title = place.name
+        marker.map = mapView
+        showInfoWindow(marker: marker, basisOfMap: .google)
+        mapView.animate(toZoom: 19)
+        
+        searchController?.isActive = false
+        searchController?.resignFirstResponder()
+    }
 
-  func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                         didFailAutocompleteWithError error: Error){
-    // TODO: handle the error.
-    print("Error: ", error.localizedDescription)
-  }
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error){
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
 
-  // Turn the network activity indicator on and off again.
-  func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-//    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-  }
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        //UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
 
-  func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-//    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-  }
-    
+    func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
+        //UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
 }

@@ -7,8 +7,9 @@
 
 import UIKit
 import TMapSDK
+import GoogleMaps
 
-class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate, GMSMapViewDelegate {
     
     var searchResultsTableView: UITableView?
     
@@ -85,11 +86,21 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
 //        guard let indexpath = tableView.(<#T##tableView: UITableView##UITableView#>, didSelectRowAt: <#T##IndexPath#>)
 //    }
 //
+    
+//    class TouchSignal {
+//        static let shared = TouchSignal()
+//
+//        var isTouched: Bool?
+//
+//        private init() { }
+//    }
+    
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        let place: T
-//        mapView.animate(toLocation: place.coordinate)
+        MapViewController.handleMapVC.mapView.animate(toLocation: tempResultData[indexPath.row].coordinate!)
         print("Cell touched!")
+        self.dismiss(animated: true)
     }
-    
 }
