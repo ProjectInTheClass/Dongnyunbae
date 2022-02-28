@@ -18,11 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TMapTapiDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        GMSServices.provideAPIKey("AIzaSyDha3Nwl8AW-SIjoGczNqVJYO4xjNXYHfQ")
-        GMSPlacesClient.provideAPIKey("AIzaSyCT8daNhwSuDMC0spQszzU7Xgxr8LIA13I")
-        TMapApi.setSKTMapAuthenticationWithDelegate(self, apiKey: "l7xxdc91957989154f5da7c8548ade820e14")
+        GMSServices.provideAPIKey(APIKeys.GoogleMaps.getAPIKey())
+        GMSPlacesClient.provideAPIKey(APIKeys.GoogleMaps.getAPIKey())
+        TMapApi.setSKTMapAuthenticationWithDelegate(self, apiKey: APIKeys.TMap.getAPIKey())
+        KakaoSDKCommon.initSDK(appKey: APIKeys.Kakao.getAPIKey())
         FirebaseApp.configure()
-        KakaoSDKCommon.initSDK(appKey: "c4b131df326f5e420d6b275a484a3e2c")
         
         if User.loadFromFile().id == nil {
             let user = User.shared
