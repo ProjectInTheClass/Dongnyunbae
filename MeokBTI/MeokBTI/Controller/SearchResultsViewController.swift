@@ -81,22 +81,27 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     // MARK: 셀이 터치 되었을 때 식당으로 이동시켜주는 함수
-    // TODO: 마커생성
+    // TODO: infoWindow
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        MapViewController.handleMapVC.mapView.animate(toLocation: tempResultData[indexPath.row].coordinate!) // 터치시 식당으로 카메라 이동
+        
+        // 확인 메시지
+        print("Cell touched!")
+        
+        // 터치시 식당으로 카메라 이동
+        MapViewController.handleMapVC.mapView.animate(toLocation: tempResultData[indexPath.row].coordinate!)
         
         // 카메라 이동 후 마커 생성
-        //MapViewController.handleMapVC.mapView.selectedMarker
-        let marker2 = GMSMarker()//(position: poi.coordinate!)
-        //MapViewController.handleMapVC.mapView.animate(to: <#T##GMSCameraPosition#>)
-//        MapViewController.handleMapVC.mapView.animate(to: GMSCameraPosition(target: tempResultData[indexPath.row].coordinate!, zoom: MapViewController.handleMapVC.mapView.camera.zoom))
+        let marker2 = GMSMarker()
         
         marker2.position = tempResultData[indexPath.row].coordinate!
         marker2.title = tempResultData[indexPath.row].name
         marker2.map = MapViewController.handleMapVC.mapView
         
-        print("Cell touched!") // 확인 메시지
-        self.dismiss(animated: true) // 테이블뷰 꺼짐
+        // infoWindow 생성되게
+        //MapViewController.handleMapVC.showInfoWindow(marker: marker2, with: .tmap)
+        
+        // 테이블뷰 꺼짐
+        self.dismiss(animated: true)
     }
 }
