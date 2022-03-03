@@ -104,6 +104,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     fileprivate func configureUI() {
         // 지도 구현
         configureMapView()
+        
         // 검색창 구현
         configureSearchBar()
         
@@ -112,13 +113,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         configureRefreshButton()
         mergeSelectLabelAndRefreshButton()
     }
-
+// MARK: ISSUE: Safe Area에서 y축 계산 필요!!
     func configureSearchBar() {
         let resultsViewController = SearchResultsViewController()
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
 
+        //
         let searchControllerSubView = UIView(frame: CGRect(x: 0, y: 50.0, width: 350.0, height: 45))
+        //
         
         if let searchView = searchController?.searchBar {
             searchView.searchBarStyle = .minimal
