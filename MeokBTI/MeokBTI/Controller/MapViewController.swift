@@ -22,7 +22,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     static var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
     var placesClient: GMSPlacesClient!
-    var preciseLocationZoomLevel: Float = 15.0
+    var preciseLocationZoomLevel: Float = 17.0
     
     // 맵뷰 관련 변수들
     var mapView: GMSMapView!

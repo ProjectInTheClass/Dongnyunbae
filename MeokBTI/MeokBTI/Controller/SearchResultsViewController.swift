@@ -98,8 +98,19 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         marker2.title = tempResultData[indexPath.row].name
         marker2.map = MapViewController.handleMapVC.mapView
         
-        // infoWindow 생성되게
-        //MapViewController.handleMapVC.showInfoWindow(marker: marker2, with: .tmap)
+        // infoWindow 생성되게, 마커에 맵뷰를 할당?
+        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+        if let rootVC = rootVC as? MeokBTITabBarController {
+            guard let mapVC = rootVC.viewControllers![1] as? MapViewController else { return }
+            let poi = tempResultData[indexPath.row]
+            let position = poi.coordinate!
+            let marker = GMSMarker(position: position)
+            marker.title = poi.name
+            marker.map = mapVC.mapView
+            
+            mapVC.setMarkerColor(marker: marker, with: .green)
+            mapVC.showInfoWindow(marker: marker, with: .tmap)
+        }
         
         // 테이블뷰 꺼짐
         self.dismiss(animated: true)
