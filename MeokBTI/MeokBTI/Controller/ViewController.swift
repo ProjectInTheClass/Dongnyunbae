@@ -80,14 +80,18 @@ extension ViewController: UITableViewDelegate{
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let controller = NoticeViewController()
-        //navigationController?.pushViewController(controller, animated: true)
+        
         if indexPath.section == 0{
         switch indexPath.row{
         case 0:
             print("테스트 모아보기")
+            let controller = NoticeViewController()
+            navigationController?.pushViewController(controller, animated: true)
+            
         case 1:
-            print("관심식당")
+            print(User.shared)
+            
+            
             
         case 2:
             print("공지사항")
