@@ -42,7 +42,9 @@
 		349E4D2127A2E040002E0109 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E4D2027A2E040002E0109 /* SearchResultsViewController.swift */; };
 		34AB56D427B4EE1E001DF408 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB56D327B4EE1E001DF408 /* Answer.swift */; };
 		34D8CF9F27BEA3900032A66B /* HarmonyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */; };
-		8EA4827B27D1C9FF00A0AA89 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA4827A27D1C9FF00A0AA89 /* NoticeViewController.swift */; };
+		8EA482A327D1D5A500A0AA89 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA482A227D1D5A500A0AA89 /* TestViewController.swift */; };
+		8EA482A927D1E3C000A0AA89 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA482A827D1E3C000A0AA89 /* Movie.swift */; };
+		8EA482AB27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA482AA27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift */; };
 		8ECB5CCC27C2335300A5F01A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCB27C2335300A5F01A /* ViewController.swift */; };
 		8ECB5CCE27C2338500A5F01A /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */; };
 		8ECB5CD027C233A900A5F01A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCF27C233A900A5F01A /* HeaderView.swift */; };
@@ -113,7 +115,9 @@
 		34AB56D327B4EE1E001DF408 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HarmonyCollectionViewCell.swift; path = MeokBTI/HarmonyCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
-		8EA4827A27D1C9FF00A0AA89 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		8EA482A227D1D5A500A0AA89 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		8EA482A827D1E3C000A0AA89 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		8EA482AA27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		8ECB5CCB27C2335300A5F01A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		8ECB5CCF27C233A900A5F01A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -194,7 +198,9 @@
 				EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */,
 				010F916B26CE8B2A00437262 /* ResultTableViewController.swift */,
 				8ECB5CCB27C2335300A5F01A /* ViewController.swift */,
-				8EA4827A27D1C9FF00A0AA89 /* NoticeViewController.swift */,
+				8EA482A227D1D5A500A0AA89 /* TestViewController.swift */,
+				8EA482A827D1E3C000A0AA89 /* Movie.swift */,
+				8EA482AA27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -411,16 +417,18 @@
 				0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */,
 				34AB56D427B4EE1E001DF408 /* Answer.swift in Sources */,
 				01ED1D6927004C5300CB8FB3 /* DetailInfoWindow.swift in Sources */,
+				8EA482AB27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift in Sources */,
 				010F916126CE2B1D00437262 /* User.swift in Sources */,
 				0129338E26B29B93006F22FA /* ResultsViewController.swift in Sources */,
 				0129337426B29A76006F22FA /* AppDelegate.swift in Sources */,
 				8ECB5CCE27C2338500A5F01A /* MyPageCell.swift in Sources */,
 				8ECB5CD027C233A900A5F01A /* HeaderView.swift in Sources */,
+				8EA482A927D1E3C000A0AA89 /* Movie.swift in Sources */,
 				0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */,
 				349E4D2127A2E040002E0109 /* SearchResultsViewController.swift in Sources */,
+				8EA482A327D1D5A500A0AA89 /* TestViewController.swift in Sources */,
 				0129338B26B29B93006F22FA /* Question.swift in Sources */,
 				010F916926CE55C300437262 /* MeokBTI.swift in Sources */,
-				8EA4827B27D1C9FF00A0AA89 /* NoticeViewController.swift in Sources */,
 				0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */,
 				01ED1D6626FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift in Sources */,
 				013C65C226BA4FB700895567 /* MapViewController.swift in Sources */,

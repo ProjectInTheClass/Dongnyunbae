@@ -13,6 +13,8 @@ private let cellID = "Cell"
 
 class ViewController: UIViewController {
 
+    
+    
     let tableView = UITableView(frame: .zero, style: .grouped)
     
     let myPageMenu = ["테스트 결과 모아보기", "관심 식당", "공지사항", "건의 및 문의","버전 관리"]
@@ -85,11 +87,11 @@ extension ViewController: UITableViewDelegate{
         switch indexPath.row{
         case 0:
             print("테스트 모아보기")
-            let controller = NoticeViewController()
+            let controller = TestViewController()
             navigationController?.pushViewController(controller, animated: true)
             
         case 1:
-            print(User.shared)
+            print(User.printUserFavoritesData)
             
             
             
@@ -117,14 +119,6 @@ extension ViewController: UITableViewDelegate{
     }else{
             
         }
-        
-        
-        
-        
-        
-        
-        
-        
         
         tableView.deselectRow(at: indexPath, animated: true)
         
