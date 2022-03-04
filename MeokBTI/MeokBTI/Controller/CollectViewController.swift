@@ -66,6 +66,16 @@ extension CollectViewController: UICollectionViewDelegateFlowLayout {
 extension CollectViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(movies[indexPath.row].title)
+        
+        guard let vcDest = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else {
+            return
+        }
+        
+        vcDest.sproduct = movies[indexPath.row]
+        
+        navigationController?.pushViewController(vcDest, animated: true)
+        
+        
     }
 }
 
