@@ -45,8 +45,15 @@ extension CollectViewController: UICollectionViewDataSource {
     
     @objc func viewdetail(sender:UIButton)
     {
+        guard let selectedCell = sender.superview?.superview as? UICollectionViewCell else {
+            return
+        }
+        
+        guard let indexPathSelected = collectionView.indexPath(for: selectedCell) else {
+            return
+        }
         let indexpath1 = IndexPath(row: sender.tag, section: 0)
-        let hii = movies[indexpath1.row]
+        let hii = movies[indexPathSelected.row]
         let hi = indexpath1.row
         print(hii)
         print(hi)
