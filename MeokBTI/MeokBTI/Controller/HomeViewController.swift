@@ -14,14 +14,17 @@ class HomeViewController: UIViewController {
     
     @IBOutlet var homelabel: UILabel!
   
+    @IBOutlet var hometextt: UITextView!
+    @IBOutlet var hometext: UITextField!
     
     var sproduct : Movie!=nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         homeimage.image = sproduct.image
         homelabel.text = sproduct.title
+        hometextt.text = sproduct.text
     }
     
 

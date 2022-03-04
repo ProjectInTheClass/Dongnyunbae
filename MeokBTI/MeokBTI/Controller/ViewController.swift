@@ -100,6 +100,8 @@ extension ViewController: UITableViewDelegate{
             
           print("관심 식당")
             
+            
+            
         case 2:
             print("공지사항")
             
@@ -113,9 +115,7 @@ extension ViewController: UITableViewDelegate{
         case 3:
             print("건의 및 문의")
             
-            
-            
-            
+           
         case 4:
             print("앱 버전 관리")
             

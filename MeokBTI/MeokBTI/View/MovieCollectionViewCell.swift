@@ -14,8 +14,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLbl: UILabel!
     
+    
     @IBAction func button(_ sender: UIButton) {
-        self.button.backgroundColor = UIColor.yellow
+      
     }
     
     
