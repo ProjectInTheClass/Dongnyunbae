@@ -87,10 +87,11 @@ extension ViewController: UITableViewDelegate{
         switch indexPath.row{
         case 0:
             print("테스트 모아보기")
+            let uvc = self.storyboard!.instantiateViewController(withIdentifier: "CollectionViewController")
+                       uvc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+                       self.present(uvc, animated: true)
+                   
            
-            let controller = ImageCollectionViewController()
-            navigationController?.pushViewController(controller, animated: true)
-            
         case 1:
             
           print("관심 식당")
