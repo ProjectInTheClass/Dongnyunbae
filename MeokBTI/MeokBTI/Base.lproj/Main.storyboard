@@ -278,10 +278,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="homeLabel" destination="X7n-Am-cwy" id="t3Y-jP-HPv"/>
                         <outlet property="homeimage" destination="UAf-Xi-08R" id="OyT-s5-99s"/>
                         <outlet property="homelabel" destination="X7n-Am-cwy" id="CG7-vx-Fno"/>
-                        <outlet property="homelmage" destination="UAf-Xi-08R" id="paa-9B-ixY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xM-qw-g1B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

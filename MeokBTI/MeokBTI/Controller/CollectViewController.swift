@@ -50,7 +50,17 @@ extension CollectViewController: UICollectionViewDataSource {
         let hi = indexpath1.row
         print(hii)
         print(hi)
-    
+        
+        guard let vcDest = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else {
+            return
+        }
+        
+        vcDest.sproduct = hii
+        
+        navigationController?.pushViewController(vcDest, animated: true)
+        
+        
+        
     }
 }
 
