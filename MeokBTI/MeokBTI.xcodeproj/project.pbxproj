@@ -45,6 +45,7 @@
 		8ECB5CCC27C2335300A5F01A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCB27C2335300A5F01A /* ViewController.swift */; };
 		8ECB5CCE27C2338500A5F01A /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */; };
 		8ECB5CD027C233A900A5F01A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCF27C233A900A5F01A /* HeaderView.swift */; };
+		8EEAC95D27D1AD760079EE61 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAC95C27D1AD760079EE61 /* NoticeViewController.swift */; };
 		EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		8ECB5CCB27C2335300A5F01A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		8ECB5CCF27C233A900A5F01A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		8EEAC95C27D1AD760079EE61 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
 		EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,6 +194,7 @@
 				EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */,
 				010F916B26CE8B2A00437262 /* ResultTableViewController.swift */,
 				8ECB5CCB27C2335300A5F01A /* ViewController.swift */,
+				8EEAC95C27D1AD760079EE61 /* NoticeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				349E4D2127A2E040002E0109 /* SearchResultsViewController.swift in Sources */,
 				0129338B26B29B93006F22FA /* Question.swift in Sources */,
 				010F916926CE55C300437262 /* MeokBTI.swift in Sources */,
+				8EEAC95D27D1AD760079EE61 /* NoticeViewController.swift in Sources */,
 				0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */,
 				01ED1D6626FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift in Sources */,
 				013C65C226BA4FB700895567 /* MapViewController.swift in Sources */,

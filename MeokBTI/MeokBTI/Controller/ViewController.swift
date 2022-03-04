@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 
     let tableView = UITableView(frame: .zero, style: .grouped)
     
-    let myPageMenu = ["내 동네 설정", "테스트 결과 모아보기", "관심 식당", "건의 및 문의"]
+    let myPageMenu = ["테스트 결과 모아보기", "관심 식당", "공지사항", "건의 및 문의","버전 관리"]
     
     
     override func viewDidLoad() {
@@ -80,7 +80,18 @@ extension ViewController: UITableViewDelegate{
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = NoticeViewController()
+        navigationController?.pushViewController(controller, animated: true)
+        
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+       
+            
+            
+           
+        
+        
     }
 
 }
