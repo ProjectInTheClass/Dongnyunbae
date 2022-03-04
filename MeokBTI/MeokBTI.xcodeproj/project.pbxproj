@@ -43,6 +43,7 @@
 		34AB56D427B4EE1E001DF408 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB56D327B4EE1E001DF408 /* Answer.swift */; };
 		34D8CF9F27BEA3900032A66B /* HarmonyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */; };
 		8E06F1B827D23432005E9787 /* CollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06F1B727D23432005E9787 /* CollectViewController.swift */; };
+		8E06F1BA27D2360D005E9787 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06F1B927D2360D005E9787 /* HomeViewController.swift */; };
 		8EA482A927D1E3C000A0AA89 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA482A827D1E3C000A0AA89 /* Movie.swift */; };
 		8EA482AB27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA482AA27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift */; };
 		8EA482AF27D209AC00A0AA89 /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA482AE27D209AC00A0AA89 /* VersionViewController.swift */; };
@@ -117,6 +118,7 @@
 		34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HarmonyCollectionViewCell.swift; path = MeokBTI/HarmonyCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 		8E06F1B727D23432005E9787 /* CollectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectViewController.swift; sourceTree = "<group>"; };
+		8E06F1B927D2360D005E9787 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8EA482A827D1E3C000A0AA89 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		8EA482AA27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		8EA482AE27D209AC00A0AA89 /* VersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				8ECB5CCB27C2335300A5F01A /* ViewController.swift */,
 				8E06F1B727D23432005E9787 /* CollectViewController.swift */,
 				8EA482AE27D209AC00A0AA89 /* VersionViewController.swift */,
+				8E06F1B927D2360D005E9787 /* HomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				8E06F1B827D23432005E9787 /* CollectViewController.swift in Sources */,
 				348B723427C3FD7600FC524D /* APIKeys.swift in Sources */,
 				EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */,
+				8E06F1BA27D2360D005E9787 /* HomeViewController.swift in Sources */,
 				0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */,
 				013753F626CD41AC002F3ABE /* MeokBTITabBarController.swift in Sources */,
 				0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */,

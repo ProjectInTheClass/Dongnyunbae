@@ -38,8 +38,15 @@ extension CollectViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
         cell.setup(with: movies[indexPath.row])
-       
+        cell.button.tag = indexPath.row
+        cell.button.addTarget(self, action: #selector(viewdetail), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func viewdetail(sender:UIButton)
+    {
+        let indexpath1 = IndexPath(row: sender.tag, section: 0)
+        print(indexpath1)
     }
 }
 
@@ -48,7 +55,7 @@ extension CollectViewController: UICollectionViewDataSource {
 
 extension CollectViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 200)
+        return CGSize(width: 100, height: 300)
     }
 }
 
