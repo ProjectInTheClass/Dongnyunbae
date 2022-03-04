@@ -108,43 +108,6 @@
             </objects>
             <point key="canvasLocation" x="1203" y="612"/>
         </scene>
-        <!--Search Results View Controller-->
-        <scene sceneID="iec-pp-42l">
-            <objects>
-                <viewController id="wIl-ER-jl5" customClass="SearchResultsViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lZg-1q-ru9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oYj-Ul-euN">
-                                <rect key="frame" x="0.0" y="139" width="414" height="723"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="resultCell" id="yOF-Sh-fTx">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yOF-Sh-fTx" id="f9W-Sd-V4S">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="aZ6-XC-Kaq"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="oYj-Ul-euN" firstAttribute="trailing" secondItem="aZ6-XC-Kaq" secondAttribute="trailing" id="Yv5-3Y-EyT"/>
-                            <constraint firstItem="oYj-Ul-euN" firstAttribute="bottom" secondItem="aZ6-XC-Kaq" secondAttribute="bottom" id="fqY-Od-dGU"/>
-                            <constraint firstItem="oYj-Ul-euN" firstAttribute="leading" secondItem="aZ6-XC-Kaq" secondAttribute="leading" id="gEK-h0-HjA"/>
-                            <constraint firstItem="oYj-Ul-euN" firstAttribute="top" secondItem="aZ6-XC-Kaq" secondAttribute="top" constant="95" id="v3y-Fs-8ID"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lxK-29-Ndo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1202.8985507246377" y="1321.875"/>
-        </scene>
         <!--MeokBTI Tab Bar Controller-->
         <scene sceneID="vXl-iF-NSj">
             <objects>
@@ -180,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUE-ru-VZZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1142.0289855072465" y="2160.9375"/>
+            <point key="canvasLocation" x="1141" y="1690"/>
         </scene>
         <!--MyPage-->
         <scene sceneID="da6-b6-tgq">
@@ -199,17 +162,17 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vae-2X-O95" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="231.8840579710145" y="2160.9375"/>
+            <point key="canvasLocation" x="232" y="1690"/>
         </scene>
-        <!--Test View Controller-->
+        <!--Item-->
         <scene sceneID="wqY-F1-I6U">
             <objects>
-                <viewController id="Nzj-JQ-bre" customClass="TestViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Nzj-JQ-bre" customClass="ZeroViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p8g-Og-Eio">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PTz-f1-8Yz">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PTz-f1-8Yz" customClass="I">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HiA-wR-WXf">
@@ -267,14 +230,16 @@
                             <constraint firstItem="PTz-f1-8Yz" firstAttribute="leading" secondItem="3qc-nK-ICq" secondAttribute="leading" id="ypO-Bc-7FX"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="A8J-a1-9Kt"/>
                     <navigationItem key="navigationItem" id="eah-Yy-ngm"/>
                     <connections>
-                        <outlet property="collectionView" destination="PTz-f1-8Yz" id="gWs-lt-QGS"/>
+                        <outlet property="collect" destination="PTz-f1-8Yz" id="Nro-zt-2zD"/>
+                        <outlet property="collectionView" destination="PTz-f1-8Yz" id="zfO-bM-W09"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUp-CS-vbe" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804" y="2161"/>
+            <point key="canvasLocation" x="232" y="2444"/>
         </scene>
     </scenes>
     <resources>

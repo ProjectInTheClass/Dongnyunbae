@@ -44,6 +44,8 @@ class User: Codable {
     }
     
     func printUserFavoritesData() {
+        
+        
         print("id: \(self.id), meokBTI: \(self.meokBTI), favoriteRestaurants: \(self.favoriteRestaurants)")
     }
 }

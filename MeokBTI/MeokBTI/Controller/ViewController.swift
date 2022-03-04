@@ -87,13 +87,13 @@ extension ViewController: UITableViewDelegate{
         switch indexPath.row{
         case 0:
             print("테스트 모아보기")
-            let controller = TestViewController()
+           
+            let controller = ImageCollectionViewController()
             navigationController?.pushViewController(controller, animated: true)
             
         case 1:
-            print(User.printUserFavoritesData)
             
-            
+          print("관심 식당")
             
         case 2:
             print("공지사항")
@@ -108,8 +108,16 @@ extension ViewController: UITableViewDelegate{
         case 3:
             print("건의 및 문의")
             
+            
+            
+            
         case 4:
             print("앱 버전 관리")
+            
+            let controller4 = VersionViewController()
+            navigationController?.pushViewController(controller4, animated: true)
+            
+            
         default:
             print("wrong")
             
