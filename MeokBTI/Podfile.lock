@@ -1,49 +1,48 @@
 PODS:
-  - Alamofire (5.4.3)
-  - Firebase/CoreOnly (8.7.0):
-    - FirebaseCore (= 8.7.0)
-  - Firebase/Database (8.7.0):
+  - Alamofire (5.5.0)
+  - Firebase/CoreOnly (8.12.1):
+    - FirebaseCore (= 8.12.1)
+  - Firebase/Database (8.12.1):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 8.7.0)
-  - FirebaseCore (8.7.0):
+    - FirebaseDatabase (~> 8.12.0)
+  - FirebaseCore (8.12.1):
     - FirebaseCoreDiagnostics (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.4)
-    - GoogleUtilities/Logger (~> 7.4)
-  - FirebaseCoreDiagnostics (8.7.0):
-    - GoogleDataTransport (~> 9.0)
-    - GoogleUtilities/Environment (~> 7.4)
-    - GoogleUtilities/Logger (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Logger (~> 7.7)
+  - FirebaseCoreDiagnostics (8.12.0):
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Logger (~> 7.7)
     - nanopb (~> 2.30908.0)
-  - FirebaseDatabase (8.7.0):
+  - FirebaseDatabase (8.12.0):
     - FirebaseCore (~> 8.0)
     - leveldb-library (~> 1.22)
-  - GoogleDataTransport (9.1.0):
+  - GoogleDataTransport (9.1.2):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleMaps (3.10.0-beta1):
-    - GoogleMaps/Maps (= 3.10.0-beta1)
-  - GoogleMaps/Base (3.10.0-beta1)
-  - GoogleMaps/Maps (3.10.0-beta1):
+  - GoogleMaps (5.2.0):
+    - GoogleMaps/Maps (= 5.2.0)
+  - GoogleMaps/Base (5.2.0)
+  - GoogleMaps/Maps (5.2.0):
     - GoogleMaps/Base
-  - GooglePlaces (3.10.0-beta1):
-    - GoogleMaps/Base (= 3.10.0-beta1)
-  - GoogleUtilities/Environment (7.5.2):
+  - GooglePlaces (5.1.0)
+  - GoogleUtilities/Environment (7.7.0):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.5.2):
+  - GoogleUtilities/Logger (7.7.0):
     - GoogleUtilities/Environment
-  - KakaoSDKCommon (2.7.1):
-    - KakaoSDKCommon/Common (= 2.7.1)
-    - KakaoSDKCommon/Network (= 2.7.1)
-  - KakaoSDKCommon/Common (2.7.1)
-  - KakaoSDKCommon/Network (2.7.1):
+  - KakaoSDKCommon (2.8.6):
+    - KakaoSDKCommon/Common (= 2.8.6)
+    - KakaoSDKCommon/Network (= 2.8.6)
+  - KakaoSDKCommon/Common (2.8.6)
+  - KakaoSDKCommon/Network (2.8.6):
     - Alamofire (~> 5.1)
-    - KakaoSDKCommon/Common (= 2.7.1)
-  - KakaoSDKLink (2.7.1):
-    - KakaoSDKCommon (= 2.7.1)
-    - KakaoSDKTemplate (= 2.7.1)
-  - KakaoSDKTemplate (2.7.1):
-    - KakaoSDKCommon/Common (= 2.7.1)
+    - KakaoSDKCommon/Common (= 2.8.6)
+  - KakaoSDKLink (2.8.6):
+    - KakaoSDKCommon (= 2.8.6)
+    - KakaoSDKTemplate (= 2.8.6)
+  - KakaoSDKTemplate (2.8.6):
+    - KakaoSDKCommon/Common (= 2.8.6)
   - leveldb-library (1.22.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -54,8 +53,8 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Database
-  - GoogleMaps (= 3.10.0-beta1)
-  - GooglePlaces (= 3.10.0-beta1)
+  - GoogleMaps
+  - GooglePlaces
   - KakaoSDKLink
 
 SPEC REPOS:
@@ -77,22 +76,22 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
-  Firebase: bc9325d5ee2041524bac78a5213d0e530c651309
-  FirebaseCore: f4804c1d3f4bbbefc88904d15653038f2c99ddf7
-  FirebaseCoreDiagnostics: b63732f581a1c6a453ec7241f9ab60b3a5bd3450
-  FirebaseDatabase: afc82291f9ed94ff949cec1b9505e8c3b944bc0f
-  GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
-  GoogleMaps: 17598f733b70288939758dad9bafd7dfeab3c1dc
-  GooglePlaces: 5de0ebadf18689d16bacd6b4a65f30c319678ffd
-  GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
-  KakaoSDKCommon: 48fe293e8970a8db8d10d5ca63600a7a8cc5f74c
-  KakaoSDKLink: 3f4d9b39b6d44d8efc78c4c0e30a6f83ef2e7b51
-  KakaoSDKTemplate: 7dd6755ae95c30355922105781dfd5c635348ff2
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Firebase: 580d09e8edafc3073ebf09c03fd42e4d80d35fe9
+  FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
+  FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
+  FirebaseDatabase: f130b3d45b2a7a0b86059734d5bd67353df8d32f
+  GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
+  GoogleMaps: 025272d5876d3b32604e5c080dc25eaf68764693
+  GooglePlaces: c57cd5aa7e91d10fa5106c792de74f3bd6436260
+  GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
+  KakaoSDKCommon: 7e56600ff4c1bd82bed93fea4299b5a37f47e6a5
+  KakaoSDKLink: 59a6bdf7abd915aacba4c2671672ffe9654798dd
+  KakaoSDKTemplate: 23bdcba233dce91fc948353c3b03d94f928d87d1
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: 8c62a7fbfa6316185c93b01e25f8278437dd1b3f
+PODFILE CHECKSUM: aff29c167419703ad7d336d74de6538240e1d677
 
 COCOAPODS: 1.11.2

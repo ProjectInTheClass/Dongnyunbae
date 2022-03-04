@@ -9,8 +9,8 @@ target 'MeokBTI' do
 
 
   # Pods for MeokBTI
-  pod 'GoogleMaps', '= 3.10.0-beta1'
-  pod 'GooglePlaces', '= 3.10.0-beta1'
+  pod 'GoogleMaps' 
+  pod 'GooglePlaces'
   pod 'Firebase/Database'
   pod 'KakaoSDKLink'
 end

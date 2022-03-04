@@ -98,7 +98,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         detailVC.previousInfoWindow = infoWindow
         detailVC.top3MeokBTI = top3MeokBTIData
         detailVC.addressAndPhoneNumber = addressAndPhoneNumber
-        
     }
 
     fileprivate func configureUI() {
@@ -302,7 +301,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.likeButton.layer.cornerRadius = infoWindow.likeButton.frame.height / 2
     }
     
-    fileprivate func configureInfoWindow(at marker: GMSMarker, with map: GMSMarker.basisOfMap) {
+    func configureInfoWindow(at marker: GMSMarker, with map: GMSMarker.basisOfMap) {
         initializeInfoWindow(marker: marker)
         
         // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
@@ -323,23 +322,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func showInfoWindow(marker: GMSMarker, with map: GMSMarker.basisOfMap) {
         // MARK: 마커에 필요한 정보: title, position
-        // [x] 정보창 띄움 ([x] 식당이름, [x] 식당이미지, [x] 먹bti선호도를 나타내는 창)
-        initializeInfoWindow(marker: marker)
-        
-        // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
-        guard let rawTitle = marker.title else { return }
-        shownRestaurant = Restaurant(name: rawTitle, position: marker.position)
-        
-        // infoWindow에 들어갈 정보 할당 및 위치 지정
-        infoWindow.nameLabel.text = " " + shownRestaurant!.transformNameToShow(basisof: map)
-        setMeokBTIRanking()
-        infoWindow.center = mapView.projection.point(for: marker.position)
-        infoWindow.center.y = infoWindow.center.y - 110
-        
-        // 버튼액션함수가 buttonTapped을 기준으로 실행되는데 연동이 안되있으므로 infoWindow를 다른 것을 띄웠다가 돌아왔을 때 버튼이미지가 안 바뀌는 이슈
-        // Solution: buttonTapped과 연동시켜주면서 버튼 동작을 정상적으로 만들어줌
-        infoWindow.likeButtonTapped = shownRestaurant!.like
-        infoWindow.setButtonImage()
+        configureInfoWindow(at: marker, with: map)
         self.view.addSubview(infoWindow)
         
         mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
@@ -427,7 +410,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let baseURL = URL(string: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?")!
         
         let query: [String: String] = [
-            "key": "AIzaSyCT8daNhwSuDMC0spQszzU7Xgxr8LIA13I",
+            "key": APIKeys.GoogleMaps.getAPIKey(),
             "fields": "place_id",
             "inputtype": "textquery",
             "input": name
@@ -442,9 +425,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             if let data = data,
                let result = try? decoder.decode(SearchPlaceIDResult.self, from: data),
                !(result.restaurant.isEmpty) {
+                print("PlaceID is Okay")
                 completion(result.restaurant[0].placeID)
             } else {
-                print("뭔가 잘못돼쓰")
+                print("PlaceID가 안 받아와져;;")
                 completion(nil)
                 return
             }
@@ -453,7 +437,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func fetchRestaurantPhoto(placeID: String) {
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.photos.rawValue))!
+        let fields: GMSPlaceField = .photos
         self.loadedPhotos = []
         self.placesClient?.fetchPlace(fromPlaceID: placeID, placeFields: fields, sessionToken: nil,
                                       callback: {
@@ -466,7 +450,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             if let place = place, !(place.photos?.isEmpty ?? true) {
                 // Get the metadata for the first photo in the place photo metadata list
                 var photoMetadata: [GMSPlacePhotoMetadata] = []
-                
                 if place.photos!.count > 5 {
                     photoMetadata = (0...4).map { place.photos![$0] }
                 } else {
@@ -486,6 +469,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                                 if let photo = photo {
                                     self.loadedPhotos.append(photo)
                                     self.infoWindow.spotPhotos = self.loadedPhotos
+                                    print("self.infoWindow.spotPhotos",self.infoWindow.spotPhotos)
                                 }
                             }
                             print("photos append after :",self.loadedPhotos)
@@ -505,7 +489,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let top3MeokBTIQuery = ref.child("\(shownRestaurant.name)/meokBTIRanking").queryOrderedByValue().queryLimited(toLast: 3)
         
         top3MeokBTIQuery.observeSingleEvent(of: DataEventType.value) { snapshot in
-            guard let value = snapshot.value as? NSDictionary else { return }
+            guard let value = snapshot.value as? NSDictionary else { return completion([:])}
             print("observeSingleEvent",value)
             completion(value)
         }

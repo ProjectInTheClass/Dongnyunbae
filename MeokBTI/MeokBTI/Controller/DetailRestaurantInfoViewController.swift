@@ -121,10 +121,6 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         return headerView
     }
     
-    func getHeaderView() {
-        
-    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let padding = detailInfoWindow.frame.height
         return 50 + padding
@@ -153,6 +149,10 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
             
             let eachRankText = "\(medal)\(meokBTI.key) \(meokBTI.value)명이 식당을 좋아합니다.\n"
             totalRankText += eachRankText
+        }
+        
+        if top3MeokBTI == [:] {
+            totalRankText = " 좋아요를 제일 먼저 눌러보세요! "
         }
         
         return totalRankText
