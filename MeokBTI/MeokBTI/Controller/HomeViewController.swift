@@ -9,16 +9,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet var homelmage: UIImageView!
+    @IBOutlet var homeimage: UIImageView!
     
-    @IBOutlet var homeLabel: UILabel!
+    
+    @IBOutlet var homelabel: UILabel!
+  
     
     var sproduct : Movie!=nil
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        homelmage.image = sproduct.image
-        homeLabel.text = sproduct.title
+        homeimage.image = sproduct.image
+        homelabel.text = sproduct.title
     }
     
 

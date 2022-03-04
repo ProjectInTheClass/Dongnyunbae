@@ -46,7 +46,8 @@ extension CollectViewController: UICollectionViewDataSource {
     @objc func viewdetail(sender:UIButton)
     {
         let indexpath1 = IndexPath(row: sender.tag, section: 0)
-        print(indexpath1)
+        let hii = movies[indexpath1.row].title
+        print(hii)
     }
 }
 
@@ -55,7 +56,7 @@ extension CollectViewController: UICollectionViewDataSource {
 
 extension CollectViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 300)
+        return CGSize(width: 300, height: 300)
     }
 }
 
