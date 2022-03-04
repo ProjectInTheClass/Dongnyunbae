@@ -46,8 +46,11 @@ extension CollectViewController: UICollectionViewDataSource {
     @objc func viewdetail(sender:UIButton)
     {
         let indexpath1 = IndexPath(row: sender.tag, section: 0)
-        let hii = movies[indexpath1.row].title
+        let hii = movies[indexpath1.row]
+        let hi = indexpath1.row
         print(hii)
+        print(hi)
+    
     }
 }
 

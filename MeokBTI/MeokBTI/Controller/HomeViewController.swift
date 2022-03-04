@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
   
     
     var sproduct : Movie!=nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
