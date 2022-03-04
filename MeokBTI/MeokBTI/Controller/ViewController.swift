@@ -8,7 +8,7 @@
 
 
 import UIKit
-
+import SafariServices
 private let cellID = "Cell"
 
 class ViewController: UIViewController {
@@ -80,8 +80,47 @@ extension ViewController: UITableViewDelegate{
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = NoticeViewController()
-        navigationController?.pushViewController(controller, animated: true)
+        //let controller = NoticeViewController()
+        //navigationController?.pushViewController(controller, animated: true)
+        if indexPath.section == 0{
+        switch indexPath.row{
+        case 0:
+            print("테스트 모아보기")
+        case 1:
+            print("관심식당")
+            
+        case 2:
+            print("공지사항")
+            
+            guard let url = URL(string: "https://projectintheclass.github.io/Dongnyunbae/") else{
+                    return
+                }
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true)
+            
+            
+        case 3:
+            print("건의 및 문의")
+            
+        case 4:
+            print("앱 버전 관리")
+        default:
+            print("wrong")
+            
+            
+        }
+        
+    }else{
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
         
         tableView.deselectRow(at: indexPath, animated: true)
         
