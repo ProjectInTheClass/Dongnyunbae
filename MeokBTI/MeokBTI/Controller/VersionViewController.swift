@@ -8,7 +8,7 @@ class VersionViewController: UIViewController{
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        let button = UIButton(frame: CGRect(x: 0, y: 280, width: 220, height: 100))
+        let button = UIButton(frame: CGRect(x: 20, y: 280, width: 220, height: 100))
        
         view.addSubview(button)
         button.setTitle("최신 버전은 1.1 입니다. ", for: .normal)
@@ -18,7 +18,7 @@ class VersionViewController: UIViewController{
         
         button.center = view.center
         
-        let button2 = UIButton(frame: CGRect(x: 85, y: 260, width: 220, height: 100))
+        let button2 = UIButton(frame: CGRect(x: 80, y: 260, width: 220, height: 100))
        
         view.addSubview(button2)
         button2.setTitle("현재의 버전은 1.0입니다. ", for: .normal)
