@@ -17,10 +17,11 @@ class LikeViewController: UIViewController {
         view.backgroundColor = .white
        let user = User.loadFromFile()
         
-        
-        
         hello.text = user.favoriteRestaurants.description
-        print(user.favoriteRestaurants)
+        var a = user.favoriteRestaurants[0].name
+        print(a)
+        print(type(of: a))
+        print(user.favoriteRestaurants[0])
         
     }
     
