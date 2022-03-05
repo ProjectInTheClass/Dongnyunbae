@@ -36,7 +36,7 @@ class ResultsViewController: UIViewController {
             User.saveToFile(user: user)
             print("save MeokBTI success")
         } else {
-            print("Stored MeokBTI :",User.loadFromFile().meokBTI!)
+            print("Stored MeokBTI :", meokBTI!)
             print("still stored ID :",User.loadFromFile().id!)
         }
         
