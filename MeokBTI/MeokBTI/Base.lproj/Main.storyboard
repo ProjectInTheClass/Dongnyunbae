@@ -449,6 +449,21 @@
             </objects>
             <point key="canvasLocation" x="1757.9710144927537" y="2443.5267857142858"/>
         </scene>
+        <!--Mail View Controller-->
+        <scene sceneID="67a-hZ-vTm">
+            <objects>
+                <viewController storyboardIdentifier="MailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qh7-u0-FrR" customClass="MailViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hC8-mK-dl0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="nJl-W7-HaC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UUr-mU-Y5T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1219" y="2444"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ELBC" width="154" height="135"/>

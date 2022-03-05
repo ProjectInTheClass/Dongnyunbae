@@ -45,6 +45,7 @@
 		8E06F1B827D23432005E9787 /* CollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06F1B727D23432005E9787 /* CollectViewController.swift */; };
 		8E06F1BA27D2360D005E9787 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06F1B927D2360D005E9787 /* HomeViewController.swift */; };
 		8E06F1C027D3AFDB005E9787 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06F1BF27D3AFDB005E9787 /* LikeViewController.swift */; };
+		8E06F1C227D3CFF0005E9787 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06F1C127D3CFF0005E9787 /* MailViewController.swift */; };
 		8EA482A927D1E3C000A0AA89 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA482A827D1E3C000A0AA89 /* Movie.swift */; };
 		8EA482AB27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA482AA27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift */; };
 		8EA482AF27D209AC00A0AA89 /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA482AE27D209AC00A0AA89 /* VersionViewController.swift */; };
@@ -121,6 +122,7 @@
 		8E06F1B727D23432005E9787 /* CollectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectViewController.swift; sourceTree = "<group>"; };
 		8E06F1B927D2360D005E9787 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8E06F1BF27D3AFDB005E9787 /* LikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
+		8E06F1C127D3CFF0005E9787 /* MailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailViewController.swift; sourceTree = "<group>"; };
 		8EA482A827D1E3C000A0AA89 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		8EA482AA27D1E3EE00A0AA89 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		8EA482AE27D209AC00A0AA89 /* VersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				8EA482AE27D209AC00A0AA89 /* VersionViewController.swift */,
 				8E06F1B927D2360D005E9787 /* HomeViewController.swift */,
 				8E06F1BF27D3AFDB005E9787 /* LikeViewController.swift */,
+				8E06F1C127D3CFF0005E9787 /* MailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				8ECB5CCE27C2338500A5F01A /* MyPageCell.swift in Sources */,
 				8ECB5CD027C233A900A5F01A /* HeaderView.swift in Sources */,
 				8EA482AF27D209AC00A0AA89 /* VersionViewController.swift in Sources */,
+				8E06F1C227D3CFF0005E9787 /* MailViewController.swift in Sources */,
 				8EA482A927D1E3C000A0AA89 /* Movie.swift in Sources */,
 				0129337626B29A76006F22FA /* SceneDelegate.swift in Sources */,
 				349E4D2127A2E040002E0109 /* SearchResultsViewController.swift in Sources */,
@@ -599,7 +603,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8KBTZGX99;
+				DEVELOPMENT_TEAM = P2JSWZG4LF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -620,7 +624,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = koesnam.MeokBTI;
+				PRODUCT_BUNDLE_IDENTIFIER = 1.1ForMyPage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -635,7 +639,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8KBTZGX99;
+				DEVELOPMENT_TEAM = P2JSWZG4LF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -656,7 +660,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = koesnam.MeokBTI;
+				PRODUCT_BUNDLE_IDENTIFIER = 1.1ForMyPage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

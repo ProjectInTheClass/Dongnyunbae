@@ -116,6 +116,8 @@ extension ViewController: UITableViewDelegate{
             
         case 3:
             print("건의 및 문의")
+            let uvc3 = self.storyboard!.instantiateViewController(withIdentifier: "MailViewController")
+            navigationController?.pushViewController(uvc3, animated: true)
             
            
         case 4:
