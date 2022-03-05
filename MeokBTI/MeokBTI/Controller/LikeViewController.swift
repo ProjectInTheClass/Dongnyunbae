@@ -9,6 +9,7 @@ import UIKit
 
 class LikeViewController: UIViewController {
 
+    @IBOutlet var table: UITableViewCell!
     @IBOutlet var hello: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
