@@ -13,7 +13,7 @@ class User: Codable {
     // 유저데이터 저장위치
     static let documanetsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     static let archiveURL = documanetsDirectory.appendingPathComponent("User").appendingPathExtension("plist")
-
+   
     var id: String?
     var meokBTI: MeokBTI? = nil
     var favoriteRestaurants: [Restaurant] = []
@@ -46,6 +46,6 @@ class User: Codable {
     func printUserFavoritesData() {
         
         
-        print("id: \(self.id), meokBTI: \(self.meokBTI), favoriteRestaurants: \(self.favoriteRestaurants)")
+        print("id: \(self.id), meokBTI: \(String(describing: self.meokBTI)), favoriteRestaurants: \(self.favoriteRestaurants)")
     }
 }

@@ -99,7 +99,9 @@ extension ViewController: UITableViewDelegate{
         case 1:
             
           print("관심 식당")
-            
+            let uvc1 = self.storyboard!.instantiateViewController(withIdentifier: "LikeViewController")
+            navigationController?.pushViewController(uvc1, animated: true)
+             
             
             
         case 2:

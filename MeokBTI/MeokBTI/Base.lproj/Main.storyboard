@@ -300,16 +300,27 @@
             </objects>
             <point key="canvasLocation" x="1010" y="2444"/>
         </scene>
-        <!--Version View Controller-->
+        <!--Like View Controller-->
         <scene sceneID="Zdz-E5-hOb">
             <objects>
-                <viewController id="WBW-ep-x47" customClass="VersionViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LikeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WBW-ep-x47" customClass="LikeViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fx8-Nr-7BP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hello" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JoL-i9-cw2">
+                                <rect key="frame" x="159" y="226" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="gjj-uM-xrM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="hello" destination="JoL-i9-cw2" id="Mk1-lF-owk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f4A-lz-KxQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
