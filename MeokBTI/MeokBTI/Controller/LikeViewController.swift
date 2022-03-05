@@ -9,13 +9,18 @@ import UIKit
 
 class LikeViewController: UIViewController {
 
-    @IBOutlet var hello: UITextField!
-    
+    @IBOutlet var hello: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-       // hello.text = User.meokBTI
+       let user = User.loadFromFile()
+        
+        
+        
+        hello.text = user.favoriteRestaurants.description
+        print(user.favoriteRestaurants)
+        
     }
     
  
