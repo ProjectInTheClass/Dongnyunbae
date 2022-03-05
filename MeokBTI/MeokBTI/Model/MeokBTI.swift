@@ -245,6 +245,7 @@ enum MeokBTI: String, Codable {
     }
     
     func printConvertedMeokBTI() {
+      
         print(self.meokBTI)
     }
     

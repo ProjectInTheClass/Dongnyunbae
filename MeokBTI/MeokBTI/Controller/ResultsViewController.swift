@@ -28,7 +28,7 @@ class ResultsViewController: UIViewController {
         navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
         meokBTI = MeokBTI(rawValue: calculatePersonalityResult())
-        print("Look! meokBTI :",meokBTI)
+        print("Look! meokBTI :",meokBTI!)
         resultTableView = self.children[0] as? ResultTableViewController
         
         if User.loadFromFile().meokBTI == nil {
@@ -36,8 +36,8 @@ class ResultsViewController: UIViewController {
             User.saveToFile(user: user)
             print("save MeokBTI success")
         } else {
-            print("Stored MeokBTI :",User.loadFromFile().meokBTI)
-            print("still stored ID :",User.loadFromFile().id)
+            print("Stored MeokBTI :",User.loadFromFile().meokBTI!)
+            print("still stored ID :",User.loadFromFile().id!)
         }
         
         // Do any additional setup after loading the view.

@@ -43,6 +43,6 @@ class User: Codable {
     }
     
     func printOutData() {
-        print("id: \(self.id), meokBTI: \(self.meokBTI), favoriteRestaurants: \(self.favoriteRestaurants)")
+        print("id: \(String(describing: self.id)), meokBTI: \(String(describing: self.meokBTI)), favoriteRestaurants: \(self.favoriteRestaurants)")
     }
 }
