@@ -34,7 +34,10 @@ extension PersonalDataViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("you tapped me")
+      //  let user = User.loadFromFile()
         
+      //  print(user.favoriteRestaurants)
+      
     }
 }
 

@@ -38,6 +38,7 @@ class ResultsViewController: UIViewController {
         } else {
             print("Stored MeokBTI :", meokBTI!)
             print("still stored ID :",User.loadFromFile().id!)
+            
         }
         
         // Do any additional setup after loading the view.
