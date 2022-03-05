@@ -8,7 +8,7 @@ class VersionViewController: UIViewController{
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        let button = UIButton(frame: CGRect(x: 20, y: 280, width: 220, height: 100))
+      /*  let button = UIButton(frame: CGRect(x: 30, y: 280, width: 220, height: 100))
        
         view.addSubview(button)
         button.setTitle("최신 버전은 1.1 입니다. ", for: .normal)
@@ -27,7 +27,7 @@ class VersionViewController: UIViewController{
         
         
         button2.setTitleColor(.white, for: .normal)
-        
+     */
     }
  
 

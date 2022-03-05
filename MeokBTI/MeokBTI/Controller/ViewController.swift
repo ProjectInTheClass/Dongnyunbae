@@ -121,9 +121,8 @@ extension ViewController: UITableViewDelegate{
         case 4:
             print("앱 버전 관리")
             
-            let controller4 = VersionViewController()
-            navigationController?.pushViewController(controller4, animated: true)
-            
+            let uvc4 = self.storyboard!.instantiateViewController(withIdentifier: "VersionViewController")
+            navigationController?.pushViewController(uvc4, animated: true)
             
         default:
             print("wrong")

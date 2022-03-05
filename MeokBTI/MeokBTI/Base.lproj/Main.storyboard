@@ -164,6 +164,35 @@
             </objects>
             <point key="canvasLocation" x="232" y="1690"/>
         </scene>
+        <!--Version View Controller-->
+        <scene sceneID="nhe-b6-6Pc">
+            <objects>
+                <viewController storyboardIdentifier="VersionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oXo-FG-hqP" customClass="VersionViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XNn-9Q-ZzC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="현재 버전은 1.0 입니다." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AsK-0i-4pT">
+                                <rect key="frame" x="75" y="453" width="265" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="최신 버전은 1.1 입니다." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zfi-aL-707">
+                                <rect key="frame" x="77" y="303" width="260" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Of5-fG-OMJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="agr-Ts-56m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-457.97101449275368" y="2443.5267857142858"/>
+        </scene>
         <!--Item-->
         <scene sceneID="wqY-F1-I6U">
             <objects>
