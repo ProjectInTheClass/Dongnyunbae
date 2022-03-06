@@ -14,6 +14,9 @@ import KakaoSDKCommon
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, UISearchBarDelegate {
     
+    // 디바이스 크기 변수
+    let screenHeight = UIScreen.main.bounds.size.height
+    
     // 검색창 코드
     var searchController: UISearchController?
 
@@ -73,6 +76,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var meokBTILikeCount = Int()
         
     override func viewDidLoad() {
+        setAutolayout()
         super.viewDidLoad()
         print("Stored UserID : ", User.loadFromFile().id ?? "Nothing load")
         placesClient = GMSPlacesClient.shared()
@@ -113,15 +117,53 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         configureRefreshButton()
         mergeSelectLabelAndRefreshButton()
     }
-// MARK: ISSUE: Safe Area에서 y축 계산 필요!!
+    
+    func setAutolayout() {
+        print(screenHeight)
+        if screenHeight == 926 {
+            print("13PM, 12PM")
+        }
+        else if screenHeight == 896 {
+            print("11PM, 11, XR")
+        }
+        else if screenHeight == 844 {
+            print("13P, 13, 12P, 12")
+        }
+        else if screenHeight == 812 {
+            print("13m, 12m, 11P")
+        }
+        else if screenHeight == 736 {
+            print("8+")
+        }
+        else if screenHeight == 667 {
+            print("SE,8")
+        }
+        else if screenHeight == 568 {
+            print("iPod")
+        }
+        else {
+            print("iPhone XS")
+        }
+    }
+    
     func configureSearchBar() {
         let resultsViewController = SearchResultsViewController()
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
-
-        //
-        let searchControllerSubView = UIView(frame: CGRect(x: 0, y: 50.0, width: 350.0, height: 45))
-        //
+        
+        var searchControllerSubView = UIView()
+        if screenHeight == 736 {
+            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 10, width: 350.0, height: 45))
+        }
+        else if screenHeight == 667 {
+            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 10, width: 350.0, height: 45))
+        }
+        else if screenHeight == 568 {
+            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 10, width: 350.0, height: 45))
+        }
+        else {
+            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 30, width: 350.0, height: 45))
+        }
         
         if let searchView = searchController?.searchBar {
             searchView.searchBarStyle = .minimal
@@ -169,6 +211,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         selectVerticalStackView.alignment = .center
     }
     
+    // 좋아요식당, 재검색 스택뷰
     fileprivate func setConstraintSelectAndRefresh() {
         selectLabelAndRefreshButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -194,10 +237,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func configureMapView() {
         MapViewController.currentLocation = locationManager.location ?? CLLocation(latitude: 36.343805, longitude: 127.417154)
         if let defaultLocation = MapViewController.currentLocation {
-            currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
-                                                     longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
+            currentCamera = GMSCameraPosition.camera(
+                withLatitude: defaultLocation.coordinate.latitude,
+                longitude: defaultLocation.coordinate.longitude,
+                zoom: preciseLocationZoomLevel)
         }
-        
+        //MARK: 여기서 맵뷰 생성
         mapView = GMSMapView.map(withFrame: view.bounds, camera: currentCamera)
         mapView.setMinZoom(0, maxZoom: 20)
         mapView.settings.myLocationButton = true
