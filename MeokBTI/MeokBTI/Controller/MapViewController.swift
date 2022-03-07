@@ -152,17 +152,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         searchController?.searchResultsUpdater = resultsViewController
         
         var searchControllerSubView = UIView()
-        if screenHeight == 736 {
-            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 10, width: 350.0, height: 45))
-        }
-        else if screenHeight == 667 {
-            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 10, width: 350.0, height: 45))
-        }
-        else if screenHeight == 568 {
+        if screenHeight == 736 || screenHeight == 667 || screenHeight == 568 {
             searchControllerSubView = UIView(frame: CGRect(x: 0, y: 10, width: 350.0, height: 45))
         }
         else {
-            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 30, width: 350.0, height: 45))
+            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 50, width: 350.0, height: 45))
         }
         
         if let searchView = searchController?.searchBar {
@@ -216,7 +210,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         selectLabelAndRefreshButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         
         selectLabelAndRefreshButtonStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        selectLabelAndRefreshButtonStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        if screenHeight == 736 || screenHeight == 667 || screenHeight == 568 {
+            selectLabelAndRefreshButtonStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60).isActive = true
+        }
+        else {
+            selectLabelAndRefreshButtonStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        }
         selectLabelAndRefreshButtonStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor , constant: 10).isActive = true
         selectLabelAndRefreshButtonStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor , constant: -10).isActive = true
     }
