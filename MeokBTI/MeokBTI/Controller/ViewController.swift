@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     
-        
+        tableView.register(UINib(nibName: "MyPageHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "MyPageHeaderView")
     }
     
     
@@ -67,16 +67,24 @@ extension ViewController: UITableViewDataSource {
     
 }
 
-extension ViewController: UITableViewDelegate{
+extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = HeaderView()
-        
-        return header
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageHeaderView") as! MyPageHeaderView
+        headerView.backgroundColor = .white
+        headerView.layer.backgroundColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
+        headerView.meokBTIImageView.layer.cornerRadius = headerView.meokBTIImageView.frame.size.width / 2
+        headerView.meokBTIImageView.layer.borderWidth = 1
+        headerView.meokBTIImageView.layer.borderColor = CGColor(gray: 0.7, alpha: 1)
+        headerView.meokBTIImageView.image = UIImage(named: User.shared.meokBTI!.meokBTI)
+        headerView.meokBTILabel.text = User.shared.meokBTI!.meokBTI
+        headerView.meokBTIShortDefinitionLabel.text = User.shared.meokBTI!.shortDefinition
+
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 250
+        return 120
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

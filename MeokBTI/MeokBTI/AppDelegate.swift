@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TMapTapiDelegate {
         GMSServices.provideAPIKey(APIKeys.GoogleMaps.getAPIKey())
         GMSPlacesClient.provideAPIKey(APIKeys.GoogleMaps.getAPIKey())
         TMapApi.setSKTMapAuthenticationWithDelegate(self, apiKey: APIKeys.TMap.getAPIKey())
-        KakaoSDKCommon.initSDK(appKey: APIKeys.Kakao.getAPIKey())
+        KakaoSDK.initSDK(appKey: APIKeys.Kakao.getAPIKey())
         FirebaseApp.configure()
         
         if User.loadFromFile().id == nil {

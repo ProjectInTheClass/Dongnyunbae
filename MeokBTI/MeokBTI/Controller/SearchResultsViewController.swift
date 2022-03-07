@@ -55,7 +55,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func initializeSearchResultsTableView() {
-        searchResultsTableView = UITableView(frame: CGRect(x: 0, y: 0, width: Int(view.frame.width), height: Int(view.frame.height - 0)))
+        searchResultsTableView = UITableView(frame: CGRect(x: 0, y: 0, width: Int(view.frame.width), height: Int(view.frame.height)))
         
         guard let searchResultsTableView = searchResultsTableView else { return }
         self.view.addSubview(searchResultsTableView)
