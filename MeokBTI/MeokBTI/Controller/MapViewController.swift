@@ -14,6 +14,9 @@ import KakaoSDKCommon
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, UISearchBarDelegate {
     
+    // 디바이스 크기 변수
+    let screenHeight = UIScreen.main.bounds.size.height
+    
     // 검색창 코드
     var searchController: UISearchController?
 
@@ -22,7 +25,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     static var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
     var placesClient: GMSPlacesClient!
-    var preciseLocationZoomLevel: Float = 15.0
+    var preciseLocationZoomLevel: Float = 17.0
     
     // 맵뷰 관련 변수들
     var mapView: GMSMapView!
@@ -73,6 +76,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var meokBTILikeCount = Int()
         
     override func viewDidLoad() {
+        checkDevice()
         super.viewDidLoad()
         print("Stored UserID : ", User.loadFromFile().id ?? "Nothing load")
         placesClient = GMSPlacesClient.shared()
@@ -104,6 +108,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     fileprivate func configureUI() {
         // 지도 구현
         configureMapView()
+        
         // 검색창 구현
         configureSearchBar()
         
@@ -112,13 +117,47 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         configureRefreshButton()
         mergeSelectLabelAndRefreshButton()
     }
-
+    
+    func checkDevice() {
+        print(screenHeight)
+        if screenHeight == 926 {
+            print("13PM, 12PM")
+        }
+        else if screenHeight == 896 {
+            print("11PM, 11, XR")
+        }
+        else if screenHeight == 844 {
+            print("13P, 13, 12P, 12")
+        }
+        else if screenHeight == 812 {
+            print("13m, 12m, 11P")
+        }
+        else if screenHeight == 736 {
+            print("8+")
+        }
+        else if screenHeight == 667 {
+            print("SE,8")
+        }
+        else if screenHeight == 568 {
+            print("iPod")
+        }
+        else {
+            print("iPhone XS")
+        }
+    }
+    
     func configureSearchBar() {
         let resultsViewController = SearchResultsViewController()
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
-
-        let searchControllerSubView = UIView(frame: CGRect(x: 0, y: 50.0, width: 350.0, height: 45))
+        
+        var searchControllerSubView = UIView()
+        if screenHeight == 736 || screenHeight == 667 || screenHeight == 568 {
+            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 10, width: 350.0, height: 45))
+        }
+        else {
+            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 50, width: 350.0, height: 45))
+        }
         
         if let searchView = searchController?.searchBar {
             searchView.searchBarStyle = .minimal
@@ -166,11 +205,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         selectVerticalStackView.alignment = .center
     }
     
+    // 좋아요식당, 재검색 스택뷰
     fileprivate func setConstraintSelectAndRefresh() {
         selectLabelAndRefreshButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         
         selectLabelAndRefreshButtonStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        selectLabelAndRefreshButtonStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        if screenHeight == 736 || screenHeight == 667 || screenHeight == 568 {
+            selectLabelAndRefreshButtonStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60).isActive = true
+        }
+        else {
+            selectLabelAndRefreshButtonStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        }
         selectLabelAndRefreshButtonStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor , constant: 10).isActive = true
         selectLabelAndRefreshButtonStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor , constant: -10).isActive = true
     }
@@ -191,10 +236,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func configureMapView() {
         MapViewController.currentLocation = locationManager.location ?? CLLocation(latitude: 36.343805, longitude: 127.417154)
         if let defaultLocation = MapViewController.currentLocation {
-            currentCamera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
-                                                     longitude: defaultLocation.coordinate.longitude, zoom: preciseLocationZoomLevel)
+            currentCamera = GMSCameraPosition.camera(
+                withLatitude: defaultLocation.coordinate.latitude,
+                longitude: defaultLocation.coordinate.longitude,
+                zoom: preciseLocationZoomLevel)
         }
-        
+        //MARK: 여기서 맵뷰 생성
         mapView = GMSMapView.map(withFrame: view.bounds, camera: currentCamera)
         mapView.setMinZoom(0, maxZoom: 20)
         mapView.settings.myLocationButton = true
