@@ -97,7 +97,8 @@ extension ViewController: UITableViewDelegate{
                    
            
         case 1:
-            
+          let user = User.loadFromFile()
+            print(user.meokBTI!)
           print("관심 식당")
             let uvc1 = self.storyboard!.instantiateViewController(withIdentifier: "LikeViewController")
             navigationController?.pushViewController(uvc1, animated: true)

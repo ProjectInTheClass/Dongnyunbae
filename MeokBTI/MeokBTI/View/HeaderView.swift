@@ -13,6 +13,8 @@ class HeaderView: UIView {
     
     let profileImage: UIImageView = {
         let iv = UIImageView()
+        let user = User.loadFromFile()
+        
         
         //시스템에서 기본 이미지 사용하였음
         //sf 이미지
