@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     @IBOutlet var hometextt: UITextView!
     @IBOutlet var hometext: UITextField!
     
-    var sproduct : Movie!=nil
+    var sproduct : Movie! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()

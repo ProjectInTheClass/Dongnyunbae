@@ -8,14 +8,15 @@
 
 
 import UIKit
+import SafariServices
 
 private let cellID = "Cell"
 
-class ViewController: UIViewController {
+class MyPageViewController: UIViewController {
 
     let tableView = UITableView(frame: .zero, style: .grouped)
-    
-    let myPageMenu = ["내 동네 설정", "테스트 결과 모아보기", "관심 식당", "건의 및 문의"]
+    let user = User.loadFromFile()
+    let myPageMenu =  ["테스트 결과 모아보기", "관심 식당", "공지사항", "건의 및 문의","버전 관리"]
     
     
     override func viewDidLoad() {
@@ -49,7 +50,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UITableViewDataSource {
+extension MyPageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myPageMenu.count
@@ -67,7 +68,7 @@ extension ViewController: UITableViewDataSource {
     
 }
 
-extension ViewController: UITableViewDelegate {
+extension MyPageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyPageHeaderView") as! MyPageHeaderView
@@ -89,6 +90,63 @@ extension ViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == 0{
+        switch indexPath.row{
+        case 0:
+            print("테스트 모아보기")
+            let uvc = self.storyboard!.instantiateViewController(withIdentifier: "CollectionViewController")
+           
+           // uvc.modalTransitionStyle = UIModalTransitionStyle.coverVertical//
+           // self.present(uvc, animated: true)
+          
+          //  let controller0 = CollectionViewController()
+          navigationController?.pushViewController(uvc, animated: true)
+                   
+           
+        case 1:
+          let user = User.loadFromFile()
+            print(user.meokBTI!)
+          print("관심 식당")
+            let uvc1 = self.storyboard!.instantiateViewController(withIdentifier: "LikeViewController")
+            navigationController?.pushViewController(uvc1, animated: true)
+             
+            
+            
+        case 2:
+            print("공지사항")
+            
+            guard let url = URL(string: "https://projectintheclass.github.io/Dongnyunbae/") else{
+                    return
+                }
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true)
+            
+            
+        case 3:
+            print("건의 및 문의")
+            let uvc3 = self.storyboard!.instantiateViewController(withIdentifier: "MailViewController")
+            navigationController?.pushViewController(uvc3, animated: true)
+            
+           
+        case 4:
+            print("앱 버전 관리")
+            
+            let uvc4 = self.storyboard!.instantiateViewController(withIdentifier: "VersionViewController")
+            navigationController?.pushViewController(uvc4, animated: true)
+            
+        default:
+            print("wrong")
+            
+            
+        }
+        
+    }else{
+            
+        }
+        
+        
+        
     }
 
 }

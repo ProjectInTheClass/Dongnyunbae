@@ -45,14 +45,15 @@
 		34F05E5F27D5CE9B00F37404 /* MyPageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F05E5E27D5CE9B00F37404 /* MyPageHeaderView.xib */; };
 		34F05E6327D5CF1600F37404 /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F05E6227D5CF1600F37404 /* MyPageHeaderView.swift */; };
 		8E06B80627D636CB00A2A8B8 /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80527D636CB00A2A8B8 /* VersionViewController.swift */; };
-		8E06B80827D636E300A2A8B8 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80727D636E300A2A8B8 /* NoticeViewController.swift */; };
 		8E06B80A27D636E900A2A8B8 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80927D636E900A2A8B8 /* MailViewController.swift */; };
 		8E06B80C27D636ED00A2A8B8 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80B27D636ED00A2A8B8 /* LikeViewController.swift */; };
 		8E06B80E27D636F300A2A8B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80D27D636F300A2A8B8 /* HomeViewController.swift */; };
 		8E06B81027D636FA00A2A8B8 /* CollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80F27D636FA00A2A8B8 /* CollectViewController.swift */; };
-		8ECB5CCC27C2335300A5F01A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCB27C2335300A5F01A /* ViewController.swift */; };
+		8E06B81227D6373D00A2A8B8 /* productList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B81127D6373D00A2A8B8 /* productList.swift */; };
+		8E06B81427D6374600A2A8B8 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B81327D6374600A2A8B8 /* MovieCollectionViewCell.swift */; };
+		8E06B81627D6374B00A2A8B8 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B81527D6374B00A2A8B8 /* Movie.swift */; };
+		8ECB5CCC27C2335300A5F01A /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCB27C2335300A5F01A /* MyPageViewController.swift */; };
 		8ECB5CCE27C2338500A5F01A /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */; };
-		8ECB5CD427C2623C00A5F01A /* collect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CD327C2623C00A5F01A /* collect.swift */; };
 		EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -123,14 +124,15 @@
 		34F05E6227D5CF1600F37404 /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
 		77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 		8E06B80527D636CB00A2A8B8 /* VersionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
-		8E06B80727D636E300A2A8B8 /* NoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		8E06B80927D636E900A2A8B8 /* MailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailViewController.swift; sourceTree = "<group>"; };
 		8E06B80B27D636ED00A2A8B8 /* LikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
 		8E06B80D27D636F300A2A8B8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8E06B80F27D636FA00A2A8B8 /* CollectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectViewController.swift; sourceTree = "<group>"; };
-		8ECB5CCB27C2335300A5F01A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8E06B81127D6373D00A2A8B8 /* productList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = productList.swift; sourceTree = "<group>"; };
+		8E06B81327D6374600A2A8B8 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		8E06B81527D6374B00A2A8B8 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		8ECB5CCB27C2335300A5F01A /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
-		8ECB5CD327C2623C00A5F01A /* collect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collect.swift; sourceTree = "<group>"; };
 		E83B8D949A413BBA69279EEA /* Pods-MeokBTI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.release.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.release.xcconfig"; sourceTree = "<group>"; };
 		EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,14 +209,12 @@
 				01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */,
 				EC1EA90726DE565D00FC03BF /* PersonalDataViewController.swift */,
 				010F916B26CE8B2A00437262 /* ResultTableViewController.swift */,
-				8ECB5CCB27C2335300A5F01A /* ViewController.swift */,
+				8ECB5CCB27C2335300A5F01A /* MyPageViewController.swift */,
 				8E06B80527D636CB00A2A8B8 /* VersionViewController.swift */,
-				8E06B80727D636E300A2A8B8 /* NoticeViewController.swift */,
 				8E06B80B27D636ED00A2A8B8 /* LikeViewController.swift */,
 				8E06B80927D636E900A2A8B8 /* MailViewController.swift */,
 				8E06B80F27D636FA00A2A8B8 /* CollectViewController.swift */,
 				8E06B80D27D636F300A2A8B8 /* HomeViewController.swift */,
-				8ECB5CD327C2623C00A5F01A /* collect.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -245,7 +245,10 @@
 				0148A8FC26CB9B6600F1427C /* PhotoCollectionViewCell.swift */,
 				34D8CF9E27BEA3900032A66B /* HarmonyCollectionViewCell.swift */,
 				8ECB5CCD27C2338500A5F01A /* MyPageCell.swift */,
+				8E06B81527D6374B00A2A8B8 /* Movie.swift */,
+				8E06B81327D6374600A2A8B8 /* MovieCollectionViewCell.swift */,
 				34F05E6227D5CF1600F37404 /* MyPageHeaderView.swift */,
+				8E06B81127D6373D00A2A8B8 /* productList.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -428,16 +431,17 @@
 				348B723427C3FD7600FC524D /* APIKeys.swift in Sources */,
 				34F05E6327D5CF1600F37404 /* MyPageHeaderView.swift in Sources */,
 				EC1EA90826DE565D00FC03BF /* PersonalDataViewController.swift in Sources */,
-				8ECB5CD427C2623C00A5F01A /* collect.swift in Sources */,
+				8E06B81227D6373D00A2A8B8 /* productList.swift in Sources */,
 				0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */,
 				013753F626CD41AC002F3ABE /* MeokBTITabBarController.swift in Sources */,
 				8E06B80A27D636E900A2A8B8 /* MailViewController.swift in Sources */,
 				0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */,
-				8ECB5CCC27C2335300A5F01A /* ViewController.swift in Sources */,
-				8E06B80827D636E300A2A8B8 /* NoticeViewController.swift in Sources */,
+				8ECB5CCC27C2335300A5F01A /* MyPageViewController.swift in Sources */,
+				8E06B81627D6374B00A2A8B8 /* Movie.swift in Sources */,
 				0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */,
 				34AB56D427B4EE1E001DF408 /* Answer.swift in Sources */,
 				01ED1D6927004C5300CB8FB3 /* DetailInfoWindow.swift in Sources */,
+				8E06B81427D6374600A2A8B8 /* MovieCollectionViewCell.swift in Sources */,
 				010F916126CE2B1D00437262 /* User.swift in Sources */,
 				0129338E26B29B93006F22FA /* ResultsViewController.swift in Sources */,
 				0129337426B29A76006F22FA /* AppDelegate.swift in Sources */,
