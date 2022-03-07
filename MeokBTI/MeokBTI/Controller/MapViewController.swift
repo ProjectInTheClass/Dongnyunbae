@@ -76,7 +76,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var meokBTILikeCount = Int()
         
     override func viewDidLoad() {
-        setAutolayout()
+        checkDevice()
         super.viewDidLoad()
         print("Stored UserID : ", User.loadFromFile().id ?? "Nothing load")
         placesClient = GMSPlacesClient.shared()
@@ -118,7 +118,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         mergeSelectLabelAndRefreshButton()
     }
     
-    func setAutolayout() {
+    func checkDevice() {
         print(screenHeight)
         if screenHeight == 926 {
             print("13PM, 12PM")
