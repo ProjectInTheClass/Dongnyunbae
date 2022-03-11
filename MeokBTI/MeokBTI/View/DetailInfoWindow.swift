@@ -39,8 +39,6 @@ class DetailInfoWindow: UIView {
 extension DetailInfoWindow: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-        print("im in MapMarkerView at numberofItem", spotPhotos)
         if spotPhotos.isEmpty {
             return 1
         } else if spotPhotos.count > 10 {
@@ -53,7 +51,6 @@ extension DetailInfoWindow: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as? PhotoCollectionViewCell else { fatalError("can't dequeue CustomCell") }
         
-        print("im in MapMarkerView at cellforItem", spotPhotos.count)
         if spotPhotos.isEmpty {
             // 기본 미리보기
             cell.photoView.image = UIImage(named: "ACEG")
