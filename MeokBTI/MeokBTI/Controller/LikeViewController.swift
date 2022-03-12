@@ -32,7 +32,7 @@ class LikeViewController: UIViewController, UITableViewDelegate {
         tableView.dataSource = self
         
         
-        tableView.register(MyPageCell.self, forCellReuseIdentifier: cellID)
+        tableView.register(MyPageTableViewCell.self, forCellReuseIdentifier: cellID)
         
         
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -56,7 +56,7 @@ extension LikeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MyPageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MyPageTableViewCell
         let user = User.loadFromFile()
 
         cell.menuLabel.text = user.favoriteRestaurants[indexPath.row].name

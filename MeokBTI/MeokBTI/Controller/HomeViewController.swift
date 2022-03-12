@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
   
     
     @IBOutlet var hometext: UILabel!
-    var sproduct : Movie! = nil
+    var sproduct : MeokBTIResult! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()

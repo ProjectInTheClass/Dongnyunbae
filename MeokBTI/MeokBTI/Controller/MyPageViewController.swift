@@ -35,7 +35,7 @@ class MyPageViewController: UIViewController {
         tableView.dataSource = self
         
         
-        tableView.register(MyPageCell.self, forCellReuseIdentifier: cellID)
+        tableView.register(MyPageTableViewCell.self, forCellReuseIdentifier: cellID)
         
         
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -57,7 +57,7 @@ extension MyPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MyPageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MyPageTableViewCell
         
 
         cell.menuLabel.text = myPageMenu[indexPath.row]
