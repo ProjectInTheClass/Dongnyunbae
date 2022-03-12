@@ -15,6 +15,8 @@ class LikeViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        self.navigationItem.title = "좋아요 한 식당 목록"
+        
     }
     func configureUI(){
         view.addSubview(tableView)
