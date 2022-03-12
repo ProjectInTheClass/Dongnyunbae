@@ -35,9 +35,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var selectedMarkers: [GMSMarker] = []
     static var handleMapVC = MapViewController()
     
+    //
     // 식당 5개 선택 관련
     var isTested = false // meokbti 테스트 했는지
-    var isSelectedFiveRestaurant = false // 5개 선택 했는지
+//    var isSelectedFiveRestaurant = false // 5개 선택 했는지
+    var isSelectedFiveRestaurant = User.shared.didSelectFiveRestaurant()
     
     // InfoWindow
     var meokBTIRanking: String = ""
@@ -68,7 +70,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var refreshButton = UIButton()
     var selectFiveRestaurantLabel = UILabel()
     var countLabel = UILabel()
-    var selectedRestaurantsCount = 0
+    var selectedRestaurantsCount = User.shared.favoriteRestaurants.count// = 0
     var selectLabelAndRefreshButtonStackView = UIStackView()
     var selectVerticalStackView = UIStackView()
     
@@ -115,6 +117,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         configureSelectFiveRestaurantLabel()
         configureRefreshButton()
         mergeSelectLabelAndRefreshButton()
+        updateSelectCount()
     }
     
     func checkDevice() {
@@ -184,15 +187,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func configureSelectFiveRestaurantLabel() {
-        if user.hasSelectedFavorites { return }
-        
-        selectFiveRestaurantLabel.text = " 식당에 좋아요를 눌러보세요! "
-        selectFiveRestaurantLabel.font = UIFont(name: "Binggrae", size: 15)
-        selectFiveRestaurantLabel.layer.cornerRadius = 15
-        selectFiveRestaurantLabel.adjustsFontSizeToFitWidth = true
+        //if user.hasSelectedFavorites { return }
+        updateSelectCount()
+        if selectedRestaurantsCount < 5 {
+            selectFiveRestaurantLabel.text = " 식당에 좋아요를 눌러보세요! "
+            selectFiveRestaurantLabel.font = UIFont(name: "Binggrae", size: 15)
+            selectFiveRestaurantLabel.layer.cornerRadius = 15
+            selectFiveRestaurantLabel.adjustsFontSizeToFitWidth = true
 
-        countLabel.text = "\(selectedRestaurantsCount) / 5"
-        countLabel.backgroundColor = .white
+            countLabel.text = "\(selectedRestaurantsCount) / 5"
+            countLabel.backgroundColor = .white
+        }
+        else {
+            selectVerticalStackView.removeFromSuperview()
+            //isSelectedFiveRestaurant = true
+            //잠시user.hasSelectedFavorites = true
+        }
+//        selectFiveRestaurantLabel.text = " 식당에 좋아요를 눌러보세요! "
+//        selectFiveRestaurantLabel.font = UIFont(name: "Binggrae", size: 15)
+//        selectFiveRestaurantLabel.layer.cornerRadius = 15
+//        selectFiveRestaurantLabel.adjustsFontSizeToFitWidth = true
+//
+//        countLabel.text = "\(selectedRestaurantsCount) / 5"
+//        countLabel.backgroundColor = .white
     }
     
     fileprivate func configureSelectVStack() {
@@ -251,11 +268,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func updateSelectCount() {
-        countLabel.text = "\(selectedRestaurantsCount) / 5"
-        if selectedRestaurantsCount == 5 {
+        
+        if selectedRestaurantsCount <= 5 {
+            countLabel.text = "\(selectedRestaurantsCount) / 5"
+            //isSelectedFiveRestaurant = true
+            //잠시user.hasSelectedFavorites = true
+        }
+        else {
             selectVerticalStackView.removeFromSuperview()
-            isSelectedFiveRestaurant = true
-            user.hasSelectedFavorites = true
         }
     }
     
