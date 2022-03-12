@@ -58,9 +58,10 @@ extension MyPageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MyPageTableViewCell
-        
+    
 
         cell.menuLabel.text = myPageMenu[indexPath.row]
+        cell.menuLabel.font = UIFont(name: "Binggrae", size: 17)
         cell.accessoryType = .disclosureIndicator
         return cell
     }

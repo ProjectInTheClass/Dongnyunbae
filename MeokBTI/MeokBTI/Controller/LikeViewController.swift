@@ -60,7 +60,7 @@ extension LikeViewController: UITableViewDataSource {
         let user = User.loadFromFile()
 
         cell.menuLabel.text = user.favoriteRestaurants[indexPath.row].name
-     
+        cell.menuLabel.font = UIFont(name: "Binggrae", size: 17)
         return cell
     }
     
