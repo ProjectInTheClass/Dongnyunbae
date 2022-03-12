@@ -34,11 +34,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var selectedMarkers: [GMSMarker] = []
     static var handleMapVC = MapViewController()
     
-    //
     // 식당 5개 선택 관련
     var isTested = false // meokbti 테스트 했는지
-//    var isSelectedFiveRestaurant = false // 5개 선택 했는지
-    var isSelectedFiveRestaurant = User.shared.didSelectFiveRestaurant()
+    var isSelectedFiveRestaurant = User.shared.didSelectFiveRestaurant() // 5개 선택 했는지
     
     // InfoWindow
     var meokBTIRanking: String = ""
@@ -69,7 +67,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var refreshButton = UIButton()
     var selectFiveRestaurantLabel = UILabel()
     var countLabel = UILabel()
-    var selectedRestaurantsCount = User.shared.favoriteRestaurants.count// = 0
+    var selectedRestaurantsCount = User.shared.favoriteRestaurants.count
     var selectLabelAndRefreshButtonStackView = UIStackView()
     var selectVerticalStackView = UIStackView()
     
@@ -380,7 +378,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             fetchPlaceID(restaurantName: name) { (placeID) in
                 // 받아온 placeID로 해당 식당 사진 받아오기
                 if let selectedPlaceID = placeID {
-                    //                    self.fetchRestaurantPhoto(placeID: selectedPlaceID)
+//                    self.fetchRestaurantPhoto(placeID: selectedPlaceID)
                     
                     DispatchQueue.main.async {
                         self.shownRestaurantPlaceID = selectedPlaceID
