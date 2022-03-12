@@ -10,25 +10,14 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet var homeimage: UIImageView!
-    
-    
     @IBOutlet var homelabel: UILabel!
-  
-    
     @IBOutlet var hometext: UILabel!
     var sproduct : MeokBTIResult! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         homeimage.image = sproduct.image
         homelabel.text = sproduct.title
         hometext.text = sproduct.text
-        
-        
     }
-    
-
- 
-
 }
