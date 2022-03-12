@@ -19,8 +19,6 @@ class IntroductionViewController: UIViewController {
         hideTabBar(when: isFirstStart())
         testStartButton.layer.cornerRadius = 5
         testStartButton.flash()
-//        testStartButton.shake()
-    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,8 +35,6 @@ class IntroductionViewController: UIViewController {
     }
 
     @IBAction func unwindToQuizIntroduction(_ unwindSegue: UIStoryboardSegue) {
-//        let sourceViewController = unwindSegue.source
-        // Use data from the view controller which initiated the unwind segue
         hideTabBar(when: false)
     }
 

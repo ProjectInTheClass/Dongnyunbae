@@ -283,7 +283,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionViewCell" id="808-ad-Kc6" customClass="MovieCollectionViewCell" customModule="MeokBTI" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MeokBTIResultCollectionViewCell" id="808-ad-Kc6" customClass="MeokBTIResultCollectionViewCell" customModule="MeokBTI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="182" height="227"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ge6-Ae-9dI">
@@ -323,9 +323,8 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="182" height="227"/>
                                         <connections>
-                                            <outlet property="button" destination="waV-v7-sz1" id="tCq-xy-Bp4"/>
-                                            <outlet property="movieImageView" destination="lpl-ht-RM0" id="bBV-6w-lui"/>
-                                            <outlet property="titleLbl" destination="4zJ-Qc-kKc" id="iCd-GT-emZ"/>
+                                            <outlet property="meokBTIImageView" destination="lpl-ht-RM0" id="bBV-6w-lui"/>
+                                            <outlet property="meokBTITitleLabel" destination="4zJ-Qc-kKc" id="iCd-GT-emZ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
