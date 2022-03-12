@@ -212,34 +212,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="현재 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oTL-wZ-Asc">
-                                <rect key="frame" x="155" y="454" width="110" height="38"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="testImage" translatesAutoresizingMaskIntoConstraints="NO" id="YyE-dl-2yn">
+                                <rect key="frame" x="0.0" y="39" width="414" height="818"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="현재 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KgG-Y9-BFm">
+                                <rect key="frame" x="155" y="483" width="259" height="38"/>
                                 <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yLd-bw-g4u">
-                                <rect key="frame" x="181" y="346" width="59" height="38"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UoV-tH-6hg">
+                                <rect key="frame" x="178" y="369" width="59" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="S8a-CI-3wa"/>
-                                    <constraint firstAttribute="width" constant="59" id="gBy-AQ-owE"/>
+                                    <constraint firstAttribute="height" constant="38" id="hSh-vd-spG"/>
+                                    <constraint firstAttribute="width" constant="59" id="nNQ-vT-boV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="최신 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Gj-XR-gpW">
-                                <rect key="frame" x="154" y="277" width="260" height="38"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="최신 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3oT-70-Jvk">
+                                <rect key="frame" x="154" y="306" width="260" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="31l-9y-5sH"/>
-                                    <constraint firstAttribute="width" constant="260" id="mnA-Of-frv"/>
+                                    <constraint firstAttribute="width" constant="260" id="3Gb-WT-Wan"/>
+                                    <constraint firstAttribute="height" constant="38" id="9NH-H4-zOv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ6-DN-h7m">
-                                <rect key="frame" x="181" y="524" width="59" height="38"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kBD-dn-IPD">
+                                <rect key="frame" x="178" y="555" width="59" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="59" id="P9k-tq-pdG"/>
-                                    <constraint firstAttribute="height" constant="38" id="oSc-o3-cAz"/>
+                                    <constraint firstAttribute="height" constant="38" id="bvZ-7B-RyV"/>
+                                    <constraint firstAttribute="width" constant="59" id="oSL-zj-4Kj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -248,16 +252,16 @@
                         <viewLayoutGuide key="safeArea" id="5SD-gU-Dfz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7Gj-XR-gpW" firstAttribute="top" secondItem="5SD-gU-Dfz" secondAttribute="top" constant="233" id="BMg-OE-hCZ"/>
-                            <constraint firstItem="yLd-bw-g4u" firstAttribute="leading" secondItem="dZ6-DN-h7m" secondAttribute="leading" id="C6S-nV-DVd"/>
-                            <constraint firstItem="dZ6-DN-h7m" firstAttribute="top" secondItem="oTL-wZ-Asc" secondAttribute="bottom" constant="32" id="NMd-wN-7V7"/>
-                            <constraint firstItem="7Gj-XR-gpW" firstAttribute="centerX" secondItem="zmG-W2-MI8" secondAttribute="centerX" constant="77" id="TLE-0D-nan"/>
-                            <constraint firstItem="5SD-gU-Dfz" firstAttribute="bottom" secondItem="dZ6-DN-h7m" secondAttribute="bottom" constant="300" id="aOC-vj-AUI"/>
-                            <constraint firstItem="yLd-bw-g4u" firstAttribute="top" secondItem="7Gj-XR-gpW" secondAttribute="bottom" constant="31" id="eMJ-ve-IdU"/>
-                            <constraint firstItem="7Gj-XR-gpW" firstAttribute="leading" secondItem="oTL-wZ-Asc" secondAttribute="leading" constant="-1" id="gCP-iY-kB3"/>
-                            <constraint firstItem="yLd-bw-g4u" firstAttribute="leading" secondItem="5SD-gU-Dfz" secondAttribute="leading" constant="181" id="jCH-Jm-kg0"/>
-                            <constraint firstItem="oTL-wZ-Asc" firstAttribute="top" secondItem="yLd-bw-g4u" secondAttribute="bottom" constant="70" id="k1h-Wh-ENx"/>
-                            <constraint firstItem="5SD-gU-Dfz" firstAttribute="trailing" secondItem="oTL-wZ-Asc" secondAttribute="trailing" constant="149" id="zYy-YG-3jP"/>
+                            <constraint firstItem="3oT-70-Jvk" firstAttribute="leading" secondItem="KgG-Y9-BFm" secondAttribute="leading" constant="-1" id="4Jg-Ru-Jcm"/>
+                            <constraint firstItem="3oT-70-Jvk" firstAttribute="top" secondItem="5SD-gU-Dfz" secondAttribute="top" constant="262" id="6Y1-b2-0Iv"/>
+                            <constraint firstItem="UoV-tH-6hg" firstAttribute="top" secondItem="3oT-70-Jvk" secondAttribute="bottom" constant="25" id="BaE-gp-5Pp"/>
+                            <constraint firstItem="KgG-Y9-BFm" firstAttribute="top" secondItem="UoV-tH-6hg" secondAttribute="bottom" constant="76" id="FBn-p9-b6X"/>
+                            <constraint firstItem="3oT-70-Jvk" firstAttribute="leading" secondItem="5SD-gU-Dfz" secondAttribute="leading" constant="154" id="FYT-mq-muc"/>
+                            <constraint firstItem="3oT-70-Jvk" firstAttribute="trailing" secondItem="KgG-Y9-BFm" secondAttribute="trailing" id="mC2-9s-RQn"/>
+                            <constraint firstItem="UoV-tH-6hg" firstAttribute="leading" secondItem="kBD-dn-IPD" secondAttribute="leading" id="ndL-cG-Kun"/>
+                            <constraint firstItem="5SD-gU-Dfz" firstAttribute="bottom" secondItem="kBD-dn-IPD" secondAttribute="bottom" constant="269" id="pQR-fW-sNZ"/>
+                            <constraint firstItem="kBD-dn-IPD" firstAttribute="top" secondItem="KgG-Y9-BFm" secondAttribute="bottom" constant="34" id="rm2-p6-ER7"/>
+                            <constraint firstItem="KgG-Y9-BFm" firstAttribute="centerX" secondItem="kBD-dn-IPD" secondAttribute="centerX" constant="77" id="xXI-ME-0fQ"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -449,6 +453,7 @@
         <image name="map" catalog="system" width="128" height="110"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="testImage" width="585" height="1266"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
