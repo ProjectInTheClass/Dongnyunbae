@@ -179,14 +179,14 @@
 			children = (
 				0129337326B29A76006F22FA /* AppDelegate.swift */,
 				0129337526B29A76006F22FA /* SceneDelegate.swift */,
+				010F916A26CE5DE500437262 /* Font */,
 				0148CF1226C6677F0035862A /* Model */,
 				0148CF1C26C8E1A20035862A /* View */,
 				013753F426CD410C002F3ABE /* Controller */,
 				010F916D26CE8CDA00437262 /* MeokBTITest.storyboard */,
 				0129337926B29A76006F22FA /* Main.storyboard */,
-				0129337C26B29A78006F22FA /* Assets.xcassets */,
-				010F916A26CE5DE500437262 /* Font */,
 				0129337E26B29A78006F22FA /* LaunchScreen.storyboard */,
+				0129337C26B29A78006F22FA /* Assets.xcassets */,
 				0101E0E826D8B07F00140C70 /* GoogleService-Info.plist */,
 				0129338126B29A78006F22FA /* Info.plist */,
 			);
