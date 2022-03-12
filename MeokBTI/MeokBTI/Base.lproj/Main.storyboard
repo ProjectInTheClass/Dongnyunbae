@@ -212,56 +212,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="testImage" translatesAutoresizingMaskIntoConstraints="NO" id="YyE-dl-2yn">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testImage" translatesAutoresizingMaskIntoConstraints="NO" id="YyE-dl-2yn">
                                 <rect key="frame" x="0.0" y="39" width="414" height="818"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="현재 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KgG-Y9-BFm">
-                                <rect key="frame" x="155" y="483" width="259" height="38"/>
-                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UoV-tH-6hg">
-                                <rect key="frame" x="178" y="369" width="59" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="hSh-vd-spG"/>
-                                    <constraint firstAttribute="width" constant="59" id="nNQ-vT-boV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="최신 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3oT-70-Jvk">
-                                <rect key="frame" x="154" y="306" width="260" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="260" id="3Gb-WT-Wan"/>
-                                    <constraint firstAttribute="height" constant="38" id="9NH-H4-zOv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kBD-dn-IPD">
-                                <rect key="frame" x="178" y="555" width="59" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="bvZ-7B-RyV"/>
-                                    <constraint firstAttribute="width" constant="59" id="oSL-zj-4Kj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="onL-nQ-7O3">
+                                <rect key="frame" x="162" y="349" width="90" height="208"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="bhv-6o-myi">
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="80"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="최신 버전" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3oT-70-Jvk">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="29"/>
+                                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z6w-l5-lq9">
+                                                <rect key="frame" x="0.0" y="50" width="90" height="30"/>
+                                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="pgc-Z3-8yz">
+                                        <rect key="frame" x="0.0" y="128" width="90" height="80"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="현재 버전" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H4R-cm-yAJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="29"/>
+                                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hY5-hg-7BZ">
+                                                <rect key="frame" x="0.0" y="50" width="90" height="30"/>
+                                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CvA-wz-IJh">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="버전 관리" id="rW1-OL-40L"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5SD-gU-Dfz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="3oT-70-Jvk" firstAttribute="leading" secondItem="KgG-Y9-BFm" secondAttribute="leading" constant="-1" id="4Jg-Ru-Jcm"/>
-                            <constraint firstItem="3oT-70-Jvk" firstAttribute="top" secondItem="5SD-gU-Dfz" secondAttribute="top" constant="262" id="6Y1-b2-0Iv"/>
-                            <constraint firstItem="UoV-tH-6hg" firstAttribute="top" secondItem="3oT-70-Jvk" secondAttribute="bottom" constant="25" id="BaE-gp-5Pp"/>
-                            <constraint firstItem="KgG-Y9-BFm" firstAttribute="top" secondItem="UoV-tH-6hg" secondAttribute="bottom" constant="76" id="FBn-p9-b6X"/>
-                            <constraint firstItem="3oT-70-Jvk" firstAttribute="leading" secondItem="5SD-gU-Dfz" secondAttribute="leading" constant="154" id="FYT-mq-muc"/>
-                            <constraint firstItem="3oT-70-Jvk" firstAttribute="trailing" secondItem="KgG-Y9-BFm" secondAttribute="trailing" id="mC2-9s-RQn"/>
-                            <constraint firstItem="UoV-tH-6hg" firstAttribute="leading" secondItem="kBD-dn-IPD" secondAttribute="leading" id="ndL-cG-Kun"/>
-                            <constraint firstItem="5SD-gU-Dfz" firstAttribute="bottom" secondItem="kBD-dn-IPD" secondAttribute="bottom" constant="269" id="pQR-fW-sNZ"/>
-                            <constraint firstItem="kBD-dn-IPD" firstAttribute="top" secondItem="KgG-Y9-BFm" secondAttribute="bottom" constant="34" id="rm2-p6-ER7"/>
-                            <constraint firstItem="KgG-Y9-BFm" firstAttribute="centerX" secondItem="kBD-dn-IPD" secondAttribute="centerX" constant="77" id="xXI-ME-0fQ"/>
+                            <constraint firstItem="5SD-gU-Dfz" firstAttribute="trailing" secondItem="YyE-dl-2yn" secondAttribute="trailing" id="0FK-3o-y7B"/>
+                            <constraint firstItem="onL-nQ-7O3" firstAttribute="centerY" secondItem="5SD-gU-Dfz" secondAttribute="centerY" id="BzQ-dx-PwU"/>
+                            <constraint firstItem="onL-nQ-7O3" firstAttribute="centerX" secondItem="5SD-gU-Dfz" secondAttribute="centerX" id="GAP-rB-14t"/>
+                            <constraint firstItem="YyE-dl-2yn" firstAttribute="leading" secondItem="5SD-gU-Dfz" secondAttribute="leading" id="LnB-dp-7AF"/>
+                            <constraint firstItem="5SD-gU-Dfz" firstAttribute="top" secondItem="YyE-dl-2yn" secondAttribute="top" constant="5" id="S9m-sp-8fs"/>
+                            <constraint firstItem="5SD-gU-Dfz" firstAttribute="bottom" secondItem="YyE-dl-2yn" secondAttribute="bottom" constant="5" id="wTL-qd-n2k"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -278,7 +283,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="r3s-f7-q83">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GPs-e1-DD3">
                                     <size key="itemSize" width="200" height="227"/>
@@ -333,14 +338,21 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KvY-bO-aHd">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="테스트 결과 모아보기" id="3hd-ec-eBr"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="45W-co-0HR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="r3s-f7-q83" firstAttribute="leading" secondItem="45W-co-0HR" secondAttribute="leading" id="3Oy-d5-uWA"/>
-                            <constraint firstItem="45W-co-0HR" firstAttribute="bottom" secondItem="r3s-f7-q83" secondAttribute="bottom" id="CUX-mh-IrA"/>
-                            <constraint firstItem="r3s-f7-q83" firstAttribute="top" secondItem="45W-co-0HR" secondAttribute="top" id="HRj-5N-H8l"/>
-                            <constraint firstItem="45W-co-0HR" firstAttribute="trailing" secondItem="r3s-f7-q83" secondAttribute="trailing" id="rch-tz-En5"/>
+                            <constraint firstItem="45W-co-0HR" firstAttribute="bottom" secondItem="r3s-f7-q83" secondAttribute="bottom" id="3ny-ja-Jka"/>
+                            <constraint firstItem="45W-co-0HR" firstAttribute="trailing" secondItem="r3s-f7-q83" secondAttribute="trailing" id="5KU-58-gdx"/>
+                            <constraint firstItem="r3s-f7-q83" firstAttribute="leading" secondItem="45W-co-0HR" secondAttribute="leading" id="A4l-w3-epF"/>
+                            <constraint firstItem="r3s-f7-q83" firstAttribute="top" secondItem="45W-co-0HR" secondAttribute="top" constant="44" id="gZc-C0-huJ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="5JT-uP-85e"/>
@@ -351,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDd-yt-OwW" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2119" y="1550"/>
+            <point key="canvasLocation" x="2118.840579710145" y="1549.5535714285713"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="T5S-ZL-60v">
@@ -417,12 +429,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="내가 좋아요 누른 식당" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzL-eo-Owk">
-                                <rect key="frame" x="94" y="68" width="226" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="BinggraeSamanco" family="Binggrae Samanco" pointSize="25"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lki-4h-l1U">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="관심 식당" id="wia-PU-oNd"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rAh-5q-mZM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -439,6 +452,15 @@
                     <view key="view" contentMode="scaleToFill" id="zcG-Am-Al4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f5E-me-GEX">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="건의 및 문의" id="ozI-mk-ET7"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4Ag-gg-r8W"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
