@@ -27,29 +27,15 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if tempResultData.count == 0 {
-//            return 1
-//        }
-//        else {
-//            return tempResultData.count
-//        }
         return tempResultData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath)
         var content = cell.defaultContentConfiguration()
-        
-//        if tempResultData.count == 0 {
-//            content.text = " "
-//        }
-//        else {
-//            content.text = tempResultData[indexPath.row].name
-//        }
+
         content.text = tempResultData[indexPath.row].name
-        
         cell.contentConfiguration = content
-        print("Make cell!")
         
         return cell
     }
@@ -68,19 +54,10 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     func updateSearchResults(for searchController: UISearchController) {
-        print("Update search!")
         let pathData = TMapPathData()
         
         // 사용자 입력
         guard let userSearchKeyword = searchController.searchBar.text else { return }
-//        var userSearchKeyword: String
-//
-//        if tempResultData.count == 0 {
-//            userSearchKeyword = " "
-//        }
-//        else {
-//            userSearchKeyword = searchController.searchBar.text!
-//        }
         
         // 사용자 위치
         let center = CLLocationCoordinate2D(latitude: MapViewController.currentLocation!.coordinate.latitude, longitude: MapViewController.currentLocation!.coordinate.longitude)
@@ -106,19 +83,6 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
     // TODO: infoWindow
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        // 확인 메시지
-        print("Cell touched!")
-        
-        // 터치시 식당으로 카메라 이동
-        MapViewController.handleMapVC.mapView.animate(toLocation: tempResultData[indexPath.row].coordinate!)
-        
-        // 카메라 이동 후 마커 생성
-        let marker2 = GMSMarker()
-        
-        marker2.position = tempResultData[indexPath.row].coordinate!
-        marker2.title = tempResultData[indexPath.row].name
-        marker2.map = MapViewController.handleMapVC.mapView
         
         // infoWindow 생성되게
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
