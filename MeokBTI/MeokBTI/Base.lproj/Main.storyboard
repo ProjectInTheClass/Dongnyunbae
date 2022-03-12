@@ -277,17 +277,17 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GPs-e1-DD3">
-                                    <size key="itemSize" width="182" height="297"/>
+                                    <size key="itemSize" width="182" height="227"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionViewCell" id="808-ad-Kc6" customClass="MovieCollectionViewCell" customModule="MeokBTI" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="182" height="297"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="182" height="227"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ge6-Ae-9dI">
-                                            <rect key="frame" x="0.0" y="0.0" width="182" height="297"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="227"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ELBC" translatesAutoresizingMaskIntoConstraints="NO" id="lpl-ht-RM0">
@@ -305,34 +305,25 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cao-j0-PxO">
-                                                    <rect key="frame" x="54" y="215" width="75" height="26"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="29" id="SUa-rc-HBb"/>
-                                                    </constraints>
-                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="waV-v7-sz1" customClass="Button">
+                                                    <rect key="frame" x="58" y="115" width="67" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="자세히" buttonSize="mini"/>
-                                                    <connections>
-                                                        <action selector="button:" destination="808-ad-Kc6" eventType="touchUpInside" id="uhK-OG-6HP"/>
-                                                    </connections>
+                                                    <buttonConfiguration key="configuration" style="plain" title=""/>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="4zJ-Qc-kKc" firstAttribute="leading" secondItem="ge6-Ae-9dI" secondAttribute="leading" constant="8" id="BSU-rc-3ac"/>
                                                 <constraint firstItem="lpl-ht-RM0" firstAttribute="leading" secondItem="ge6-Ae-9dI" secondAttribute="leading" id="CMf-dE-cP7"/>
-                                                <constraint firstItem="cao-j0-PxO" firstAttribute="leading" secondItem="ge6-Ae-9dI" secondAttribute="leading" constant="54" id="DUh-Oo-8KN"/>
-                                                <constraint firstAttribute="bottom" secondItem="cao-j0-PxO" secondAttribute="bottom" constant="64" id="P3e-ym-4Jw"/>
-                                                <constraint firstAttribute="trailing" secondItem="cao-j0-PxO" secondAttribute="trailing" constant="53" id="XCd-fv-cFF"/>
                                                 <constraint firstAttribute="trailing" secondItem="lpl-ht-RM0" secondAttribute="trailing" id="fS8-Xs-i3Z"/>
                                                 <constraint firstItem="4zJ-Qc-kKc" firstAttribute="top" secondItem="lpl-ht-RM0" secondAttribute="bottom" constant="8" id="gya-uN-rAY"/>
                                                 <constraint firstAttribute="trailing" secondItem="4zJ-Qc-kKc" secondAttribute="trailing" constant="8" id="hib-uz-m18"/>
                                                 <constraint firstItem="lpl-ht-RM0" firstAttribute="top" secondItem="ge6-Ae-9dI" secondAttribute="top" id="y12-YH-dxz"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="182" height="297"/>
+                                        <size key="customSize" width="182" height="227"/>
                                         <connections>
-                                            <outlet property="button" destination="cao-j0-PxO" id="IK7-tD-HrD"/>
+                                            <outlet property="button" destination="waV-v7-sz1" id="tCq-xy-Bp4"/>
                                             <outlet property="movieImageView" destination="lpl-ht-RM0" id="bBV-6w-lui"/>
                                             <outlet property="titleLbl" destination="4zJ-Qc-kKc" id="iCd-GT-emZ"/>
                                         </connections>
@@ -357,7 +348,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDd-yt-OwW" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1684" y="2883"/>
+            <point key="canvasLocation" x="1682.608695652174" y="2882.8125"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="T5S-ZL-60v">
@@ -379,7 +370,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="homelmage" image="ELBC" translatesAutoresizingMaskIntoConstraints="NO" id="TDV-uZ-lbM">
                                 <rect key="frame" x="20" y="133" width="374" height="244"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsO-vJ-hLO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsO-vJ-hLO">
                                 <rect key="frame" x="20" y="460" width="374" height="243"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="243" id="osd-um-IKp"/>

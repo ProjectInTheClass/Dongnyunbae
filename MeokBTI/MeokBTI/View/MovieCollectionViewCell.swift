@@ -9,7 +9,9 @@
 import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet var button: UIButton!
+    
     @IBOutlet weak var movieImageView: UIImageView!
     
     @IBOutlet weak var titleLbl: UILabel!
