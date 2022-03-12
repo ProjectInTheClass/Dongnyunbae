@@ -187,8 +187,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func configureSelectFiveRestaurantLabel() {
-        //if user.hasSelectedFavorites { return }
         updateSelectCount()
+        
         if selectedRestaurantsCount < 5 {
             selectFiveRestaurantLabel.text = " 식당에 좋아요를 눌러보세요! "
             selectFiveRestaurantLabel.font = UIFont(name: "Binggrae", size: 15)
@@ -200,16 +200,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         }
         else {
             selectVerticalStackView.removeFromSuperview()
-            //isSelectedFiveRestaurant = true
-            //잠시user.hasSelectedFavorites = true
         }
-//        selectFiveRestaurantLabel.text = " 식당에 좋아요를 눌러보세요! "
-//        selectFiveRestaurantLabel.font = UIFont(name: "Binggrae", size: 15)
-//        selectFiveRestaurantLabel.layer.cornerRadius = 15
-//        selectFiveRestaurantLabel.adjustsFontSizeToFitWidth = true
-//
-//        countLabel.text = "\(selectedRestaurantsCount) / 5"
-//        countLabel.backgroundColor = .white
     }
     
     fileprivate func configureSelectVStack() {
@@ -238,9 +229,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func mergeSelectLabelAndRefreshButton() {
         configureSelectVStack()
-        
-//        selectLabelAndRefreshButtonStackView.addArrangedSubview(selectVerticalStackView)
-//        selectLabelAndRefreshButtonStackView.addArrangedSubview(refreshButton)
+ 
         selectLabelAndRefreshButtonStackView.spacing = 20
         selectLabelAndRefreshButtonStackView.axis = .horizontal
         self.view.addSubview(selectLabelAndRefreshButtonStackView)
@@ -268,11 +257,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func updateSelectCount() {
-        
-        if selectedRestaurantsCount <= 5 {
+        if selectedRestaurantsCount < 5 {
             countLabel.text = "\(selectedRestaurantsCount) / 5"
-            //isSelectedFiveRestaurant = true
-            //잠시user.hasSelectedFavorites = true
         }
         else {
             selectVerticalStackView.removeFromSuperview()
