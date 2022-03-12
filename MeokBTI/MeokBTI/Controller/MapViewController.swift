@@ -117,6 +117,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         configureSelectFiveRestaurantLabel()
         configureRefreshButton()
         mergeSelectLabelAndRefreshButton()
+        updateSelectCount()
     }
     
     func checkDevice() {
@@ -187,7 +188,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     
     func configureSelectFiveRestaurantLabel() {
         //if user.hasSelectedFavorites { return }
-        
+        updateSelectCount()
         if selectedRestaurantsCount < 5 {
             selectFiveRestaurantLabel.text = " 식당에 좋아요를 눌러보세요! "
             selectFiveRestaurantLabel.font = UIFont(name: "Binggrae", size: 15)
@@ -267,11 +268,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     }
     
     func updateSelectCount() {
-        countLabel.text = "\(selectedRestaurantsCount) / 5"
-        if selectedRestaurantsCount == 5 {
-            selectVerticalStackView.removeFromSuperview()
+        
+        if selectedRestaurantsCount <= 5 {
+            countLabel.text = "\(selectedRestaurantsCount) / 5"
             //isSelectedFiveRestaurant = true
             //잠시user.hasSelectedFavorites = true
+        }
+        else {
+            selectVerticalStackView.removeFromSuperview()
         }
     }
     
