@@ -12,9 +12,11 @@ private let cellID = "Cell"
 
 class LikeViewController: UIViewController, UITableViewDelegate {
 
+    
+    
     let tableView = UITableView(frame: .zero, style: .grouped)
     let user = User.loadFromFile()
-    let myPageMenu =  ["테스트 결과 모아보기", "관심 식당", "공지사항", "건의 및 문의","버전 관리"]
+    // let myPageMenu =  ["테스트 결과 모아보기", "관심 식당", "공지사항", "건의 및 문의","버전 관리"]
     
     
     
@@ -52,14 +54,16 @@ class LikeViewController: UIViewController, UITableViewDelegate {
 extension LikeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myPageMenu.count
+        let user = User.loadFromFile()
+        
+        return user.favoriteRestaurants.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MyPageCell
-        
+        let user = User.loadFromFile()
 
-        cell.menuLabel.text = myPageMenu[indexPath.row]
+        cell.menuLabel.text = user.favoriteRestaurants[indexPath.row].name
         cell.accessoryType = .disclosureIndicator
         return cell
     }

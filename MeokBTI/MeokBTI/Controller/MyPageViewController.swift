@@ -96,12 +96,7 @@ extension MyPageViewController: UITableViewDelegate {
         case 0:
             print("테스트 모아보기")
             let uvc = self.storyboard!.instantiateViewController(withIdentifier: "CollectionViewController")
-           
-           // uvc.modalTransitionStyle = UIModalTransitionStyle.coverVertical//
-           // self.present(uvc, animated: true)
-          
-          //  let controller0 = CollectionViewController()
-          navigationController?.pushViewController(uvc, animated: true)
+            navigationController?.pushViewController(uvc, animated: true)
                    
            
         case 1:
