@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Whf-TO-Pr8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1141" y="818"/>
+            <point key="canvasLocation" x="1203" y="612"/>
         </scene>
         <!--Search Results View Controller-->
         <scene sceneID="iec-pp-42l">
@@ -146,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxK-29-Ndo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="818"/>
+            <point key="canvasLocation" x="1202.8985507246377" y="1321.875"/>
         </scene>
         <!--MeokBTI Tab Bar Controller-->
         <scene sceneID="vXl-iF-NSj">
@@ -183,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUE-ru-VZZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1142" y="1604"/>
+            <point key="canvasLocation" x="1142.0289855072465" y="2160.9375"/>
         </scene>
         <!--MyPage-->
         <scene sceneID="82J-ED-oDb">
@@ -202,7 +202,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5W-Rb-gMP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="232" y="1604"/>
+            <point key="canvasLocation" x="231.8840579710145" y="2160.9375"/>
         </scene>
         <!--Version View Controller-->
         <scene sceneID="1CR-dT-rZ4">
@@ -212,60 +212,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jYW-rI-WMA">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="버전 관리" id="q34-5D-qIq"/>
-                                </items>
-                            </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="83" translatesAutoresizingMaskIntoConstraints="NO" id="roY-qu-dAb">
-                                <rect key="frame" x="162" y="303.5" width="90" height="299"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="49" translatesAutoresizingMaskIntoConstraints="NO" id="2JF-q1-JRj">
-                                        <rect key="frame" x="0.0" y="0.0" width="90" height="108"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="최신 버전" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Gj-XR-gpW">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="29"/>
-                                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NzG-gt-G1G">
-                                                <rect key="frame" x="0.0" y="78" width="90" height="30"/>
-                                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="49" translatesAutoresizingMaskIntoConstraints="NO" id="saB-E3-pCM">
-                                        <rect key="frame" x="0.0" y="191" width="90" height="108"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="현재 버전" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqg-4d-ejJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="29"/>
-                                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cLU-3w-7kW">
-                                                <rect key="frame" x="0.0" y="78" width="90" height="30"/>
-                                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="현재 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oTL-wZ-Asc">
+                                <rect key="frame" x="155" y="454" width="110" height="38"/>
+                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yLd-bw-g4u">
+                                <rect key="frame" x="187" y="347" width="260" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="S8a-CI-3wa"/>
+                                    <constraint firstAttribute="width" constant="260" id="gBy-AQ-owE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ6-DN-h7m">
+                                <rect key="frame" x="187" y="524" width="260" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="P9k-tq-pdG"/>
+                                    <constraint firstAttribute="height" constant="38" id="oSc-o3-cAz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="최신 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Gj-XR-gpW">
+                                <rect key="frame" x="154" y="277" width="260" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="31l-9y-5sH"/>
+                                    <constraint firstAttribute="width" constant="260" id="mnA-Of-frv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5SD-gU-Dfz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="roY-qu-dAb" firstAttribute="centerX" secondItem="5SD-gU-Dfz" secondAttribute="centerX" id="NsE-VB-WPX"/>
-                            <constraint firstItem="roY-qu-dAb" firstAttribute="centerY" secondItem="5SD-gU-Dfz" secondAttribute="centerY" id="bZq-u0-4Wf"/>
+                            <constraint firstItem="7Gj-XR-gpW" firstAttribute="top" secondItem="5SD-gU-Dfz" secondAttribute="top" constant="233" id="BMg-OE-hCZ"/>
+                            <constraint firstItem="yLd-bw-g4u" firstAttribute="leading" secondItem="dZ6-DN-h7m" secondAttribute="leading" id="C6S-nV-DVd"/>
+                            <constraint firstItem="dZ6-DN-h7m" firstAttribute="top" secondItem="oTL-wZ-Asc" secondAttribute="bottom" constant="32" id="NMd-wN-7V7"/>
+                            <constraint firstItem="7Gj-XR-gpW" firstAttribute="centerX" secondItem="zmG-W2-MI8" secondAttribute="centerX" constant="77" id="TLE-0D-nan"/>
+                            <constraint firstItem="5SD-gU-Dfz" firstAttribute="bottom" secondItem="dZ6-DN-h7m" secondAttribute="bottom" constant="300" id="aOC-vj-AUI"/>
+                            <constraint firstItem="yLd-bw-g4u" firstAttribute="top" secondItem="7Gj-XR-gpW" secondAttribute="bottom" constant="32" id="eMJ-ve-IdU"/>
+                            <constraint firstItem="7Gj-XR-gpW" firstAttribute="leading" secondItem="oTL-wZ-Asc" secondAttribute="leading" constant="-1" id="gCP-iY-kB3"/>
+                            <constraint firstItem="yLd-bw-g4u" firstAttribute="leading" secondItem="5SD-gU-Dfz" secondAttribute="leading" constant="187" id="jCH-Jm-kg0"/>
+                            <constraint firstItem="oTL-wZ-Asc" firstAttribute="top" secondItem="yLd-bw-g4u" secondAttribute="bottom" constant="69" id="k1h-Wh-ENx"/>
+                            <constraint firstItem="5SD-gU-Dfz" firstAttribute="trailing" secondItem="oTL-wZ-Asc" secondAttribute="trailing" constant="149" id="zYy-YG-3jP"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ows-FG-HMW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="3747"/>
+            <point key="canvasLocation" x="992.75362318840587" y="2882.8125"/>
         </scene>
         <!--Item-->
         <scene sceneID="xa4-Kv-dH9">
@@ -275,15 +273,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NCa-zX-1yu">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="테스트 결과 모아보기" id="LFT-py-WUX" userLabel="테스트 결과 모아보기"/>
-                                </items>
-                            </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="r3s-f7-q83">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GPs-e1-DD3">
                                     <size key="itemSize" width="200" height="227"/>
@@ -299,19 +290,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="227"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-<<<<<<< Updated upstream
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fhv hjsf vhdfjd fhjdhf jdhf j djf" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zJ-Qc-kKc">
                                                     <rect key="frame" x="8" y="155" width="184" height="41"/>
-=======
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ELBC" translatesAutoresizingMaskIntoConstraints="NO" id="lpl-ht-RM0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="135"/>
-                                                    <accessibility key="accessibilityConfiguration">
-                                                        <bool key="isElement" value="YES"/>
-                                                    </accessibility>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fhv hjsf vhdfjd fhjdhf jdhf j djf" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zJ-Qc-kKc">
-                                                    <rect key="frame" x="8" y="143" width="166" height="41"/>
->>>>>>> Stashed changes
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="41" id="jjT-ao-vYH"/>
                                                     </constraints>
@@ -353,10 +333,10 @@
                         <viewLayoutGuide key="safeArea" id="45W-co-0HR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="r3s-f7-q83" firstAttribute="top" secondItem="45W-co-0HR" secondAttribute="top" constant="44" id="bPz-8x-P6c"/>
-                            <constraint firstItem="45W-co-0HR" firstAttribute="bottom" secondItem="r3s-f7-q83" secondAttribute="bottom" id="jrS-y5-LYE"/>
-                            <constraint firstItem="45W-co-0HR" firstAttribute="trailing" secondItem="r3s-f7-q83" secondAttribute="trailing" id="knd-sq-bsI"/>
-                            <constraint firstItem="r3s-f7-q83" firstAttribute="leading" secondItem="45W-co-0HR" secondAttribute="leading" id="oPV-gn-iYd"/>
+                            <constraint firstItem="r3s-f7-q83" firstAttribute="leading" secondItem="45W-co-0HR" secondAttribute="leading" id="3Oy-d5-uWA"/>
+                            <constraint firstItem="45W-co-0HR" firstAttribute="bottom" secondItem="r3s-f7-q83" secondAttribute="bottom" id="CUX-mh-IrA"/>
+                            <constraint firstItem="r3s-f7-q83" firstAttribute="top" secondItem="45W-co-0HR" secondAttribute="top" id="HRj-5N-H8l"/>
+                            <constraint firstItem="45W-co-0HR" firstAttribute="trailing" secondItem="r3s-f7-q83" secondAttribute="trailing" id="rch-tz-En5"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="5JT-uP-85e"/>
@@ -367,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDd-yt-OwW" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="1604"/>
+            <point key="canvasLocation" x="1682.608695652174" y="2882.8125"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="T5S-ZL-60v">
@@ -392,11 +372,7 @@
                                     <constraint firstAttribute="height" constant="409" id="osd-um-IKp"/>
                                 </constraints>
                                 <string key="text">가장 까다로운 기준을 가진 오이형 사람에게 실패는 없습니다.\n\n 오이형 사람과 식사 약속을 잡으려는 친구는 분명 마음 깊이 스트레스가 쌓여있을지도 모릅니다. 하지만 그만큼 오이형 사람의 식당추천은 100% 확신이 들 정도로 믿음직한 추천입니다.\n\n 웬만하면 이들에게 식당 선택을 맡기고 다른 이야기를 하는 게 몸도 마음이 편하지 않을까요..?</string>
-<<<<<<< Updated upstream
                                 <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="15"/>
-=======
-                                <fontDescription key="fontDescription" name="BinggraeSamanco" family="Binggrae Samanco" pointSize="17"/>
->>>>>>> Stashed changes
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -427,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P9A-Hj-37v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2912" y="1604"/>
+            <point key="canvasLocation" x="2460.8695652173915" y="2882.8125"/>
         </scene>
         <!--Like View Controller-->
         <scene sceneID="jhA-XZ-IHU">
@@ -437,22 +413,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-<<<<<<< Updated upstream
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="내가 좋아요 누른 식당" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzL-eo-Owk">
                                 <rect key="frame" x="94" y="68" width="226" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BinggraeSamanco" family="Binggrae Samanco" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-=======
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K0M-GK-DXh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="관심식당" id="zxv-8m-B4P"/>
-                                </items>
-                            </navigationBar>
->>>>>>> Stashed changes
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rAh-5q-mZM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -460,7 +426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ej-KZ-Kwn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="2326"/>
+            <point key="canvasLocation" x="3210" y="2883"/>
         </scene>
         <!--Mail View Controller-->
         <scene sceneID="CP9-R3-hn7">
@@ -469,22 +435,13 @@
                     <view key="view" contentMode="scaleToFill" id="zcG-Am-Al4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sGJ-NO-4UC">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="건의 및 문의" id="hf9-J3-gPw"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4Ag-gg-r8W"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhq-BJ-wXR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="3040"/>
+            <point key="canvasLocation" x="232" y="2883"/>
         </scene>
     </scenes>
     <resources>
