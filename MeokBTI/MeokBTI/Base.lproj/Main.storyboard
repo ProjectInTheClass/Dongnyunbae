@@ -212,15 +212,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="현재 버전은 1.0 입니다." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oTL-wZ-Asc">
-                                <rect key="frame" x="98" y="451" width="265" height="38"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="현재 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oTL-wZ-Asc">
+                                <rect key="frame" x="155" y="454" width="110" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="최신 버전은 1.1 입니다." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Gj-XR-gpW">
-                                <rect key="frame" x="98" y="300" width="260" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="최신 버전" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Gj-XR-gpW">
+                                <rect key="frame" x="155" y="269" width="104" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="31l-9y-5sH"/>
+                                    <constraint firstAttribute="width" constant="260" id="mnA-Of-frv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yLd-bw-g4u">
+                                <rect key="frame" x="187" y="347" width="60" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="S8a-CI-3wa"/>
+                                    <constraint firstAttribute="width" constant="260" id="gBy-AQ-owE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ6-DN-h7m">
+                                <rect key="frame" x="187" y="524" width="60" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="P9k-tq-pdG"/>
+                                    <constraint firstAttribute="height" constant="38" id="oSc-o3-cAz"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -231,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ows-FG-HMW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="994" y="2883"/>
+            <point key="canvasLocation" x="992.75362318840587" y="2882.8125"/>
         </scene>
         <!--Item-->
         <scene sceneID="xa4-Kv-dH9">
