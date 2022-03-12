@@ -30,7 +30,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     // 맵뷰 관련 변수들
     var mapView: GMSMapView!
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
-    var loadedPhotos = [UIImage]()
     var isLikedRestaurant: Bool!
     var selectedMarkers: [GMSMarker] = []
     static var handleMapVC = MapViewController()
@@ -80,7 +79,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     override func viewDidLoad() {
         checkDevice()
         super.viewDidLoad()
-        print("Stored UserID : ", User.loadFromFile().id ?? "Nothing load")
         placesClient = GMSPlacesClient.shared()
         self.infoWindow = loadNiB()
         
@@ -100,10 +98,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         let shownRestaurant = shownRestaurant else { return }
         
         detailVC.shownRestaurant = shownRestaurant
+        detailVC.shownRestaurantPlaceID = shownRestaurantPlaceID
         detailVC.likeButtonTapped = infoWindow.likeButtonTapped
         detailVC.previousInfoWindow = infoWindow
         detailVC.top3MeokBTI = top3MeokBTIData
         detailVC.addressAndPhoneNumber = addressAndPhoneNumber
+        detailVC.placesClient = placesClient
     }
 
     fileprivate func configureUI() {
@@ -387,20 +387,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         infoWindow.setButtonImage()
     }
     
-    func showInfoWindow(marker: GMSMarker, with map: GMSMarker.basisOfMap) {
-        // MARK: 마커에 필요한 정보: title, position
-        configureInfoWindow(at: marker, with: map)
-        self.view.addSubview(infoWindow)
-        
-        mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
-        
+    fileprivate func getPlaceID(_ marker: GMSMarker) {
         if let name = marker.title {
             print("here is didTap", name)
             // 식당이름으로 placeID를 받아오기 (API호출)
             fetchPlaceID(restaurantName: name) { (placeID) in
                 // 받아온 placeID로 해당 식당 사진 받아오기
                 if let selectedPlaceID = placeID {
-                    self.fetchRestaurantPhoto(placeID: selectedPlaceID)
+                    //                    self.fetchRestaurantPhoto(placeID: selectedPlaceID)
                     
                     DispatchQueue.main.async {
                         self.shownRestaurantPlaceID = selectedPlaceID
@@ -409,6 +403,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
                 
             }
         }
+    }
+    
+    func showInfoWindow(marker: GMSMarker, with map: GMSMarker.basisOfMap) {
+        // MARK: 마커에 필요한 정보: title, position
+        configureInfoWindow(at: marker, with: map)
+        self.view.addSubview(infoWindow)
+        
+        mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
+        
+        getPlaceID(marker)
         
         // DetailView에 뿌릴 정보지만 속도가 느려 미리 정보를 얻어옴.
         getAddress(of: shownRestaurant!)
@@ -501,52 +505,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             }
         }
         task.resume()
-    }
-    
-    func fetchRestaurantPhoto(placeID: String) {
-        let fields: GMSPlaceField = .photos
-        self.loadedPhotos = []
-        self.placesClient?.fetchPlace(fromPlaceID: placeID, placeFields: fields, sessionToken: nil,
-                                      callback: {
-            (place: GMSPlace?, error: Error?) in
-            if let error = error {
-                print("An error occurred: \(error.localizedDescription)")
-                return
-            }
-            
-            if let place = place, !(place.photos?.isEmpty ?? true) {
-                // Get the metadata for the first photo in the place photo metadata list
-                var photoMetadata: [GMSPlacePhotoMetadata] = []
-                if place.photos!.count > 5 {
-                    photoMetadata = (0...4).map { place.photos![$0] }
-                } else {
-                    photoMetadata = place.photos!
-                }
-                // Call loadPlacePhoto to display the bitmap and attribution.
-                for metaData in photoMetadata {
-                    self.placesClient?.loadPlacePhoto(metaData, callback: { (photo, error) -> Void in
-                        if let error = error {
-                            // TODO: Handle the error.
-                            print("Error loading photo metadata: \(error.localizedDescription)")
-                            return
-                        } else {
-                            // Display the first image and its attributions.
-                            print("Load Photo Success :",type(of: photo))
-                            DispatchQueue.main.async {
-                                if let photo = photo {
-                                    self.loadedPhotos.append(photo)
-                                    self.infoWindow.spotPhotos = self.loadedPhotos
-                                    print("self.infoWindow.spotPhotos",self.infoWindow.spotPhotos)
-                                }
-                            }
-                            print("photos append after :",self.loadedPhotos)
-                        }
-                    })
-                }
-                print("after load photo: ",self.loadedPhotos)
-                
-            }
-        })
     }
     
     func fetchMeokBTIRankingFromFirebase(completion: @escaping (NSDictionary) -> Void) {

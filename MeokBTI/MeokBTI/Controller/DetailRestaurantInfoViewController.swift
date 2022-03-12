@@ -21,6 +21,7 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     var detailInfoWindow = DetailInfoWindow()
     var likeButtonTapped = Bool()
     var shownRestaurant: Restaurant!
+    var shownRestaurantPlaceID: String = ""
     
     var top3MeokBTI = NSDictionary()
     
@@ -41,7 +42,7 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         if deviceHeight > se1Height {
             self.view.frame.origin.y += deviceHeight * 0.4
         }
-        
+        fetchRestaurantPhoto(placeID: shownRestaurantPlaceID)
     }
     
     func loadNiB() -> DetailInfoWindow {
@@ -80,9 +81,7 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         
         detailInfoWindow.nameLabel.text = previousInfoWindow.nameLabel.text
         detailInfoWindow.rankingLabel.text = convertRankingText(top3MeokBTI)
-        // TODO: [] 사진을 detailView 띄우기 전에 로드하기 : 현재는 첫 infowindow에서 로드중
-        detailInfoWindow.spotPhotos = previousInfoWindow.spotPhotos
-        
+        detailInfoWindow.spotPhotos = []
     }
     
     func initializeHeaderView() {
@@ -91,40 +90,7 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
         verticalStackView.addArrangedSubview(paddingView)
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = addressAndPhoneNumber[0]
-            cell.imageView?.image = UIImage(systemName: "mappin.and.ellipse")
-            
-        case 1:
-            cell.textLabel?.text = addressAndPhoneNumber[1].pretty()
-            cell.imageView?.image = UIImage(systemName: "phone.fill")
-            
-        default:
-            print("oops..! something wrong!")
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = verticalStackView
-        initializeHeaderView()
-        
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let padding = detailInfoWindow.frame.height
-        return 50 + padding
-    }
     
     func convertRankingText(_ top3MeokBTI: NSDictionary) -> String {
         var totalRankText = ""
@@ -163,4 +129,87 @@ class DetailRestaurantInfoViewController: UIViewController, UITableViewDelegate,
     }
 }
 
+// MARK: Configure TableView
+extension DetailRestaurantInfoViewController {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = addressAndPhoneNumber[0]
+            cell.imageView?.image = UIImage(systemName: "mappin.and.ellipse")
+            
+        case 1:
+            cell.textLabel?.text = addressAndPhoneNumber[1].pretty()
+            cell.imageView?.image = UIImage(systemName: "phone.fill")
+            
+        default:
+            print("oops..! something wrong!")
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = verticalStackView
+        initializeHeaderView()
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let padding = detailInfoWindow.frame.height
+        return 50 + padding
+    }
+}
 
+extension DetailRestaurantInfoViewController {
+    func fetchRestaurantPhoto(placeID: String) {
+        detailInfoWindow.photoCollectionView.reloadData()
+        
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.photos.rawValue))
+        
+        self.placesClient?.fetchPlace(fromPlaceID: placeID, placeFields: fields, sessionToken: nil,
+                                      callback: {
+            (place: GMSPlace?, error: Error?) in
+            if let error = error {
+                print("An error occurred: \(error.localizedDescription)")
+                return
+            }
+            
+            if let place = place, !(place.photos?.isEmpty ?? true) {
+                // Get the metadata for the first photo in the place photo metadata list
+                var photoMetadata: [GMSPlacePhotoMetadata] = []
+                
+                if place.photos!.count > 5 {
+                    photoMetadata = (0...4).map { place.photos![$0] }
+                } else {
+                    photoMetadata = place.photos!
+                }
+                // Call loadPlacePhoto to display the bitmap and attribution.
+                for metaData in photoMetadata {
+                    self.placesClient?.loadPlacePhoto(metaData, callback: { (photo, error) -> Void in
+                        if let error = error {
+                            // TODO: Handle the error.
+                            print("Error loading photo metadata: \(error.localizedDescription)")
+                            return
+                        } else {
+                            // Display the first image and its attributions.
+                            DispatchQueue.main.async {
+                                if let photo = photo {
+                                    self.detailInfoWindow.spotPhotos.append(photo)
+                                    self.detailInfoWindow.photoCollectionView.reloadData()
+                                }
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    }
+    
+}
