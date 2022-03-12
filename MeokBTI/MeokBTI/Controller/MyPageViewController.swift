@@ -132,18 +132,11 @@ extension MyPageViewController: UITableViewDelegate {
             
         default:
             print("wrong")
-            
-            
-        }
-        
-    }else{
-            
-        }
-        
-        
-        
-    }
 
+        }
+    } else {
+        }
+    }
 }
 
 

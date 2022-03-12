@@ -23,7 +23,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--home-->
+        <!--Home-->
         <scene sceneID="il6-hd-UDR">
             <objects>
                 <viewController storyboardIdentifier="MeokBTITest" id="RPp-ZZ-jHg" customClass="IntroductionViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
@@ -71,7 +71,7 @@
                             <constraint firstItem="zS8-Ng-iuP" firstAttribute="bottom" secondItem="f7H-eJ-7Uo" secondAttribute="bottom" id="z98-b7-j6x"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="home" image="homekit" catalog="system" id="odO-pO-UcK">
+                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="odO-pO-UcK">
                         <color key="badgeColor" name="AccentColor"/>
                     </tabBarItem>
                     <connections>

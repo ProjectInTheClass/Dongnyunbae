@@ -2,11 +2,11 @@
 
 import UIKit
 
-class VersionViewController: UIViewController{
+class VersionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //navigationController?.navigationBar
         view.backgroundColor = .white
       /*  let button = UIButton(frame: CGRect(x: 30, y: 280, width: 220, height: 100))
        
