@@ -218,19 +218,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yLd-bw-g4u">
-                                <rect key="frame" x="187" y="347" width="260" height="38"/>
+                                <rect key="frame" x="181" y="346" width="59" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="S8a-CI-3wa"/>
-                                    <constraint firstAttribute="width" constant="260" id="gBy-AQ-owE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ6-DN-h7m">
-                                <rect key="frame" x="187" y="524" width="260" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="260" id="P9k-tq-pdG"/>
-                                    <constraint firstAttribute="height" constant="38" id="oSc-o3-cAz"/>
+                                    <constraint firstAttribute="width" constant="59" id="gBy-AQ-owE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -244,6 +235,15 @@
                                 <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ6-DN-h7m">
+                                <rect key="frame" x="181" y="524" width="59" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="P9k-tq-pdG"/>
+                                    <constraint firstAttribute="height" constant="38" id="oSc-o3-cAz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5SD-gU-Dfz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -253,10 +253,10 @@
                             <constraint firstItem="dZ6-DN-h7m" firstAttribute="top" secondItem="oTL-wZ-Asc" secondAttribute="bottom" constant="32" id="NMd-wN-7V7"/>
                             <constraint firstItem="7Gj-XR-gpW" firstAttribute="centerX" secondItem="zmG-W2-MI8" secondAttribute="centerX" constant="77" id="TLE-0D-nan"/>
                             <constraint firstItem="5SD-gU-Dfz" firstAttribute="bottom" secondItem="dZ6-DN-h7m" secondAttribute="bottom" constant="300" id="aOC-vj-AUI"/>
-                            <constraint firstItem="yLd-bw-g4u" firstAttribute="top" secondItem="7Gj-XR-gpW" secondAttribute="bottom" constant="32" id="eMJ-ve-IdU"/>
+                            <constraint firstItem="yLd-bw-g4u" firstAttribute="top" secondItem="7Gj-XR-gpW" secondAttribute="bottom" constant="31" id="eMJ-ve-IdU"/>
                             <constraint firstItem="7Gj-XR-gpW" firstAttribute="leading" secondItem="oTL-wZ-Asc" secondAttribute="leading" constant="-1" id="gCP-iY-kB3"/>
-                            <constraint firstItem="yLd-bw-g4u" firstAttribute="leading" secondItem="5SD-gU-Dfz" secondAttribute="leading" constant="187" id="jCH-Jm-kg0"/>
-                            <constraint firstItem="oTL-wZ-Asc" firstAttribute="top" secondItem="yLd-bw-g4u" secondAttribute="bottom" constant="69" id="k1h-Wh-ENx"/>
+                            <constraint firstItem="yLd-bw-g4u" firstAttribute="leading" secondItem="5SD-gU-Dfz" secondAttribute="leading" constant="181" id="jCH-Jm-kg0"/>
+                            <constraint firstItem="oTL-wZ-Asc" firstAttribute="top" secondItem="yLd-bw-g4u" secondAttribute="bottom" constant="70" id="k1h-Wh-ENx"/>
                             <constraint firstItem="5SD-gU-Dfz" firstAttribute="trailing" secondItem="oTL-wZ-Asc" secondAttribute="trailing" constant="149" id="zYy-YG-3jP"/>
                         </constraints>
                     </view>
