@@ -237,7 +237,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.1 " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ6-DN-h7m">
-                                <rect key="frame" x="187" y="524" width="60" height="38"/>
+                                <rect key="frame" x="187" y="524" width="104" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="P9k-tq-pdG"/>
                                     <constraint firstAttribute="height" constant="38" id="oSc-o3-cAz"/>
@@ -356,39 +356,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="homeLabel" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIg-x2-Icc">
-                                <rect key="frame" x="40" y="385" width="334" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="homeLabel" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIg-x2-Icc">
+                                <rect key="frame" x="40" y="412" width="334" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="8xn-gH-3mf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="BinggraeSamanco" family="Binggrae Samanco" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="homelmage" image="ELBC" translatesAutoresizingMaskIntoConstraints="NO" id="TDV-uZ-lbM">
-                                <rect key="frame" x="20" y="100" width="374" height="244"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="homelmage" image="ELBC" translatesAutoresizingMaskIntoConstraints="NO" id="TDV-uZ-lbM">
+                                <rect key="frame" x="20" y="133" width="374" height="244"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="vBU-Ff-MlY">
-                                <rect key="frame" x="46" y="450" width="328" height="412"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsO-vJ-hLO">
+                                <rect key="frame" x="20" y="460" width="374" height="243"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="243" id="osd-um-IKp"/>
+                                </constraints>
+                                <string key="text">가장 까다로운 기준을 가진 오이형 사람에게 실패는 없습니다.\n\n 오이형 사람과 식사 약속을 잡으려는 친구는 분명 마음 깊이 스트레스가 쌓여있을지도 모릅니다. 하지만 그만큼 오이형 사람의 식당추천은 100% 확신이 들 정도로 믿음직한 추천입니다.\n\n 웬만하면 이들에게 식당 선택을 맡기고 다른 이야기를 하는 게 몸도 마음이 편하지 않을까요..?</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uzh-hW-X2S"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="IsO-vJ-hLO" secondAttribute="trailing" constant="20" id="0hA-iy-aA3"/>
+                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="centerX" secondItem="pIg-x2-Icc" secondAttribute="centerX" id="Inj-yA-fDx"/>
+                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="top" secondItem="uzh-hW-X2S" secondAttribute="top" constant="56" id="Mnj-6Z-nBt"/>
+                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="leading" secondItem="XQc-pA-O06" secondAttribute="leadingMargin" id="OJ6-t4-1aS"/>
+                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="trailing" secondItem="IsO-vJ-hLO" secondAttribute="trailing" id="Pzl-eE-iwL"/>
+                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="leading" secondItem="IsO-vJ-hLO" secondAttribute="leading" id="eZP-Uv-hkh"/>
+                            <constraint firstItem="pIg-x2-Icc" firstAttribute="top" secondItem="TDV-uZ-lbM" secondAttribute="bottom" constant="41" id="eab-Xf-MjX"/>
+                            <constraint firstAttribute="bottom" secondItem="IsO-vJ-hLO" secondAttribute="bottom" constant="193" id="hw0-8m-3I1"/>
+                            <constraint firstItem="pIg-x2-Icc" firstAttribute="leading" secondItem="uzh-hW-X2S" secondAttribute="leading" constant="40" id="kSt-wQ-IUe"/>
+                            <constraint firstItem="IsO-vJ-hLO" firstAttribute="top" secondItem="pIg-x2-Icc" secondAttribute="bottom" constant="27" id="zJh-3T-JkJ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="homeimage" destination="TDV-uZ-lbM" id="cky-Mf-lry"/>
                         <outlet property="homelabel" destination="pIg-x2-Icc" id="AM0-py-h8D"/>
-                        <outlet property="hometextt" destination="vBU-Ff-MlY" id="rgt-TD-izD"/>
+                        <outlet property="hometext" destination="IsO-vJ-hLO" id="4Q5-rj-e5f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P9A-Hj-37v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2461" y="2883"/>
+            <point key="canvasLocation" x="2460.8695652173915" y="2882.8125"/>
         </scene>
         <!--Like View Controller-->
         <scene sceneID="jhA-XZ-IHU">
@@ -434,9 +448,6 @@
         <image name="map" catalog="system" width="128" height="110"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

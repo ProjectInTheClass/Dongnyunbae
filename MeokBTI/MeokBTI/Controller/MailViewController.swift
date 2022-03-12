@@ -13,7 +13,7 @@ class MailViewController: UIViewController, UINavigationControllerDelegate, MFMa
             vc.delegate = self
             vc.setSubject("Contact Us / Feedback")
             vc.setToRecipients(["MeokBTI@gmail.com"])
-            vc.setMessageBody("<h1> 안녕하세요! 먹비티아이 개발자에게 질문이 있습니다. <h1>", isHTML: true)
+            vc.setMessageBody("<h3> 안녕하세요! 먹비티아이 개발자에게 질문이 있습니다. <h3>", isHTML: true)
             
             present(vc, animated: true)
         }
