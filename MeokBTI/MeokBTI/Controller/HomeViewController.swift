@@ -14,9 +14,8 @@ class HomeViewController: UIViewController {
     
     @IBOutlet var homelabel: UILabel!
   
-    @IBOutlet var hometextt: UITextView!
-    @IBOutlet var hometext: UITextField!
     
+    @IBOutlet var hometext: UILabel!
     var sproduct : Movie! = nil
     
     override func viewDidLoad() {
@@ -24,7 +23,9 @@ class HomeViewController: UIViewController {
         
         homeimage.image = sproduct.image
         homelabel.text = sproduct.title
-        hometextt.text = sproduct.text
+        hometext.text = sproduct.text
+        
+        
     }
     
 
