@@ -17,16 +17,8 @@ class User: Codable {
     var id: String?
     var meokBTI: MeokBTI? = nil
     var favoriteRestaurants: [Restaurant] = []
+    var hasCompletedLike: Bool = false
 
-    func didSelectFiveRestaurant() {
-        var hasSelectedFavorites: Bool
-        if favoriteRestaurants.count < 5 {
-            hasSelectedFavorites = false
-        }
-        else {
-            hasSelectedFavorites = true
-        }
-    }
     // 한번 더 초기화되는 것 방지
     private init() { }
     

@@ -12,7 +12,7 @@ import TMapSDK
 import FirebaseDatabase
 import KakaoSDKCommon
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, MapMarkerDelegate, UISearchBarDelegate {
+class MapViewController: UIViewController, UISearchBarDelegate {
     
     // 디바이스 크기 변수
     let screenHeight = UIScreen.main.bounds.size.height
@@ -32,11 +32,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     var isLikedRestaurant: Bool!
     var selectedMarkers: [GMSMarker] = []
-    static var handleMapVC = MapViewController()
     
     // 식당 5개 선택 관련
     var isTested = false // meokbti 테스트 했는지
-    var isSelectedFiveRestaurant = User.shared.didSelectFiveRestaurant() // 5개 선택 했는지
     
     // InfoWindow
     var meokBTIRanking: String = ""
@@ -67,16 +65,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     var refreshButton = UIButton()
     var selectFiveRestaurantLabel = UILabel()
     var countLabel = UILabel()
-    var selectedRestaurantsCount = User.shared.favoriteRestaurants.count
-    var selectLabelAndRefreshButtonStackView = UIStackView()
-    var selectVerticalStackView = UIStackView()
+    var selectedRestaurantsCount = 0
+    var selectRefreshHStackView = UIStackView()
+    var selectVStackView = UIStackView()
     
     // likeButton 관련
     var meokBTILikeCount = Int()
         
     override func viewDidLoad() {
-        checkDevice()
         super.viewDidLoad()
+        checkDevice()
         placesClient = GMSPlacesClient.shared()
         self.infoWindow = loadNiB()
         
@@ -89,20 +87,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         guard let currentLocation = MapViewController.currentLocation else { return }
         generateAroundMarker(bothLatLng: currentLocation.coordinate, count: 30)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let detailVC = segue.destination as? DetailRestaurantInfoViewController,
-        let shownRestaurant = shownRestaurant else { return }
-        
-        detailVC.shownRestaurant = shownRestaurant
-        detailVC.shownRestaurantPlaceID = shownRestaurantPlaceID
-        detailVC.likeButtonTapped = infoWindow.likeButtonTapped
-        detailVC.previousInfoWindow = infoWindow
-        detailVC.top3MeokBTI = top3MeokBTIData
-        detailVC.addressAndPhoneNumber = addressAndPhoneNumber
-        detailVC.placesClient = placesClient
-    }
 
     fileprivate func configureUI() {
         // 지도 구현
@@ -114,8 +98,207 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         // 선택요청뷰와 지역재검색뷰 스택뷰 구현
         configureSelectFiveRestaurantLabel()
         configureRefreshButton()
-        mergeSelectLabelAndRefreshButton()
-        updateSelectCount()
+        drawSelectLabelAndRefreshButton()
+        updateSelectCountText()
+    }
+    
+    func configureSearchBar() {
+        let resultsViewController = SearchResultsViewController()
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        
+        var searchControllerSubView = UIView()
+        if screenHeight == 736 || screenHeight == 667 || screenHeight == 568 {
+            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 10, width: 350.0, height: 45))
+        }
+        else {
+            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 50, width: 350.0, height: 45))
+        }
+        
+        if let searchView = searchController?.searchBar {
+            searchView.searchBarStyle = .minimal
+            searchView.placeholder = "식당 검색"
+            searchView.searchTextField.backgroundColor = .white
+            searchControllerSubView.addSubview(searchView)
+            searchView.sizeToFit()
+            searchView.delegate = self
+        }
+   
+        view.addSubview(searchControllerSubView)
+        // When UISearchController presents the results view, present it in
+        // this view controller, not one further up the chain.
+        definesPresentationContext = true
+    }
+    
+    func configureRefreshButton() {
+        refreshButton.addTarget(self, action: #selector(self.updateAroundMarker), for: .touchUpInside)
+        refreshButton.setTitle("  💫지역내 재검색  ", for: .normal)
+        refreshButton.titleLabel?.font = UIFont(name: "Binggrae", size: 15)
+        refreshButton.layer.cornerRadius = 15
+        refreshButton.setTitleColor(.orange, for: .normal)
+        refreshButton.backgroundColor = .white
+        
+        selectRefreshHStackView.addArrangedSubview(refreshButton)
+    }
+    
+    func configureSelectFiveRestaurantLabel() {
+        guard !user.hasCompletedLike else {
+            return selectVStackView.removeFromSuperview()
+        }
+        
+        updateSelectCountText()
+        
+        selectedRestaurantsCount = user.favoriteRestaurants.count
+        
+        selectFiveRestaurantLabel.text = " 식당에 좋아요를 눌러보세요! "
+        selectFiveRestaurantLabel.font = UIFont(name: "Binggrae", size: 15)
+        selectFiveRestaurantLabel.layer.cornerRadius = 15
+        selectFiveRestaurantLabel.adjustsFontSizeToFitWidth = true
+
+        countLabel.text = "\(selectedRestaurantsCount) / 5"
+        countLabel.backgroundColor = .white
+        
+        selectVStackView.addArrangedSubview(selectFiveRestaurantLabel)
+        selectVStackView.addArrangedSubview(countLabel)
+        selectRefreshHStackView.addArrangedSubview(selectVStackView)
+    }
+    
+    func configureMapView() {
+        MapViewController.currentLocation = locationManager.location ?? CLLocation(latitude: 36.343805, longitude: 127.417154)
+        if let defaultLocation = MapViewController.currentLocation {
+            currentCamera = GMSCameraPosition.camera(
+                withLatitude: defaultLocation.coordinate.latitude,
+                longitude: defaultLocation.coordinate.longitude,
+                zoom: preciseLocationZoomLevel)
+        }
+        //MARK: 여기서 맵뷰 생성
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: currentCamera)
+        mapView.setMinZoom(0, maxZoom: 20)
+        mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
+        mapView.delegate = self
+        self.view.addSubview(mapView)
+    }
+        
+    func configureInfoWindow(at marker: GMSMarker, with map: GMSMarker.basisOfMap) {
+        initializeInfoWindow(marker: marker)
+        
+        // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
+        guard let rawTitle = marker.title else { return }
+        shownRestaurant = Restaurant(name: rawTitle, position: marker.position)
+        
+        // infoWindow에 들어갈 정보 할당 및 위치 지정
+        infoWindow.nameLabel.text = " " + shownRestaurant!.transformNameToShow(basisof: map)
+        setMeokBTIRanking()
+        infoWindow.center = mapView.projection.point(for: marker.position)
+        infoWindow.center.y = infoWindow.center.y - 110
+        
+        // 버튼액션함수가 buttonTapped을 기준으로 실행되는데 연동이 안되있으므로 infoWindow를 다른 것을 띄웠다가 돌아왔을 때 버튼이미지가 안 바뀌는 이슈
+        // Solution: buttonTapped과 연동시켜주면서 버튼 동작을 정상적으로 만들어줌
+        infoWindow.likeButtonTapped = shownRestaurant!.like
+        infoWindow.setButtonImage()
+    }
+    
+    fileprivate func setConstraintSelectAndRefresh() {
+        selectRefreshHStackView.translatesAutoresizingMaskIntoConstraints = false
+                    
+        selectRefreshHStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        if screenHeight == 736 || screenHeight == 667 || screenHeight == 568 {
+            selectRefreshHStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60).isActive = true
+        }
+        else {
+            selectRefreshHStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        }
+        
+        if !user.hasCompletedLike {
+            selectRefreshHStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor , constant: 10).isActive = true
+            selectRefreshHStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor , constant: -10).isActive = true
+        }
+    }
+    
+    fileprivate func makeSelectVStack() {
+        selectVStackView.axis = .vertical
+        selectVStackView.layer.cornerRadius = 15
+        selectVStackView.backgroundColor = .white
+        selectVStackView.alignment = .center
+    }
+    
+    fileprivate func makeSelectRefreshHStack() {
+        selectRefreshHStackView.spacing = 20
+        selectRefreshHStackView.axis = .horizontal
+    }
+    
+    
+    
+    func drawSelectLabelAndRefreshButton() {
+        makeSelectVStack()
+        makeSelectRefreshHStack()
+        self.view.addSubview(selectRefreshHStackView)
+        setConstraintSelectAndRefresh()
+    }
+    
+    func initializeInfoWindow(marker: GMSMarker) {
+        // infoWindow 초기화
+        locationMarker = marker
+        infoWindow.removeFromSuperview()
+        infoWindow.spotPhotos = []
+        infoWindow = loadNiB()
+        
+        // infoWindow 테두리 지정 / 버튼 둥글게 (현재 버튼에선 적용 x)
+        infoWindow.delegate = self
+        infoWindow.layer.cornerRadius = 12
+        infoWindow.layer.borderWidth = 0
+        infoWindow.likeButton.layer.cornerRadius = infoWindow.likeButton.frame.height / 2
+    }
+    
+    func loadNiB() -> MapMarkerWindow {
+        let infoWindow = MapMarkerWindow.instanceFromNib() as! MapMarkerWindow
+        return infoWindow
+    }
+    
+    func saveTempPoiItem(item: TMapPoiItem) {
+        tempPoiItems.append(item)
+    }
+    
+    func setDefaultCameraZoom() {
+        guard mapView != nil  else { return }
+        mapView.animate(toZoom: 15)
+    }
+    
+    func isLikeCountLastOne() -> Bool {
+        fetchCurrentLikeCount { count in
+            DispatchQueue.main.async {
+                self.meokBTILikeCount = count
+            }
+        }
+        
+        return (meokBTILikeCount <= 1) ? true : false
+    }
+    
+    func updateSelectCountText() {
+        if selectedRestaurantsCount < 5 {
+            countLabel.text = "\(selectedRestaurantsCount) / 5"
+        }
+        else {
+            selectVStackView.removeFromSuperview()
+            selectRefreshHStackView.removeFromSuperview()
+            configureRefreshButton()
+            drawSelectLabelAndRefreshButton()
+        }
+    }
+    
+    func getJustOnePoi(_ name: String) {
+        pathData.requestFindTitlePOI(name) { result, error in
+            if let pois = result {
+                let poi = pois[0]
+                self.saveTempPoiItem(item: poi)
+            }
+        }
+    }
+    
+    func getRestaurantIndex() -> Int {
+        let index = user.favoriteRestaurants.firstIndex(where: { $0.name == shownRestaurant!.name && $0.position == shownRestaurant!.position })!
+        return index
     }
     
     func checkDevice() {
@@ -146,164 +329,180 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
         }
     }
     
-    func configureSearchBar() {
-        let resultsViewController = SearchResultsViewController()
-        searchController = UISearchController(searchResultsController: resultsViewController)
-        searchController?.searchResultsUpdater = resultsViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.destination as? DetailRestaurantInfoViewController,
+        let shownRestaurant = shownRestaurant else { return }
         
-        var searchControllerSubView = UIView()
-        if screenHeight == 736 || screenHeight == 667 || screenHeight == 568 {
-            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 10, width: 350.0, height: 45))
-        }
-        else {
-            searchControllerSubView = UIView(frame: CGRect(x: 0, y: 50, width: 350.0, height: 45))
-        }
-        
-        if let searchView = searchController?.searchBar {
-            searchView.searchBarStyle = .minimal
-            searchView.placeholder = "식당 검색"
-            searchView.searchTextField.backgroundColor = .white
-            searchControllerSubView.addSubview(searchView)
-            searchView.sizeToFit()
-            searchView.delegate = self
-        }
-   
-        view.addSubview(searchControllerSubView)
+        detailVC.shownRestaurant = shownRestaurant
+        detailVC.shownRestaurantPlaceID = shownRestaurantPlaceID
+        detailVC.likeButtonTapped = infoWindow.likeButtonTapped
+        detailVC.previousInfoWindow = infoWindow
+        detailVC.top3MeokBTI = top3MeokBTIData
+        detailVC.addressAndPhoneNumber = addressAndPhoneNumber
+        detailVC.placesClient = placesClient
+    }
+}
 
-        // When UISearchController presents the results view, present it in
-        // this view controller, not one further up the chain.
-        definesPresentationContext = true
-    }
-    
-    func configureRefreshButton() {
-        refreshButton.addTarget(self, action: #selector(self.updateAroundMarker), for: .touchUpInside)
-        refreshButton.setTitle("  💫지역내 재검색  ", for: .normal)
-        refreshButton.titleLabel?.font = UIFont(name: "Binggrae", size: 15)
-        refreshButton.layer.cornerRadius = 15
-        refreshButton.setTitleColor(.orange, for: .normal)
-        refreshButton.backgroundColor = .white
-    }
-    
-    func configureSelectFiveRestaurantLabel() {
-        updateSelectCount()
+// MARK: Used for InfoWindow ( InfoWindow에서 사용되는 메서드들 )
+extension MapViewController {
+    func showInfoWindow(marker: GMSMarker, with map: GMSMarker.basisOfMap) {
+        // MARK: 마커에 필요한 정보: title, position
+        configureInfoWindow(at: marker, with: map)
+        self.view.addSubview(infoWindow)
         
-        if selectedRestaurantsCount < 5 {
-            selectFiveRestaurantLabel.text = " 식당에 좋아요를 눌러보세요! "
-            selectFiveRestaurantLabel.font = UIFont(name: "Binggrae", size: 15)
-            selectFiveRestaurantLabel.layer.cornerRadius = 15
-            selectFiveRestaurantLabel.adjustsFontSizeToFitWidth = true
-
-            countLabel.text = "\(selectedRestaurantsCount) / 5"
-            countLabel.backgroundColor = .white
-        }
-        else {
-            selectVerticalStackView.removeFromSuperview()
-        }
+        mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
+        getPlaceID(marker)
+        // DetailView에 뿌릴 정보지만 속도가 느려 미리 정보를 얻어옴.
+        getAddress(of: shownRestaurant!)
+        getPhoneNO(of: shownRestaurant!)
     }
     
-    fileprivate func configureSelectVStack() {
-        selectVerticalStackView.axis = .vertical
-        selectVerticalStackView.addArrangedSubview(selectFiveRestaurantLabel)
-        selectVerticalStackView.addArrangedSubview(countLabel)
-        selectVerticalStackView.layer.cornerRadius = 15
-        selectVerticalStackView.backgroundColor = .white
-        selectVerticalStackView.alignment = .center
-    }
-    
-    // 좋아요식당, 재검색 스택뷰
-    fileprivate func setConstraintSelectAndRefresh() {
-        selectLabelAndRefreshButtonStackView.translatesAutoresizingMaskIntoConstraints = false
+    func getAddress(of restaurant: Restaurant) {
+        // TODO: TMAP API로 정확한 주소 얻어오기
+        let point = restaurant.position
         
-        selectLabelAndRefreshButtonStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        if screenHeight == 736 || screenHeight == 667 || screenHeight == 568 {
-            selectLabelAndRefreshButtonStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60).isActive = true
+        pathData.convertGpsToAddressAt(point) { (address, error) in
+            DispatchQueue.main.async {
+                if let address = address {
+                    self.restaurantAddress = address
+                }
+            }
         }
-        else {
-            selectLabelAndRefreshButtonStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
-        }
-        selectLabelAndRefreshButtonStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor , constant: 10).isActive = true
-        selectLabelAndRefreshButtonStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor , constant: -10).isActive = true
     }
-    
-    func mergeSelectLabelAndRefreshButton() {
-        configureSelectVStack()
- 
-        selectLabelAndRefreshButtonStackView.spacing = 20
-        selectLabelAndRefreshButtonStackView.axis = .horizontal
-        self.view.addSubview(selectLabelAndRefreshButtonStackView)
-        setConstraintSelectAndRefresh()
         
-        [selectVerticalStackView, refreshButton].forEach { selectLabelAndRefreshButtonStackView.addArrangedSubview($0) }
-    }
-    
-    func configureMapView() {
-        MapViewController.currentLocation = locationManager.location ?? CLLocation(latitude: 36.343805, longitude: 127.417154)
-        if let defaultLocation = MapViewController.currentLocation {
-            currentCamera = GMSCameraPosition.camera(
-                withLatitude: defaultLocation.coordinate.latitude,
-                longitude: defaultLocation.coordinate.longitude,
-                zoom: preciseLocationZoomLevel)
-        }
-        //MARK: 여기서 맵뷰 생성
-        mapView = GMSMapView.map(withFrame: view.bounds, camera: currentCamera)
-        mapView.setMinZoom(0, maxZoom: 20)
-        mapView.settings.myLocationButton = true
-        mapView.isMyLocationEnabled = true
-        mapView.delegate = self
-        MapViewController.handleMapVC.mapView = mapView
-        self.view.addSubview(mapView)
-    }
-    
-    func updateSelectCount() {
-        if selectedRestaurantsCount < 5 {
-            countLabel.text = "\(selectedRestaurantsCount) / 5"
-        }
-        else {
-            selectVerticalStackView.removeFromSuperview()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        //location 접근권한 요청확인
-        switch status {
-        case .authorizedAlways, .authorizedWhenInUse:
-            print("GPS 권한 설정됨")
-            self.locationManager.startUpdatingLocation() // 주소데이터를 현위치로 업데이트
+    func didTapLikeButton(_ sender: Bool) {
+        // [x] 서버로 좋아요 누른거 전송
+        // [x] Like, 좋아한 식당목록에 추가
+        // [x] Unlike, 좋아한 식당목록에서 제거
+        guard let shownRestaurant = shownRestaurant else { return }
         
-        case .restricted, .notDetermined:
-            // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
-            print("GPS 권한 설정되지 않음")
-            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
-            getLocationUsagePermission()
+        if sender {
+            selectedRestaurantsCount += 1
+            user.favoriteRestaurants.append(shownRestaurant)
+            addMeokBTILikeCount()
             
-        case .denied:
-            // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
-            print("GPS 권한 요청 거부됨")
-            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
-            getLocationUsagePermission()
+            if user.hasCompletedLike == false && selectedRestaurantsCount == 5 {
+                user.hasCompletedLike = true
+                setConstraintSelectAndRefresh()
+            }
+        } else {
+            selectedRestaurantsCount -= 1
+            user.favoriteRestaurants.remove(at: getRestaurantIndex())
+            
+            if isLikeCountLastOne() {
+                deleteMeokBTILikeCount()
+            } else {
+                subtractMeokBTILikeCount()
+            }
+        }
+        
+        updateSelectCountText()
+        User.saveToFile(user: user)
+        sendRestaurantLikeToFirebase()
+    }
+        
+    func didTapInfoWindow(_ sender: Any) {
+        // 기존 mapview에 포함된 infowindow 탭시 반응하는 함수는 infowindow를 커스텀해서 사용하게되면서 사용불가
+        performSegue(withIdentifier: "DetailRestaurantInfo", sender: nil)
+    }
+    
+    
+    func getPhoneNO(of restaurant: Restaurant) {
+        // TODO: poi에서 폰번호 얻어오기
+        var restaurantPois = tempPoiItems.filter { item in
+            return item.name == restaurant.name && item.coordinate == restaurant.position
+        }
+        
+        if restaurantPois.isEmpty {
+            getJustOnePoi(restaurant.name)
+            restaurantPois.append(tempPoiItems.last!)
+        }
+        
+        // #ISSUE 식당검색후 해당 식당으로 이동시 Fatal error: Index out of range -> marker를 만들지 않기 때문 -> 함수 안에서 추가해줘서 해결
+        if let phoneNumber = restaurantPois[0].telNO {
+            if phoneNumber == "" {
+                self.restaurantPhoneNumber = "정보가 없습니다."
+            } else {
+                self.restaurantPhoneNumber = phoneNumber
+            }
+        }
+    }
+    
+    fileprivate func getPlaceID(_ marker: GMSMarker) {
+        if let name = marker.title {
+            // 식당이름으로 placeID를 받아오기 (API호출)
+            fetchPlaceID(restaurantName: name) { (placeID) in
+                // 받아온 placeID로 해당 식당 사진 받아오기
+                if let selectedPlaceID = placeID {
+                    DispatchQueue.main.async {
+                        self.shownRestaurantPlaceID = selectedPlaceID
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: Draw Marker ( 마커 그리는거 관련 )
+extension MapViewController: MapMarkerDelegate {
+    func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
+        // categoryName: 카테고리 5개까지 가능 ;로 구분, radius: 단위 1km
+        pathData.requestFindNameAroundPOI(currentPosition, categoryName: "식당", radius: 20, count: count, completion: { (result, error) -> Void in
+            // 가져온 결과로 주변식당 위치에 마커 띄우기
+            if let result = result {
+                DispatchQueue.main.async {
+                    // Realtimebase(Firebase)에서 child에 들어가지 못하는 문자까지 걸러냄
+                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}
+                    
+                    for poi in withoutParkingResult {
+                        let marker = GMSMarker(position: poi.coordinate!)
+                        marker.title = poi.name
+                        marker.snippet = poi.address
+                        marker.map = self.mapView
+                        
+                        self.saveTempPoiItem(item: poi)
+                    }
+                }
+            }
+        })
+    }
+    
+    @objc func updateAroundMarker() {
+        refreshButton.pulsate()
+        let cameraPosition = self.mapView.camera
+        
+        switch cameraPosition.zoom {
+        
+        case 15...17:
+            generateAroundMarker(bothLatLng: cameraPosition.target,count: 30)
+            
+        case 17...18:
+            generateAroundMarker(bothLatLng: cameraPosition.target,count: 50)
+            
+        case 18...20:
+            generateAroundMarker(bothLatLng: cameraPosition.target,count: 100)
             
         default:
-            print("GPS: Default")
+            generateAroundMarker(bothLatLng: cameraPosition.target,count: 10)
         }
     }
     
-    func getLocationUsagePermission() {
-        self.locationManager.requestWhenInUseAuthorization()
+    //MARK: 식당만 뜨게하는
+        
+    func setMarkerColor(marker: GMSMarker, with color: UIColor) {
+        marker.icon = GMSMarker.markerImage(with: color)
     }
-    
-    func loadNiB() -> MapMarkerWindow {
-        let infoWindow = MapMarkerWindow.instanceFromNib() as! MapMarkerWindow
-        return infoWindow
+
+    fileprivate func setPreviousMarkerRed() {
+        if !selectedMarkers.isEmpty {
+            setMarkerColor(marker: selectedMarkers[0], with: UIColor.red)
+            _ = selectedMarkers.popLast()
+        }
     }
-    
-    
-    // 기존 mapview에 포함된 infowindow 탭시 반응하는 함수는 infowindow를 커스텀해서 사용하게되면서 사용불가
-    func didTapInfoWindow(_ sender: Any) {
-        performSegue(withIdentifier: "DetailRestaurantInfo", sender: nil)
-        print("Infowindow!")
-    }
-    
-    
+}
+
+// MARK: GMSMapViewDelegate ( 구글지도에서 지원하는 메서드들 )
+extension MapViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         // MARK: #ISSUE1 기존의 infowindow가 화면뒤로 겹쳐서 생성됨
         // detailView가 사라지고 나서도 기존의 infowindow가 보임
@@ -337,130 +536,106 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         print("zoomLevel : ",mapView.camera.zoom)
     }
-    
-    func initializeInfoWindow(marker: GMSMarker) {
-        // infoWindow 초기화
-        locationMarker = marker
-        infoWindow.removeFromSuperview()
-        infoWindow.spotPhotos = []
-        infoWindow = loadNiB()
+}
+
+// MARK: MeokBTI Ranking ( 랭킹 집계 및 반영관련 )
+extension MapViewController {
+    func addMeokBTILikeCount() {
+        guard let userMeokBTI = user.meokBTI?.meokBTI,
+              let shownRestaurant = shownRestaurant else { return }
         
-        // infoWindow 테두리 지정 / 버튼 둥글게 (현재 버튼에선 적용 x)
-        infoWindow.delegate = self
-        infoWindow.layer.cornerRadius = 12
-        infoWindow.layer.borderWidth = 0
-        infoWindow.likeButton.layer.cornerRadius = infoWindow.likeButton.frame.height / 2
+        beingUpdatedContents = ["\(shownRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(NSNumber(1))] as [String : Any]
     }
     
-    func configureInfoWindow(at marker: GMSMarker, with map: GMSMarker.basisOfMap) {
-        initializeInfoWindow(marker: marker)
+    func subtractMeokBTILikeCount() {
+        guard let userMeokBTI = user.meokBTI?.meokBTI,
+              let shownRestaurant = shownRestaurant else { return }
         
-        // 데이터가 아닌 infoWindow에 나타나는 이름만 짤라줌.
-        guard let rawTitle = marker.title else { return }
-        shownRestaurant = Restaurant(name: rawTitle, position: marker.position)
-        
-        // infoWindow에 들어갈 정보 할당 및 위치 지정
-        infoWindow.nameLabel.text = " " + shownRestaurant!.transformNameToShow(basisof: map)
-        setMeokBTIRanking()
-        infoWindow.center = mapView.projection.point(for: marker.position)
-        infoWindow.center.y = infoWindow.center.y - 110
-        
-        // 버튼액션함수가 buttonTapped을 기준으로 실행되는데 연동이 안되있으므로 infoWindow를 다른 것을 띄웠다가 돌아왔을 때 버튼이미지가 안 바뀌는 이슈
-        // Solution: buttonTapped과 연동시켜주면서 버튼 동작을 정상적으로 만들어줌
-        infoWindow.likeButtonTapped = shownRestaurant!.like
-        infoWindow.setButtonImage()
+        beingUpdatedContents = ["\(shownRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(NSNumber(-1))] as [String : Any]
     }
     
-    fileprivate func getPlaceID(_ marker: GMSMarker) {
-        if let name = marker.title {
-            print("here is didTap", name)
-            // 식당이름으로 placeID를 받아오기 (API호출)
-            fetchPlaceID(restaurantName: name) { (placeID) in
-                // 받아온 placeID로 해당 식당 사진 받아오기
-                if let selectedPlaceID = placeID {
-//                    self.fetchRestaurantPhoto(placeID: selectedPlaceID)
+    func deleteMeokBTILikeCount() {
+        guard let userMeokBTI = user.meokBTI?.meokBTI,
+              let shownRestaurant = shownRestaurant else { return }
+        
+        beingUpdatedContents = ["\(shownRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : nil] as [String : Any]
+    }
+    
+    func sendRestaurantLikeToFirebase() {
+        // (데이터관계 : 식당이름 -> 먹BTI랭킹 -> 먹BTI별 좋아요 갯수) 좋아요 -> 로컬에서 좋아요 여부 확인 -> 서버로 보냄
+        ref = Database.database().reference()
+        self.ref.updateChildValues(beingUpdatedContents)
+        print("success MeokBTI Ranking update")
+    }
+    
+    // MARK: 로컬에서 먹BTI랭킹띄워줌
+    func setMeokBTIRanking() {
+        // Firebase에서 먹BTI랭킹 가져와서 infowindow에 먹BTI랭킹 3위까지 넣어줌
+        fetchMeokBTIRankingFromFirebase { top3 in
+            self.meokBTIRanking = ""
+            for (idx, meokBTI) in top3.enumerated() {
+                var medal: String
+                
+                switch idx {
+                case 0:
+                    medal = Ranking.first.medal
                     
-                    DispatchQueue.main.async {
-                        self.shownRestaurantPlaceID = selectedPlaceID
-                    }
+                case 1:
+                    medal = Ranking.second.medal
+                    
+                case 2:
+                    medal = Ranking.third.medal
+                    
+                default:
+                    print("Not a medalist more")
+                    return
                 }
                 
-            }
-        }
-    }
-    
-    func showInfoWindow(marker: GMSMarker, with map: GMSMarker.basisOfMap) {
-        // MARK: 마커에 필요한 정보: title, position
-        configureInfoWindow(at: marker, with: map)
-        self.view.addSubview(infoWindow)
-        
-        mapView.animate(to: GMSCameraPosition(target: marker.position, zoom: mapView.camera.zoom))
-        
-        getPlaceID(marker)
-        
-        // DetailView에 뿌릴 정보지만 속도가 느려 미리 정보를 얻어옴.
-        getAddress(of: shownRestaurant!)
-        getPhoneNO(of: shownRestaurant!)
-    }
-    
-//MARK: 식당만 뜨게하는
-    func generateAroundMarker(bothLatLng currentPosition: CLLocationCoordinate2D, count: Int) {
-        // categoryName: 카테고리 5개까지 가능 ;로 구분, radius: 단위 1km
-        pathData.requestFindNameAroundPOI(currentPosition, categoryName: "식당", radius: 20, count: count, completion: { (result, error) -> Void in
-            // 가져온 결과로 주변식당 위치에 마커 띄우기
-            if let result = result {
                 DispatchQueue.main.async {
-                    // Realtimebase(Firebase)에서 child에 들어가지 못하는 문자까지 걸러냄
-                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}
-                    
-                    for poi in withoutParkingResult {
-                        let marker = GMSMarker(position: poi.coordinate!)
-                        marker.title = poi.name
-                        marker.snippet = poi.address
-                        marker.map = self.mapView
-                        
-                        self.saveTempPoiItem(item: poi)
-                    }
+                    self.meokBTIRanking += "\(medal)\(meokBTI.key)"
+                    self.infoWindow.rankingLabel.text = self.meokBTIRanking
+                    // [x] 원하는 결과 : 🥇EMGI🥈EMGC🥉EMBC
                 }
             }
-        })
-    }
-    
-    func setMarkerColor(marker: GMSMarker, with color: UIColor) {
-        marker.icon = GMSMarker.markerImage(with: color)
-    }
-    
-    fileprivate func setPreviousMarkerRed() {
-        if !selectedMarkers.isEmpty {
-            setMarkerColor(marker: selectedMarkers[0], with: UIColor.red)
-            _ = selectedMarkers.popLast()
+            
+            self.top3MeokBTIData = top3
         }
     }
     
-    func saveTempPoiItem(item: TMapPoiItem) {
-        tempPoiItems.append(item)
-    }
-    
-    @objc func updateAroundMarker() {
-        refreshButton.pulsate()
-        let cameraPosition = self.mapView.camera
+}
+// MARK: LocationManager ( GPS설정관련 )
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        //location 접근권한 요청확인
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("GPS 권한 설정됨")
+            self.locationManager.startUpdatingLocation() // 주소데이터를 현위치로 업데이트
         
-        switch cameraPosition.zoom {
-        
-        case 15...17:
-            generateAroundMarker(bothLatLng: cameraPosition.target,count: 30)
+        case .restricted, .notDetermined:
+            // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
+            print("GPS 권한 설정되지 않음")
+            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            getLocationUsagePermission()
             
-        case 17...18:
-            generateAroundMarker(bothLatLng: cameraPosition.target,count: 50)
-            
-        case 18...20:
-            generateAroundMarker(bothLatLng: cameraPosition.target,count: 100)
+        case .denied:
+            // [x] 위치접근 거부시 기본위치 대전으로 설정 : 대전이 한국에서 중간지점으로 이길래 ㅎㅎ
+            print("GPS 권한 요청 거부됨")
+            MapViewController.currentLocation = CLLocation(latitude: CLLocationDegrees(36.343805), longitude: CLLocationDegrees(127.417154))
+            getLocationUsagePermission()
             
         default:
-            generateAroundMarker(bothLatLng: cameraPosition.target,count: 10)
+            print("GPS: Default")
         }
     }
     
+    func getLocationUsagePermission() {
+        self.locationManager.requestWhenInUseAuthorization()
+    }
+}
+
+// MARK: Fetch Method ( API를 통해 정보를 가져오는 메소드들 )
+extension MapViewController {
     func fetchPlaceID(restaurantName name: String, completion: @escaping (String?) -> Void) {
         let baseURL = URL(string: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?")!
         
@@ -515,162 +690,5 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, GMSMapView
             let count = Int(value)
             completion(count)
         }
-    }
-    
-    func setMeokBTIRanking() {
-        // Firebase에서 먹BTI랭킹 가져와서 infowindow에 먹BTI랭킹 3위까지 넣어줌
-        fetchMeokBTIRankingFromFirebase { top3 in
-            self.meokBTIRanking = ""
-            for (idx, meokBTI) in top3.enumerated() {
-                var medal: String
-                
-                switch idx {
-                case 0:
-                    medal = Ranking.first.medal
-                    
-                case 1:
-                    medal = Ranking.second.medal
-                    
-                case 2:
-                    medal = Ranking.third.medal
-                    
-                default:
-                    print("Not a medalist more")
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self.meokBTIRanking += "\(medal)\(meokBTI.key)"
-                    self.infoWindow.rankingLabel.text = self.meokBTIRanking
-                    // [x] 원하는 결과 : 🥇EMGI🥈EMGC🥉EMBC
-                }
-            }
-            
-            self.top3MeokBTIData = top3
-        }
-    }
-    
-    func setDefaultCameraZoom() {
-        print("it's me cameraZoom")
-        guard mapView != nil  else { return }
-        mapView.animate(toZoom: 15)
-        
-    }
-    
-    func didTapLikeButton(_ sender: Bool) {
-        // [x] 서버로 좋아요 누른거 전송
-        // [x] Like, 좋아한 식당목록에 추가
-        // [x] Unlike, 좋아한 식당목록에서 제거
-
-        guard let shownRestaurant = shownRestaurant else { return }
-    
-        if sender {
-            print("Like!")
-            selectedRestaurantsCount += 1
-            user.favoriteRestaurants.append(shownRestaurant)
-            addMeokBTILikeCount()
-            
-
-        } else {
-            print("Unlike!")
-            selectedRestaurantsCount -= 1
-            user.favoriteRestaurants.remove(at: getRestaurantIndex())
-            
-            if isLikeCountLastOne() {
-                deleteMeokBTILikeCount()
-            } else {
-                subtractMeokBTILikeCount()
-            }
-        }
-        
-        updateSelectCount()
-        User.saveToFile(user: user)
-        sendRestaurantLikeToFirebase()
-    }
-    
-    func isLikeCountLastOne() -> Bool {
-        fetchCurrentLikeCount { count in
-            DispatchQueue.main.async {
-                self.meokBTILikeCount = count
-            }
-        }
-
-        return (meokBTILikeCount <= 1) ? true : false
-    }
-    
-    func addMeokBTILikeCount() {
-        guard let userMeokBTI = user.meokBTI?.meokBTI,
-              let shownRestaurant = shownRestaurant else { return }
-        
-        beingUpdatedContents = ["\(shownRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(NSNumber(1))] as [String : Any]
-    }
-    
-    func subtractMeokBTILikeCount() {
-        guard let userMeokBTI = user.meokBTI?.meokBTI,
-              let shownRestaurant = shownRestaurant else { return }
-        
-        beingUpdatedContents = ["\(shownRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : ServerValue.increment(NSNumber(-1))] as [String : Any]
-    }
-    
-    func deleteMeokBTILikeCount() {
-        guard let userMeokBTI = user.meokBTI?.meokBTI,
-              let shownRestaurant = shownRestaurant else { return }
-        
-        beingUpdatedContents = ["\(shownRestaurant.name)/meokBTIRanking/\(userMeokBTI)" : nil] as [String : Any]
-    }
-    
-    func sendRestaurantLikeToFirebase() {
-        // (데이터관계 : 식당이름 -> 먹BTI랭킹 -> 먹BTI별 좋아요 갯수) 좋아요 -> 로컬에서 좋아요 여부 확인 -> 서버로 보냄
-        ref = Database.database().reference()
-        self.ref.updateChildValues(beingUpdatedContents)
-        print("success MeokBTI Ranking update")
-    }
-    
-    func getAddress(of restaurant: Restaurant) {
-        // TODO: TMAP API로 정확한 주소 얻어오기
-        let point = restaurant.position
-        
-        pathData.convertGpsToAddressAt(point) { (address, error) in
-            DispatchQueue.main.async {
-                if let address = address {
-                    self.restaurantAddress = address
-                }
-            }
-        }
-    }
-    
-    func getPhoneNO(of restaurant: Restaurant) {
-        // TODO: poi에서 폰번호 얻어오기
-        var restaurantPois = tempPoiItems.filter { item in
-            return item.name == restaurant.name && item.coordinate == restaurant.position
-        }
-        
-        if restaurantPois.isEmpty {
-            getJustOnePoi(restaurant.name)
-            restaurantPois.append(tempPoiItems.last!)
-        }
-        
-        // #ISSUE 식당검색후 해당 식당으로 이동시 Fatal error: Index out of range -> marker를 만들지 않기 때문 -> 함수 안에서 추가해줘서 해결
-        if let phoneNumber = restaurantPois[0].telNO {
-            if phoneNumber == "" {
-                self.restaurantPhoneNumber = "정보가 없습니다."
-            } else {
-                self.restaurantPhoneNumber = phoneNumber
-            }
-        }
-    }
-    
-    func getJustOnePoi(_ name: String) {
-        pathData.requestFindTitlePOI(name) { result, error in
-            if let pois = result {
-                let poi = pois[0]
-                self.saveTempPoiItem(item: poi)
-            }
-        }
-    }
-    
-    func getRestaurantIndex() -> Int {
-        let index = user.favoriteRestaurants.firstIndex(where: { $0.name == shownRestaurant!.name && $0.position == shownRestaurant!.position })!
-        return index
     }
 }
