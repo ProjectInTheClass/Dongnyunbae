@@ -370,12 +370,12 @@
                                 <rect key="frame" x="20" y="133" width="374" height="244"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsO-vJ-hLO">
-                                <rect key="frame" x="20" y="460" width="374" height="243"/>
+                                <rect key="frame" x="20" y="470" width="374" height="340"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="243" id="osd-um-IKp"/>
+                                    <constraint firstAttribute="height" constant="340" id="osd-um-IKp"/>
                                 </constraints>
                                 <string key="text">가장 까다로운 기준을 가진 오이형 사람에게 실패는 없습니다.\n\n 오이형 사람과 식사 약속을 잡으려는 친구는 분명 마음 깊이 스트레스가 쌓여있을지도 모릅니다. 하지만 그만큼 오이형 사람의 식당추천은 100% 확신이 들 정도로 믿음직한 추천입니다.\n\n 웬만하면 이들에게 식당 선택을 맡기고 다른 이야기를 하는 게 몸도 마음이 편하지 않을까요..?</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -390,9 +390,9 @@
                             <constraint firstItem="TDV-uZ-lbM" firstAttribute="trailing" secondItem="IsO-vJ-hLO" secondAttribute="trailing" id="Pzl-eE-iwL"/>
                             <constraint firstItem="TDV-uZ-lbM" firstAttribute="leading" secondItem="IsO-vJ-hLO" secondAttribute="leading" id="eZP-Uv-hkh"/>
                             <constraint firstItem="pIg-x2-Icc" firstAttribute="top" secondItem="TDV-uZ-lbM" secondAttribute="bottom" constant="41" id="eab-Xf-MjX"/>
-                            <constraint firstAttribute="bottom" secondItem="IsO-vJ-hLO" secondAttribute="bottom" constant="193" id="hw0-8m-3I1"/>
+                            <constraint firstAttribute="bottom" secondItem="IsO-vJ-hLO" secondAttribute="bottom" constant="86" id="hw0-8m-3I1"/>
                             <constraint firstItem="pIg-x2-Icc" firstAttribute="leading" secondItem="uzh-hW-X2S" secondAttribute="leading" constant="40" id="kSt-wQ-IUe"/>
-                            <constraint firstItem="IsO-vJ-hLO" firstAttribute="top" secondItem="pIg-x2-Icc" secondAttribute="bottom" constant="27" id="zJh-3T-JkJ"/>
+                            <constraint firstItem="IsO-vJ-hLO" firstAttribute="top" secondItem="pIg-x2-Icc" secondAttribute="bottom" constant="37" id="zJh-3T-JkJ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -414,9 +414,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="내가 좋아요 누른 식당" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzL-eo-Owk">
-                                <rect key="frame" x="88" y="71" width="226" height="34"/>
+                                <rect key="frame" x="94" y="68" width="226" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="BinggraeSamanco" family="Binggrae Samanco" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
