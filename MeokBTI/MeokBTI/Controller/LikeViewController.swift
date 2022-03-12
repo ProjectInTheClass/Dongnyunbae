@@ -11,14 +11,10 @@ import SafariServices
 private let cellID = "Cell"
 
 class LikeViewController: UIViewController, UITableViewDelegate {
-
-    
+ 
     
     let tableView = UITableView(frame: .zero, style: .grouped)
     let user = User.loadFromFile()
-    // let myPageMenu =  ["테스트 결과 모아보기", "관심 식당", "공지사항", "건의 및 문의","버전 관리"]
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +40,8 @@ class LikeViewController: UIViewController, UITableViewDelegate {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     
-        tableView.register(UINib(nibName: "MyPageHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "MyPageHeaderView")
     }
-    
-    
+  
 
 }
 

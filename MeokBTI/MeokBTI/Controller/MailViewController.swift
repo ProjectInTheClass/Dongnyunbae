@@ -21,12 +21,7 @@ class MailViewController: UIViewController, UINavigationControllerDelegate, MFMa
            print("Email error")
         }
     }
-    
-    
-       
-        
-        
-    
+  
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
