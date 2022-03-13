@@ -6,20 +6,23 @@
 //
 
 import UIKit
-class CollectViewController: UIViewController{
-    @IBOutlet var collectionView: UICollectionView!
+class MeokBTIResultsViewController: UIViewController{
+    @IBOutlet var MeokBTIResultsCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "테스트 결과 모아보기"
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        MeokBTIResultsCollectionView.dataSource = self
+        MeokBTIResultsCollectionView.delegate = self
+        MeokBTIResultsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
     }
 }
-extension CollectViewController: UICollectionViewDataSource {
+
+extension MeokBTIResultsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return meokBTIResults.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MeokBTIResultCollectionViewCell", for: indexPath) as! MeokBTIResultCollectionViewCell
         cell.setup(with: meokBTIResults[indexPath.row])
@@ -27,18 +30,19 @@ extension CollectViewController: UICollectionViewDataSource {
     }
 }
 
-extension CollectViewController: UICollectionViewDelegateFlowLayout {
+extension MeokBTIResultsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 180, height: 200)
+        let cellWidth = view.bounds.width / 2 - 20
+        let cellHeight = view.bounds.height / 3 - 20
+        
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }
 
-extension CollectViewController: UICollectionViewDelegate {
+extension MeokBTIResultsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vcDest = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else {
-            return
-        }
-        vcDest.sproduct = meokBTIResults[indexPath.row]
-        navigationController?.pushViewController(vcDest, animated: true)
+        guard let eachResultVC = storyboard?.instantiateViewController(withIdentifier: "EachResultViewController") as? EachResultViewController else { return }
+        eachResultVC.selectedResult = meokBTIResults[indexPath.row]
+        navigationController?.pushViewController(eachResultVC, animated: true)
     }
 }

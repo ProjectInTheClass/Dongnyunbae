@@ -7,6 +7,7 @@ class MailViewController: UIViewController, UINavigationControllerDelegate, MFMa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "건의 및 문의"
+        
         if MFMailComposeViewController.canSendMail(){
             let vc = MFMailComposeViewController()
             vc.delegate = self
@@ -19,6 +20,7 @@ class MailViewController: UIViewController, UINavigationControllerDelegate, MFMa
            print("Email error")
         }
     }
+    
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }

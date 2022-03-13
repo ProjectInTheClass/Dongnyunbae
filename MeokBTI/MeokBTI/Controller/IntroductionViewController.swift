@@ -15,6 +15,11 @@ class IntroductionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let tabBarItem1 = self.tabBarController?.tabBar.items?[0] {
+            tabBarItem1.title = "먹BTI 테스트"
+            tabBarItem1.image = UIImage(systemName: "filemenu.and.cursorarrow")
+            tabBarItem1.selectedImage = UIImage(systemName: "filemenu.and.selection")
+        }
 
         hideTabBar(when: isFirstStart())
         testStartButton.layer.cornerRadius = 5
@@ -24,6 +29,8 @@ class IntroductionViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         testStartButton.flash()
+        
+        
     }
     
     func isFirstStart() -> Bool {

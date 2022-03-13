@@ -24,7 +24,6 @@ class ResultsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("I'M !!!! ResultsViewController")
         navigationItem.hidesBackButton = true
         self.tabBarController?.tabBar.isHidden = false
         

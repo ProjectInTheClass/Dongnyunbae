@@ -46,9 +46,9 @@
 		34F05E6327D5CF1600F37404 /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F05E6227D5CF1600F37404 /* MyPageHeaderView.swift */; };
 		8E06B80627D636CB00A2A8B8 /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80527D636CB00A2A8B8 /* VersionViewController.swift */; };
 		8E06B80A27D636E900A2A8B8 /* MailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80927D636E900A2A8B8 /* MailViewController.swift */; };
-		8E06B80C27D636ED00A2A8B8 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80B27D636ED00A2A8B8 /* LikeViewController.swift */; };
-		8E06B80E27D636F300A2A8B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80D27D636F300A2A8B8 /* HomeViewController.swift */; };
-		8E06B81027D636FA00A2A8B8 /* CollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80F27D636FA00A2A8B8 /* CollectViewController.swift */; };
+		8E06B80C27D636ED00A2A8B8 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80B27D636ED00A2A8B8 /* FavoritesViewController.swift */; };
+		8E06B80E27D636F300A2A8B8 /* EachResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80D27D636F300A2A8B8 /* EachResultViewController.swift */; };
+		8E06B81027D636FA00A2A8B8 /* MeokBTIResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B80F27D636FA00A2A8B8 /* MeokBTIResultsViewController.swift */; };
 		8E06B81427D6374600A2A8B8 /* MeokBTIResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B81327D6374600A2A8B8 /* MeokBTIResultCollectionViewCell.swift */; };
 		8E06B81627D6374B00A2A8B8 /* MeokBTIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06B81527D6374B00A2A8B8 /* MeokBTIResult.swift */; };
 		8ECB5CCC27C2335300A5F01A /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB5CCB27C2335300A5F01A /* MyPageViewController.swift */; };
@@ -123,9 +123,9 @@
 		77A07664455AD6E7C92AF5DF /* Pods-MeokBTI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeokBTI.debug.xcconfig"; path = "Target Support Files/Pods-MeokBTI/Pods-MeokBTI.debug.xcconfig"; sourceTree = "<group>"; };
 		8E06B80527D636CB00A2A8B8 /* VersionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
 		8E06B80927D636E900A2A8B8 /* MailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailViewController.swift; sourceTree = "<group>"; };
-		8E06B80B27D636ED00A2A8B8 /* LikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
-		8E06B80D27D636F300A2A8B8 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		8E06B80F27D636FA00A2A8B8 /* CollectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectViewController.swift; sourceTree = "<group>"; };
+		8E06B80B27D636ED00A2A8B8 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		8E06B80D27D636F300A2A8B8 /* EachResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachResultViewController.swift; sourceTree = "<group>"; };
+		8E06B80F27D636FA00A2A8B8 /* MeokBTIResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeokBTIResultsViewController.swift; sourceTree = "<group>"; };
 		8E06B81327D6374600A2A8B8 /* MeokBTIResultCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeokBTIResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E06B81527D6374B00A2A8B8 /* MeokBTIResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeokBTIResult.swift; sourceTree = "<group>"; };
 		8ECB5CCB27C2335300A5F01A /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -206,10 +206,10 @@
 				01ED1D6526FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift */,
 				8ECB5CCB27C2335300A5F01A /* MyPageViewController.swift */,
 				8E06B80527D636CB00A2A8B8 /* VersionViewController.swift */,
-				8E06B80B27D636ED00A2A8B8 /* LikeViewController.swift */,
+				8E06B80B27D636ED00A2A8B8 /* FavoritesViewController.swift */,
 				8E06B80927D636E900A2A8B8 /* MailViewController.swift */,
-				8E06B80F27D636FA00A2A8B8 /* CollectViewController.swift */,
-				8E06B80D27D636F300A2A8B8 /* HomeViewController.swift */,
+				8E06B80F27D636FA00A2A8B8 /* MeokBTIResultsViewController.swift */,
+				8E06B80D27D636F300A2A8B8 /* EachResultViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -421,7 +421,7 @@
 			files = (
 				010F916C26CE8B2A00437262 /* ResultTableViewController.swift in Sources */,
 				017D88D826CABD4600B72155 /* MapMarkerWindow.swift in Sources */,
-				8E06B80E27D636F300A2A8B8 /* HomeViewController.swift in Sources */,
+				8E06B80E27D636F300A2A8B8 /* EachResultViewController.swift in Sources */,
 				348B723427C3FD7600FC524D /* APIKeys.swift in Sources */,
 				34F05E6327D5CF1600F37404 /* MyPageHeaderView.swift in Sources */,
 				0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */,
@@ -445,11 +445,11 @@
 				0148CF1B26C81CB90035862A /* Extensions+.swift in Sources */,
 				01ED1D6626FF717000CB8FB3 /* DetailRestaurantInfoViewController.swift in Sources */,
 				013C65C226BA4FB700895567 /* MapViewController.swift in Sources */,
-				8E06B81027D636FA00A2A8B8 /* CollectViewController.swift in Sources */,
+				8E06B81027D636FA00A2A8B8 /* MeokBTIResultsViewController.swift in Sources */,
 				8E06B80627D636CB00A2A8B8 /* VersionViewController.swift in Sources */,
 				34D8CF9F27BEA3900032A66B /* HarmonyCollectionViewCell.swift in Sources */,
 				013C65C426BBD22000895567 /* Restaurant.swift in Sources */,
-				8E06B80C27D636ED00A2A8B8 /* LikeViewController.swift in Sources */,
+				8E06B80C27D636ED00A2A8B8 /* FavoritesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

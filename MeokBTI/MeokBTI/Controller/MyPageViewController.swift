@@ -8,8 +8,6 @@
 import UIKit
 import SafariServices
 
-private let cellID = "Cell"
-
 class MyPageViewController: UIViewController {
 
     let tableView = UITableView(frame: .zero, style: .grouped)
@@ -18,15 +16,21 @@ class MyPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let tabBarItem3 = self.tabBarController?.tabBar.items?[2] {
+            tabBarItem3.title = "마이페이지"
+            tabBarItem3.image = UIImage(systemName: "person.circle")
+            tabBarItem3.selectedImage = UIImage(systemName: "person.circle.fill")
+        }
+        
         configureUI()
     }
 
-    func configureUI(){
+    func configureUI() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(MyPageTableViewCell.self, forCellReuseIdentifier: cellID)
+        tableView.register(MyPageTableViewCell.self, forCellReuseIdentifier: "MyPageTableViewCell")
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -40,8 +44,9 @@ extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myPageMenu.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MyPageTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageTableViewCell", for: indexPath) as! MyPageTableViewCell
         cell.menuLabel.text = myPageMenu[indexPath.row]
         cell.menuLabel.font = UIFont(name: "Binggrae", size: 17)
         cell.accessoryType = .disclosureIndicator
@@ -71,38 +76,36 @@ extension MyPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 0{
-        switch indexPath.row{
-        case 0:
-            print("테스트 모아보기")
-            let uvc = self.storyboard!.instantiateViewController(withIdentifier: "CollectionViewController")
-            navigationController?.pushViewController(uvc, animated: true)
-        case 1:
-          let user = User.loadFromFile()
-            print(user.meokBTI!)
-          print("관심 식당")
-            let uvc1 = self.storyboard!.instantiateViewController(withIdentifier: "LikeViewController")
-            navigationController?.pushViewController(uvc1, animated: true)
-        case 2:
-            print("공지사항")
-            guard let url = URL(string: "https://projectintheclass.github.io/Dongnyunbae/") else{
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case 0:
+                print("테스트 모아보기")
+                let uvc = self.storyboard!.instantiateViewController(withIdentifier: "MeokBTIResultsViewController")
+                navigationController?.pushViewController(uvc, animated: true)
+            case 1:
+                let user = User.loadFromFile()
+                print(user.meokBTI!)
+                print("관심 식당")
+                let uvc1 = self.storyboard!.instantiateViewController(withIdentifier: "FavoritesViewController")
+                navigationController?.pushViewController(uvc1, animated: true)
+            case 2:
+                print("공지사항")
+                guard let url = URL(string: "https://projectintheclass.github.io/Dongnyunbae/") else{
                     return
                 }
-            let vc = SFSafariViewController(url: url)
-            present(vc, animated: true)
-        case 3:
-            print("건의 및 문의")
-            let uvc3 = self.storyboard!.instantiateViewController(withIdentifier: "MailViewController")
-            navigationController?.pushViewController(uvc3, animated: true)
-        case 4:
-            print("앱 버전 관리")
-            let uvc4 = self.storyboard!.instantiateViewController(withIdentifier: "VersionViewController")
-            navigationController?.pushViewController(uvc4, animated: true)
-        default:
-            print("wrong")
-        }
-    }
-        else {
+                let vc = SFSafariViewController(url: url)
+                present(vc, animated: true)
+            case 3:
+                print("건의 및 문의")
+                let uvc3 = self.storyboard!.instantiateViewController(withIdentifier: "MailViewController")
+                navigationController?.pushViewController(uvc3, animated: true)
+            case 4:
+                print("앱 버전 관리")
+                let uvc4 = self.storyboard!.instantiateViewController(withIdentifier: "VersionViewController")
+                navigationController?.pushViewController(uvc4, animated: true)
+            default:
+                print("wrong")
+            }
         }
     }
 }

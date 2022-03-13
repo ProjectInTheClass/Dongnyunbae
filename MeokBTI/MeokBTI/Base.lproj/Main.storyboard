@@ -28,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="137" y="321"/>
         </scene>
-        <!--Map-->
+        <!--주변식당-->
         <scene sceneID="X2R-uz-DEf">
             <objects>
                 <viewController id="qYV-Fz-46I" customClass="MapViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +38,7 @@
                         <viewLayoutGuide key="safeArea" id="6SR-yg-nLe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="4L7-pk-xUq"/>
+                    <tabBarItem key="tabBarItem" title="주변식당" image="map" catalog="system" id="4L7-pk-xUq"/>
                     <connections>
                         <segue destination="6Jx-HQ-7aC" kind="show" identifier="DetailRestaurantInfo" id="m6P-ug-LaL"/>
                     </connections>
@@ -151,6 +151,7 @@
         <!--MeokBTI Tab Bar Controller-->
         <scene sceneID="vXl-iF-NSj">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QvP-ei-IbN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="cFf-PX-nGt" customClass="MeokBTITabBarController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j5a-cB-Kyi">
@@ -165,14 +166,13 @@
                         <segue destination="lTk-TP-pgk" kind="relationship" relationship="viewControllers" id="0X3-zu-6xU"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QvP-ei-IbN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1100" y="818"/>
         </scene>
         <!--My Page View Controller-->
         <scene sceneID="gX8-76-ikk">
             <objects>
-                <viewController storyboardIdentifier="ViewContoller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l54-Cy-TMA" customClass="MyPageViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l54-Cy-TMA" customClass="MyPageViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="ViewContoller" id="cz9-jF-lXJ" customClass="ViewContoller" customModule="MeokBTI" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,11 +185,11 @@
             </objects>
             <point key="canvasLocation" x="1206" y="1550"/>
         </scene>
-        <!--MyPage-->
+        <!--마이페이지-->
         <scene sceneID="82J-ED-oDb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lTk-TP-pgk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MyPage" image="person.circle" catalog="system" id="v0S-C4-TbP"/>
+                    <tabBarItem key="tabBarItem" title="마이페이지" image="person.circle" catalog="system" id="v0S-C4-TbP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QCz-o0-H3K">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -270,7 +270,7 @@
         <!--Item-->
         <scene sceneID="xa4-Kv-dH9">
             <objects>
-                <viewController storyboardIdentifier="CollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NMQ-ar-r6o" customClass="CollectViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MeokBTIResultsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NMQ-ar-r6o" customClass="MeokBTIResultsViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kba-wc-MR9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,18 +286,15 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MeokBTIResultCollectionViewCell" id="808-ad-Kc6" customClass="MeokBTIResultCollectionViewCell" customModule="MeokBTI" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="227"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="227"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ge6-Ae-9dI">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="227"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="202" height="227"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fhv hjsf vhdfjd fhjdhf jdhf j djf" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zJ-Qc-kKc">
-                                                    <rect key="frame" x="8" y="155" width="184" height="41"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="41" id="jjT-ao-vYH"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="BinggraeSamanco" family="Binggrae Samanco" pointSize="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fhv hjsf vhdfjd fhjdhf jdhf j djf" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zJ-Qc-kKc">
+                                                    <rect key="frame" x="5" y="148" width="192" height="19"/>
+                                                    <fontDescription key="fontDescription" name="BinggraeSamanco" family="Binggrae Samanco" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -308,22 +305,21 @@
                                                     <buttonConfiguration key="configuration" style="plain" title=""/>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ELBC" translatesAutoresizingMaskIntoConstraints="NO" id="lpl-ht-RM0">
-                                                    <rect key="frame" x="13" y="8" width="175" height="135"/>
+                                                    <rect key="frame" x="13" y="8" width="177" height="135"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <bool key="isElement" value="YES"/>
                                                     </accessibility>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="4zJ-Qc-kKc" firstAttribute="leading" secondItem="ge6-Ae-9dI" secondAttribute="leading" constant="8" id="BSU-rc-3ac"/>
+                                                <constraint firstItem="4zJ-Qc-kKc" firstAttribute="leading" secondItem="ge6-Ae-9dI" secondAttribute="leading" constant="5" id="BSU-rc-3ac"/>
                                                 <constraint firstItem="lpl-ht-RM0" firstAttribute="leading" secondItem="ge6-Ae-9dI" secondAttribute="leading" constant="13" id="CMf-dE-cP7"/>
                                                 <constraint firstAttribute="trailing" secondItem="lpl-ht-RM0" secondAttribute="trailing" constant="12" id="fS8-Xs-i3Z"/>
-                                                <constraint firstItem="4zJ-Qc-kKc" firstAttribute="top" secondItem="lpl-ht-RM0" secondAttribute="bottom" constant="12" id="gya-uN-rAY"/>
-                                                <constraint firstAttribute="trailing" secondItem="4zJ-Qc-kKc" secondAttribute="trailing" constant="8" id="hib-uz-m18"/>
+                                                <constraint firstItem="4zJ-Qc-kKc" firstAttribute="top" secondItem="lpl-ht-RM0" secondAttribute="bottom" constant="5" id="gya-uN-rAY"/>
+                                                <constraint firstAttribute="trailing" secondItem="4zJ-Qc-kKc" secondAttribute="trailing" constant="5" id="hib-uz-m18"/>
                                                 <constraint firstItem="lpl-ht-RM0" firstAttribute="top" secondItem="ge6-Ae-9dI" secondAttribute="top" constant="8" id="y12-YH-dxz"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="200" height="227"/>
                                         <connections>
                                             <outlet property="meokBTIImageView" destination="lpl-ht-RM0" id="bBV-6w-lui"/>
                                             <outlet property="meokBTITitleLabel" destination="4zJ-Qc-kKc" id="iCd-GT-emZ"/>
@@ -344,73 +340,72 @@
                     <tabBarItem key="tabBarItem" title="Item" id="5JT-uP-85e"/>
                     <navigationItem key="navigationItem" id="0jK-i7-r1a"/>
                     <connections>
-                        <outlet property="collectionView" destination="r3s-f7-q83" id="JNB-fX-h7O"/>
+                        <outlet property="MeokBTIResultsCollectionView" destination="r3s-f7-q83" id="JNB-fX-h7O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDd-yt-OwW" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2118.840579710145" y="1549.5535714285713"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Each Result View Controller-->
         <scene sceneID="T5S-ZL-60v">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aPs-67-R9P" customClass="HomeViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EachResultViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aPs-67-R9P" customClass="EachResultViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XQc-pA-O06">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="homeLabel" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIg-x2-Icc">
-                                <rect key="frame" x="40" y="352" width="334" height="37"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="VCC-du-RNM">
+                                <rect key="frame" x="10" y="44" width="394" height="818"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V8O-Pp-qq9">
+                                        <rect key="frame" x="52" y="0.0" width="290" height="269"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07g-wh-zx7">
+                                        <rect key="frame" x="169.5" y="299" width="55.5" height="33"/>
+                                        <fontDescription key="fontDescription" name="BinggraeSamanco" family="Binggrae Samanco" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uQ-Tv-dY6">
+                                        <rect key="frame" x="23" y="362" width="348" height="456"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="8xn-gH-3mf"/>
+                                    <constraint firstItem="1uQ-Tv-dY6" firstAttribute="width" secondItem="V8O-Pp-qq9" secondAttribute="width" multiplier="1.2" id="VUF-Se-qaM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="BinggraeSamanco" family="Binggrae Samanco" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsO-vJ-hLO">
-                                <rect key="frame" x="20" y="423" width="374" height="409"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="409" id="osd-um-IKp"/>
-                                </constraints>
-                                <string key="text">가장 까다로운 기준을 가진 오이형 사람에게 실패는 없습니다.\n\n 오이형 사람과 식사 약속을 잡으려는 친구는 분명 마음 깊이 스트레스가 쌓여있을지도 모릅니다. 하지만 그만큼 오이형 사람의 식당추천은 100% 확신이 들 정도로 믿음직한 추천입니다.\n\n 웬만하면 이들에게 식당 선택을 맡기고 다른 이야기를 하는 게 몸도 마음이 편하지 않을까요..?</string>
-                                <fontDescription key="fontDescription" name="Binggrae" family="Binggrae" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="homelmage" image="ELBC" translatesAutoresizingMaskIntoConstraints="NO" id="TDV-uZ-lbM">
-                                <rect key="frame" x="50" y="67" width="324" height="244"/>
-                            </imageView>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uzh-hW-X2S"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="IsO-vJ-hLO" secondAttribute="trailing" constant="20" id="0hA-iy-aA3"/>
-                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="centerX" secondItem="pIg-x2-Icc" secondAttribute="centerX" constant="5" id="Inj-yA-fDx"/>
-                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="top" secondItem="uzh-hW-X2S" secondAttribute="top" constant="23" id="Mnj-6Z-nBt"/>
-                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="leading" secondItem="XQc-pA-O06" secondAttribute="leadingMargin" constant="30" id="OJ6-t4-1aS"/>
-                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="trailing" secondItem="IsO-vJ-hLO" secondAttribute="trailing" constant="-20" id="Pzl-eE-iwL"/>
-                            <constraint firstItem="TDV-uZ-lbM" firstAttribute="leading" secondItem="IsO-vJ-hLO" secondAttribute="leading" constant="30" id="eZP-Uv-hkh"/>
-                            <constraint firstItem="pIg-x2-Icc" firstAttribute="top" secondItem="TDV-uZ-lbM" secondAttribute="bottom" constant="41" id="eab-Xf-MjX"/>
-                            <constraint firstAttribute="bottom" secondItem="IsO-vJ-hLO" secondAttribute="bottom" constant="64" id="hw0-8m-3I1"/>
-                            <constraint firstItem="pIg-x2-Icc" firstAttribute="leading" secondItem="uzh-hW-X2S" secondAttribute="leading" constant="40" id="kSt-wQ-IUe"/>
-                            <constraint firstItem="IsO-vJ-hLO" firstAttribute="top" secondItem="pIg-x2-Icc" secondAttribute="bottom" constant="34" id="zJh-3T-JkJ"/>
+                            <constraint firstItem="V8O-Pp-qq9" firstAttribute="width" secondItem="XQc-pA-O06" secondAttribute="width" multiplier="0.7" id="4Od-gV-pge"/>
+                            <constraint firstItem="V8O-Pp-qq9" firstAttribute="height" secondItem="XQc-pA-O06" secondAttribute="height" multiplier="0.3" id="9xE-qH-IjZ"/>
+                            <constraint firstItem="uzh-hW-X2S" firstAttribute="bottom" secondItem="VCC-du-RNM" secondAttribute="bottom" id="Pfr-EB-pKo"/>
+                            <constraint firstItem="uzh-hW-X2S" firstAttribute="trailing" secondItem="VCC-du-RNM" secondAttribute="trailing" constant="10" id="aLv-SF-n7U"/>
+                            <constraint firstItem="VCC-du-RNM" firstAttribute="leading" secondItem="uzh-hW-X2S" secondAttribute="leading" constant="10" id="qMR-L7-i1L"/>
+                            <constraint firstItem="VCC-du-RNM" firstAttribute="top" secondItem="uzh-hW-X2S" secondAttribute="top" id="xWG-Xx-1HK"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="homeimage" destination="TDV-uZ-lbM" id="cky-Mf-lry"/>
-                        <outlet property="homelabel" destination="pIg-x2-Icc" id="AM0-py-h8D"/>
-                        <outlet property="hometext" destination="IsO-vJ-hLO" id="4Q5-rj-e5f"/>
+                        <outlet property="meokBTIImageView" destination="V8O-Pp-qq9" id="ybg-xF-Lah"/>
+                        <outlet property="meokBTILongDescrpition" destination="1uQ-Tv-dY6" id="3RD-UD-oT4"/>
+                        <outlet property="meokBTIShortDefinition" destination="07g-wh-zx7" id="EJ9-J3-toh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P9A-Hj-37v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3072" y="1550"/>
         </scene>
-        <!--Like View Controller-->
+        <!--Favorites View Controller-->
         <scene sceneID="jhA-XZ-IHU">
             <objects>
-                <viewController storyboardIdentifier="LikeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="V9n-Yd-Ix4" customClass="LikeViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoritesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="V9n-Yd-Ix4" customClass="FavoritesViewController" customModule="MeokBTI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1cy-MT-6hc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -444,6 +439,9 @@
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="testImage" width="585" height="1266"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -74,6 +74,12 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let tabBarItem2 = self.tabBarController?.tabBar.items?[1] {
+            tabBarItem2.title = "주변식당"
+            tabBarItem2.image = UIImage(systemName: "map")
+            tabBarItem2.selectedImage = UIImage(systemName: "map.fill")
+        }
+        
         checkDevice()
         placesClient = GMSPlacesClient.shared()
         self.infoWindow = loadNiB()
