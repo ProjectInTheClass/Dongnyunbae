@@ -10,6 +10,7 @@ class CollectViewController: UIViewController{
     @IBOutlet var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "테스트 결과 모아보기"
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()

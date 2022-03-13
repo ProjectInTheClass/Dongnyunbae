@@ -15,7 +15,8 @@ class LikeViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        self.navigationItem.title = "좋아요 한 식당 목록"
+        //view.backgroundColor = .white
+        self.navigationItem.title = "관심 식당"
         
     }
     func configureUI(){
@@ -28,6 +29,7 @@ class LikeViewController: UIViewController, UITableViewDelegate {
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.backgroundColor = .white
     }
 }
 

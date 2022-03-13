@@ -250,13 +250,6 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CvA-wz-IJh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="버전 관리" id="rW1-OL-40L"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5SD-gU-Dfz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -283,7 +276,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="r3s-f7-q83">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GPs-e1-DD3">
                                     <size key="itemSize" width="200" height="227"/>
@@ -338,21 +331,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KvY-bO-aHd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="테스트 결과 모아보기" id="3hd-ec-eBr"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="45W-co-0HR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="45W-co-0HR" firstAttribute="bottom" secondItem="r3s-f7-q83" secondAttribute="bottom" id="3ny-ja-Jka"/>
-                            <constraint firstItem="45W-co-0HR" firstAttribute="trailing" secondItem="r3s-f7-q83" secondAttribute="trailing" id="5KU-58-gdx"/>
-                            <constraint firstItem="r3s-f7-q83" firstAttribute="leading" secondItem="45W-co-0HR" secondAttribute="leading" id="A4l-w3-epF"/>
-                            <constraint firstItem="r3s-f7-q83" firstAttribute="top" secondItem="45W-co-0HR" secondAttribute="top" constant="44" id="gZc-C0-huJ"/>
+                            <constraint firstItem="r3s-f7-q83" firstAttribute="leading" secondItem="45W-co-0HR" secondAttribute="leading" id="0ll-pW-Ha1"/>
+                            <constraint firstItem="45W-co-0HR" firstAttribute="trailing" secondItem="r3s-f7-q83" secondAttribute="trailing" id="fJK-Jr-DFH"/>
+                            <constraint firstItem="45W-co-0HR" firstAttribute="bottom" secondItem="r3s-f7-q83" secondAttribute="bottom" id="h0B-h8-331"/>
+                            <constraint firstItem="r3s-f7-q83" firstAttribute="top" secondItem="45W-co-0HR" secondAttribute="top" id="sgT-CP-5yy"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="5JT-uP-85e"/>
@@ -428,15 +414,6 @@
                     <view key="view" contentMode="scaleToFill" id="1cy-MT-6hc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lki-4h-l1U">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="관심 식당" id="wia-PU-oNd"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="rAh-5q-mZM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -452,15 +429,6 @@
                     <view key="view" contentMode="scaleToFill" id="zcG-Am-Al4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f5E-me-GEX">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="건의 및 문의" id="ozI-mk-ET7"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4Ag-gg-r8W"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>

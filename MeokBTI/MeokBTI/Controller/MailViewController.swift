@@ -6,6 +6,7 @@ import SafariServices
 class MailViewController: UIViewController, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "건의 및 문의"
         if MFMailComposeViewController.canSendMail(){
             let vc = MFMailComposeViewController()
             vc.delegate = self
