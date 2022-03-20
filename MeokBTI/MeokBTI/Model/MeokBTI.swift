@@ -252,6 +252,8 @@ enum MeokBTI: String, Codable {
         }
     }
     
+    
+    
     var harmonies: Harmony {
         Harmony(meokBTI: self)
     }

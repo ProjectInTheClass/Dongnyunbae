@@ -12,7 +12,7 @@ import TMapSDK
 import FirebaseDatabase
 import KakaoSDKCommon
 
-class MapViewController: UIViewController, UISearchBarDelegate {
+class MapViewController: UIViewController {
     
     // 디바이스 크기 변수
     let screenHeight = UIScreen.main.bounds.size.height
@@ -20,12 +20,12 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     // 검색창 코드
     var searchController: UISearchController?
 
-    // 위치 관련 변수들
+    // 위치 관련
     var locationManager: CLLocationManager!
     static var currentLocation: CLLocation?
     var currentCamera: GMSCameraPosition!
     var placesClient: GMSPlacesClient!
-    var preciseLocationZoomLevel: Float = 17.0
+    var preciseLocationZoomLevel: Float = 15
     
     // 맵뷰 관련 변수들
     var mapView: GMSMapView!
@@ -234,8 +234,6 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         selectRefreshHStackView.axis = .horizontal
     }
     
-    
-    
     func drawSelectLabelAndRefreshButton() {
         makeSelectVStack()
         makeSelectRefreshHStack()
@@ -346,6 +344,15 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         detailVC.top3MeokBTI = top3MeokBTIData
         detailVC.addressAndPhoneNumber = addressAndPhoneNumber
         detailVC.placesClient = placesClient
+    }
+}
+
+// MARK: SearchBarDelegate ( MapVC에서 서치바의 역할이 필요할 때 )
+extension MapViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if let searchVC = searchController?.searchResultsUpdater as? SearchResultsViewController {
+            searchVC.requestAroundRestaurant()
+        }
     }
 }
 
@@ -609,6 +616,7 @@ extension MapViewController {
     }
     
 }
+
 // MARK: LocationManager ( GPS설정관련 )
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

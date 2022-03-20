@@ -20,10 +20,6 @@ class ResultTableViewController: UITableViewController, UICollectionViewDataSour
     var imageToShare = UIImage()
     var userMeokBTI: MeokBTI?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let firstCellCaptureImage = cell.contentView.transformToImage()

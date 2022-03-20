@@ -9,11 +9,13 @@ import UIKit
 import TMapSDK
 import GoogleMaps
 
-class SearchResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+class SearchResultsViewController: UIViewController {
     
     var searchResultsTableView: UITableView?
+    let pathData = TMapPathData()
     
     var tempResultData: [TMapPoiItem] = []
+    var searchResultData: [TMapPoiItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,23 +23,9 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         connectTableViewWithVC()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("SearchBar touched!")
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tempResultData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath)
-        var content = cell.defaultContentConfiguration()
-
-        content.text = tempResultData[indexPath.row].name
-        cell.contentConfiguration = content
-        
-        return cell
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        requestAroundRestaurant()
     }
     
     func initializeSearchResultsTableView() {
@@ -52,31 +40,49 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         searchResultsTableView?.dataSource = self
         searchResultsTableView?.register(UITableViewCell.self, forCellReuseIdentifier: "resultCell")
     }
+}
 
+// MARK: SearchUpdate
+extension SearchResultsViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        let pathData = TMapPathData()
-        
-        // 사용자 입력
+        // 사용자 입력할 때마다 호출되는 함수
         guard let userSearchKeyword = searchController.searchBar.text else { return }
         
-        // 사용자 위치
+        searchResultData = tempResultData.filter { $0.name?.contains(userSearchKeyword) ?? false }
+        searchResultsTableView?.reloadData()
+    }
+    
+    func requestAroundRestaurant() {
         let center = CLLocationCoordinate2D(latitude: MapViewController.currentLocation!.coordinate.latitude, longitude: MapViewController.currentLocation!.coordinate.longitude)
         
-        // keywordName에 사용자 입력
-        pathData.requestFindAroundKeywordPOI(center, keywordName: userSearchKeyword, radius: 10, count: 50, completion: { (result, error) -> Void in
+        // 33km, 200개가 max
+        pathData.requestFindNameAroundPOI(center, categoryName: "식당", radius: 33, count: 200, completion: { (result, error) -> Void in
             if let result = result {
                 DispatchQueue.main.async {
-//                    if self.tempResultData.count == 0 {
-//                        self.tempResultData = []
-//                    }
-//                    else {
-//                        self.tempResultData = result
-//                    }
-                    self.tempResultData = result
-                    self.searchResultsTableView?.reloadData()
+                    // 주차장 및 특수문자가 들어간 식당들을 걸러냄
+                    let withoutParkingResult = result.filter { !(($0.name?.contains("주차장"))!) && !(($0.name?.contains("."))!) && !(($0.name?.contains("#"))!) && !(($0.name?.contains("["))!) && !(($0.name?.contains("]"))!) && !(($0.name?.contains("$"))!)}
+                    
+                    self.tempResultData = withoutParkingResult
                 }
             }
         })
+    }
+}
+
+// MARK: TableView
+extension SearchResultsViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResultData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath)
+        var content = cell.defaultContentConfiguration()
+
+        content.text = searchResultData[indexPath.row].name
+        cell.contentConfiguration = content
+        
+        return cell
     }
     
     // MARK: 셀이 터치 되었을 때 식당으로 이동시켜주는 함수
@@ -88,7 +94,7 @@ class SearchResultsViewController: UIViewController, UITableViewDataSource, UITa
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
         if let rootVC = rootVC as? MeokBTITabBarController {
             guard let mapVC = rootVC.viewControllers![1] as? MapViewController else { return }
-            let poi = tempResultData[indexPath.row]
+            let poi = searchResultData[indexPath.row]
             let position = poi.coordinate!
             let marker = GMSMarker(position: position)
             marker.title = poi.name
