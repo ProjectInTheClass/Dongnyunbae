@@ -63,8 +63,6 @@ extension DetailInfoWindow: UICollectionViewDelegate, UICollectionViewDataSource
         
         return cell
     }
-    
-    
 }
 
 
