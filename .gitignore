@@ -139,3 +139,5 @@ Pods/
 
 # TMapSDK
 TMapSDK.framework/
+# API Keys
+APIKeys.swift

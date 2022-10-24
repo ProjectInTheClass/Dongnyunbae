@@ -25,6 +25,7 @@
 		0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129338826B29B93006F22FA /* IntroductionViewController.swift */; };
 		0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129338926B29B93006F22FA /* QuestionViewController.swift */; };
 		0129338E26B29B93006F22FA /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0129338A26B29B93006F22FA /* ResultsViewController.swift */; };
+		013058FD2906EC9F000D7388 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013058FC2906EC9F000D7388 /* APIKeys.swift */; };
 		013753F626CD41AC002F3ABE /* MeokBTITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */; };
 		013C65C226BA4FB700895567 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013C65C126BA4FB700895567 /* MapViewController.swift */; };
 		013C65C426BBD22000895567 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013C65C326BBD22000895567 /* Restaurant.swift */; };
@@ -89,6 +90,7 @@
 		0129338826B29B93006F22FA /* IntroductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		0129338926B29B93006F22FA /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		0129338A26B29B93006F22FA /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		013058FC2906EC9F000D7388 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		013753F526CD41AC002F3ABE /* MeokBTITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeokBTITabBarController.swift; sourceTree = "<group>"; };
 		013C65C126BA4FB700895567 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		013C65C326BBD22000895567 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				013C65C326BBD22000895567 /* Restaurant.swift */,
 				010F916026CE2B1D00437262 /* User.swift */,
 				010F916826CE55C300437262 /* MeokBTI.swift */,
+				013058FC2906EC9F000D7388 /* APIKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				0148A8FE26CB9B6600F1427C /* PhotoCollectionViewCell.swift in Sources */,
 				013753F626CD41AC002F3ABE /* MeokBTITabBarController.swift in Sources */,
 				0129338C26B29B93006F22FA /* IntroductionViewController.swift in Sources */,
+				013058FD2906EC9F000D7388 /* APIKeys.swift in Sources */,
 				0129338D26B29B93006F22FA /* QuestionViewController.swift in Sources */,
 				01ED1D6927004C5300CB8FB3 /* DetailInfoWindow.swift in Sources */,
 				010F916126CE2B1D00437262 /* User.swift in Sources */,
